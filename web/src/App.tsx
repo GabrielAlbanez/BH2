@@ -1,12 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Abertura from './Pages/Abertura';
+import MinhasRotas from './routes';
 
 function App() {
   return (
     <div className="App">
-        <Abertura/>
+    <MinhasRotas/>
     </div>
   );
 }
