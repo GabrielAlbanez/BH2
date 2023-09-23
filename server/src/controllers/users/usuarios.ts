@@ -35,7 +35,7 @@ export const getByCpfUser = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { cpf, nome, email, senha, sexo, endereco } = req.body;
+    const { cpf, nome, email, senha, sexo, endereco,type } = req.body;
     const hashedPassword = await bcrypt.hash(senha,5)
 
     const userCreate = await prisma.usuario.create({
@@ -46,6 +46,8 @@ export const createUser = async (req: Request, res: Response) => {
         nome: nome,
         senha: hashedPassword,
         sexo: sexo,
+        tipo : type
+
       },
     });
 
@@ -58,14 +60,14 @@ export const createUser = async (req: Request, res: Response) => {
 
 export const deleteUser =  async (req: Request, res: Response) => {
     try{
-     const cpf = req.body
+     const cpf = req.body.cpf
 
      const userDeletado = await prisma.usuario.delete({
         where : {
             cpf : cpf
         }
      })
-      res.status(200).json({user : userDeletado})
+      res.status(200).json({userDeleted : userDeletado})
     }
     catch(error){
         res.status(403).json({ err: `erro ao deletar usuario${error}` });

@@ -20,6 +20,7 @@ model Usuario {
   sexo      String
   endereco  String
   rifas     Rifa[]
+  tipo      String
 }
 
 model Ong {
