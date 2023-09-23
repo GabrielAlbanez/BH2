@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import rotaUser from "./routes/users";
 import routeOng from "./routes/ongs";
+import rifasRoute from "./routes/rifas";
 
 const app = express();
 dotenv.config();
@@ -22,7 +23,7 @@ app.get("/", (req: Request, res: Response) => {
   res.status(200).send("Welcome Be Human");
 });
 
-app.use(rotaUser,routeOng)
+app.use(rotaUser,routeOng,rifasRoute)
 
 
 app.listen(porta, () => {

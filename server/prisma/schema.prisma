@@ -52,8 +52,8 @@ model Rifa {
   nome       String
   preco      Decimal
   descricao  String?
-  CpfUsuario  String
+  CpfUsuario  String?
   idOng      Int?
-  usuario    Usuario  @relation(fields: [CpfUsuario], references: [cpf])
+  usuario    Usuario?  @relation(fields: [CpfUsuario], references: [cpf])
   ong        Ong?     @relation(fields: [idOng], references: [id])
 }
