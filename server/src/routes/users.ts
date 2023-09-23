@@ -10,6 +10,7 @@ Rotauser.get('/allUsers',ControlerUsers.getAllUsers)
 Rotauser.get('/user/:userCpf',ControlerUsers.getByCpfUser)
 Rotauser.post('/createUser',userMiddlewares.validateDataUser,ControlerUsers.createUser)
 Rotauser.delete('/deleteUser',ControlerUsers.deleteUser)
+Rotauser.post('/byRifas',userMiddlewares.validateByRifas,ControlerUsers.byRifas)
 
 
 

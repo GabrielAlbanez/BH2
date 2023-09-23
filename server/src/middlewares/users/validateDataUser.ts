@@ -55,3 +55,60 @@ export const validateDataUser = async (
   next();
 
 };
+
+export const validateByRifas = async(req : Request, res : Response, next : NextFunction) => {
+
+  const {cpf, id} = req.body
+
+  const cpfValido = cpfValid.isValid(cpf)
+
+  if(!cpfValido){
+    res.status(404).json({err : "cpf invalid"})
+  }
+
+  const idssRRifas = await prisma.rifa.findMany({
+    where : {
+      id : id
+    },
+    select : {
+      id : true
+    }
+  })
+
+  const TodosIds = idssRRifas.map((rifa)=>rifa.id)
+
+  const cpfsUSers = await prisma.usuario.findMany({
+    where  : {
+      cpf : cpf
+    },
+    select : {
+      cpf : true
+    }
+  })
+
+  const pegarCpf = cpfsUSers.map((user)=>user.cpf)
+
+  if(TodosIds.includes(id) && pegarCpf.includes(cpf)){
+    next()
+  }
+  else{
+    res.status(404).json('rifa ou cpf inexistente')
+  }
+
+  const rifasCompradas = await prisma.usuario.findMany({
+    where : {
+      cpf : cpf
+    },
+    select : {
+      rifas : true
+    }
+  })
+
+  const Allrifas = rifasCompradas.map((rifa)=>rifa.rifas)
+
+
+  if(Allrifas.includes(id)){
+    res.status(404).json({rifa : "essa rifa ja foi comprada"})
+  }
+
+}

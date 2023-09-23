@@ -73,3 +73,31 @@ export const deleteUser =  async (req: Request, res: Response) => {
         res.status(403).json({ err: `erro ao deletar usuario${error}` });
     }
 }
+
+export const byRifas = async(req : Request, res : Response) =>{
+
+  try{
+
+    const {cpf, id} = req.body
+
+    const byRifa = await prisma.usuario.update({
+      where : {
+        cpf : cpf
+      },
+      data : {
+        rifas : {
+          connect : { id: id}
+        }
+      }
+    })
+
+    res.status(200).json({sucessful : byRifa})
+
+
+  }
+  catch(error){
+    res.status(404).json({err : `erro ao compra rifa ${error}`})
+  }
+
+
+}
