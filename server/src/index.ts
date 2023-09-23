@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import rotaUser from "./routes/users";
 import routeOng from "./routes/ongs";
 import rifasRoute from "./routes/rifas";
+import voluntarioRouter from "./routes/voluntarios";
 
 const app = express();
 dotenv.config();
@@ -23,7 +24,7 @@ app.get("/", (req: Request, res: Response) => {
   res.status(200).send("Welcome Be Human");
 });
 
-app.use(rotaUser,routeOng,rifasRoute)
+app.use(rotaUser,routeOng,rifasRoute,voluntarioRouter)
 
 
 app.listen(porta, () => {
