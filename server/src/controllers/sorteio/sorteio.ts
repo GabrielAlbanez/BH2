@@ -56,12 +56,20 @@ export const sorteioUsers = async (req: Request, res: Response) => {
         },
     
         select : {
+            nome  : true,
             rifas : {
                where : {
                 id : idRifa
+               },
+               include : {
+                NumeroComprado : {
+                    where : {
+                        numero : numeroSorteado
+                    }
+                }
                }
-            },
-            nome  : true
+            }
+         
         }
     })
     
