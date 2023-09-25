@@ -35,97 +35,85 @@ export const validateDataUser = async (
   }
 
   const cpfExisting = await prisma.usuario.findMany({
-    where : {
-      cpf : cpf
-    }
-  })
+    where: {
+      cpf: cpf,
+    },
+  });
 
-  if(cpfExisting.length > 0){
-    return res.status(200).json({error : "cpf ja cadastrado"})
+  if (cpfExisting.length > 0) {
+    return res.status(200).json({ error: "cpf ja cadastrado" });
   }
 
-  if(sexo !== "masculino" && sexo !== "feminino"){
-    return res.status(404).json({error : 'sexo nao existente'})
+  if (sexo !== "masculino" && sexo !== "feminino") {
+    return res.status(404).json({ error: "sexo nao existente" });
   }
 
-  if(type !== "default" && type !=="admin" ){
-    return res.status(404).json({error : 'tipo de usuario inexistente'})
+  if (type !== "default" && type !== "admin") {
+    return res.status(404).json({ error: "tipo de usuario inexistente" });
   }
 
   next();
-
 };
 
-export const validateByRifas = async(req : Request, res : Response, next : NextFunction) => {
+export const validateByRifas = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { cpf, id, numero } = req.body;
 
-  const {cpf, id} = req.body
+  if (!cpf || !id || !numero) {
+    return res.status(404).json({ message: "pre encha todos os campos" });
+  }
 
-  const cpfValido = cpfValid.isValid(cpf)
+  const cpfValido = cpfValid.isValid(cpf);
 
-  if(!cpfValido){
-    res.status(404).json({err : "cpf invalid"})
+  if (!cpfValido) {
+    return res.status(404).json({ err: "cpf invalid" });
   }
 
   const idssRRifas = await prisma.rifa.findMany({
-    where : {
-      id : id
+    where: {
+      id: id,
     },
-    select : {
-      id : true
-    }
-  })
+    select: {
+      id: true,
+    },
+  });
 
-  const TodosIds = idssRRifas.map((rifa)=>rifa.id)
+  const TodosIds = idssRRifas.map((rifa) => rifa.id);
 
   const cpfsUSers = await prisma.usuario.findMany({
-    where  : {
-      cpf : cpf
+    where: {
+      cpf: cpf,
     },
-    select : {
-      cpf : true
-    }
-  })
-
-  const pegarCpf = cpfsUSers.map((user)=>user.cpf)
-
-  const rifasCompradas = await prisma.usuario.findMany({
-    where : {
-      cpf : cpf
+    select: {
+      cpf: true,
     },
-    select : {
-      rifas  : {
-        select : {
-          id : true
-        }
-      }
-    }
-  })
+  });
 
-  const Allrifas = rifasCompradas.map((rifa)=>rifa.rifas)
+  const pegarCpf = cpfsUSers.map((user) => user.cpf);
 
-  console.log(Allrifas)
-
-  const verificarId = Allrifas.some((arrayDentro) =>
-  arrayDentro.some((rifa) => rifa.id === id)
-);
-
-
-
-  console.log(verificarId)
-
-
-
-  if(verificarId){
-   return  res.status(404).json({rifa : "essa rifa ja foi comprada"})
+  if (!pegarCpf.includes(cpf)) {
+    return res.status(404).json({ error: "cpf invalido" });
   }
 
-  if(TodosIds.includes(id) && pegarCpf.includes(cpf)){
-    next()
+  if (!TodosIds.includes(id)) {
+    return res.status(404).json({ message: "rifa inexistente" });
   }
-  else{
-   return  res.status(404).json('rifa ou cpf inexistente')
+  // else{
+  //  return  res.status(404).json('rifa ou cpf inexistente')
+  // }
+
+  const numerosComprados = await prisma.numeroComprado.findMany({
+    where: {
+      numero: numero,
+    },
+  });
+
+  if (numerosComprados.length > 0) {
+    return res.status(404).json({ message: "esse numero ja foi comprado" });
   }
 
-  
-
-}
+  next();
+};

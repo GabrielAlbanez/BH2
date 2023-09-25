@@ -8,7 +8,7 @@ export const getAllRifas = async(req: Request, res: Response)=>{
     const allrifas  = await prisma.rifa.findMany({
       include : {
         ong : true,
-        usuario : true
+        NumeroComprado : true,
       }
     })
     res.status(200).json({rifas : allrifas})
@@ -28,6 +28,10 @@ export const getByRifasOng  = async(req : Request, res : Response)=>{
     const AllRifasOng = await prisma.rifa.findMany({
       where : {
         idOng : idOng
+      },
+      include : {
+        NumeroComprado : true,
+        ong :  true
       }
     })
 

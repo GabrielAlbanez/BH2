@@ -6,7 +6,8 @@ export const getAllUsers = async (req: Request, res: Response) => {
   try {
     const allUsers = await prisma.usuario.findMany({
       include: {
-        rifas: true,
+        numerosComprados : true,
+   
       },
     });
     res.status(200).json({ users: allUsers });
@@ -24,7 +25,8 @@ export const getByCpfUser = async (req: Request, res: Response) => {
         cpf: userCpf,
       },
       include: {
-        rifas: true,
+        numerosComprados : true,
+   
       },
     });
     res.status(200).json({ user: userFltrado });
@@ -78,7 +80,7 @@ export const byRifas = async(req : Request, res : Response) =>{
 
   try{
 
-    const {cpf, id} = req.body
+    const {cpf, id, numero} = req.body
 
     const byRifa = await prisma.usuario.update({
       where : {
@@ -91,7 +93,15 @@ export const byRifas = async(req : Request, res : Response) =>{
       }
     })
 
-    res.status(200).json({sucessful : byRifa})
+    const byNumber = await prisma.numeroComprado.create({
+      data : {
+        numero : numero,
+        rifaId : id,
+        usuarioCpf : cpf
+      }
+    })
+
+    res.status(200).json({sucessful : byRifa,byNumber})
 
 
   }
