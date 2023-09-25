@@ -88,27 +88,44 @@ export const validateByRifas = async(req : Request, res : Response, next : NextF
 
   const pegarCpf = cpfsUSers.map((user)=>user.cpf)
 
-  if(TodosIds.includes(id) && pegarCpf.includes(cpf)){
-    next()
-  }
-  else{
-    res.status(404).json('rifa ou cpf inexistente')
-  }
-
   const rifasCompradas = await prisma.usuario.findMany({
     where : {
       cpf : cpf
     },
     select : {
-      rifas : true
+      rifas  : {
+        select : {
+          id : true
+        }
+      }
     }
   })
 
   const Allrifas = rifasCompradas.map((rifa)=>rifa.rifas)
 
+  console.log(Allrifas)
 
-  if(Allrifas.includes(id)){
-    res.status(404).json({rifa : "essa rifa ja foi comprada"})
+  const verificarId = Allrifas.some((arrayDentro) =>
+  arrayDentro.some((rifa) => rifa.id === id)
+);
+
+
+
+  console.log(verificarId)
+
+
+
+  if(verificarId){
+   return  res.status(404).json({rifa : "essa rifa ja foi comprada"})
   }
+
+  if(TodosIds.includes(id) && pegarCpf.includes(cpf)){
+    next()
+  }
+  else{
+   return  res.status(404).json('rifa ou cpf inexistente')
+  }
+
+  
 
 }

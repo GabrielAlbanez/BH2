@@ -56,7 +56,7 @@ export const validateDataRifa = async (
   });
 
   if (nameRifaExisting.length > 0) {
-    res.status(404).json({ message: "essa rifa ja existe" });
+    return res.status(404).json({ message: "essa rifa ja existe" });
   }
 
   next();

@@ -51,11 +51,11 @@ export const validaDataOngs = async (
   });
 
   if (nameOngs.length > 0) {
-    res.status(200).json({ message: "ong ja cadastrada" });
+     return res.status(200).json({ message: "ong ja cadastrada" });
   }
 
   if (enderecoOng.length > 0) {
-    res.status(200).json({ message: "ong ja cadastrada" });
+   return res.status(200).json({ message: "ong ja cadastrada" });
   }
 
   next();

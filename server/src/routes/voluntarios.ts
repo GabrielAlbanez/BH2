@@ -8,7 +8,7 @@ const voluntarioRouter = Router()
 
 voluntarioRouter.get('/AllVoluntarios/:NameOrCpf',middlewareVoluntario.validateTypeUser,controllerVoluntarios.getAllVoluntarios)
 voluntarioRouter.get('/voluntario/:NameOrCpf',middlewareVoluntario.validateTypeUser,controllerVoluntarios.getByIdVoluntario)
-voluntarioRouter.get('/voluntarioOng/:NameOrCpf',middlewareVoluntario.validateTypeUser,controllerVoluntarios.getVoluntariosOng)
+voluntarioRouter.post('/voluntarioOng/:NameOrCpf',middlewareVoluntario.validateTypeUser,controllerVoluntarios.getVoluntariosOng)
 voluntarioRouter.post('/createVoluntario/:NameOrCpf',middlewareVoluntario.validateTypeUser,middlewareVoluntario.validateDataVoluntario,controllerVoluntarios.CreateVoluntarios)
 voluntarioRouter.delete('/deleteVoluntario/:NameOrCp',middlewareVoluntario.validateTypeUser,controllerVoluntarios.deleteVoluntarios)
 

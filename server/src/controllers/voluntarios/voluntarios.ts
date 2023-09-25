@@ -36,7 +36,7 @@ export const getByIdVoluntario = async (req: Request, res: Response) => {
 
 export const getVoluntariosOng = async (req: Request, res: Response) => {
   try {
-    const idOng = req.body;
+    const idOng = req.body.idOng;
 
     const Voluntarios = await prisma.voluntarios.findMany({
       where: {
@@ -67,7 +67,7 @@ export const CreateVoluntarios = async (req: Request, res: Response) => {
 
     res.status(201).json({ VoluntarioCriado: createVoluntario });
   } catch (error) {
-    res.status(404).json({ error: `erro ao buscar voluntarios ${error}` });
+    res.status(404).json({ error: `erro ao criar voluntarios ${error}` });
   }
 };
 

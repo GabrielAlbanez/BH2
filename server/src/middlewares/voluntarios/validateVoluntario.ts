@@ -30,6 +30,16 @@ export const validateDataVoluntario = async(
   })
 
   const idssOng = idsOng.map((ong)=>ong.id)
+  const valuntarioExisting = await prisma.voluntarios.findMany({
+    where : {
+      cpf : cpf
+    }
+  })
+
+  if(valuntarioExisting.length > 0){
+    return res.status(404).json({message : "voluntario already exists"})
+  }
+  
 
   if(idssOng.includes(idOng)){
     next()
@@ -38,6 +48,7 @@ export const validateDataVoluntario = async(
     res.status(404).json('essa ong n existe')
   }
 
+   
 
 
 };
