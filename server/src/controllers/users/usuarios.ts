@@ -6,6 +6,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
   try {
     const allUsers = await prisma.usuario.findMany({
       include: {
+    
         numerosComprados : true,
    
       },
@@ -78,20 +79,18 @@ export const deleteUser =  async (req: Request, res: Response) => {
 
 export const byRifas = async(req : Request, res : Response) =>{
 
+
+ 
+
+
+
   try{
 
     const {cpf, id, numero} = req.body
 
-    const byRifa = await prisma.usuario.update({
-      where : {
-        cpf : cpf
-      },
-      data : {
-        rifas : {
-          connect : { id: id}
-        }
-      }
-    })
+
+
+
 
     const byNumber = await prisma.numeroComprado.create({
       data : {
@@ -101,7 +100,7 @@ export const byRifas = async(req : Request, res : Response) =>{
       }
     })
 
-    res.status(200).json({sucessful : byRifa,byNumber})
+    res.status(200).json({sucessful : byNumber})
 
 
   }
