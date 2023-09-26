@@ -3,6 +3,42 @@ import { cpf as cpfValid } from "cpf-cnpj-validator";
 import * as EmailValidator from "email-validator";
 import { db as prisma } from "../../shared/db";
 
+
+
+export const validTypeUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const cpfValidate = req.params.cpfValidate;
+
+  const adminCpf = await prisma.usuario.findMany({
+    where: {
+      tipo: "admin",
+    },
+    select: {
+      cpf: true,
+    },
+  });
+
+  const adminCpfs = adminCpf.map((admin) => admin.cpf);
+
+  if (adminCpfs.includes(cpfValidate)) {
+    //se bater quer dizer que o cpf do cara e de adm
+    return next();
+  } else {
+    return res.status(403).json({ error: "Acesso não autorizado" });
+  }
+};
+
+
+
+
+
+
+
+
+
 export const validateDataUser = async (
   req: Request,
   res: Response,

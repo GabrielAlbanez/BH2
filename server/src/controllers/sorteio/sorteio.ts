@@ -50,36 +50,13 @@ export const sorteioUsers = async (req: Request, res: Response) => {
  
     console.log(objetoSorteado)
 
-    // const ganhador = await prisma.usuario.findMany({
-    //     where : {
-    //         cpf : objetoSorteado.usuarioCpf
-    //     },
-    
-    //     select : {
-    //         nome  : true,
-    //         rifas : {
-    //            where : {
-    //             id : idRifa
-    //            },
-    //            include : {
-    //             NumeroComprado : {
-    //                 where : {
-    //                     numero : numeroSorteado
-    //                 }
-    //             }
-    //            }
-    //         }
-         
-    //     }
-    // })
-
+   
     const ganhador = await prisma.numeroComprado.findMany({
       where : {
         numero : objetoSorteado.numero
       },
       select : {
         numero : true,
-        usuarioCpf  : true,
         rifa : true
       },
     })
@@ -91,13 +68,15 @@ export const sorteioUsers = async (req: Request, res: Response) => {
       select : {
         nome : true,
         email : true,
+        sexo : true,
+        endereco : true
       
       }
     })
 
     console.log(ganhador)
     
-    res.status(200).json({ganhador : ganhador,dataGanhador})
+    res.status(200).json({numeroSorteado : ganhador,dataGanhador})
     
 
 
