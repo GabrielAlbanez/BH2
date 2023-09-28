@@ -17,3 +17,4 @@ Rotauser.post('/byRifas',userMiddlewares.validateByRifas,ControlerUsers.byRifas)
 
 
 export default Rotauser
+

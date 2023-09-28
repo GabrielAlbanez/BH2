@@ -7,6 +7,7 @@ import rifasRoute from "./routes/rifas";
 import voluntarioRouter from "./routes/voluntarios";
 import trabalhosRotas from "./routes/trabalhos";
 import rotaSorteio from "./routes/sorteio";
+import session from "express-session";
 
 const app = express();
 dotenv.config();
@@ -19,6 +20,18 @@ app.use(
     origin: "*",
   })
 );
+
+
+app.use(
+  session({
+    secret: '8080',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false,maxAge: 3600000 },
+     //tem que ativar isso com true no front end para enviar os cokies http
+  })
+);
+
 
 
 
