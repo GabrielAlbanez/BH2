@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { ControlerUsers } from "../controllers/users/indexl";
 import { userMiddlewares } from "../middlewares/users/index";
+import { authLogin } from "../middlewares/auth/auth";
+import { verifyToken } from "../middlewares/auth/verifyToken";
 
 
 
@@ -11,7 +13,8 @@ Rotauser.get('/allUsers/:cpfValidate',userMiddlewares.validTypeUser,ControlerUse
 Rotauser.get('/user/:userCpf',ControlerUsers.getByCpfUser)
 Rotauser.post('/createUser',userMiddlewares.validateDataUser,ControlerUsers.createUser)
 Rotauser.delete('/deleteUser/:cpfValidate',userMiddlewares.validTypeUser,ControlerUsers.deleteUser)
-Rotauser.post('/byRifas',userMiddlewares.validateByRifas,ControlerUsers.byRifas)
+Rotauser.post('/byRifas',verifyToken,userMiddlewares.validateByRifas,ControlerUsers.byRifas)
+Rotauser.post('/Login',authLogin,ControlerUsers.Login)
 
 
 

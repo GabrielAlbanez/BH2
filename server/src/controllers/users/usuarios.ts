@@ -1,6 +1,7 @@
 import { db as prisma } from "../../shared/db";
 import { Request, Response } from "express";
 import * as bcrypt from "bcrypt";
+import * as jwt from "jsonwebtoken";
 
 export const getAllUsers = async (req: Request, res: Response) => {
   try {
@@ -108,5 +109,17 @@ export const byRifas = async(req : Request, res : Response) =>{
     res.status(404).json({err : `erro ao compra rifa ${error}`})
   }
 
+
+}
+
+
+export const Login = (req : Request, res : Response) =>{
+  
+  const token = req.session['token']
+
+  const decode = jwt.verify(token,"8080")
+
+
+  res.status(200).json({message : "Login realizado por", decode, token : token})
 
 }
