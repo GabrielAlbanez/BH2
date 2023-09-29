@@ -12,6 +12,6 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
     const decodedToken = jwt.verify(token, "8080");
     next();
   } catch (err) {
-    return res.status(500).json({ message: "Token expirado ou inválido" });
+    return res.status(500).json({ message: "Token expirado ou inválido", recomendation:  "fazer login novamente" });
   }
 };
