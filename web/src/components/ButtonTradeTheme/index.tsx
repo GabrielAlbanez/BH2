@@ -3,6 +3,7 @@ import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import Switch from '@mui/material/Switch';
 import { useTema } from '../../common/context/Tema';
+import toast from 'react-hot-toast';
 
 const theme = createTheme({
   palette: {
@@ -73,6 +74,20 @@ function ButtonTradeTheme() {
     pegarTema: string;
     setPegarTema: (value: string) => void;
   };
+
+
+  const notify = () => toast(`${pegarTema === 'dark' ? "tema light ativo" : 'tema dark ativo'}`,{
+    icon: `${pegarTema === 'dark' ? "🌞" : "🌑"}`,
+    style : {
+      borderRadius : '10px',
+      background : `${pegarTema === 'dark' ? "white" : "#333"}`,
+      color : `${pegarTema === 'dark' ? "black" : "white"}`
+    }
+  });
+
+
+
+
    useEffect(()=>{
         setPegarTema(theme.palette.mode)
    },[theme.palette.mode])
@@ -85,6 +100,7 @@ function ButtonTradeTheme() {
           sx={{ m: 1 }}
           checked={isChecked}
           onChange={handleSwitchChange}
+          onClick={notify}
         />
       </FormGroup>
     </ThemeProvider>
