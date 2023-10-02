@@ -26,6 +26,8 @@ interface propsDrawer {
   inten4?: React.ReactNode;
   textoI4?: string;
   inten5?: React.ReactNode;
+  inten6?: React.ReactNode;
+  textoI6?: string;
 }
 
 export default function MyDrawer({
@@ -37,7 +39,9 @@ export default function MyDrawer({
   inten3,
   textoI3,
   inten4,
-  textoI4
+  textoI4,
+  inten6,
+  textoI6
 }: propsDrawer) {
   const [state, setState] = React.useState({
     left: false,
@@ -110,6 +114,9 @@ export default function MyDrawer({
             <ListItemText primary={textoI4} />
           </ListItemButton>
         </ListItem>
+
+
+
 
 
       </List>

@@ -6,6 +6,7 @@ import MinhasRotas from './routes';
 function App() {
   return (
     <div className="App">
+    
     <MinhasRotas/>
     </div>
   );
