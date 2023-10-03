@@ -12,7 +12,7 @@ type TemaProps = {
 };
 
 export default function TemaProvider({ children }: TemaProps) {
-  const [pegarTema, setPegarTema] = useState<string>('');
+  const [pegarTema, setPegarTema] = useState<string>('light');
 
 
 

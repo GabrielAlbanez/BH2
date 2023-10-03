@@ -37,7 +37,7 @@ export default function Navbar() {
       } w-[100%] h-[9vh]  flex items-center justify-between px-3 sm:px-8 xl:px-1 2xl:px-0 `}
     >
       <ul className="flex md:text-lg lg:text-xl 2xl:text-xl gap-7 items-center overflow-hidden w-[0%] sm:w-[0%] md:w-[100%] md:overflow-visible">
-        <img src={Logo} alt="" height={40} width={40} />
+        <img onClick={()=>navigator("/")} src={Logo} alt="" height={40} width={40} />
         <li>Sobre Nós</li>
         <li>Doação</li>
         <li>Contato</li>

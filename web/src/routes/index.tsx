@@ -6,7 +6,8 @@ import Abertura from '../Pages/Abertura'
 import Rifas from '../Pages/Rifas'
 import toast, { Toaster } from 'react-hot-toast';
 import { useTema } from '../common/context/Tema'
-import Register from '../components/register'
+import Register from '../Pages'
+
 
 export default function MinhasRotas() {
 

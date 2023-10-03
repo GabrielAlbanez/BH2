@@ -12,6 +12,7 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Avatar, ListItemAvatar } from "@mui/material";
 import Logo from "../../assets/imgs/Logo.png";
+import { useNavigate } from "react-router-dom";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -47,6 +48,9 @@ export default function MyDrawer({
     left: false,
   });
 
+  const navigator = useNavigate()
+
+
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
     (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -73,6 +77,7 @@ export default function MyDrawer({
           <ListItemButton>
             <ListItemAvatar>
               <Avatar
+                onClick={()=>navigator("/")}
                 alt="Travis Howard"
                 src={Logo}
                 sx={{ width: 30, height: 30 }}
