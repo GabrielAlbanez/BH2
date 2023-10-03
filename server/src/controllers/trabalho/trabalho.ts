@@ -18,13 +18,13 @@ export const getAlltrabalhos = async (req: Request, res: Response) => {
   }
 };
 
-export const getByWorksNameOng = async (req: Request, res: Response) => {
+export const getByWorksCnpjOng = async (req: Request, res: Response) => {
   try {
-    const nameOng = req.body.nameOng;
+    const cnpjOng = req.body.cnpjOng;
 
     const getWorksWithNameOng = await prisma.trabalho.findMany({
       where: {
-        nome: nameOng,
+        idOng : cnpjOng
       },
       include: {
         ong: true,
@@ -42,13 +42,13 @@ export const getByWorksNameOng = async (req: Request, res: Response) => {
 export const createWorks = async (req: Request, res: Response) => {
   try {
 
-    const {nome,descricao,idOng} = req.body
+    const {nome,descricao,cnpjOng} = req.body
 
      const createWork  =  await prisma.trabalho.create({
       data : {
        nome : nome,
        descricao : descricao,
-       idOng
+       idOng : cnpjOng
       }
      })
 

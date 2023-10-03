@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { cpf as cpfValid } from "cpf-cnpj-validator";
 import { db as prisma } from "../../shared/db";
+import { cnpj as cnpjValid } from "cpf-cnpj-validator";
 
 export const validateDataVoluntario = async(
   req: Request,
@@ -8,11 +9,12 @@ export const validateDataVoluntario = async(
   next: NextFunction
 ) => {
 
-  const { cpf, nome, idOng } = req.body;
+  const { cpf, nome, cnpjOng } = req.body;
 
   const cpfValido = cpfValid.isValid(cpf)
+  const cnpjValido = cnpjValid.isValid(cnpjOng);
 
-  if(!cpf || !nome || !idOng){
+  if(!cpf || !nome || !cnpjOng){
     return res.status(404).json({message : "por favor pre encha todos os campos"})
   }
 
@@ -20,16 +22,20 @@ export const validateDataVoluntario = async(
     return res.status(404).json({message : "cpf invalido " })
   }
 
+  if(!cnpjValido){
+    return res.status(404).json({message : "cnpj da ong invalido " })
+  }
+
   const idsOng = await prisma.ong.findMany({
     where : {
-      id : idOng
+      cnpj : cnpjOng
     },
     select : {
-      id : true
+      cnpj : true
     }
   })
 
-  const idssOng = idsOng.map((ong)=>ong.id)
+  const idssOng = idsOng.map((ong)=>ong.cnpj)
   const valuntarioExisting = await prisma.voluntarios.findMany({
     where : {
       cpf : cpf
@@ -41,7 +47,7 @@ export const validateDataVoluntario = async(
   }
   
 
-  if(idssOng.includes(idOng)){
+  if(idssOng.includes(cnpjOng)){
     next()
   }
   else{

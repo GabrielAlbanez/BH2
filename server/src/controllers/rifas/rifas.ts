@@ -23,11 +23,11 @@ export const getAllRifas = async(req: Request, res: Response)=>{
 export const getByRifasOng  = async(req : Request, res : Response)=>{
   try{
 
-    const idOng = req.body.idOng
+    const cnpjOng = req.body.cnpjOng
 
     const AllRifasOng = await prisma.rifa.findMany({
       where : {
-        idOng : idOng
+        idOng : cnpjOng
       },
       include : {
         NumeroComprado : true,

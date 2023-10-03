@@ -1,17 +1,23 @@
 import { NextFunction, Request, Response } from "express";
 import { db as prisma } from "../../shared/db";
+import { cnpj as cnpjValid } from "cpf-cnpj-validator";
 
 export const validateDataWokr = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { nome, descricao, idOng } = req.body;
+  const { nome, descricao, cnpjOng } = req.body;
+  const cnpjValido = cnpjValid.isValid(cnpjOng);
 
-  if (!nome || !descricao || !idOng) {
+  if (!nome || !descricao || !cnpjOng) {
     return res.status(404).json({
       message: "pre encha todos os campos",
     });
+  }
+
+  if (!cnpjValido) {
+    return res.status(400).json({ error: "cnpj inválido" });
   }
 
   const nameWorks = await prisma.trabalho.findMany({
@@ -26,18 +32,18 @@ export const validateDataWokr = async (
   const names = nameWorks.map((work)=>work.nome)
 
 
-  const idssOng = await prisma.ong.findMany({
+  const cnpjssOng = await prisma.ong.findMany({
     where: {
-      id: idOng,
+      cnpj: cnpjOng,
     },
     select: {
-      id: true,
+      cnpj: true,
     },
   });
 
-  const pegarTodos = idssOng.map((ong) => ong.id);
+  const pegarTodos = cnpjssOng.map((ong) => ong.cnpj);
 
-  if (pegarTodos.includes(idOng) && !names.includes(nome)) {
+  if (pegarTodos.includes(cnpjOng) && !names.includes(nome)) {
     next();
   } else {
     return res.status(404).json({

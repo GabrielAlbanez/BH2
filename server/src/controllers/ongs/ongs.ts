@@ -1,5 +1,6 @@
 import { db as prisma } from "../../shared/db";
 import { Request, Response } from "express";
+import * as bcrypt from "bcrypt";
 
 export const getAllOngs = async (req: Request, res: Response) => {
   try {
@@ -37,12 +38,19 @@ export const getByNameOng = async (req: Request, res: Response) => {
 
 export const createOng = async (req: Request, res: Response) => {
   try {
-    const { nome, endereco } = req.body;
+    const { nome, endereco,cnpj,email,senha,telefone,redesSociais } = req.body;
+    
+    const hashedPassword = await bcrypt.hash(senha,5)
 
     const createOng = await prisma.ong.create({
       data: {
-        nome: nome,
-        endereco: endereco,
+        cnpj,
+        email,
+        nome,
+        senha : hashedPassword,
+        endereco,
+        telefone,
+        redesSociais
       },
     });
     res.status(200).json({ ong: createOng });
@@ -53,11 +61,11 @@ export const createOng = async (req: Request, res: Response) => {
 
 export const deleteOng = async (req: Request, res: Response) => {
   try {
-    const id = req.body.id
+    const cnpj = req.body.cnpj
 
     const deleteOng = await prisma.ong.delete({
       where: {
-        id: id,
+        cnpj: cnpj,
       },
     });
 

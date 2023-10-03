@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { db as prisma } from "../../shared/db";
+import { cnpj as cnpjValid } from "cpf-cnpj-validator";
 
 export const validateOngUserAndUserAdmin = async (
   req: Request,
@@ -43,10 +44,15 @@ export const validateDataRifa = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { nome, preco, descricaon, idOng } = req.body;
+  const { nome, preco, descricaon, cnpj } = req.body;
+  const cnpjValido = cnpjValid.isValid(cnpj);
 
-  if (!nome || !preco || !descricaon || !idOng) {
+  if (!nome || !preco || !descricaon || !cnpj) {
     return res.status(404).json({ error: "favor pré encher todos os campos" });
+  }
+
+  if(!cnpjValid){
+    return res.status(404).json({message : "cnpj da ong invalido"})
   }
 
   const nameRifaExisting = await prisma.rifa.findMany({

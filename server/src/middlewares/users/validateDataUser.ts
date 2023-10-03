@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { cpf as cpfValid } from "cpf-cnpj-validator";
 import * as EmailValidator from "email-validator";
 import { db as prisma } from "../../shared/db";
-import { parsePhoneNumberFromString, isValidNumber } from 'libphonenumber-js';
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
 
 

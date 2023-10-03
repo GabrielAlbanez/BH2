@@ -36,11 +36,11 @@ export const getByIdVoluntario = async (req: Request, res: Response) => {
 
 export const getVoluntariosOng = async (req: Request, res: Response) => {
   try {
-    const idOng = req.body.idOng;
+    const cnpjOng = req.body.cnpjOng;
 
     const Voluntarios = await prisma.voluntarios.findMany({
       where: {
-        idOng: idOng,
+        idOng: cnpjOng,
       },
       include: {
         ong: true,
@@ -55,13 +55,13 @@ export const getVoluntariosOng = async (req: Request, res: Response) => {
 
 export const CreateVoluntarios = async (req: Request, res: Response) => {
   try {
-    const { cpf, nome, idOng } = req.body;
+    const { cpf, nome, cnpjOng } = req.body;
 
     const createVoluntario = await prisma.voluntarios.create({
       data: {
         cpf,
         nome,
-        idOng,
+        idOng : cnpjOng,
       },
     });
 
