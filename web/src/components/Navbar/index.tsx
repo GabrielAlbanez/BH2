@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../Button";
 import Logo from "../../assets/imgs/Logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { BsPerson, BsTelephone } from "react-icons/bs";
 import { LiaDonateSolid } from "react-icons/lia";
@@ -21,6 +21,13 @@ export default function Navbar() {
 
   const {setPegarTypeUser} = useTypeUser() as {
     setPegarTypeUser : (value: string) => void
+  }
+  
+  const navigator = useNavigate()
+
+  const handleTypeRegister = (name : string)=>{
+    setPegarTypeUser(name);
+    navigator('/Register')
   }
 
   return (
@@ -83,8 +90,8 @@ export default function Navbar() {
         
         </div>
         <div className="flex gap-4">
-         <button onClick={()=>{setPegarTypeUser('Ong')}} className="bg-emerald-400 w-full rounded-lg py-3">Ong</button>
-         <button onClick={()=>{setPegarTypeUser('Usuario')}} className="bg-indigo-400 w-full rounded-lg">Usario</button>
+         <button onClick={()=>{handleTypeRegister('Ong')}} className="bg-emerald-400 w-full rounded-lg py-3">Ong</button>
+         <button onClick={()=>{handleTypeRegister('Usario')}} className="bg-indigo-400 w-full rounded-lg">Usario</button>
         </div>
         </div>
       </ModalConfirm>

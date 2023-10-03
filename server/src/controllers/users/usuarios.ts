@@ -39,7 +39,7 @@ export const getByCpfUser = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { cpf, nome, email, senha, sexo, endereco,type } = req.body;
+    const { cpf, nome, email, senha, sexo, endereco,type,telefone } = req.body;
     const hashedPassword = await bcrypt.hash(senha,5)
 
     const userCreate = await prisma.usuario.create({
@@ -50,7 +50,8 @@ export const createUser = async (req: Request, res: Response) => {
         nome: nome,
         senha: hashedPassword,
         sexo: sexo,
-        tipo : type
+        tipo : type,
+        telefone : telefone
 
       },
     });

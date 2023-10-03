@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { cpf as cpfValid } from "cpf-cnpj-validator";
 import * as EmailValidator from "email-validator";
 import { db as prisma } from "../../shared/db";
+import { parsePhoneNumberFromString, isValidNumber } from 'libphonenumber-js';
 
 
 
@@ -44,11 +45,13 @@ export const validateDataUser = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { cpf, nome, email, senha, sexo, endereco, type } = req.body;
+  const { cpf, nome, email, senha, sexo, endereco, type, telefone } = req.body;
   const cpfValido = cpfValid.isValid(cpf);
   const emailValido = EmailValidator.validate(email);
+  const phoneNumberObject = parsePhoneNumberFromString(telefone);
 
-  if (!nome || !email || !cpf || !senha || !sexo || !endereco || !type) {
+
+  if (!nome || !email || !cpf || !senha || !sexo || !endereco || !type || !telefone) {
     return res.status(404).json({ message: "favor pre-encher todos os dados" });
   }
 
@@ -86,6 +89,21 @@ export const validateDataUser = async (
 
   if (type !== "default" && type !== "admin") {
     return res.status(404).json({ error: "tipo de usuario inexistente" });
+  }
+  
+ 
+if (!phoneNumberObject || !phoneNumberObject.isValid()) {
+  return res.status(404).json({message : "telefone invalido"})
+} 
+
+  const telefoneExisting = await prisma.usuario.findMany({
+    where : {
+      telefone : telefone
+    }
+  })
+
+  if(telefoneExisting.length > 0){
+    return res.status(404).json({message : "telefone ja cadastrado"})
   }
 
   next();

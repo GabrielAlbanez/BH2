@@ -19,6 +19,7 @@ model Usuario {
   endereco         String
   rifas            Rifa[]
   tipo             String
+  telefone         String
   numerosComprados NumeroComprado[]
 }
 
@@ -29,13 +30,14 @@ model Ong {
   rifas       Rifa[]
   Voluntarios Voluntarios[]
   trabalhos   Trabalho[]
+
 }
 
 model Voluntarios {
   cpf   String @id
   nome  String
   idOng Int
-  ong   Ong    @relation(fields: [idOng], references: [id])
+  ong   Ong    @relation(fields: [idOng], references: [id], onDelete: Cascade)
 }
 
 model Trabalho {
@@ -43,7 +45,7 @@ model Trabalho {
   nome      String
   descricao String?
   idOng     Int
-  ong       Ong     @relation(fields: [idOng], references: [id])
+  ong       Ong     @relation(fields: [idOng], references: [id],onDelete: Cascade)
 }
 
 model Rifa {
@@ -53,8 +55,8 @@ model Rifa {
   descricao      String?
   CpfUsuario     String?
   idOng          Int?
-  usuario        Usuario?         @relation(fields: [CpfUsuario], references: [cpf])
-  ong            Ong?             @relation(fields: [idOng], references: [id])
+  usuario        Usuario?         @relation(fields: [CpfUsuario], references: [cpf],onDelete: Cascade)
+  ong            Ong?             @relation(fields: [idOng], references: [id],onDelete: Cascade)
   NumeroComprado NumeroComprado[]
 }
 
@@ -63,6 +65,6 @@ model NumeroComprado {
   numero     Int
   rifaId     Int
   usuarioCpf String
-  rifa       Rifa    @relation(fields: [rifaId], references: [id])
-  usuario    Usuario @relation(fields: [usuarioCpf], references: [cpf])
+  rifa       Rifa    @relation(fields: [rifaId], references: [id],onDelete: Cascade)
+  usuario    Usuario @relation(fields: [usuarioCpf], references: [cpf],onDelete: Cascade)
 }
