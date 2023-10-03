@@ -2,9 +2,10 @@ import React from "react";
 import Logo from "../assets/imgs/Logo.png";
 import Button from "../components/Button";
 import MyDrawer from "../components/MyDrawer";
-import imgFundo from "../assets/imgs/Meu projeto (2) 1.png";
+import imgFundo from "../assets/imgs/Crianças-PNG.png";
 import ButtonTradeTheme from "../components/ButtonTradeTheme";
 import { useTema } from "../common/context/Tema";
+
 
 export default function Abertura() {
   const { pegarTema } = useTema() as {
@@ -45,6 +46,7 @@ export default function Abertura() {
           <h1>Be Human</h1>
         </div>
       </div>
+
     </div>
   );
 }
