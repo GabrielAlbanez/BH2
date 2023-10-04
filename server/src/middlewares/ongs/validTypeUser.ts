@@ -71,12 +71,10 @@ next: NextFunction
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.error('Erro ao enviar email:', error);
+  
       return res.status(500).json({ error: `erro ao eviar o email ${error}` });
     } else {
-      console.log('Email enviado com sucesso:', info.response);
       next()
-      return res.status(200).json({ message: 'Email enviado com sucesso' });
   
     }
   });
