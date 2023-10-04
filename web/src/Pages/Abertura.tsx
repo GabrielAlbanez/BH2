@@ -40,8 +40,8 @@ export default function Abertura() {
           />
         </div>
       </div>
-      <div className="w-[0%] h-[0%] overflow-hidden xl:overflow-visible xl:w-[30%] 2xl:w-[32%] xl:h-[91vh]">
-        <div className={` transition-all duration-1000 ${pegarTema === "dark" ? "bg-black" : "bg-[#BBE6F4]"} w-full h-full  xl:px-6 xl:py-4 flex flex-col justify-between items-end`}>
+      <div className="w-[0%] h-[0%] overflow-hidden xl:overflow-visible xl:w-[3%] 2xl:w-[3%] xl:h-[91vh]">
+        <div className={` transition-all duration-1000 ${pegarTema === "dark" ? "bg-[#202020]" : "bg-[#CEF3FF]"} w-full h-full  xl:px-6 xl:py-4 flex flex-col justify-between items-end`}>
           <ButtonTradeTheme />
           <h1>Be Human</h1>
         </div>

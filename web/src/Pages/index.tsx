@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTypeUser } from '../common/context/typeUserCadastro';
 import Button from '../components/Button';
+import { useTema } from '../common/context/Tema';
 
 
 export default function Register() {
@@ -12,8 +13,19 @@ export default function Register() {
     }
 
 
+    const { pegarTema } = useTema() as {
+        pegarTema: string;
+      };
+
+
+
+
     return (
-        <div className='w-full h-[91vh] flex flex-col items-center justify-center gap-9 '>
+
+      
+        <div className={`transition-all duration-1000  w-full h-[91vh] flex flex-col items-center justify-center gap-11 sm:gap-9 
+        ${pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"}
+        `}>
         
             <div>
                 <p className='text-4xl'>Cadastro</p>
@@ -21,36 +33,41 @@ export default function Register() {
             <div className='flex flex-col gap-3 sm:gap-2  w-[80%] justify-center items-center sm:w-[100%] '>
             <div className='flex gap-2 flex-col '>
                     <label htmlFor="">Nome completo</label>
-                    <div className='w-[100%] sm:w-[70vh] border-purple-500 border-[1px] flex items-center justify-center h-[7vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 '><input name='email' type="text" placeholder='name@example.com..' className='w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3' /></div>
+                    <div className='w-[100%] sm:w-[70vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh]  2xl:h-[6vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 '><input name='email' type="text" placeholder='name@example.com..' className='w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3' /></div>
                 </div>
 
                 <div className='flex gap-2 flex-col '>
                     <label htmlFor="">Nome completo</label>
-                    <div className='w-[100%] sm:w-[70vh] border-purple-500 border-[1px] flex items-center justify-center h-[7vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 '><input name='email' type="text" placeholder='name@example.com..' className='w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3' /></div>
-                </div>
-
-
-                <div className='flex gap-2 flex-col '>
-                    <label htmlFor="">Nome completo</label>
-                    <div className='w-[100%] sm:w-[70vh] border-purple-500 border-[1px] flex items-center justify-center h-[7vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 '><input name='email' type="text" placeholder='name@example.com..' className='w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3' /></div>
+                    <div className='w-[100%] sm:w-[70vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh] 2xl:h-[6vh]  rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 '><input name='email' type="text" placeholder='name@example.com..' className='w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3' /></div>
                 </div>
 
 
                 <div className='flex gap-2 flex-col '>
                     <label htmlFor="">Nome completo</label>
-                    <div className='w-[100%] sm:w-[70vh] border-purple-500 border-[1px] flex items-center justify-center h-[7vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 '><input name='email' type="text" placeholder='name@example.com..' className='w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3' /></div>
+                    <div className='w-[100%] sm:w-[70vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh] 2xl:h-[6vh]  rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 '><input name='email' type="text" placeholder='name@example.com..' className='w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3' /></div>
+                </div>
+
+
+                <div className='flex gap-2 flex-col '>
+                    <label htmlFor="">Nome completo</label>
+                    <div className='w-[100%] sm:w-[70vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh] 2xl:h-[6vh]  rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 '><input name='email' type="text" placeholder='name@example.com..' className='w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3' /></div>
                 </div>
 
                 <div className='flex gap-2 flex-col '>
                     <label htmlFor="">Nome completo</label>
-                    <div className='w-[100%] sm:w-[70vh] border-purple-500 border-[1px] flex items-center justify-center h-[7vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 '><input name='email' type="text" placeholder='name@example.com..' className='w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3' /></div>
+                    <div className='w-[100%] sm:w-[70vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh] 2xl:h-[6vh]  rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 '><input name='email' type="text" placeholder='name@example.com..' className='w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3' /></div>
                 </div>
 
 
       
             </div>
 
-            <div className=' bg flex items-center justify-center w-[80%] xl:w-[30%] '><Button>Enivar</Button></div>
+            <div className=' bg flex items-center justify-center w-[80%] sm:w-[50%] xl:w-[30%] '><Button>Enivar</Button></div>
         </div>
+
+       
+
+
+
     )
 }
