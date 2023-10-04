@@ -9,7 +9,7 @@ import { ongsMiddleware } from "../middlewares/ongs/index";
  routeOng.post('/createOngs',ongsMiddleware.validaDataOngs,ongsMiddleware.validateDataOnsForAdmin,ControlerOngs.createOng)
  routeOng.delete('/deleteOngs/:userCPf',ongsMiddleware.validTypeUser,ControlerOngs.deleteOng)
  routeOng.get('/avaliar-ong/:cnpj',ControlerOngs.AvaliarOng);
- routeOng.get('/avaliar-ong/:cnpj',ControlerOngs.DesaAvaliarOng);
+ routeOng.get('/naoAvaliar-ong/:cnpj',ControlerOngs.DesaAvaliarOng);
 
 
 

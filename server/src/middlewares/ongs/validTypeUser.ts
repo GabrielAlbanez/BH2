@@ -48,8 +48,8 @@ next: NextFunction
     },
   });
 
-  const approveLink = `http://avaliar-ong/${cnpj}`;
- const  negarLink  = `http://naoAvaliar-ong/${cnpj}`;
+  const approveLink = `http://localhost:8080/avaliar-ong/${cnpj}`;
+ const  negarLink  = `http://localhost:8080/naoAvaliar-ong/${cnpj}`;
   
 
   const mailOptions = {
@@ -72,7 +72,7 @@ next: NextFunction
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error('Erro ao enviar email:', error);
-      return res.status(500).json({ error: 'Erro ao enviar email' });
+      return res.status(500).json({ error: `erro ao eviar o email ${error}` });
     } else {
       console.log('Email enviado com sucesso:', info.response);
       next()

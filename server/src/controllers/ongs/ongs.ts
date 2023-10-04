@@ -86,7 +86,7 @@ export const AvaliarOng = async(req : Request,res : Response)=>{
     res.status(200).json({message : `ong autorizada ${ongPega}`})
   }
   catch(error){
-    res.status(404).json({message : "error ao autoriazar a ong"})
+    res.status(404).json({message : `cnpj não pego ou invalido ${cnpj}`})
   }
 
   
@@ -98,7 +98,7 @@ export const AvaliarOng = async(req : Request,res : Response)=>{
 
 
 export const DesaAvaliarOng = async(req : Request,res : Response)=>{
-  
+
   const cnpj = req.params.cnpj
 
   try{
