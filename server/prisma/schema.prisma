@@ -18,7 +18,7 @@ model Usuario {
   sexo             String
   endereco         String
   rifas            Rifa[]
-  tipo             String
+  tipo             String?          @default("default")
   telefone         String
   numerosComprados NumeroComprado[]
 }
@@ -31,6 +31,7 @@ model Ong {
   telefone    String
   endereco    String?
   redesSociais String?
+  aprovado    Boolean?  @default(false)
   rifas       Rifa[]
   Voluntarios Voluntarios[]
   trabalhos   Trabalho[]

@@ -48,7 +48,10 @@ next: NextFunction
     },
   });
 
-  const cnpjFormatted = cnpj.replace(/[^\d]+/g, ''); 
+  const approveLink = `http://avaliar-ong/${cnpj}`;
+ const  negarLink  = `http://naoAvaliar-ong/${cnpj}`;
+  
+
   const mailOptions = {
     from: "gabriel.g.albanez@gmail.com", // Seu endereço de email
     to: "gabriel.g.albanez@gmail.com", // O endereço de email do destinatário
@@ -61,43 +64,23 @@ next: NextFunction
       Senha: ${senha}
       Telefone: ${telefone}
       Redes Sociais: ${redesSociais}
-      <a href="http://localhost:8080/BeHuman/avaliar/${cnpjFormatted}">Avaliar</a>
-      <a href="http://localhost:8080/BeHuman/naoAvaliar/${cnpjFormatted}">Não Avaliar</a>
+      <a href="${approveLink}">Aprovar</a>
+      <a href="${negarLink}">Não Avaliar</a>
     `,
   };
-  
 
-  transporter.sendMail(mailOptions, async (error, info) => {
+  transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      // Lidar com erros
-      console.error("Erro ao enviar o email: ", error);
-      return res.status(404).json({ message: `Erro ao enviar o email: ${error.message}` });
+      console.error('Erro ao enviar email:', error);
+      return res.status(500).json({ error: 'Erro ao enviar email' });
     } else {
-      // Aguardar a resposta da solicitação HTTP após o envio do email
-      try {
-        const cnpjFormatted = cnpj.replace(/[^\d]+/g, ''); 
-        const avaliarResponse = await fetch(`http://localhost:8080/BeHuman/avaliar/${cnpjFormatted}`);
-        const naoAvaliarResponse = await fetch(`http://localhost:8080/BeHuman/naoAvaliar/${cnpjFormatted}`);
+      console.log('Email enviado com sucesso:', info.response);
+      next()
+      return res.status(200).json({ message: 'Email enviado com sucesso' });
   
-        const avaliar = await avaliarResponse.text();
-        const naoAvaliar = await naoAvaliarResponse.text();
-  
-        // Tomar medidas com base nas respostas
-        if (avaliar === 'true') {
-          // ONG avaliada com sucesso
-          next()
-          return res.status(200).json({message : "ong avaliada com sucesso"})
-        } else if (naoAvaliar === 'false') {
-          return res.status(400).json({message : "ong não avaliada com sucesso"})
-        } else {
-          return res.status(400).json({message : "penis"})
-        }
-      } catch (fetchError) {
-        console.error("Erro ao fazer a solicitação HTTP: ", fetchError);
-        return res.status(500).json({ message: "Erro ao fazer a solicitação HTTP." });
-      }
     }
   });
+
 
 
 }

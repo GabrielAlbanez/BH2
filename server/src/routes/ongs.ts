@@ -8,7 +8,8 @@ import { ongsMiddleware } from "../middlewares/ongs/index";
  routeOng.get('/Ongs/:userCPf',ongsMiddleware.validTypeUser,ControlerOngs.getByNameOng)
  routeOng.post('/createOngs',ongsMiddleware.validaDataOngs,ongsMiddleware.validateDataOnsForAdmin,ControlerOngs.createOng)
  routeOng.delete('/deleteOngs/:userCPf',ongsMiddleware.validTypeUser,ControlerOngs.deleteOng)
-
+ routeOng.get('/avaliar-ong/:cnpj',ControlerOngs.AvaliarOng);
+ routeOng.get('/avaliar-ong/:cnpj',ControlerOngs.DesaAvaliarOng);
 
 
 

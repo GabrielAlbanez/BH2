@@ -1,6 +1,8 @@
 import { db as prisma } from "../../shared/db";
 import { Request, Response } from "express";
 import * as bcrypt from "bcrypt";
+import nodemailer from "nodemailer";
+import fetch from 'node-fetch';
 
 export const getAllOngs = async (req: Request, res: Response) => {
   try {
@@ -39,6 +41,7 @@ export const getByNameOng = async (req: Request, res: Response) => {
 export const createOng = async (req: Request, res: Response) => {
   try {
     const { nome, endereco,cnpj,email,senha,telefone,redesSociais } = req.body;
+
     
     const hashedPassword = await bcrypt.hash(senha,5)
 
@@ -58,6 +61,63 @@ export const createOng = async (req: Request, res: Response) => {
     res.status(404).json({ fail: error });
   }
 };
+
+
+
+
+export const AvaliarOng = async(req : Request,res : Response)=>{
+  
+  const cnpj = req.params.cnpj
+
+  try{
+
+    const ongPega = await prisma.ong.update({
+      where  :{
+        cnpj : cnpj
+      },
+      data : {
+        aprovado : true
+      },
+      select : {
+        cnpj : true
+      }
+    })
+    
+    res.status(200).json({message : `ong autorizada ${ongPega}`})
+  }
+  catch(error){
+    res.status(404).json({message : "error ao autoriazar a ong"})
+  }
+
+  
+
+
+
+}
+
+
+
+export const DesaAvaliarOng = async(req : Request,res : Response)=>{
+  
+  const cnpj = req.params.cnpj
+
+  try{
+
+    const ongPega = await prisma.ong.delete({
+      where  :{
+        cnpj : cnpj
+      },
+
+    })
+    
+    res.status(200).json({message : `ong não autorizada deletada com sucesso ${ongPega}`})
+  }
+  catch(error){
+    res.status(404).json({message : "error ao autoriazar a ong"})
+  }
+
+  
+}
 
 export const deleteOng = async (req: Request, res: Response) => {
   try {

@@ -51,7 +51,7 @@ export const validateDataUser = async (
   const phoneNumberObject = parsePhoneNumberFromString(telefone);
 
 
-  if (!nome || !email || !cpf || !senha || !sexo || !endereco || !type || !telefone) {
+  if (!nome || !email || !cpf || !senha || !sexo || !endereco  || !telefone) {
     return res.status(404).json({ message: "favor pre-encher todos os dados" });
   }
 
