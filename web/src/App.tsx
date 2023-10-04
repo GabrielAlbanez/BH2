@@ -5,7 +5,7 @@ import MinhasRotas from './routes';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App w-full h-full">
     
     <MinhasRotas/>
     </div>
