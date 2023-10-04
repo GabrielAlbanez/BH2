@@ -6,7 +6,7 @@ import { ongsMiddleware } from "../middlewares/ongs/index";
 
  routeOng.get('/allOngs/:userCPf', ongsMiddleware.validTypeUser,ControlerOngs.getAllOngs)
  routeOng.get('/Ongs/:userCPf',ongsMiddleware.validTypeUser,ControlerOngs.getByNameOng)
- routeOng.post('/createOngs/:userCPf',ongsMiddleware.validTypeUser,ongsMiddleware.validaDataOngs,ControlerOngs.createOng)
+ routeOng.post('/createOngs',ongsMiddleware.validaDataOngs,ongsMiddleware.validateDataOnsForAdmin,ControlerOngs.createOng)
  routeOng.delete('/deleteOngs/:userCPf',ongsMiddleware.validTypeUser,ControlerOngs.deleteOng)
 
 

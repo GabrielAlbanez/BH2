@@ -16,6 +16,23 @@ Rotauser.delete('/deleteUser/:cpfValidate',userMiddlewares.validTypeUser,Control
 Rotauser.post('/byRifas',verifyToken,userMiddlewares.validateByRifas,ControlerUsers.byRifas)
 Rotauser.post('/Login',authLogin,ControlerUsers.Login)
 
+Rotauser.get('/BeHuman/avaliar/:cnpj', async (req, res) => {
+  const { cnpj } = req.params;
+
+  // Faça as operações necessárias para avaliar a ONG com base no CNPJ
+  // ...
+  res.send('true');
+});
+
+// Controlador para não avaliar a ONG
+Rotauser.get('/BeHuman/naoAvaliar/:cnpj', async (req, res) => {
+  const { cnpj } = req.params;
+
+  // Faça as operações necessárias para não avaliar a ONG com base no CNPJ
+  // ...
+  res.send('false');
+});
+
 
 
 
