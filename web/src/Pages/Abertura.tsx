@@ -14,7 +14,7 @@ export default function Abertura() {
 
   return (
     <div
-      className={`xl:w-full xl:h-[91vh] xl:flex transition-all duration-1000 ${
+      className={` xl:overflow-hidden xl:w-full xl:h-[91vh] xl:flex transition-all duration-1000 ${
         pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
       }`}
     >
@@ -36,7 +36,7 @@ export default function Abertura() {
           <img
             src={imgFundo}
             alt=""
-            className="w-full  sm:h-[90%] lg:w-[90%] xl:w-[70%] 2xl:w-[50%]"
+            className="w-full  sm:h-[90%] lg:w-[90%] xl:w-[50%] 2xl:w-[50%]"
           />
         </div>
       </div>

@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <TemaProvider>
-      <TypeUserProvider> {/* Corrigido para TypeUserProvider */}
+      <TypeUserProvider> 
         <App />
       </TypeUserProvider>
     </TemaProvider>
