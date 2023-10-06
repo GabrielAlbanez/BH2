@@ -17,8 +17,8 @@ export default function Register() {
     <>
     {pegarTypeUser === "Ong" ? (
     <>
-     <div className={`transition-all duration-1000  w-full h-[100vh]  sm:h-[91vh] lg:h-[100%] xl:h-[100%]  flex flex-col items-center justify-center gap-3  sm:gap-9 
-        ${pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"}
+     <div className={`transition-all duration-1000  w-full h-[100vh]  sm:h-[91vh] lg:h-[100%] xl:h-[100%] 2xl:h-[91vh]  flex flex-col items-center justify-center gap-3  sm:gap-9 
+        ${pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"} 
         `}>
         
             <div>
@@ -73,7 +73,7 @@ export default function Register() {
     ) : (
     
         <>
-        <div className={`transition-all duration-1000  w-full h-[100vh]  sm:h-[91vh] lg:h-[100%] xl:h-[100%]  flex flex-col items-center justify-center gap-3  sm:gap-9 
+        <div className={`transition-all duration-1000  w-full h-[100vh]  sm:h-[91vh] lg:h-[100%] xl:h-[100%] 2xl:h-[91vh]   flex flex-col items-center justify-center gap-3  sm:gap-9 
            ${pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"}
            `}>
            
