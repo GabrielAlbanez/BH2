@@ -19,6 +19,8 @@ export default function Navbar() {
 
   const [open, setOpen] = useState(false);
 
+  const [openModalAuxiliarLogin,setOpenModalAuxiliarLogin] = useState(false)
+
   const {setPegarTypeUser} = useTypeUser() as {
     setPegarTypeUser : (value: string) => void
   }
@@ -28,6 +30,12 @@ export default function Navbar() {
   const handleTypeRegister = (name : string)=>{
     setPegarTypeUser(name);
     navigator('/Register')
+  }
+
+
+  const handleTypeLogin = (name : string)=>{
+    setPegarTypeUser(name);
+    navigator('/Login')
   }
 
   return (
@@ -75,7 +83,11 @@ export default function Navbar() {
         >
           Cadastrar
         </Button>
-        <Button>Entrar</Button>
+        <Button
+        onClick={()=>{
+          setOpenModalAuxiliarLogin(true);
+        }}
+        >Entrar</Button>
       </div>
       <ModalConfirm
         open={open}
@@ -92,6 +104,27 @@ export default function Navbar() {
         <div className="flex gap-4">
          <button onClick={()=>{handleTypeRegister('Ong')}} className="bg-emerald-400 w-full rounded-lg py-3">Ong</button>
          <button onClick={()=>{handleTypeRegister('Usario')}} className="bg-indigo-400 w-full rounded-lg">Usario</button>
+        </div>
+        </div>
+      </ModalConfirm>
+
+
+
+      <ModalConfirm
+        open={openModalAuxiliarLogin}
+        onClose={() => {
+          setOpenModalAuxiliarLogin(false);
+        }}
+      >
+        <div className="text-center w-56">
+          
+        <div className="mx-auto my-7 w-48">
+           <h3 className="text-lg text-gray-800">Como vc deseja Logar, como...</h3>
+        
+        </div>
+        <div className="flex gap-4">
+         <button onClick={()=>{handleTypeLogin('Ong')}} className="bg-emerald-400 w-full rounded-lg py-3">Ong</button>
+         <button onClick={()=>{handleTypeLogin('Usario')}} className="bg-indigo-400 w-full rounded-lg">Usario</button>
         </div>
         </div>
       </ModalConfirm>

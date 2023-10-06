@@ -7,6 +7,7 @@ import Rifas from '../Pages/Rifas'
 import toast, { Toaster } from 'react-hot-toast';
 import { useTema } from '../common/context/Tema'
 import Register from '../Pages'
+import Login from '../Pages/Login'
 
 
 export default function MinhasRotas() {
@@ -27,6 +28,7 @@ export default function MinhasRotas() {
                 <Route path='/' element={<Abertura/>}/>
                 <Route path='/Rifas' element={<Rifas/>}/>
                 <Route path='/Register' element={<Register/>}/>
+                <Route  path='Login' element={<Login/>}/>
 
             </Routes>
 
