@@ -28,7 +28,7 @@ export const validTypeUser = async (
     //se bater quer dizer que o cpf do cara e de adm
     return next();
   } else {
-    return res.status(403).json({ error: "Acesso não autorizado" });
+    return res.status(203).json({ error: "Acesso não autorizado" });
   }
 };
 
@@ -52,11 +52,11 @@ export const validateDataUser = async (
 
 
   if (!nome || !email || !cpf || !senha || !sexo || !endereco  || !telefone) {
-    return res.status(404).json({ message: "favor pre-encher todos os dados" });
+    return res.status(203).json({ error: "favor pre-encher todos os dados" });
   }
 
   if (!emailValido) {
-    return res.status(400).json({ error: "Email inválido" });
+    return res.status(203).json({ error: "Email inválido" });
   }
 
   const existingEmail = await prisma.usuario.findMany({
@@ -66,11 +66,11 @@ export const validateDataUser = async (
   });
 
   if (existingEmail.length > 0) {
-    return res.status(400).json({ error: "Email ja cadastrado" });
+    return res.status(203).json({ error: "Email ja cadastrado" });
   }
 
   if (!cpfValido) {
-    return res.status(400).json({ error: "cpf inválido" });
+    return res.status(203).json({ error: "cpf inválido" });
   }
 
   const cpfExisting = await prisma.usuario.findMany({
@@ -84,16 +84,14 @@ export const validateDataUser = async (
   }
 
   if (sexo !== "masculino" && sexo !== "feminino") {
-    return res.status(404).json({ error: "sexo nao existente" });
+    return res.status(203).json({ error: "sexo nao existente" });
   }
 
-  if (type !== "default" && type !== "admin") {
-    return res.status(404).json({ error: "tipo de usuario inexistente" });
-  }
+
   
  
 if (!phoneNumberObject || !phoneNumberObject.isValid()) {
-  return res.status(404).json({message : "telefone invalido"})
+  return res.status(203).json({error : "telefone invalido"})
 } 
 
   const telefoneExisting = await prisma.usuario.findMany({
@@ -103,7 +101,7 @@ if (!phoneNumberObject || !phoneNumberObject.isValid()) {
   })
 
   if(telefoneExisting.length > 0){
-    return res.status(404).json({message : "telefone ja cadastrado"})
+    return res.status(203).json({error : "telefone ja cadastrado"})
   }
 
   next();
@@ -117,13 +115,13 @@ export const validateByRifas = async (
   const { cpf, id, numero } = req.body;
 
   if (!cpf || !id || !numero) {
-    return res.status(404).json({ message: "pre encha todos os campos" });
+    return res.status(203).json({ message: "pre encha todos os campos" });
   }
 
   const cpfValido = cpfValid.isValid(cpf);
 
   if (!cpfValido) {
-    return res.status(404).json({ err: "cpf invalid" });
+    return res.status(203).json({ err: "cpf invalid" });
   }
 
   const idssRRifas = await prisma.rifa.findMany({
@@ -149,11 +147,11 @@ export const validateByRifas = async (
   const pegarCpf = cpfsUSers.map((user) => user.cpf);
 
   if (!pegarCpf.includes(cpf)) {
-    return res.status(404).json({ error: "cpf invalido" });
+    return res.status(203).json({ error: "cpf invalido" });
   }
 
   if (!TodosIds.includes(id)) {
-    return res.status(404).json({ message: "rifa inexistente" });
+    return res.status(203).json({ message: "rifa inexistente" });
   }
   // else{
   //  return  res.status(404).json('rifa ou cpf inexistente')
@@ -166,7 +164,7 @@ export const validateByRifas = async (
   });
 
   if (numerosComprados.length > 0) {
-    return res.status(404).json({ message: "esse numero ja foi comprado" });
+    return res.status(203).json({ message: "esse numero ja foi comprado" });
   }
 
   next();

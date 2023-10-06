@@ -35,7 +35,7 @@ export const validateOngUserAndUserAdmin = async (
   if (ongNomes.includes(NameOrCpf) || adminCpfs.includes(NameOrCpf)) {
     next();
   } else {
-    return res.status(403).json({ error: "Acesso não autorizado" });
+    return res.status(203).json({ error: "Acesso não autorizado" });
   }
 };
 
@@ -48,11 +48,11 @@ export const validateDataRifa = async (
   const cnpjValido = cnpjValid.isValid(cnpj);
 
   if (!nome || !preco || !descricaon || !cnpj) {
-    return res.status(404).json({ error: "favor pré encher todos os campos" });
+    return res.status(203).json({ error: "favor pré encher todos os campos" });
   }
 
   if(!cnpjValid){
-    return res.status(404).json({message : "cnpj da ong invalido"})
+    return res.status(203).json({message : "cnpj da ong invalido"})
   }
 
   const nameRifaExisting = await prisma.rifa.findMany({
@@ -62,7 +62,7 @@ export const validateDataRifa = async (
   });
 
   if (nameRifaExisting.length > 0) {
-    return res.status(404).json({ message: "essa rifa ja existe" });
+    return res.status(203).json({ message: "essa rifa ja existe" });
   }
 
   next();

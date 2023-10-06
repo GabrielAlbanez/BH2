@@ -56,7 +56,8 @@ export const createUser = async (req: Request, res: Response) => {
       },
     });
 
-    res.status(201).json({ user: userCreate });
+    console.log(userCreate)
+    res.status(201).json({ user: `usuario criado`});
   } catch (error) {
     res.status(403).json({ err: `erro ao criar usuario${error}` });
   }
@@ -121,6 +122,6 @@ export const Login = (req : Request, res : Response) =>{
   const decode = jwt.verify(token,"8080")
 
 
-  res.status(200).json({message : "Login realizado por", decode, token : token})
+  res.status(200).json({message : "Usuario Logado", decode, token : token})
 
-}
+} 

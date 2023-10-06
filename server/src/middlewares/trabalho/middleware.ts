@@ -11,13 +11,13 @@ export const validateDataWokr = async (
   const cnpjValido = cnpjValid.isValid(cnpjOng);
 
   if (!nome || !descricao || !cnpjOng) {
-    return res.status(404).json({
+    return res.status(203).json({
       message: "pre encha todos os campos",
     });
   }
 
   if (!cnpjValido) {
-    return res.status(400).json({ error: "cnpj inválido" });
+    return res.status(203).json({ error: "cnpj inválido" });
   }
 
   const nameWorks = await prisma.trabalho.findMany({
@@ -84,6 +84,6 @@ export const validateUserAdmOrOng = async (
   if (ongNomes.includes(NameOrCpf) || adminCpfs.includes(NameOrCpf)) {
     next();
   } else {
-    return res.status(403).json({ error: "Acesso não autorizado" });
+    return res.status(203).json({ error: "Acesso não autorizado" });
   }
 };

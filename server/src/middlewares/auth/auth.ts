@@ -12,8 +12,8 @@ export const authLogin = async (
 
   if (!email || !senha) {
     return res
-      .status(404)
-      .json({ message: "favor pre-encher todos os campos" });
+      .status(203)
+      .json({ error: "favor pre-encher todos os campos" });
   }
 
   const emailValid = await prisma.usuario.findMany({
@@ -23,7 +23,7 @@ export const authLogin = async (
   });
 
   if (emailValid.length == 0) {
-    return res.status(404).json({ message: "E-Mail Invalido" });
+    return res.status(203).json({ error: "E-Mail Invalido" });
   }
 
   const senhaUser = await prisma.usuario.findFirst({
@@ -38,7 +38,7 @@ export const authLogin = async (
   const senhaValida = await bcrypt.compare(senha, senhaUser.senha);
 
   if (!senhaValida) {
-    return res.status(404).json({ message: "senha invalida" });
+    return res.status(203).json({ error: "senha invalida" });
   }
 
   const dataUser = await prisma.usuario.findMany({

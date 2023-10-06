@@ -15,15 +15,15 @@ export const validateDataVoluntario = async(
   const cnpjValido = cnpjValid.isValid(cnpjOng);
 
   if(!cpf || !nome || !cnpjOng){
-    return res.status(404).json({message : "por favor pre encha todos os campos"})
+    return res.status(203).json({message : "por favor pre encha todos os campos"})
   }
 
   if(!cpfValido){
-    return res.status(404).json({message : "cpf invalido " })
+    return res.status(203).json({message : "cpf invalido " })
   }
 
   if(!cnpjValido){
-    return res.status(404).json({message : "cnpj da ong invalido " })
+    return res.status(203).json({message : "cnpj da ong invalido " })
   }
 
   const idsOng = await prisma.ong.findMany({
@@ -43,7 +43,7 @@ export const validateDataVoluntario = async(
   })
 
   if(valuntarioExisting.length > 0){
-    return res.status(404).json({message : "voluntario already exists"})
+    return res.status(203).json({message : "voluntario already exists"})
   }
   
 
@@ -51,7 +51,7 @@ export const validateDataVoluntario = async(
     next()
   }
   else{
-    res.status(404).json('essa ong n existe')
+    res.status(203).json('essa ong n existe')
   }
 
    
@@ -93,7 +93,7 @@ export const validateTypeUser= async(
   if (ongNomes.includes(NameOrCpf) || adminCpfs.includes(NameOrCpf)) {
     next();
   } else {
-    return res.status(403).json({ error: "Acesso não autorizado" });
+    return res.status(203).json({ error: "Acesso não autorizado" });
   }
 };
 

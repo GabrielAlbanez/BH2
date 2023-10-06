@@ -14,7 +14,7 @@ export const validateIdRifa = async(req : Request, res : Response, next : NextFu
     })
 
     if(idRifaExisting.length <= 0){
-        return res.status(404).json({
+        return res.status(203).json({
           message : "essa rifa não existe para fazer sorteio"
         })
     }
