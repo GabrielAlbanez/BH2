@@ -9,71 +9,76 @@ export default function Home() {
     pegarTema: string;
   };
 
-  const response = useAppSelector((state) => state.AuthToken.url);
+  const responsee = useAppSelector((state) => state.AuthToken.url);
   const token = useAppSelector((state) => state.AuthToken.token);
-  const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{ cpf: string }>;
+  const token2 = localStorage.getItem('token');
+  const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
+    cpf: string;
+  }>;
   const logedUser = useAppSelector((state) => state.AuthToken.isLoged);
 
   const dispacht = useDispatch();
 
-  const [userLogado, setUserLogado] = useState<boolean>(logedUser);
-
   useEffect(() => {
-    const interval = setInterval(() => {
-      // Substitua a URL abaixo pela URL do seu endpoint GET
-      fetch(`${response}`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        credentials: "include",
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("A solicitação falhou");
-          }
-          return response.json();
-        })
-        .then((responseData) => {
-          console.log(responseData);
-          if ("error" in responseData) {
-            setUserLogado(false); // Armazena os dados da resposta no estado
-          } else {
-            dispacht(LogUser(true));
-            setUserLogado(true)
-          }
-        })
-        .catch((error) => {
-          console.error("Erro na solicitação:", error);
+    const fetchData = async () => {
+      try {
+        const request = await fetch(`${responsee}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          credentials: "include",
         });
-    }, 60); // Intervalo de 60 segundos (ajuste conforme necessário)
-
-    return () => clearInterval(interval); // Limpa o intervalo quando o componente é desmontado
-
+  
+        if (!request.ok) {
+          throw new Error("A solicitação falhou");
+        }
+  
+        const responseData = await request.json();
+  
+        console.log(responseData);
+  
+        if ("error" in responseData) {
+          dispacht(LogUser(false));
+        } else {
+          dispacht(LogUser(true));
+        }
+      } catch (error) {
+        console.error("Erro na solicitação:", error);
+      }
+    };
+  
+    // Execute a função fetchData inicialmente e, em seguida, a cada 60 segundos
+    fetchData();
+  
+    const interval = setInterval(fetchData, 60000);
+  
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
+  
 
-  console.log(userLogado);
-  console.log(response);
-  console.log(token);
-  console.log(User);
+  console.log(logedUser)
+
 
   return (
     <div
-    className={` w-full h-screen transition-all duration-1000 ${
-      pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
-    }`}
-  >
-    {userLogado ? (
-      <>
-        {userLogado ? (
-          <h1>cpf : {User[0].cpf}</h1>
-        ) : (
-          <h1>Carregando dados do usuário...</h1>
-        )}
-      </>
-    ) : (
-      <h1>Você precisa estar logado</h1>
-    )}
-  </div>
+      className={` w-full h-screen transition-all duration-1000 ${
+        pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
+      }`}
+    >
+      {logedUser ? (
+        <>
+          {logedUser ? (
+            <h1>cpf : {User[0].cpf}</h1>
+          ) : (
+            <h1>Carregando dados do usuário...</h1>
+          )}
+        </>
+      ) : (
+        <h1>Você precisa estar logado</h1>
+      )}
+    </div>
   );
 }

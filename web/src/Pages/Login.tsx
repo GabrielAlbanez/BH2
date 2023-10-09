@@ -46,11 +46,13 @@ export default function Login() {
       );
       const responseData = request.data;
       console.log(responseData);
+      sessionStorage.setItem('token',responseData?.token)
+      
       dispacht(
         takeToken([
           "http://localhost:8080/verificarToken",
           responseData?.decode?.dataUser,
-          responseData?.token
+          sessionStorage.getItem('token')
         ])
       );
 

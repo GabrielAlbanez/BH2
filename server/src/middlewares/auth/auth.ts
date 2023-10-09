@@ -54,8 +54,9 @@ export const authLogin = async (
     }
   })
 
+  const timeExpiressToken =  24 * 60 * 60; //24 hours
   const generateToken = jwt.sign({dataUser},"8080",{
-    expiresIn : 30
+    expiresIn : timeExpiressToken
   })
    
   if(generateToken){
