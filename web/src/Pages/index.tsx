@@ -54,7 +54,7 @@ export default function Register() {
     try {
       console.log(dataUserRegister);
       const request = await axios.post(
-        "http://10.112.240.175:8080/createUser",
+        "http://localhost:8080/createUser",
         dataUserRegister
       );
       const responseData = request.data;
