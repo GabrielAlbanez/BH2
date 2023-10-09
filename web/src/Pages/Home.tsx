@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTema } from "../common/context/Tema";
 import { useAppSelector } from "../store/intex";
-import { LogUser } from "../store/slices/AuthToken";
+import { LogUser, saveDataUser } from "../store/slices/AuthToken";
 import { useDispatch } from "react-redux";
 
 export default function Home() {
@@ -9,8 +9,7 @@ export default function Home() {
     pegarTema: string;
   };
 
-  const responsee = useAppSelector((state) => state.AuthToken.url);
-  const token = useAppSelector((state) => state.AuthToken.token);
+ 
   const token2 = sessionStorage.getItem('token');
   const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
     cpf: string;
@@ -41,6 +40,7 @@ export default function Home() {
         if ("error" in responseData) {
           dispacht(LogUser(false));
         } else {
+          dispacht(saveDataUser([responseData?.dataUser?.dataUser]))
           dispacht(LogUser(true));
         }
       } catch (error) {

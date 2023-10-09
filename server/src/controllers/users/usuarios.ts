@@ -119,9 +119,8 @@ export const Login = (req : Request, res : Response) =>{
   
   const token = req.session['token']
 
-  const decode = jwt.verify(token,"8080")
 
 
-  res.status(200).json({message : "Usuario Logado", decode, token : token})
+  res.status(200).json({message : "Usuario Logado", token : token})
 
 } 

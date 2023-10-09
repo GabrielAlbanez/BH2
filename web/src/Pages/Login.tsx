@@ -50,8 +50,6 @@ export default function Login() {
       
       dispacht(
         takeToken([
-          "http://localhost:8080/verificarToken",
-          responseData?.decode?.dataUser,
           sessionStorage.getItem('token')
         ])
       );
