@@ -11,7 +11,7 @@ export default function Home() {
 
   const response = useAppSelector((state) => state.AuthToken.url);
   const token = useAppSelector((state) => state.AuthToken.token);
-  const User = useAppSelector((state) => state.AuthToken.dataUser);
+  const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{ cpf: string }>;
   const logedUser = useAppSelector((state) => state.AuthToken.isLoged);
 
   const dispacht = useDispatch();
@@ -59,13 +59,21 @@ export default function Home() {
 
   return (
     <div
-      className={` w-full h-screen transition-all duration-1000 ${
-        pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
-      }`}
-    >
-      {userLogado ? (<>
-      <h1>cpf : {User}</h1>
-      </>) : <><h1>vc preisa estar logado</h1></>}  
-    </div>
+    className={` w-full h-screen transition-all duration-1000 ${
+      pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
+    }`}
+  >
+    {userLogado ? (
+      <>
+        {userLogado ? (
+          <h1>cpf : {User[0].cpf}</h1>
+        ) : (
+          <h1>Carregando dados do usuário...</h1>
+        )}
+      </>
+    ) : (
+      <h1>Você precisa estar logado</h1>
+    )}
+  </div>
   );
 }

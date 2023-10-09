@@ -4,7 +4,7 @@ const AuthToken = createSlice({
   name: "AuthToken",
   initialState: {
     token: [],
-    dataUser: null,
+    dataUser: [],
     isLoged : false,
     url : []
   },
