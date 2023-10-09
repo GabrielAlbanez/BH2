@@ -11,7 +11,7 @@ export default function Home() {
 
   const responsee = useAppSelector((state) => state.AuthToken.url);
   const token = useAppSelector((state) => state.AuthToken.token);
-  const token2 = localStorage.getItem('token');
+  const token2 = sessionStorage.getItem('token');
   const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
     cpf: string;
   }>;
@@ -22,10 +22,10 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const request = await fetch(`${responsee}`, {
+        const request = await fetch(`http://localhost:8080/verificarToken`, {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token2}`,
           },
           credentials: "include",
         });
@@ -60,6 +60,7 @@ export default function Home() {
   
 
   console.log(logedUser)
+  console.log(token2)
 
 
   return (
@@ -71,7 +72,7 @@ export default function Home() {
       {logedUser ? (
         <>
           {logedUser ? (
-            <h1>cpf : {User[0].cpf}</h1>
+            <h1>cpf : {User[0]?.cpf}</h1>
           ) : (
             <h1>Carregando dados do usuário...</h1>
           )}
