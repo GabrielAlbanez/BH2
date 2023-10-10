@@ -18,6 +18,11 @@ export default function Account() {
   }>;
   const logedUser = useAppSelector((state) => state.AuthToken.isLoged);
 
+  const logOut = ()=>{
+    sessionStorage.setItem('token',"")
+    window.location.reload()
+  }
+
 
 
   return (
@@ -30,11 +35,12 @@ export default function Account() {
       {logedUser ? (
         <>
           {logedUser ? (
-            <div className="flex flex-col gap-5 items-center justify-center h-[50%] w-[90%] rounded-2xl shadow-lg text-lg ">
+            <div className="flex flex-col gap-10 items-center justify-center h-[70%] w-[100%] rounded-2xl shadow-lg text-lg ">
               <p>Cpf : {User[0]?.cpf}</p>
               <p>Email : {User[0]?.email}</p>
               <p>NumerosComprados : {User[0]?.numerosComprados}</p>
               <p>Sexo : {User[0]?.sexo}</p>
+              <button onClick={logOut} className="border-red-400 border-[2px] rounded-2xl px-6 py-6">Logout</button>
             </div>
           ) : (
             <h1>Carregando dados do usuário...</h1>

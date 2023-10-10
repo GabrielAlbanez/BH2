@@ -80,8 +80,10 @@ export default function Login() {
           });
         };
 
-        notify();
+        
         navigator("/Account");
+        window.location.reload()
+        notify();
       }
     } catch (error) {
       console.error("Ocorreu um erro:", error);
