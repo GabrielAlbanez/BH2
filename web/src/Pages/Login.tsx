@@ -47,10 +47,11 @@ export default function Login() {
       const responseData = request.data;
       console.log(responseData);
       sessionStorage.setItem('token',responseData?.token)
+      const token =  sessionStorage.getItem('token')
       
       dispacht(
         takeToken([
-          sessionStorage.getItem('token')
+          token
         ])
       );
 
@@ -80,7 +81,7 @@ export default function Login() {
         };
 
         notify();
-        navigator("/Home");
+        navigator("/Account");
       }
     } catch (error) {
       console.error("Ocorreu um erro:", error);

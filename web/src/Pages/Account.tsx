@@ -4,12 +4,11 @@ import { useAppSelector } from "../store/intex";
 import { LogUser, saveDataUser } from "../store/slices/AuthToken";
 import { useDispatch } from "react-redux";
 
-export default function Home() {
+export default function Account() {
   const { pegarTema } = useTema() as {
     pegarTema: string;
   };
 
-  const token2 = sessionStorage.getItem("token");
   const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
     cpf: string;
     email: string;
@@ -19,50 +18,7 @@ export default function Home() {
   }>;
   const logedUser = useAppSelector((state) => state.AuthToken.isLoged);
 
-  const dispacht = useDispatch();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const request = await fetch(`http://localhost:8080/verificarToken`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token2}`,
-          },
-          credentials: "include",
-        });
-
-        if (!request.ok) {
-          throw new Error("A solicitação falhou");
-        }
-
-        const responseData = await request.json();
-
-        console.log(responseData);
-
-        if ("error" in responseData) {
-          dispacht(LogUser(false));
-        } else {
-          dispacht(saveDataUser([responseData?.dataUser?.dataUser]));
-          dispacht(LogUser(true));
-        }
-      } catch (error) {
-        console.error("Erro na solicitação:", error);
-      }
-    };
-
-    // Execute a função fetchData inicialmente e, em seguida, a cada 60 segundos
-    fetchData();
-
-    const interval = setInterval(fetchData, 60000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  console.log(logedUser);
-  console.log(token2);
 
   return (
     <div
