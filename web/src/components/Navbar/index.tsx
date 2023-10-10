@@ -11,6 +11,8 @@ import ButtonTradeTheme from "../ButtonTradeTheme";
 import { useTema } from "../../common/context/Tema";
 import ModalConfirm from "../Modal/ModalConfirm";
 import { useTypeUser } from "../../common/context/typeUserCadastro";
+import { useAppSelector } from "../../store/intex";
+import AvatarImg from "../AvatarImg/AvatarImg";
 
 export default function Navbar() {
   const { pegarTema } = useTema() as {
@@ -19,24 +21,27 @@ export default function Navbar() {
 
   const [open, setOpen] = useState(false);
 
-  const [openModalAuxiliarLogin,setOpenModalAuxiliarLogin] = useState(false)
+  const [openModalAuxiliarLogin, setOpenModalAuxiliarLogin] = useState(false);
 
-  const {setPegarTypeUser} = useTypeUser() as {
-    setPegarTypeUser : (value: string) => void
-  }
-  
-  const navigator = useNavigate()
+  const { setPegarTypeUser } = useTypeUser() as {
+    setPegarTypeUser: (value: string) => void;
+  };
 
-  const handleTypeRegister = (name : string)=>{
+  const navigator = useNavigate();
+
+  const isLoged = useAppSelector((state) => state.AuthToken.isLoged);
+
+  console.log(isLoged);
+
+  const handleTypeRegister = (name: string) => {
     setPegarTypeUser(name);
-    navigator('/Register')
-  }
+    navigator("/Register");
+  };
 
-
-  const handleTypeLogin = (name : string)=>{
+  const handleTypeLogin = (name: string) => {
     setPegarTypeUser(name);
-    navigator('/Login')
-  }
+    navigator("/Login");
+  };
 
   return (
     <header
@@ -45,7 +50,13 @@ export default function Navbar() {
       } w-[100%] h-[9vh]  flex items-center justify-between px-3 sm:px-8 xl:px-1 2xl:px-0 `}
     >
       <ul className="flex md:text-lg lg:text-xl 2xl:text-xl gap-7 items-center overflow-hidden w-[0%] sm:w-[0%] md:w-[100%] md:overflow-visible">
-        <img onClick={()=>navigator("/")} src={Logo} alt="" height={40} width={40} />
+        <img
+          onClick={() => navigator("/")}
+          src={Logo}
+          alt=""
+          height={40}
+          width={40}
+        />
         <li>Sobre Nós</li>
         <li>Doação</li>
         <li>Contato</li>
@@ -70,24 +81,34 @@ export default function Navbar() {
       </ul>
       <div
         className={`flex h-[60%] gap-5 sm:gap-12  justify-end sm:items-center  w-[60%] xl:w-[23%] 2xl:w-[31%] xl:h-[100%]  2xl:px-10  sm:w-[28%]  transition-all duration-1000 ${
-          pegarTema === "dark"
-            ? "bg-[#202020]"
-            : "bg-[#CEF3FF] "
+          pegarTema === "dark" ? "bg-[#202020]" : "bg-[#CEF3FF] "
         }`}
       >
-        <Button
-          isBorder={true}
-          onClick={() => {
-            setOpen(true);
-          }}
-        >
-          Cadastrar
-        </Button>
-        <Button
-        onClick={()=>{
-          setOpenModalAuxiliarLogin(true);
-        }}
-        >Entrar</Button>
+        {isLoged ? (
+          <>
+          <Link to={'/Account'}>
+          <AvatarImg/>
+          </Link>
+          </>
+        ) : (
+          <>
+            <Button
+              isBorder={true}
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
+              Cadastrar
+            </Button>
+            <Button
+              onClick={() => {
+                setOpenModalAuxiliarLogin(true);
+              }}
+            >
+              Entrar
+            </Button>
+          </>
+        )}
       </div>
       <ModalConfirm
         open={open}
@@ -96,19 +117,31 @@ export default function Navbar() {
         }}
       >
         <div className="text-center w-56">
-          
-        <div className="mx-auto my-7 w-48">
-           <h3 className="text-lg text-gray-800">Como vc deseja se Cadastrar como...</h3>
-        
-        </div>
-        <div className="flex gap-4">
-         <button onClick={()=>{handleTypeRegister('Ong')}} className="bg-emerald-400 w-full rounded-lg py-3">Ong</button>
-         <button onClick={()=>{handleTypeRegister('Usario')}} className="bg-indigo-400 w-full rounded-lg">Usario</button>
-        </div>
+          <div className="mx-auto my-7 w-48">
+            <h3 className="text-lg text-gray-800">
+              Como vc deseja se Cadastrar como...
+            </h3>
+          </div>
+          <div className="flex gap-4">
+            <button
+              onClick={() => {
+                handleTypeRegister("Ong");
+              }}
+              className="bg-emerald-400 w-full rounded-lg py-3"
+            >
+              Ong
+            </button>
+            <button
+              onClick={() => {
+                handleTypeRegister("Usario");
+              }}
+              className="bg-indigo-400 w-full rounded-lg"
+            >
+              Usario
+            </button>
+          </div>
         </div>
       </ModalConfirm>
-
-
 
       <ModalConfirm
         open={openModalAuxiliarLogin}
@@ -117,18 +150,31 @@ export default function Navbar() {
         }}
       >
         <div className="text-center w-56">
-          
-        <div className="mx-auto my-7 w-48">
-           <h3 className="text-lg text-gray-800">Como vc deseja Logar, como...</h3>
-        
-        </div>
-        <div className="flex gap-4">
-         <button onClick={()=>{handleTypeLogin('Ong')}} className="bg-emerald-400 w-full rounded-lg py-3">Ong</button>
-         <button onClick={()=>{handleTypeLogin('Usario')}} className="bg-indigo-400 w-full rounded-lg">Usario</button>
-        </div>
+          <div className="mx-auto my-7 w-48">
+            <h3 className="text-lg text-gray-800">
+              Como vc deseja Logar, como...
+            </h3>
+          </div>
+          <div className="flex gap-4">
+            <button
+              onClick={() => {
+                handleTypeLogin("Ong");
+              }}
+              className="bg-emerald-400 w-full rounded-lg py-3"
+            >
+              Ong
+            </button>
+            <button
+              onClick={() => {
+                handleTypeLogin("Usario");
+              }}
+              className="bg-indigo-400 w-full rounded-lg"
+            >
+              Usario
+            </button>
+          </div>
         </div>
       </ModalConfirm>
-      
     </header>
   );
 }
