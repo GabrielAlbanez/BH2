@@ -3,6 +3,7 @@ import { useTema } from "../common/context/Tema";
 import { useAppSelector } from "../store/intex";
 import { LogUser, saveDataUser } from "../store/slices/AuthToken";
 import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 export default function Account() {
   const { pegarTema } = useTema() as {
@@ -18,8 +19,20 @@ export default function Account() {
   }>;
   const logedUser = useAppSelector((state) => state.AuthToken.isLoged);
 
+  const notify = () => {
+    toast(`${'usuario Deslogado'}`, {
+      icon: `${pegarTema === "dark" ? "🌑" : " 🌞"}`,
+      style: {
+        borderRadius: "10px",
+        background: `${pegarTema === "dark" ? "#333" : "white"}`,
+        color: `${pegarTema === "dark" ? "white" : "black"}`,
+      },
+    });
+  };
+
   const logOut = ()=>{
     sessionStorage.setItem('token',"")
+    notify()
     window.location.reload()
   }
 
