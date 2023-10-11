@@ -4,6 +4,7 @@ import Logo from "../../assets/imgs/Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { BsPerson, BsTelephone } from "react-icons/bs";
+import { MdOutlineAdminPanelSettings} from "react-icons/md";
 import { LiaDonateSolid } from "react-icons/lia";
 import { TbPigMoney } from "react-icons/tb";
 import MyDrawer from "../MyDrawer";
@@ -30,6 +31,17 @@ export default function Navbar() {
   const navigator = useNavigate();
 
   const isLoged = useAppSelector((state) => state.AuthToken.isLoged);
+
+
+  const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
+    cpf: string;
+    email: string;
+    numerosComprados: [];
+    sexo: string;
+    tipo: string;
+  }>;
+
+  const typeUser = User[0]?.tipo
 
   console.log(isLoged);
 
@@ -63,6 +75,7 @@ export default function Navbar() {
         <Link to={"/Rifas"}>
           <li>Rifas</li>
         </Link>
+        {typeUser === 'admin' ? <Link to={'/Dashboard'}><li>Dashboard</li></Link> : ''}
       </ul>
 
       <ul className="flex gap-7 items-center  w-[40%] overflow-visible sm:w-[80%] md:w-[0%]  md:overflow-hidden ">
@@ -75,7 +88,8 @@ export default function Navbar() {
           textoI3={"contato"}
           inten4={<TbPigMoney size={25} />}
           textoI4={"Rifas"}
-          inten6={<ButtonTradeTheme />}
+          inten6={<MdOutlineAdminPanelSettings size={24} />}
+          textoI6={'Dashboard'}
           coteudo={<RxHamburgerMenu size={30} />}
         />
       </ul>

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { takeToken } from "../store/slices/AuthToken";
+import { useAppSelector } from "../store/intex";
 
 export default function Login() {
   const { pegarTypeUser, setPegarTypeUser } = useTypeUser() as {
@@ -27,6 +28,14 @@ export default function Login() {
 
   const dispacht = useDispatch();
 
+  const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
+    cpf: string;
+    email: string;
+    numerosComprados: [];
+    sexo: string;
+    tipo: string;
+  }>;
+
   const hanleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
     setDataLogin((dados) => ({
@@ -46,14 +55,10 @@ export default function Login() {
       );
       const responseData = request.data;
       console.log(responseData);
-      sessionStorage.setItem('token',responseData?.token)
-      const token =  sessionStorage.getItem('token')
-      
-      dispacht(
-        takeToken([
-          token
-        ])
-      );
+      sessionStorage.setItem("token", responseData?.token);
+      const token = sessionStorage.getItem("token");
+
+      dispacht(takeToken([token]));
 
       if ("error" in responseData) {
         const notify = () => {
@@ -80,9 +85,8 @@ export default function Login() {
           });
         };
 
-        
-        navigator("/Account");
-        window.location.reload()
+        navigator("/Home");
+        window.location.reload();
         notify();
       }
     } catch (error) {

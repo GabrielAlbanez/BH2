@@ -12,6 +12,8 @@ import Account from '../Pages/Account'
 import { useDispatch } from 'react-redux'
 import { LogUser, saveDataUser } from '../store/slices/AuthToken'
 import { useAppSelector } from '../store/intex'
+import Home from '../Pages/Home'
+import Dashboard from '../Pages/Dashboard'
 
 
 export default function MinhasRotas() {
@@ -76,6 +78,8 @@ const token2 = sessionStorage.getItem("token");
                 <Route path='/Register' element={<Register/>}/>
                 <Route  path='/Login' element={<Login/>}/>
                 <Route  path='/Account' element={<Account/>}/>
+                <Route path='/Home' element={<Home/>}/>
+                <Route path='/Dashboard' element={<Dashboard/>}/>
 
             </Routes>
 

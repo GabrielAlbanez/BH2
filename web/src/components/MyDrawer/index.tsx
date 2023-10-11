@@ -12,7 +12,8 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Avatar, ListItemAvatar } from "@mui/material";
 import Logo from "../../assets/imgs/Logo.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../store/intex";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -21,7 +22,7 @@ interface propsDrawer {
   inten1?: React.ReactNode;
   textoI1?: string;
   inten2?: React.ReactNode;
-  textoI2? : string;
+  textoI2?: string;
   inten3?: React.ReactNode;
   textoI3?: string;
   inten4?: React.ReactNode;
@@ -42,14 +43,23 @@ export default function MyDrawer({
   inten4,
   textoI4,
   inten6,
-  textoI6
+  textoI6,
 }: propsDrawer) {
   const [state, setState] = React.useState({
     left: false,
   });
 
-  const navigator = useNavigate()
+  const navigator = useNavigate();
 
+  const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
+    cpf: string;
+    email: string;
+    numerosComprados: [];
+    sexo: string;
+    tipo: string;
+  }>;
+
+  const typeUser = User[0]?.tipo;
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -77,7 +87,7 @@ export default function MyDrawer({
           <ListItemButton>
             <ListItemAvatar>
               <Avatar
-                onClick={()=>navigator("/")}
+                onClick={() => navigator("/")}
                 alt="Travis Howard"
                 src={Logo}
                 sx={{ width: 30, height: 30 }}
@@ -104,14 +114,12 @@ export default function MyDrawer({
           </ListItemButton>
         </ListItem>
 
-
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>{inten3}</ListItemIcon>
             <ListItemText primary={textoI3} />
           </ListItemButton>
         </ListItem>
-
 
         <ListItem disablePadding>
           <ListItemButton>
@@ -120,10 +128,18 @@ export default function MyDrawer({
           </ListItemButton>
         </ListItem>
 
-
-
-
-
+        {typeUser === "admin" ? (
+          <Link to={'/Dashboard'}>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>{inten6}</ListItemIcon>
+              <ListItemText primary={textoI6} />
+            </ListItemButton>
+          </ListItem>
+          </Link>
+        ) : (
+          ""
+        )}
       </List>
     </Box>
   );

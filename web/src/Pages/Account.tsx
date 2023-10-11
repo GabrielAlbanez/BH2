@@ -48,12 +48,16 @@ export default function Account() {
       {logedUser ? (
         <>
           {logedUser ? (
-            <div className="flex flex-col gap-10 items-center justify-center h-[70%] w-[100%] rounded-2xl shadow-lg text-lg ">
+            <div className="flex flex-col gap-10 items-center justify-center h-[70%] w-[100%] rounded-2xl  text-lg ">
               <p>Cpf : {User[0]?.cpf}</p>
               <p>Email : {User[0]?.email}</p>
-              <p>NumerosComprados : {User[0]?.numerosComprados}</p>
+              <p>NumerosComprados : 0 {User[0]?.numerosComprados}</p>
               <p>Sexo : {User[0]?.sexo}</p>
-              <button onClick={logOut} className="border-red-400 border-[2px] rounded-2xl px-6 py-6">Logout</button>
+              {
+                User[0]?.tipo === 'admin' ? (<><p>Type : Admin</p></>) : (<></>)
+              }
+              
+              <button onClick={logOut} className="border-violet-400 border-[2px] rounded-2xl px-4 py-4">Logout</button>
             </div>
           ) : (
             <h1>Carregando dados do usuário...</h1>
