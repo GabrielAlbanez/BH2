@@ -14,7 +14,6 @@ import { Avatar, ListItemAvatar } from "@mui/material";
 import Logo from "../../assets/imgs/Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../store/intex";
-
 type Anchor = "top" | "left" | "bottom" | "right";
 
 interface propsDrawer {
@@ -153,6 +152,7 @@ export default function MyDrawer({
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
+            
           >
             {list(anchor)}
           </Drawer>
