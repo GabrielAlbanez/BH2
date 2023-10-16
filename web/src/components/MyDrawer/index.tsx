@@ -14,6 +14,8 @@ import { Avatar, ListItemAvatar } from "@mui/material";
 import Logo from "../../assets/imgs/Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../store/intex";
+import { useTema } from "../../common/context/Tema";
+import toast from "react-hot-toast";
 type Anchor = "top" | "left" | "bottom" | "right";
 
 interface propsDrawer {
@@ -59,6 +61,29 @@ export default function MyDrawer({
   }>;
 
   const typeUser = User[0]?.tipo;
+
+  const { pegarTema } = useTema() as {
+    pegarTema: string;
+  };
+
+  const isLoged = useAppSelector((state) => state.AuthToken.isLoged);
+
+  const notify = (message: string): void => {
+    toast(`${message}`, {
+      icon: `${pegarTema === "dark" ? "🌑" : " 🌞"}`,
+      style: {
+        borderRadius: "10px",
+        background: `${pegarTema === "dark" ? "#333" : "white"}`,
+        color: `${pegarTema === "dark" ? "white" : "black"}`,
+      },
+    });
+  };
+
+  const verifyLogin = (namePagina: string) => {
+    !isLoged
+      ? notify("voce precisa estar logado para acessar essa pagina")
+      : navigator(`/${namePagina}`);
+  };
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -107,7 +132,9 @@ export default function MyDrawer({
         </ListItem>
 
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={() => {
+            verifyLogin("Doação");
+          }}>
             <ListItemIcon>{inten2}</ListItemIcon>
             <ListItemText primary={textoI2} />
           </ListItemButton>
@@ -121,20 +148,24 @@ export default function MyDrawer({
         </ListItem>
 
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton
+            onClick={() => {
+              verifyLogin("Rifas");
+            }}
+          >
             <ListItemIcon>{inten4}</ListItemIcon>
             <ListItemText primary={textoI4} />
           </ListItemButton>
         </ListItem>
 
         {typeUser === "admin" ? (
-          <Link to={'/Dashboard'}>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>{inten6}</ListItemIcon>
-              <ListItemText primary={textoI6} />
-            </ListItemButton>
-          </ListItem>
+          <Link to={"/Dashboard"}>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>{inten6}</ListItemIcon>
+                <ListItemText primary={textoI6} />
+              </ListItemButton>
+            </ListItem>
           </Link>
         ) : (
           ""
@@ -152,7 +183,6 @@ export default function MyDrawer({
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
-            
           >
             {list(anchor)}
           </Drawer>
