@@ -31,9 +31,12 @@ export default function Account() {
   };
 
   const logOut = ()=>{
-    sessionStorage.setItem('token',"")
     notify()
-    window.location.reload()
+    setTimeout(()=>{
+      sessionStorage.setItem('token',"")
+      window.location.reload()
+    },1000)
+
   }
 
 

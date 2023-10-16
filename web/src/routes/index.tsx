@@ -14,6 +14,7 @@ import { LogUser, saveDataUser } from '../store/slices/AuthToken'
 import { useAppSelector } from '../store/intex'
 import Home from '../Pages/Home'
 import Dashboard from '../Pages/Dashboard'
+import Doação from '../Pages/Doação'
 
 
 export default function MinhasRotas() {
@@ -80,6 +81,7 @@ const token2 = sessionStorage.getItem("token");
                 <Route  path='/Account' element={<Account/>}/>
                 <Route path='/Home' element={<Home/>}/>
                 <Route path='/Dashboard' element={<Dashboard/>}/>
+                <Route path='/Doação' element={<Doação/>}/>
 
             </Routes>
 

@@ -4,7 +4,7 @@ import Logo from "../../assets/imgs/Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { BsPerson, BsTelephone } from "react-icons/bs";
-import { MdOutlineAdminPanelSettings} from "react-icons/md";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { LiaDonateSolid } from "react-icons/lia";
 import { TbPigMoney } from "react-icons/tb";
 import MyDrawer from "../MyDrawer";
@@ -14,6 +14,7 @@ import ModalConfirm from "../Modal/ModalConfirm";
 import { useTypeUser } from "../../common/context/typeUserCadastro";
 import { useAppSelector } from "../../store/intex";
 import AvatarImg from "../AvatarImg/AvatarImg";
+import toast from "react-hot-toast";
 
 export default function Navbar() {
   const { pegarTema } = useTema() as {
@@ -32,7 +33,6 @@ export default function Navbar() {
 
   const isLoged = useAppSelector((state) => state.AuthToken.isLoged);
 
-
   const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
     cpf: string;
     email: string;
@@ -41,9 +41,26 @@ export default function Navbar() {
     tipo: string;
   }>;
 
-  const typeUser = User[0]?.tipo
+  const typeUser = User[0]?.tipo;
 
   console.log(isLoged);
+
+  const notify = (message: string): void => {
+    toast(`${message}`, {
+      icon: `${pegarTema === "dark" ? "🌑" : " 🌞"}`,
+      style: {
+        borderRadius: "10px",
+        background: `${pegarTema === "dark" ? "#333" : "white"}`,
+        color: `${pegarTema === "dark" ? "white" : "black"}`,
+      },
+    });
+  };
+
+  const verifyLogin = (namePagina: string) => {
+    !isLoged
+      ? notify("voce precisa estar logado para acessar essa pagina")
+      : navigator(`/${namePagina}`);
+  };
 
   const handleTypeRegister = (name: string) => {
     setPegarTypeUser(name);
@@ -70,12 +87,30 @@ export default function Navbar() {
           width={40}
         />
         <li>Sobre Nós</li>
-        <li>Doação</li>
+        <li
+          className="cursor-pointer"
+          onClick={() => {
+            verifyLogin("Doação");
+          }}
+        >
+          Doação
+        </li>
         <li>Contato</li>
-        <Link to={"/Rifas"}>
-          <li>Rifas</li>
-        </Link>
-        {typeUser === 'admin' ? <Link to={'/Dashboard'}><li>Dashboard</li></Link> : ''}
+        <li
+         className="cursor-pointer"
+          onClick={() => {
+            verifyLogin("Rifas");
+          }}
+        >
+          Rifas
+        </li>
+        {typeUser === "admin" ? (
+          <Link to={"/Dashboard"}>
+            <li>Dashboard</li>
+          </Link>
+        ) : (
+          ""
+        )}
       </ul>
 
       <ul className="flex gap-7 items-center  w-[40%] overflow-visible sm:w-[80%] md:w-[0%]  md:overflow-hidden ">
@@ -89,7 +124,7 @@ export default function Navbar() {
           inten4={<TbPigMoney size={25} />}
           textoI4={"Rifas"}
           inten6={<MdOutlineAdminPanelSettings size={24} />}
-          textoI6={'Dashboard'}
+          textoI6={"Dashboard"}
           coteudo={<RxHamburgerMenu size={30} />}
         />
       </ul>
@@ -100,9 +135,9 @@ export default function Navbar() {
       >
         {isLoged ? (
           <>
-          <Link to={'/Account'}>
-          <AvatarImg/>
-          </Link>
+            <Link to={"/Account"}>
+              <AvatarImg />
+            </Link>
           </>
         ) : (
           <>
