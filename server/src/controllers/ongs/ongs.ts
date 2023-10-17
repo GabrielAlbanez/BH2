@@ -1,8 +1,8 @@
 import { db as prisma } from "../../shared/db";
 import { Request, Response } from "express";
 import * as bcrypt from "bcrypt";
-import nodemailer from "nodemailer";
-import fetch from 'node-fetch';
+import  multer from "multer";
+import { v4 as uuidv4 } from 'uuid';
 
 export const getAllOngs = async (req: Request, res: Response) => {
   try {
@@ -37,6 +37,9 @@ export const getByNameOng = async (req: Request, res: Response) => {
     res.status(404).json({ message: `erro ao achar essa ong ${error}` });
   }
 };
+
+
+const storage = multer.
 
 export const createOng = async (req: Request, res: Response) => {
   try {
