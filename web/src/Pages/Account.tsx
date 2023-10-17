@@ -4,6 +4,7 @@ import { useAppSelector } from "../store/intex";
 import { LogUser, saveDataUser } from "../store/slices/AuthToken";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function Account() {
   const { pegarTema } = useTema() as {
@@ -20,7 +21,7 @@ export default function Account() {
   const logedUser = useAppSelector((state) => state.AuthToken.isLoged);
 
   const notify = () => {
-    toast(`${'usuario Deslogado'}`, {
+    toast(`${"usuario Deslogado"}`, {
       icon: `${pegarTema === "dark" ? "🌑" : " 🌞"}`,
       style: {
         borderRadius: "10px",
@@ -30,16 +31,16 @@ export default function Account() {
     });
   };
 
-  const logOut = ()=>{
-    notify()
-    setTimeout(()=>{
-      sessionStorage.setItem('token',"")
-      window.location.reload()
-    },1000)
+  const navigator = useNavigate();
 
-  }
-
-
+  const logOut = () => {
+    notify();
+    setTimeout(() => {
+      sessionStorage.setItem("token", "");
+      navigator("/");
+      window.location.reload();
+    }, 1000);
+  };
 
   return (
     <div
@@ -56,11 +57,20 @@ export default function Account() {
               <p>Email : {User[0]?.email}</p>
               <p>NumerosComprados : 0 {User[0]?.numerosComprados}</p>
               <p>Sexo : {User[0]?.sexo}</p>
-              {
-                User[0]?.tipo === 'admin' ? (<><p>Type : Admin</p></>) : (<></>)
-              }
-              
-              <button onClick={logOut} className="border-violet-400 border-[2px] rounded-2xl px-4 py-4">Logout</button>
+              {User[0]?.tipo === "admin" ? (
+                <>
+                  <p>Type : Admin</p>
+                </>
+              ) : (
+                <></>
+              )}
+
+              <button
+                onClick={logOut}
+                className="border-violet-400 border-[2px] rounded-2xl px-4 py-4"
+              >
+                Logout
+              </button>
             </div>
           ) : (
             <h1>Carregando dados do usuário...</h1>
