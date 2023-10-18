@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { ControlerOngs } from "../controllers/ongs/index";
 import { ongsMiddleware } from "../middlewares/ongs/index";
-import upload from "Config/multer";
+import upload from "../Config/multer";
 
 const routeOng = Router();
 
