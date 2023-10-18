@@ -37,12 +37,13 @@ export default function Register() {
     telefone: "",
   });
 
-  const [file, setFile] = useState<File | null>(null);
+  const [img, setImg] = useState<File | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      setFile(e.target.files[0]);
+      setImg(e.target.files[0]);
     }
+    console.log(img)
   };
 
   const navigator = useNavigate();
@@ -66,7 +67,8 @@ export default function Register() {
       console.log(dataUserRegister);
       const request = await axios.post(
         "http://localhost:8080/createUser",
-        dataUserRegister
+        dataUserRegister,
+        
       );
       const responseData = request.data;
 
@@ -114,16 +116,35 @@ export default function Register() {
   const handleSubmitOng = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    console.log(img)
+  
+    const formData = new FormData();
+  
+    // Adicione os campos de dados da ONG ao formData
+    formData.append("nome", dataOngRegister.nome);
+    formData.append("email", dataOngRegister.email);
+    formData.append("cnpj", dataOngRegister.cnpj);
+    formData.append("senha", dataOngRegister.senha);
+    formData.append("endereco", dataOngRegister.endereco);
+    formData.append("telefone", dataOngRegister.telefone);
+    formData.append("redesSociais", dataOngRegister.redesSociais);
+  
+    // Verifique se o arquivo (imagem) foi selecionado pelo usuário
+    
+
+    if (img) {
+      // Adicione a imagem ao formData
+      formData.append("logo", img);
+    }
+  
     try {
-      console.log(dataUserRegister);
-      const request = await axios.post(
-        "http://localhost:8080/createOngs",
-        dataOngRegister
-      );
-      const responseData : ResponseData = request.data;
-
+      const response = await axios.post("http://localhost:8080/createOngs", formData);
+  
+      const responseData: ResponseData = response.data;
+  
       console.log(responseData);
-
+      
+  
       if ("error" in responseData) {
         const notify = () => {
           toast(`${responseData.error}`, {
@@ -135,7 +156,7 @@ export default function Register() {
             },
           });
         };
-
+  
         notify();
       } else {
         const notify = () => {
@@ -148,7 +169,7 @@ export default function Register() {
             },
           });
         };
-
+  
         notify();
         navigator("/Login");
       }
@@ -276,12 +297,8 @@ export default function Register() {
             <div className="flex gap-2 flex-col ">
               <label htmlFor="">Insira A logo de sua ong</label>
               <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh] 2xl:h-[6vh]  rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
-                <input
-                  type="file"
-                  id="logo"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                />
+              <input type="file" id="logo" accept="image/*" onChange={handleFileChange} />
+
               </div>
             </div>
 
