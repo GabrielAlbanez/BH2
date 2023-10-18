@@ -32,6 +32,7 @@ model Ong {
   endereco    String?
   redesSociais String?
   aprovado    Boolean?  @default(false)
+  Logo        String? 
   rifas       Rifa[]
   Voluntarios Voluntarios[]
   trabalhos   Trabalho[]

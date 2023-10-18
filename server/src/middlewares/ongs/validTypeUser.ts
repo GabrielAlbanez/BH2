@@ -90,6 +90,8 @@ export const validaDataOngs = async (
 ) => {
   const { nome, endereco,cnpj,email,senha,telefone,redesSociais } = req.body;
 
+  const file = req.file
+
   const cnpjValido = cnpjValid.isValid(cnpj);
   const emailValido = EmailValidator.validate(email);
   const phoneNumberObject = parsePhoneNumberFromString(telefone);
@@ -98,6 +100,9 @@ export const validaDataOngs = async (
     return res.status(404).json({ message: "pré encha todos os campos" });
   }
 
+   if(!file){
+    return res.status(400).json({ error: 'Nenhum arquivo foi enviado.' });
+   }
   
   if (!emailValido) {
     return res.status(400).json({ error: "Email inválido" });

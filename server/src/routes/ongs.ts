@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { ControlerOngs } from "../controllers/ongs/index";
 import { ongsMiddleware } from "../middlewares/ongs/index";
+import upload from "Config/multer";
 
 const routeOng = Router();
 
@@ -14,7 +15,7 @@ routeOng.get(
 //  routeOng.post('/createOngs',ongsMiddleware.validaDataOngs,ongsMiddleware.validateDataOnsForAdmin,ControlerOngs.createOng)
 //  depois dessa rota estiver 100%  feita colocar o middleware do email
 routeOng.post(
-  "/createOngs",
+  "/createOngs", upload.single('logo'),
   ongsMiddleware.validaDataOngs,
   ControlerOngs.createOng
 );

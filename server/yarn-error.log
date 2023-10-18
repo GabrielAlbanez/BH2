@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\GabrielGoncalvesAlba\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add multer
+  C:\Program Files\nodejs\node.exe C:\Users\GabrielGoncalvesAlba\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add multer @types/multer
 
 PATH: 
   C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\composer;C:\Program Files\Microsoft VS Code\bin;C:\Users\GabrielGoncalvesAlba\.console-ninja\.bin;C:\Users\GabrielGoncalvesAlba\AppData\Local\Microsoft\WindowsApps;C:\Users\GabrielGoncalvesAlba\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\GabrielGoncalvesAlba\AppData\Roaming\npm\node_modules\yarn\bin;C:\Users\GabrielGoncalvesAlba\AppData\Roaming\npm\node_modules\npm\bin;C:\cmd2;C:\Users\GabrielGoncalvesAlba\AppData\Roaming\Composer\vendor\bin;C:\xamp2\php;C:\Users\GabrielGoncalvesAlba\composer
