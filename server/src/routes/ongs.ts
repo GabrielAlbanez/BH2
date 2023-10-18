@@ -15,7 +15,7 @@ routeOng.get(
 //  routeOng.post('/createOngs',ongsMiddleware.validaDataOngs,ongsMiddleware.validateDataOnsForAdmin,ControlerOngs.createOng)
 //  depois dessa rota estiver 100%  feita colocar o middleware do email
 routeOng.post(
-  "/createOngs", upload.single('logo'),
+  "/createOngs",upload.single('logo'),
   ongsMiddleware.validaDataOngs,
   ControlerOngs.createOng
 );

@@ -1,7 +1,6 @@
 import { db as prisma } from "../../shared/db";
 import { Request, Response } from "express";
 import * as bcrypt from "bcrypt";
-import  multer from "multer";
 
 export const getAllOngs = async (req: Request, res: Response) => {
   try {
@@ -60,7 +59,8 @@ export const createOng = async (req: Request, res: Response) => {
         senha : hashedPassword,
         endereco,
         telefone,
-        redesSociais
+        redesSociais,
+        Logo : file.path
       },
     });
     res.status(200).json({ ong: createOng });

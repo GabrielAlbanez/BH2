@@ -97,15 +97,15 @@ export const validaDataOngs = async (
   const phoneNumberObject = parsePhoneNumberFromString(telefone);
 
   if (!nome || !endereco || !cnpj || !email || !senha || !telefone || !redesSociais) {
-    return res.status(404).json({ message: "pré encha todos os campos" });
+    return res.status(201).json({ error: "pré encha todos os campos" });
   }
 
    if(!file){
-    return res.status(400).json({ error: 'Nenhum arquivo foi enviado.' });
+    return res.status(201).json({ error: 'Nenhum arquivo foi enviado.' });
    }
   
   if (!emailValido) {
-    return res.status(400).json({ error: "Email inválido" });
+    return res.status(201).json({ error: "Email inválido" });
   }
 
 
@@ -116,7 +116,7 @@ export const validaDataOngs = async (
   })
 
   if(emailExisting.length > 0){
-    return res.status(404).json({message : "email ja cadastrado"})
+    return res.status(201).json({error : "email ja cadastrado"})
   }
 
 
@@ -126,7 +126,7 @@ export const validaDataOngs = async (
 
 
   if (!cnpjValido) {
-    return res.status(400).json({ error: "cnpj inválido" });
+    return res.status(201).json({ error: "cnpj inválido" });
   }
  
   const cnpjValidoExisting = await prisma.ong.findMany({
@@ -136,7 +136,7 @@ export const validaDataOngs = async (
   })
 
   if(cnpjValidoExisting.length > 0){
-    return res.status(404).json({message : "cnpj ja cadastrado"})
+    return res.status(201).json({error : "cnpj ja cadastrado"})
   }
 
 
@@ -145,7 +145,7 @@ export const validaDataOngs = async (
 
 
   if (!phoneNumberObject || !phoneNumberObject.isValid()) {
-    return res.status(404).json({message : "telefone invalido"})
+    return res.status(201).json({error : "telefone invalido"})
   } 
 
   
@@ -157,7 +157,7 @@ export const validaDataOngs = async (
 
 
   if(telefoneExisting.length > 0){
-    return res.status(404).json({message : "telefone ja cadastrado"})
+    return res.status(201).json({error : "telefone ja cadastrado"})
   }
 
 
@@ -175,11 +175,11 @@ export const validaDataOngs = async (
   });
 
   if (nameOngs.length > 0) {
-     return res.status(200).json({ message: "ong ja cadastrada" });
+     return res.status(201).json({ error: "ong ja cadastrada" });
   }
 
   if (enderecoOng.length > 0) {
-   return res.status(200).json({ message: "ong ja cadastrada" });
+   return res.status(201).json({ error: "ong ja cadastrada" });
   }
 
   next();

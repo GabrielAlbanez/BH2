@@ -37,8 +37,15 @@ export default function Register() {
     telefone: "",
   });
 
+  const [file, setFile] = useState<File | null>(null);
 
-  const navigator = useNavigate()
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const navigator = useNavigate();
 
   const hanleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
@@ -46,6 +53,10 @@ export default function Register() {
       ...dados,
       [name]: value,
     }));
+    setDataOngRegister((dataOng)=>({
+      ...dataOng,
+      [name]:value
+    }))
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -73,11 +84,8 @@ export default function Register() {
           });
         };
 
-
         notify();
-      }
-      else {
-
+      } else {
         const notify = () => {
           toast(`${responseData.user}`, {
             icon: `${pegarTema === "dark" ? "🌑" : " 🌞"}`,
@@ -89,21 +97,76 @@ export default function Register() {
           });
         };
 
-
         notify();
-        navigator('/Login')
+        navigator("/Login");
       }
     } catch (error) {
       console.error("Ocorreu um erro:", error);
     }
   };
 
+
+  interface ResponseData {
+    error?: string; // A propriedade "error" é opcional
+    // Outras propriedades, se houver
+  }
+
+  const handleSubmitOng = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      console.log(dataUserRegister);
+      const request = await axios.post(
+        "http://localhost:8080/createOngs",
+        dataOngRegister
+      );
+      const responseData : ResponseData = request.data;
+
+      console.log(responseData);
+
+      if ("error" in responseData) {
+        const notify = () => {
+          toast(`${responseData.error}`, {
+            icon: `${pegarTema === "dark" ? "🌑" : " 🌞"}`,
+            style: {
+              borderRadius: "10px",
+              background: `${pegarTema === "dark" ? "#333" : "white"}`,
+              color: `${pegarTema === "dark" ? "white" : "black"}`,
+            },
+          });
+        };
+
+        notify();
+      } else {
+        const notify = () => {
+          toast(`ong criada com sucesso`, {
+            icon: `${pegarTema === "dark" ? "🌑" : " 🌞"}`,
+            style: {
+              borderRadius: "10px",
+              background: `${pegarTema === "dark" ? "#333" : "white"}`,
+              color: `${pegarTema === "dark" ? "white" : "black"}`,
+            },
+          });
+        };
+
+        notify();
+        navigator("/Login");
+      }
+    } catch (error) {
+      console.error("Ocorreu um erro:", error);
+    }
+  };
+
+
+
+
   return (
     <>
       {pegarTypeUser === "Ong" ? (
         <>
           <form
-            className={`transition-all duration-1000  w-full h-[100vh]  sm:h-[91vh] lg:h-[100%] xl:h-[100%] 2xl:h-[91vh]  flex flex-col items-center justify-center gap-3  sm:gap-9 
+            onSubmit={handleSubmitOng}
+            className={`transition-all duration-1000  w-full h-[100vh]  sm:h-[91vh] lg:h-[100%] xl:h-[100%] 2xl:h-[100%]  flex flex-col items-center justify-center gap-3  sm:gap-9 
         ${pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"} 
         `}
           >
@@ -119,7 +182,7 @@ export default function Register() {
                     onChange={hanleInputChange}
                     name="nome"
                     type="text"
-                    placeholder="name@example.com.."
+                    placeholder="insira seu nome"
                     className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3"
                   />
                 </div>
@@ -147,7 +210,7 @@ export default function Register() {
                     onChange={hanleInputChange}
                     name="cnpj"
                     type="text"
-                    placeholder="name@example.com.."
+                    placeholder="20.907.375/0001-47"
                     className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3"
                   />
                 </div>
@@ -161,7 +224,7 @@ export default function Register() {
                     onChange={hanleInputChange}
                     name="senha"
                     type="text"
-                    placeholder="name@example.com.."
+                    placeholder="insuar sua senha..."
                     className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3"
                   />
                 </div>
@@ -173,9 +236,9 @@ export default function Register() {
                   <input
                     value={dataUserRegister.endereco}
                     onChange={hanleInputChange}
-                    name="enderco"
+                    name="endereco"
                     type="text"
-                    placeholder="name@example.com.."
+                    placeholder="Rua amorais 24.."
                     className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3"
                   />
                 </div>
@@ -189,7 +252,7 @@ export default function Register() {
                     onChange={hanleInputChange}
                     name="telefone"
                     type="text"
-                    placeholder="name@example.com.."
+                    placeholder="+556336313387"
                     className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3"
                   />
                 </div>
@@ -203,10 +266,22 @@ export default function Register() {
                     onChange={hanleInputChange}
                     name="redesSociais"
                     type="text"
-                    placeholder="name@example.com.."
+                    placeholder="instagram : @nome..."
                     className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3"
                   />
                 </div>
+              </div>
+            </div>
+
+            <div className="flex gap-2 flex-col ">
+              <label htmlFor="">Insira A logo de sua ong</label>
+              <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh] 2xl:h-[6vh]  rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
+                <input
+                  type="file"
+                  id="logo"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                />
               </div>
             </div>
 
