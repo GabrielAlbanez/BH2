@@ -55,7 +55,7 @@ const token2 = sessionStorage.getItem("token");
           }
         };
     
-        // Execute a função fetchData inicialmente e, em seguida, a cada 60 segundos
+     
         fetchData();
     
         const interval = setInterval(fetchData, 60000);

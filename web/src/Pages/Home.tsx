@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useAppSelector } from "../store/intex";
 import { useNavigate } from "react-router-dom";
 import { useTema } from "../common/context/Tema";
+import CardAllOngs from "../components/CardAllOngs/CardAllOngs";
+
 
 export default function Home() {
   const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
@@ -25,13 +27,21 @@ export default function Home() {
     }
   }, [typeUser]);
 
+
+
+
   return (
     <div
-      className={` w-full h-[91vh] transition-all duration-1000 flex items-center justify-center flex-col gap-10 ${
+      className={` w-full h-[91vh] transition-all duration-1000 flex items-center justify-center flex-col gap-24 ${
         pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
       }`}
     >
-      Home
+      <div>
+        <h1 className="text-4xl">Ongs</h1>
+      </div>
+      <div className="w-full h-[80%]">
+             <CardAllOngs/>
+      </div>
     </div>
   );
 }
