@@ -36,7 +36,7 @@ console.log(dataOng);
           <Card className="w-96">
             <CardHeader shadow={false} floated={false} className="h-80">
               <img
-                src={ong.Logo}
+                src={`http://localhost:3000/${ong.Logo}`}
                 alt="card-image"
                 className="h-full w-full object-cover"
               />
