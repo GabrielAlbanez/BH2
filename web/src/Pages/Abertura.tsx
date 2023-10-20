@@ -5,12 +5,16 @@ import MyDrawer from "../components/MyDrawer";
 import imgFundo from "../assets/imgs/Crianças-PNG.png";
 import ButtonTradeTheme from "../components/ButtonTradeTheme";
 import { useTema } from "../common/context/Tema";
+import { useAppSelector } from "../store/intex";
 
 
 export default function Abertura() {
   const { pegarTema } = useTema() as {
     pegarTema: string;
   };
+
+
+  const isLoged = useAppSelector((state) => state.AuthToken.isLoged);
 
   return (
     <div
@@ -19,9 +23,7 @@ export default function Abertura() {
       }`}
     >
       <div className="flex flex-col items-center justify-center w-[100%] h-[90vh]">
-        <div className="w-full flex justify-end items-end overflow-visible xl:overflow-hidden xl:w-[0%]">
-          <ButtonTradeTheme />
-        </div>
+  
         <div className="h-[90%] w-full flex flex-col items-center justify-center gap-10 sm:gap-20 2xl:gap-24">
           <div className="flex flex-col items-center sm:gap-3">
             <span className="text-xl sm:text-2xl 2xl:text-3xl">Faça Uma</span>

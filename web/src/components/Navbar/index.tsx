@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../Button";
 import Logo from "../../assets/imgs/Logo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { BsPerson, BsTelephone } from "react-icons/bs";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
@@ -72,6 +72,12 @@ export default function Navbar() {
     navigator("/Login");
   };
 
+  const local = useLocation();
+
+  const pageHome = local.pathname == "/" ? true : false;
+
+  console.log(pageHome);
+
   return (
     <header
       className={`  transition-all duration-1000  ${
@@ -80,11 +86,12 @@ export default function Navbar() {
     >
       <ul className="flex md:text-lg lg:text-xl 2xl:text-xl gap-7 items-center overflow-hidden w-[0%] sm:w-[0%] md:w-[100%] md:overflow-visible">
         <img
-          onClick={() => navigator("/")}
+          onClick={() => navigator(`${isLoged ? "/Home" : "/"}`)}
           src={Logo}
           alt=""
           height={40}
           width={40}
+          className="cursor-pointer"
         />
         <li>Sobre Nós</li>
         <li
@@ -97,7 +104,7 @@ export default function Navbar() {
         </li>
         <li>Contato</li>
         <li
-         className="cursor-pointer"
+          className="cursor-pointer"
           onClick={() => {
             verifyLogin("Rifas");
           }}
@@ -134,11 +141,12 @@ export default function Navbar() {
         }`}
       >
         {isLoged ? (
-          <>
+          <div className="flex items-center gap-4">
             <Link to={"/Account"}>
               <AvatarImg />
             </Link>
-          </>
+            {pageHome ? "" : <ButtonTradeTheme />}
+          </div>
         ) : (
           <>
             <Button

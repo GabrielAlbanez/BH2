@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import logo from "../../uploads/1697800913136-921937213.jpg"
-
-
-
+import logo from "../../uploads/1697800913136-921937213.jpg";
 
 import {
   Card,
@@ -17,6 +14,10 @@ import {
 export default function CardAllOngs() {
   type dataOng = {
     Logo: string;
+    nome : string;
+    telefone : string;
+
+
   };
 
   const [dataOng, setDataOng] = useState<dataOng[]>([]);
@@ -28,50 +29,32 @@ export default function CardAllOngs() {
       setDataOng(data.ongs);
     });
   }, []);
+  
 
   console.log(dataOng);
 
-  const url = dataOng.map((valor) =>
-   valor.Logo.slice(16)
-   );
+  const url = dataOng.map((valor) => valor.Logo.slice(16));
 
-  
-  console.log(url)
- 
-
-
-  
-  
+  console.log(url);
 
   return (
-    <>
+    <div className="flex gap-20  flex-wrap h-full w-full items-center justify-center ">
       {dataOng.map((ong, index) => (
         <div key={index}>
-          <Card className="w-96">
-            <CardHeader shadow={false} floated={false} className="h-80">
+          <Card className="w-80 shadow-xl shadow-purple-500">
+            <CardHeader shadow={false} floated={false} className="h-72">
               <img
                 src={require(`../../uploads/${url[index]}`)}
                 alt="card-image"
                 className="h-full w-full object-cover"
               />
             </CardHeader>
-            <CardBody className="text-black">
-              <div className="mb-2 flex items-center justify-between">
+            <CardBody className="text-black  text-xl w-full">
+              <div className="mb-2 flex items-center justify-center">
                 <Typography color="blue-gray" className="font-medium">
-                  Apple AirPods
-                </Typography>
-                <Typography color="blue-gray" className="font-medium">
-                  $95.00
+                  {ong.nome}
                 </Typography>
               </div>
-              <Typography
-                variant="small"
-                color="gray"
-                className="font-normal opacity-75"
-              >
-                With plenty of talk and listen time, voice-activated Siri
-                access, and an available wireless charging case.
-              </Typography>
             </CardBody>
             <CardFooter className="pt-0">
               <Button
@@ -79,12 +62,12 @@ export default function CardAllOngs() {
                 fullWidth={true}
                 className="bg-blue-gray-900/10 text-black shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
               >
-                Add to Cart
+                Ver mais...
               </Button>
             </CardFooter>
           </Card>
         </div>
       ))}
-    </>
+    </div>
   );
 }
