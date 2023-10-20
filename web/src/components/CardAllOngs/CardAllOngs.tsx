@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import logo from "../../uploads/1697800913136-921937213.jpg"
+
+
+
 
 import {
   Card,
@@ -11,24 +15,34 @@ import {
 } from "@material-tailwind/react";
 
 export default function CardAllOngs() {
- 
-    type dataOng = {
-        'Logo' : string;
-    }
-    
-  
-  
+  type dataOng = {
+    Logo: string;
+  };
+
   const [dataOng, setDataOng] = useState<dataOng[]>([]);
 
   useEffect(() => {
     const url = "http://localhost:8080/allOngs";
     axios.get(url).then((response) => {
       const data = response.data;
-      setDataOng([data.ongs[0]]);
+      setDataOng(data.ongs);
     });
   }, []);
 
-console.log(dataOng);
+  console.log(dataOng);
+
+  const url = dataOng.map((valor) =>
+   valor.Logo.slice(16)
+   );
+
+  
+  console.log(url)
+ 
+
+
+  
+  
+
   return (
     <>
       {dataOng.map((ong, index) => (
@@ -36,7 +50,7 @@ console.log(dataOng);
           <Card className="w-96">
             <CardHeader shadow={false} floated={false} className="h-80">
               <img
-                src={`http://localhost:3000/${ong.Logo}`}
+                src={require(`../../uploads/${url[index]}`)}
                 alt="card-image"
                 className="h-full w-full object-cover"
               />
