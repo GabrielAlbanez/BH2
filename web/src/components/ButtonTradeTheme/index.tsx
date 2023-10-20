@@ -27,7 +27,7 @@ function ButtonTradeTheme() {
   };
 
   return (
-    <div onClick={notify} className="mt-3 mr-6 xl:mt-0 xl:mr-0">
+    <div onClick={notify} className="mt-0 xl:mr-0">
       {pegarTema === 'dark' ? (
         <BsMoonStars size={23} />
       ) : (

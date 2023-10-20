@@ -136,12 +136,12 @@ export default function Navbar() {
         />
       </ul>
       <div
-        className={`flex h-[60%] gap-5 sm:gap-12  justify-end sm:items-center  w-[60%] xl:w-[23%] 2xl:w-[31%] xl:h-[100%]  2xl:px-4  sm:w-[28%]  transition-all duration-1000 ${
+        className={`flex h-[60%] gap-5 sm:gap-12  justify-end items-center  sm:items-center  w-[60%] xl:w-[23%] 2xl:w-[31%] xl:h-[100%]  2xl:px-4  sm:w-[28%]  transition-all duration-1000 ${
           pegarTema === "dark" ? "bg-[#202020]" : "bg-[#CEF3FF] "
         }`}
       >
         {isLoged ? (
-          <div className="flex items-center gap-4">
+          <div className="flex items-center  gap-4">
             <Link to={"/Account"}>
               <AvatarImg />
             </Link>
