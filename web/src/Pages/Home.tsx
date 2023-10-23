@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useTema } from "../common/context/Tema";
 import CardAllOngs from "../components/CardAllOngs/CardAllOngs";
 import ButtonTradeTheme from "../components/ButtonTradeTheme";
+import toast from "react-hot-toast";
 
 
 export default function Home() {
@@ -22,11 +23,43 @@ export default function Home() {
     pegarTema: string;
   };
 
+
+
+  const logedUser = localStorage.getItem('isLoged')
+
+
+
+  const notify = () => {
+    toast('vc precisa estar logado para acessar essa pagina', {
+      icon: `${pegarTema === "dark" ? "🌑" : " 🌞"}`,
+      style: {
+        borderRadius: "10px",
+        background: `${pegarTema === "dark" ? "#333" : "white"}`,
+        color: `${pegarTema === "dark" ? "white" : "black"}`,
+      },
+    });
+  };
+
   useEffect(() => {
     if (typeUser === "admin") {
       navigator("/Dashboard");
     }
-  }, [typeUser]);
+
+    console.log(logedUser);
+
+    if(logedUser === 'false'){
+      notify()
+      navigator('/')
+
+    }
+
+
+
+  
+
+
+
+  }, [typeUser,logedUser]);
 
 
 

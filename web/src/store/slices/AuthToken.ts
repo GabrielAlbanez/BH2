@@ -5,23 +5,23 @@ const AuthToken = createSlice({
   initialState: {
     token: [],
     dataUser: [],
-    isLoged : false,
-    url : []
+    isLoged: 'false',
+    url: [],
   },
 
   reducers: {
     takeToken: (state, action) => {
       state.token = action.payload[0];
-
     },
 
-    saveDataUser : (state,action)=>{
-      state.dataUser = action.payload[0]
+    saveDataUser: (state, action) => {
+      state.dataUser = action.payload[0];
     },
 
-    LogUser : (state,action)=>{
-      state.isLoged = action.payload
-    }
+    LogUser: (state, action) => {
+      state.isLoged = action.payload;
+      console.log(action.payload);
+    },
   },
 });
 

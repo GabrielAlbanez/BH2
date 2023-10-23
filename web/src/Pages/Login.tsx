@@ -89,7 +89,7 @@ export default function Login() {
           navigator("/Home");
           window.location.reload();
           notify();
-        },2000)
+        },5000)
         
       }
     } catch (error) {

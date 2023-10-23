@@ -37,6 +37,7 @@ export default function Account() {
     notify();
     setTimeout(() => {
       localStorage.setItem("token", "");
+      localStorage.setItem('isLoged','false')
       navigator("/");
       window.location.reload();
     }, 1000);
@@ -49,9 +50,9 @@ export default function Account() {
       }`}
     >
       <div className="text-4xl">Account</div>
-      {logedUser ? (
+      {logedUser === 'true' ? (
         <>
-          {logedUser ? (
+          {logedUser === 'true' ? (
             <div className="flex flex-col gap-10 items-center justify-center h-[70%] w-[100%] rounded-2xl  text-lg ">
               <p>Cpf : {User[0]?.cpf}</p>
               <p>Email : {User[0]?.email}</p>
