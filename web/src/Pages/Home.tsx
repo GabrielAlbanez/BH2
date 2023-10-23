@@ -27,6 +27,8 @@ export default function Home() {
 
   const logedUser = localStorage.getItem('isLoged')
 
+  const logedUserr = useAppSelector((state) => state.AuthToken.isLoged);
+
 
 
   const notify = () => {

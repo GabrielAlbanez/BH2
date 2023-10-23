@@ -44,7 +44,6 @@ export default function MinhasRotas() {
           dispacht(LogUser(false));
         } else {
           
-          localStorage.setItem("isLoged", 'true');
           dispacht(LogUser(localStorage.getItem("isLoged")));
           dispacht(saveDataUser([responseData?.dataUser?.dataUser]));
         }

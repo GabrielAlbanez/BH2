@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { takeToken } from "../store/slices/AuthToken";
+import { LogUser, takeToken } from "../store/slices/AuthToken";
 import { useAppSelector } from "../store/intex";
 
 export default function Login() {
@@ -87,9 +87,11 @@ export default function Login() {
          
         setTimeout(()=>{
           navigator("/Home");
-          window.location.reload();
+          localStorage.setItem("isLoged", 'true');
+          window.location.reload()
+
           notify();
-        },5000)
+        },1000)
         
       }
     } catch (error) {
