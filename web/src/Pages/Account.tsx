@@ -36,7 +36,7 @@ export default function Account() {
   const logOut = () => {
     notify();
     setTimeout(() => {
-      sessionStorage.setItem("token", "");
+      localStorage.setItem("token", "");
       navigator("/");
       window.location.reload();
     }, 1000);

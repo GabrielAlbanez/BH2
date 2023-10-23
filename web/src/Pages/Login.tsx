@@ -55,8 +55,8 @@ export default function Login() {
       );
       const responseData = request.data;
       console.log(responseData);
-      sessionStorage.setItem("token", responseData?.token);
-      const token = sessionStorage.getItem("token");
+      localStorage.setItem("token", responseData?.token);
+      const token = localStorage.getItem("token");
 
       dispacht(takeToken([token]));
 
@@ -84,10 +84,13 @@ export default function Login() {
             },
           });
         };
-
-        navigator("/Home");
-        window.location.reload();
-        notify();
+         
+        setTimeout(()=>{
+          navigator("/Home");
+          window.location.reload();
+          notify();
+        },2000)
+        
       }
     } catch (error) {
       console.error("Ocorreu um erro:", error);

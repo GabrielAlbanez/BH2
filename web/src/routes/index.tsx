@@ -20,7 +20,7 @@ import Doação from '../Pages/Doação'
 export default function MinhasRotas() {
 
 
-const token2 = sessionStorage.getItem("token");
+const token2 = localStorage.getItem("token");
 
     
   const dispacht = useDispatch();
