@@ -17,6 +17,7 @@ import Dashboard from "../Pages/Dashboard";
 import Doação from "../Pages/Doação";
 import HomeOng from "../Pages/HomeOng";
 import { useTypeUser } from "../common/context/typeUserCadastro";
+import NavbarOng from "../components/navbarOng";
 
 export default function MinhasRotas() {
   const token2 = localStorage.getItem("token");
@@ -27,6 +28,8 @@ export default function MinhasRotas() {
     setPegarTypeUser: (value: string) => void;
     pegarTypeUser: string;
   };
+
+  const isLoged = useAppSelector((state) => state.AuthToken.isLoged);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,11 +55,10 @@ export default function MinhasRotas() {
         } else {
           dispacht(LogUser(localStorage.getItem("isLoged")));
 
-          if (pegarTypeUser === "ong") {
-            dispacht(saveDataOng([responseData?.data?.dataUser]));
-          } else {
-            dispacht(saveDataUser([responseData?.data?.dataUser]));
-          }
+   
+            dispacht(saveDataOng([responseData?.data?.dataOng]));
+            dispacht(saveDataUser([responseData?.data?.dataUser]))
+  
         }
       } catch (error) {
         console.error("Erro na solicitação:", error);
@@ -65,7 +67,7 @@ export default function MinhasRotas() {
 
     fetchData();
 
-    const interval = setInterval(fetchData, 60000);
+    const interval = setInterval(fetchData, 2000);
 
     return () => {
       clearInterval(interval);
@@ -74,7 +76,8 @@ export default function MinhasRotas() {
 
   return (
     <BrowserRouter>
-      <Navbar />
+      {isLoged === "ongLogada" ? <NavbarOng /> : <Navbar />}
+
       <Toaster position="bottom-right" reverseOrder={false} />
       <Routes>
         <Route path="/" element={<Abertura />} />

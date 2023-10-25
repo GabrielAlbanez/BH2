@@ -29,7 +29,7 @@ export default function Navbar() {
     setPegarTypeUser: (value: string) => void;
   };
 
-  const navigator = useNavigate();                            
+  const navigator = useNavigate();
 
   const isLoged = useAppSelector((state) => state.AuthToken.isLoged);
 
@@ -39,6 +39,10 @@ export default function Navbar() {
     numerosComprados: [];
     sexo: string;
     tipo: string;
+  }>;
+
+  const ong = useAppSelector((state) => state.AuthToken.dataOng) as Array<{
+    Logo: string;
   }>;
 
   const typeUser = User[0]?.tipo;
@@ -57,7 +61,7 @@ export default function Navbar() {
   };
 
   const verifyLogin = (namePagina: string) => {
-    isLoged === 'false'
+    isLoged === "false"
       ? notify("voce precisa estar logado para acessar essa pagina")
       : navigator(`/${namePagina}`);
   };
@@ -86,7 +90,7 @@ export default function Navbar() {
     >
       <ul className="flex md:text-lg lg:text-xl 2xl:text-xl gap-7 items-center overflow-hidden w-[0%] sm:w-[0%] md:w-[100%] md:overflow-visible">
         <img
-          onClick={() => navigator(`${isLoged === 'true' ? "/Home" : "/"}`)}
+          onClick={() => navigator(`${isLoged === "true" ? "/Home" : "/"}`)}
           src={Logo}
           alt=""
           height={40}
@@ -111,7 +115,7 @@ export default function Navbar() {
         >
           Rifas
         </li>
-        {typeUser === "admin" ? (
+        { isLoged === 'true' && typeUser === "admin" ? (
           <Link to={"/Dashboard"}>
             <li>Dashboard</li>
           </Link>
@@ -140,7 +144,7 @@ export default function Navbar() {
           pegarTema === "dark" ? "bg-[#202020]" : "bg-[#CEF3FF] "
         }`}
       >
-        {isLoged === 'true' ? (
+        {isLoged === "true" ? (
           <div className="flex items-center  gap-4">
             <Link to={"/Account"}>
               <AvatarImg />

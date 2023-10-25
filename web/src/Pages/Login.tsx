@@ -134,7 +134,7 @@ export default function Login() {
 
         setTimeout(() => {
           navigator("/HomeOng");
-          localStorage.setItem("isLoged", "true");
+          localStorage.setItem("isLoged", "ongLogada");
           window.location.reload();
 
           notify();
