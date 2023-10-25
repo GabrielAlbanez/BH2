@@ -141,3 +141,14 @@ export const deleteOng = async (req: Request, res: Response) => {
     res.status(404).json({ fail: error });
   }
 };
+
+
+export const LoginOng = (req : Request, res : Response) =>{
+  
+  const token = req.session['tokenOng']
+
+
+
+  res.status(200).json({message : "Ong Logada", token : token})
+
+} 

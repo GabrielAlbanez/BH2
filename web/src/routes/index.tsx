@@ -10,16 +10,23 @@ import Register from "../Pages";
 import Login from "../Pages/Login";
 import Account from "../Pages/Account";
 import { useDispatch } from "react-redux";
-import { LogUser, saveDataUser } from "../store/slices/AuthToken";
+import { LogUser, saveDataOng, saveDataUser } from "../store/slices/AuthToken";
 import { useAppSelector } from "../store/intex";
 import Home from "../Pages/Home";
 import Dashboard from "../Pages/Dashboard";
 import Doação from "../Pages/Doação";
+import HomeOng from "../Pages/HomeOng";
+import { useTypeUser } from "../common/context/typeUserCadastro";
 
 export default function MinhasRotas() {
   const token2 = localStorage.getItem("token");
 
   const dispacht = useDispatch();
+
+  const { pegarTypeUser, setPegarTypeUser } = useTypeUser() as {
+    setPegarTypeUser: (value: string) => void;
+    pegarTypeUser: string;
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,9 +50,13 @@ export default function MinhasRotas() {
         if ("error" in responseData) {
           dispacht(LogUser(false));
         } else {
-          
           dispacht(LogUser(localStorage.getItem("isLoged")));
-          dispacht(saveDataUser([responseData?.dataUser?.dataUser]));
+
+          if (pegarTypeUser === "ong") {
+            dispacht(saveDataOng([responseData?.data?.dataUser]));
+          } else {
+            dispacht(saveDataUser([responseData?.data?.dataUser]));
+          }
         }
       } catch (error) {
         console.error("Erro na solicitação:", error);
@@ -74,6 +85,7 @@ export default function MinhasRotas() {
         <Route path="/Home" element={<Home />} />
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/Doação" element={<Doação />} />
+        <Route path="/HomeOng" element={<HomeOng />} />
       </Routes>
     </BrowserRouter>
   );

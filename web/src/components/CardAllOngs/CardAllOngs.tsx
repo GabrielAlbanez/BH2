@@ -42,7 +42,7 @@ export default function CardAllOngs() {
       {dataOng.map((ong, index) => (
         <div key={index}>
           <Card className="w-80 shadow-xl shadow-purple-500">
-            <CardHeader shadow={false} floated={false} className="h-72">
+            <CardHeader shadow={false} floated={false} className="h-64">
               <img
                 src={require(`../../uploads/${url[index]}`)}
                 alt="card-image"

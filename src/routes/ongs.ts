@@ -2,6 +2,8 @@ import { Router } from "express";
 import { ControlerOngs } from "../controllers/ongs/index";
 import { ongsMiddleware } from "../middlewares/ongs/index";
 import upload from "../Config/multer";
+import { authLogin } from "../middlewares/auth/authOng";
+import { verifyToken } from "../middlewares/auth/verifiyTokenOng";
 
 const routeOng = Router();
 
@@ -26,5 +28,10 @@ routeOng.delete(
 );
 routeOng.get("/avaliar-ong/:cnpj", ControlerOngs.AvaliarOng);
 routeOng.get("/naoAvaliar-ong/:cnpj", ControlerOngs.DesaAvaliarOng);
+
+routeOng.post('/LoginOng',authLogin,ControlerOngs.LoginOng)
+routeOng.get('/verificarTokenOng',verifyToken,(req,res)=>{
+  res.status(200).json({message : "Logado"})
+})
 
 export default routeOng;

@@ -22,7 +22,7 @@ export const  verifyToken = (req: Request, res: Response, next: NextFunction) =>
   try {
     // const decodedToken = jwt.verify(token, "8080");
     const decodedToken2 = jwt.verify(token2,"8080")
-    res.status(201).json({data : decodedToken2})
+    res.status(201).json({dataOng : decodedToken2})
     next()
   } catch (err) {
     return res.status(203).json({ error: "Token expirado ou inválido", recomendation:  "fazer login novamente" });

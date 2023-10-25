@@ -54,7 +54,7 @@ export default function Login() {
         dataLogin
       );
       const responseData = request.data;
-      console.log(responseData);
+      // console.log(responseData);
       localStorage.setItem("token", responseData?.token);
       const token = localStorage.getItem("token");
 
@@ -84,15 +84,61 @@ export default function Login() {
             },
           });
         };
-         
-        setTimeout(()=>{
+
+        setTimeout(() => {
           navigator("/Home");
-          localStorage.setItem("isLoged", 'true');
-          window.location.reload()
+          localStorage.setItem("isLoged", "true");
+          window.location.reload();
 
           notify();
-        },1000)
-        
+        }, 1000);
+      }
+    } catch (error) {
+      console.error("Ocorreu um erro:", error);
+    }
+  };
+
+  const handleSubmitOng = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const request = await axios.post(
+        "http://localhost:8080/LoginOng",
+        dataLogin
+      );
+      const responseData = request.data;
+      localStorage.setItem("token", responseData?.token);
+      if ("error" in responseData) {
+        const notify = () => {
+          toast(`${responseData.error}`, {
+            icon: `${pegarTema === "dark" ? "🌑" : " 🌞"}`,
+            style: {
+              borderRadius: "10px",
+              background: `${pegarTema === "dark" ? "#333" : "white"}`,
+              color: `${pegarTema === "dark" ? "white" : "black"}`,
+            },
+          });
+        };
+        notify();
+      } else {
+        const notify = () => {
+          toast(`${responseData.message}`, {
+            icon: `${pegarTema === "dark" ? "🌑" : " 🌞"}`,
+            style: {
+              borderRadius: "10px",
+              background: `${pegarTema === "dark" ? "#333" : "white"}`,
+              color: `${pegarTema === "dark" ? "white" : "black"}`,
+            },
+          });
+        };
+
+        setTimeout(() => {
+          navigator("/HomeOng");
+          localStorage.setItem("isLoged", "true");
+          window.location.reload();
+
+          notify();
+        }, 1000);
       }
     } catch (error) {
       console.error("Ocorreu um erro:", error);
@@ -104,6 +150,7 @@ export default function Login() {
       {pegarTypeUser === "Ong" ? (
         <>
           <form
+            onSubmit={handleSubmitOng}
             className={`transition-all duration-1000  w-full h-[91vh]  sm:h-[91vh] lg:h-[100%] xl:h-[91vh] 2xl:h-[91vh]  flex flex-col items-center justify-center gap-16  sm:gap-9 2xl:gap-16
             ${
               pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
@@ -118,6 +165,8 @@ export default function Login() {
                 <label htmlFor="">email</label>
                 <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh]  2xl:h-[6vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
                   <input
+                    value={dataLogin.email}
+                    onChange={hanleInputChange}
                     name="email"
                     type="text"
                     placeholder="name@example.com.."
@@ -130,6 +179,8 @@ export default function Login() {
                 <label htmlFor="">senha</label>
                 <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh] 2xl:h-[6vh]  rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
                   <input
+                    value={dataLogin.senha}
+                    onChange={hanleInputChange}
                     name="senha"
                     type="text"
                     placeholder="name@example.com.."
