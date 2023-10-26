@@ -73,23 +73,21 @@ export default function NavbarOng() {
           width={40}
           className="cursor-pointer"
         />
-        <li>Sobre Nós</li>
+        <li>Rifas</li>
 
-        <li>Contato</li>
+        <li>Ajudantes</li>
+
+        <li>Trabalhadores</li>
       </ul>
 
       <ul className="flex gap-7 items-center  w-[40%] overflow-visible sm:w-[80%] md:w-[0%]  md:overflow-hidden ">
         <DrawerOng
-          inten1={<BsPerson size={25} />}
-          textoI1={"Sobre Nós"}
+          inten1={<TbPigMoney size={25} />}
+          textoI1={"Rifas"}
           inten2={<LiaDonateSolid size={25} />}
-          textoI2={"doações"}
+          textoI2={"Ajudantes"}
           inten3={<BsTelephone size={22} />}
-          textoI3={"contato"}
-          inten4={<TbPigMoney size={25} />}
-          textoI4={"Rifas"}
-          inten6={<MdOutlineAdminPanelSettings size={24} />}
-          textoI6={"Dashboard"}
+          textoI3={"Trabalahdores"}
           coteudo={<RxHamburgerMenu size={30} />}
         />
       </ul>

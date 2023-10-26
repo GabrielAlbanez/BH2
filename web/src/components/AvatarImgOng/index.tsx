@@ -13,19 +13,9 @@ export default function AvatarImgOng() {
 
 
 
-  const img =  'https://cdn-icons-png.flaticon.com/512/1100/1100207.png'
-
-
-  
-
-
-
-
-
-
   return (
     <div>
-      <img  src={require(`../../uploads/${logoOng}`)} alt="" className='w-10 2xl:w-12 '/>   
+      <img  src={require(`../../uploads/${logoOng}`)} alt="" className='w-10 2xl:w-12 rounded-full '/>   
     </div>
   )
 }

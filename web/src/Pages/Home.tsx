@@ -29,6 +29,8 @@ export default function Home() {
 
   const logedUserr = useAppSelector((state) => state.AuthToken.isLoged);
 
+  console.log(logedUser)
+
 
 
   const notify = () => {
@@ -49,7 +51,7 @@ export default function Home() {
 
     console.log(logedUser);
 
-    if(logedUser === 'false'){
+    if(logedUser === 'false' ){
       notify()
       navigator('/')
 
