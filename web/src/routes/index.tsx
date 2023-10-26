@@ -177,7 +177,7 @@ interface propsProtectRoute {
 }
 
 const ProtectedRoute = ({ user, children }: propsProtectRoute) => {
-  if (user === "false" || 'ongLogada') {
+  if (user === "false" || user === 'ongLogada') {
     return <Navigate to={"/"} replace />;
   }
   return children;
