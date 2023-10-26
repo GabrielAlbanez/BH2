@@ -43,11 +43,13 @@ export default function AccountOng() {
       } 
     flex  items-center mx-auto justify-evenly h-full w-full `}
     >
-      <div className="w-full h-[91vh]  ">
+      <div className="w-full h-[91vh] flex items-center justify-center  ">
         <img
           src={require(`../../uploads/${logo}`)}
           alt=""
-          className=" rounded-full  p-20"
+          className="  w-[78%] h-[78%]   p-20"
+          width={1000}
+          height={1000}
         />
       </div>
       <div className="w-[80%]  flex flex-col justify-between  items-center h-[91vh] py-20">
