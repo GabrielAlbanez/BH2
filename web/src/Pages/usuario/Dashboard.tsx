@@ -12,16 +12,15 @@ export default function Dashboard() {
     tipo: string;
   }>;
 
-  const logedUser = useAppSelector((state) => state.AuthToken.isLoged);
 
   const navigator = useNavigate();
   const typeUser = User[0]?.tipo;
 
   useEffect(() => {
-    if (typeUser !== "admin" && !logedUser) {
+    if (typeUser !== "admin") {
       navigator("/");
     }
-  }, [typeUser, logedUser]);
+  }, [typeUser]);
 
   const { pegarTema } = useTema() as {
     pegarTema: string;

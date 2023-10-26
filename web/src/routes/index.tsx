@@ -76,7 +76,13 @@ export default function MinhasRotas() {
     };
   }, []);
 
+
+
+
+
   const isLogedd = localStorage.getItem("isLoged");
+
+ 
 
   return (
     <BrowserRouter>
@@ -90,7 +96,7 @@ export default function MinhasRotas() {
         <Route
           path="/Rifas"
           element={
-            <ProtectedRoute user={isLoged}>
+            <ProtectedRoute user={isLogedd}>
               <Rifas />
             </ProtectedRoute>
           }
@@ -100,7 +106,7 @@ export default function MinhasRotas() {
         <Route
           path="/Account"
           element={
-            <ProtectedRoute user={isLoged}>
+            <ProtectedRoute user={isLogedd}>
               <Account />
             </ProtectedRoute>
           }
@@ -108,7 +114,7 @@ export default function MinhasRotas() {
         <Route
           path="/Home"
           element={
-            <ProtectedRoute user={isLoged}>
+            <ProtectedRoute user={isLogedd}>
               <Home />
             </ProtectedRoute>
           }
@@ -116,16 +122,14 @@ export default function MinhasRotas() {
         <Route
           path="/Dashboard"
           element={
-            <ProtectedRouteAdm user={isLoged}>
               <Dashboard />
-            </ProtectedRouteAdm>
           }
         />
 
         <Route
           path="/Doação"
           element={
-            <ProtectedRoute user={isLoged}>
+            <ProtectedRoute user={isLogedd}>
               <Doação />
             </ProtectedRoute>
           }
@@ -133,7 +137,14 @@ export default function MinhasRotas() {
 
         {/* rotas so para as ongs */}
 
-        <Route path="/HomeOng" element={<HomeOng />} />
+        <Route
+          path="/HomeOng"
+          element={
+            <ProtectedRouOng user={isLogedd}>
+              <HomeOng />
+            </ProtectedRouOng>
+          }
+        />
         <Route path="/AccountOng" element={<AccountOng />} />
         <Route path="/RfiasOng" element={<RifasOngs />} />
         <Route path="/AjudantesOng" element={<AjudantesPage />} />
@@ -144,7 +155,7 @@ export default function MinhasRotas() {
 }
 
 interface propsProtectRoute {
-  user: string;
+  user: string | null;
   children: any;
 }
 
@@ -155,8 +166,10 @@ const ProtectedRoute = ({ user, children }: propsProtectRoute) => {
   return children;
 };
 
-const ProtectedRouteAdm = ({ user, children }: propsProtectRoute) => {
-  if (user !== "ongLogada") {
+
+
+const ProtectedRouOng = ({ user, children }: propsProtectRoute) => {
+  if (user === "ongLogada") {
     return <Navigate to={"/"} replace />;
   }
   return children;
