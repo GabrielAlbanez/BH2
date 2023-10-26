@@ -76,13 +76,7 @@ export default function MinhasRotas() {
     };
   }, []);
 
-
-
-
-
   const isLogedd = localStorage.getItem("isLoged");
-
- 
 
   return (
     <BrowserRouter>
@@ -119,12 +113,7 @@ export default function MinhasRotas() {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/Dashboard"
-          element={
-              <Dashboard />
-          }
-        />
+        <Route path="/Dashboard" element={<Dashboard />} />
 
         <Route
           path="/Doação"
@@ -145,10 +134,38 @@ export default function MinhasRotas() {
             </ProtectedRouOng>
           }
         />
-        <Route path="/AccountOng" element={<AccountOng />} />
-        <Route path="/RfiasOng" element={<RifasOngs />} />
-        <Route path="/AjudantesOng" element={<AjudantesPage />} />
-        <Route path="/TrabalhosOngs" element={<TrabalhosOngs />} />
+        <Route
+          path="/AccountOng"
+          element={
+            <ProtectedRouOng user={isLogedd}>
+              <AccountOng />
+            </ProtectedRouOng>
+          }
+        />
+        <Route
+          path="/RfiasOng"
+          element={
+            <ProtectedRouOng user={isLogedd}>
+              <RifasOngs />
+            </ProtectedRouOng>
+          }
+        />
+        <Route
+          path="/AjudantesOng"
+          element={
+            <ProtectedRouOng user={isLogedd}>
+              <AjudantesPage />
+            </ProtectedRouOng>
+          }
+        />
+        <Route
+          path="/TrabalhosOngs"
+          element={
+            <ProtectedRouOng user={isLogedd}>
+              <TrabalhosOngs />
+            </ProtectedRouOng>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
@@ -160,16 +177,14 @@ interface propsProtectRoute {
 }
 
 const ProtectedRoute = ({ user, children }: propsProtectRoute) => {
-  if (user === "false") {
+  if (user === "false" || 'ongLogada') {
     return <Navigate to={"/"} replace />;
   }
   return children;
 };
 
-
-
 const ProtectedRouOng = ({ user, children }: propsProtectRoute) => {
-  if (user === "ongLogada") {
+  if (user !== "ongLogada") {
     return <Navigate to={"/"} replace />;
   }
   return children;
