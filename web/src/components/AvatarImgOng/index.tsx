@@ -1,7 +1,13 @@
 import React from 'react'
 import { useAppSelector } from '../../store/intex';
 
-export default function AvatarImgOng() {
+
+interface typeProsAvatar{
+  largura : number;
+  altura : number;
+}
+
+export default function AvatarImgOng({largura,altura} : typeProsAvatar) {
 
     const ong = useAppSelector((state) => state.AuthToken.dataOng) as Array<{
         Logo: string;
@@ -11,11 +17,14 @@ export default function AvatarImgOng() {
 
       const logoOng = ong[0]?.Logo.slice(16)
 
+      localStorage.setItem('logoOng', logoOng)
+
 
 
   return (
     <div>
-      <img  src={require(`../../uploads/${logoOng}`)} alt="" className='w-10 2xl:w-12 rounded-full '/>   
+      <img  src={require(`../../uploads/${logoOng}`)} alt="" className={`w-${largura} h-${altura} 2xl:w-12 h-10 rounded-full object-cover `}/>   
+
     </div>
   )
 }

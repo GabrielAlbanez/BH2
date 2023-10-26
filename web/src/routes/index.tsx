@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { Route, Routes } from "react-router";
-import { BrowserRouter } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation, redirect } from "react-router";
+import { BrowserRouter, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Abertura from "../Pages/usuario/Abertura";
 import Rifas from "../Pages/usuario/Rifas";
@@ -69,12 +69,14 @@ export default function MinhasRotas() {
 
     fetchData();
 
-    const interval = setInterval(fetchData, 10000000);
+    const interval = setInterval(fetchData, 500000);
 
     return () => {
       clearInterval(interval);
     };
   }, []);
+
+  const isLogedd = localStorage.getItem("isLoged");
 
   return (
     <BrowserRouter>
@@ -84,16 +86,53 @@ export default function MinhasRotas() {
       <Routes>
         {/* rotas de usuario e adm */}
         <Route path="/" element={<Abertura />} />
-        <Route path="/Rifas" element={<Rifas />} />
+
+        <Route
+          path="/Rifas"
+          element={
+            <ProtectedRoute user={isLoged}>
+              <Rifas />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/Register" element={<Register />} />
         <Route path="/Login" element={<Login />} />
-        <Route path="/Account" element={<Account />} />
-        <Route path="/Home" element={<Home />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="/Doação" element={<Doação />} />
-        
+        <Route
+          path="/Account"
+          element={
+            <ProtectedRoute user={isLoged}>
+              <Account />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/Home"
+          element={
+            <ProtectedRoute user={isLoged}>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/Dashboard"
+          element={
+            <ProtectedRouteAdm user={isLoged}>
+              <Dashboard />
+            </ProtectedRouteAdm>
+          }
+        />
+
+        <Route
+          path="/Doação"
+          element={
+            <ProtectedRoute user={isLoged}>
+              <Doação />
+            </ProtectedRoute>
+          }
+        />
 
         {/* rotas so para as ongs */}
+
         <Route path="/HomeOng" element={<HomeOng />} />
         <Route path="/AccountOng" element={<AccountOng />} />
         <Route path="/RfiasOng" element={<RifasOngs />} />
@@ -103,3 +142,22 @@ export default function MinhasRotas() {
     </BrowserRouter>
   );
 }
+
+interface propsProtectRoute {
+  user: string;
+  children: any;
+}
+
+const ProtectedRoute = ({ user, children }: propsProtectRoute) => {
+  if (user === "false") {
+    return <Navigate to={"/"} replace />;
+  }
+  return children;
+};
+
+const ProtectedRouteAdm = ({ user, children }: propsProtectRoute) => {
+  if (user !== "ongLogada") {
+    return <Navigate to={"/"} replace />;
+  }
+  return children;
+};

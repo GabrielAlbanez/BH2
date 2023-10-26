@@ -98,7 +98,7 @@ export default function NavbarOng() {
       >
         <div className="flex items-center  gap-4">
           <Link to={"/AccountOng"}>
-            <AvatarImgOng />
+            <AvatarImgOng altura={10} largura={10} />
           </Link>
           {pageHome ? "" : <ButtonTradeTheme />}
         </div>
