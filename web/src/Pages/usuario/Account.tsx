@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useTema } from "../common/context/Tema";
-import { useAppSelector } from "../store/intex";
-import { LogUser, saveDataUser } from "../store/slices/AuthToken";
+import { useTema } from "../../common/context/Tema";
+import { useAppSelector } from "../../store/intex";
+import { LogUser, saveDataUser } from "../../store/slices/AuthToken";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";

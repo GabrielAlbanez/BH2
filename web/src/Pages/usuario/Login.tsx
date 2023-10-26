@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { useTema } from "../common/context/Tema";
-import { useTypeUser } from "../common/context/typeUserCadastro";
-import Button from "../components/Button";
+import { useTema } from "../../common/context/Tema";
+import { useTypeUser } from "../../common/context/typeUserCadastro";
+import Button from "../../components/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { LogUser, takeToken } from "../store/slices/AuthToken";
-import { useAppSelector } from "../store/intex";
+import { LogUser, takeToken } from "../../store/slices/AuthToken";
+import { useAppSelector } from "../../store/intex";
 
 export default function Login() {
   const { pegarTypeUser, setPegarTypeUser } = useTypeUser() as {

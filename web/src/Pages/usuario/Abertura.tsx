@@ -1,11 +1,11 @@
 import React from "react";
 import Logo from "../assets/imgs/Logo.png";
-import Button from "../components/Button";
-import MyDrawer from "../components/MyDrawer";
-import imgFundo from "../assets/imgs/Crianças-PNG.png";
-import ButtonTradeTheme from "../components/ButtonTradeTheme";
-import { useTema } from "../common/context/Tema";
-import { useAppSelector } from "../store/intex";
+import Button from "../../components/Button";
+import MyDrawer from "../../components/MyDrawer";
+import imgFundo from "../../assets/imgs/Crianças-PNG.png";
+import ButtonTradeTheme from "../../components/ButtonTradeTheme";
+import { useTema } from "../../common/context/Tema";
+import { useAppSelector } from "../../store/intex";
 
 
 export default function Abertura() {

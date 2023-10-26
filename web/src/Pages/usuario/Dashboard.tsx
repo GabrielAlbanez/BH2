@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { useAppSelector } from "../store/intex";
+import { useAppSelector } from "../../store/intex";
 import { useNavigate } from "react-router-dom";
-import { useTema } from "../common/context/Tema";
+import { useTema } from "../../common/context/Tema";
 
 export default function Dashboard() {
   const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{

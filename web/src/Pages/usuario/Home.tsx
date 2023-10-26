@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { useAppSelector } from "../store/intex";
+import { useAppSelector } from "../../store/intex";
 import { useNavigate } from "react-router-dom";
-import { useTema } from "../common/context/Tema";
-import CardAllOngs from "../components/CardAllOngs/CardAllOngs";
-import ButtonTradeTheme from "../components/ButtonTradeTheme";
+import { useTema } from "../../common/context/Tema";
+import CardAllOngs from "../../components/CardAllOngs/CardAllOngs";
+import ButtonTradeTheme from "../../components/ButtonTradeTheme";
 import toast from "react-hot-toast";
 
 

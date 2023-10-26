@@ -2,22 +2,26 @@ import { useEffect } from "react";
 import { Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import Abertura from "../Pages/Abertura";
-import Rifas from "../Pages/Rifas";
+import Abertura from "../Pages/usuario/Abertura";
+import Rifas from "../Pages/usuario/Rifas";
 import toast, { Toaster } from "react-hot-toast";
 import { useTema } from "../common/context/Tema";
-import Register from "../Pages";
-import Login from "../Pages/Login";
-import Account from "../Pages/Account";
+import Register from "../Pages/usuario";
+import Login from "../Pages/usuario/Login";
+import Account from "../Pages/usuario/Account";
 import { useDispatch } from "react-redux";
 import { LogUser, saveDataOng, saveDataUser } from "../store/slices/AuthToken";
 import { useAppSelector } from "../store/intex";
-import Home from "../Pages/Home";
-import Dashboard from "../Pages/Dashboard";
-import Doação from "../Pages/Doação";
-import HomeOng from "../Pages/HomeOng";
+import Home from "../Pages/usuario/Home";
+import Dashboard from "../Pages/usuario/Dashboard";
+import Doação from "../Pages/usuario/Doação";
+import HomeOng from "../Pages/ongs/HomeOng";
 import { useTypeUser } from "../common/context/typeUserCadastro";
 import NavbarOng from "../components/navbarOng";
+import AccountOng from "../Pages/ongs/AccountOng";
+import RifasOngs from "../Pages/ongs/RifasOngs";
+import AjudantesPage from "../Pages/ongs/AjudantesPage";
+import TrabalhosOngs from "../Pages/ongs/TrabalhosOngs";
 
 export default function MinhasRotas() {
   const token2 = localStorage.getItem("token");
@@ -55,10 +59,8 @@ export default function MinhasRotas() {
         } else {
           dispacht(LogUser(localStorage.getItem("isLoged")));
 
-   
-            dispacht(saveDataOng([responseData?.data?.dataOng]));
-            dispacht(saveDataUser([responseData?.data?.dataUser]))
-  
+          dispacht(saveDataOng([responseData?.data?.dataOng]));
+          dispacht(saveDataUser([responseData?.data?.dataUser]));
         }
       } catch (error) {
         console.error("Erro na solicitação:", error);
@@ -80,6 +82,7 @@ export default function MinhasRotas() {
 
       <Toaster position="bottom-right" reverseOrder={false} />
       <Routes>
+        {/* rotas de usuario e adm */}
         <Route path="/" element={<Abertura />} />
         <Route path="/Rifas" element={<Rifas />} />
         <Route path="/Register" element={<Register />} />
@@ -88,7 +91,14 @@ export default function MinhasRotas() {
         <Route path="/Home" element={<Home />} />
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/Doação" element={<Doação />} />
+        
+
+        {/* rotas so para as ongs */}
         <Route path="/HomeOng" element={<HomeOng />} />
+        <Route path="/AccountOng" element={<AccountOng />} />
+        <Route path="/RfiasOng" element={<RifasOngs />} />
+        <Route path="/AjudantesOng" element={<AjudantesPage />} />
+        <Route path="/TrabalhosOngs" element={<TrabalhosOngs />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "../components/Button";
-import TableRifas from "../components/TableRIfas";
+import Button from "../../components/Button";
+import TableRifas from "../../components/TableRIfas";
 
 export default function Rifas() {
 
