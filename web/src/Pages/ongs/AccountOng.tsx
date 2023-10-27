@@ -30,6 +30,7 @@ export default function AccountOng() {
       localStorage.setItem("token", "");
       localStorage.setItem("isLoged", "");
       localStorage.setItem('isLoged','false')
+      localStorage.setItem('cnpjOng',"")
       navigator("/");
       window.location.reload();
     }, 1500);

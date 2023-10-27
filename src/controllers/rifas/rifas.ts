@@ -23,15 +23,22 @@ export const getAllRifas = async(req: Request, res: Response)=>{
 export const getByRifasOng  = async(req : Request, res : Response)=>{
   try{
 
-    const cnpjOng = req.body.cnpjOng
+    const cnpjOng = req.body.cnpjOng;
+
+    console.log(cnpjOng)
 
     const AllRifasOng = await prisma.rifa.findMany({
       where : {
         idOng : cnpjOng
       },
-      include : {
-        NumeroComprado : true,
-        ong :  true
+      select : {
+          imgRifa : true,
+          nome : true,
+          descricao : true,
+          preco : true,
+          idOng : true,
+          
+
       }
     })
 

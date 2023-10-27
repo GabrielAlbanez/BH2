@@ -24,6 +24,8 @@ export default function RifasOngs() {
   }>;
 
 
+  localStorage.setItem('cnpjOng',ong[0]?.cnpj)
+
   const navigator = useNavigate()
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -107,7 +109,9 @@ export default function RifasOngs() {
       };
 
       notify();
-      navigator("/HomeOng");
+      
+      // window.location.reload()
+      ;
     }
 
 
@@ -144,7 +148,7 @@ export default function RifasOngs() {
       }`}
     >
       <h1 className="text-center text-4xl">Criar Rifas</h1>
-      <form onSubmit={handleSubmit} className="flex  w-[70%] h-[80%] shadow-xl border-fuchsia-500 border-[1px] rounded-3xl flex-col items-center justify-center px-22 py-20 gap-12 ">
+      <form onSubmit={handleSubmit} className="flex  w-[50%] h-[80%] shadow-xl border-fuchsia-500 border-[1px] rounded-3xl flex-col items-center justify-center px-22 py-20 gap-12 ">
         <div className="flex gap-2 flex-col ">
           <label htmlFor="">Imagen do Premio da Rifa</label>
           <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh]  2xl:h-[6vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">

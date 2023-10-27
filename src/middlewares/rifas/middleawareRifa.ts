@@ -7,18 +7,18 @@ export const validateOngUserAndUserAdmin = async (
   res: Response,
   next: NextFunction
 ) => {
-  const NameOrCpf = req.params.NameOrCpf;
+  const cnpjOng = req.body.cnpjOng;
 
   const nomeOng = await prisma.ong.findMany({
     where: {
-      nome: NameOrCpf,
+      cnpj: cnpjOng,
     },
     select: {
-      nome: true,
+      cnpj: true,
     },
   });
 
-  const ongNomes = nomeOng.map((nome) => nome.nome);
+  const ongCnpjs = nomeOng.map((cnpj) => cnpj.cnpj);
 
 
   const adminCpf = await prisma.usuario.findMany({
@@ -32,7 +32,7 @@ export const validateOngUserAndUserAdmin = async (
 
   const adminCpfs = adminCpf.map((admin) => admin.cpf);
 
-  if (ongNomes.includes(NameOrCpf) || adminCpfs.includes(NameOrCpf)) {
+  if (ongCnpjs.includes(cnpjOng) || adminCpfs.includes(cnpjOng)) {
     next();
   } else {
     return res.status(203).json({ error: "Acesso não autorizado" });

@@ -133,7 +133,7 @@ export default function Login() {
         };
 
         setTimeout(() => {
-          navigator("/HomeOng");
+          navigator("/RfiasOng");
           localStorage.setItem("isLoged", "ongLogada");
           window.location.reload();
 
