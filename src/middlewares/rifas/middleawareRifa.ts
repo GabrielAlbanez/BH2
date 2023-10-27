@@ -52,7 +52,7 @@ export const validateDataRifa = async (
   }
 
   if(!cnpjValid){
-    return res.status(203).json({message : "cnpj da ong invalido"})
+    return res.status(203).json({error : "cnpj da ong invalido"})
   }
 
   const nameRifaExisting = await prisma.rifa.findMany({
@@ -62,7 +62,7 @@ export const validateDataRifa = async (
   });
 
   if (nameRifaExisting.length > 0) {
-    return res.status(203).json({ message: "essa rifa ja existe" });
+    return res.status(203).json({ error: "essa rifa ja existe" });
   }
 
   next();
