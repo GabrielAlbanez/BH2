@@ -73,7 +73,9 @@ export default function NavbarOng() {
           width={40}
           className="cursor-pointer"
         />
+        <Link to={'/RfiasOng'}>
         <li>Rifas</li>
+        </Link>
 
         <li>Ajudantes</li>
 
@@ -98,7 +100,7 @@ export default function NavbarOng() {
       >
         <div className="flex items-center  gap-4">
           <Link to={"/AccountOng"}>
-            <AvatarImgOng altura={10} largura={10} />
+            <AvatarImgOng altura={22} largura={22} />
           </Link>
           {pageHome ? "" : <ButtonTradeTheme />}
         </div>

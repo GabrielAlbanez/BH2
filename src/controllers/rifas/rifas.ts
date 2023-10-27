@@ -47,14 +47,18 @@ export const createRifas = async(req : Request, res : Response)=>{
 
   try{
 
-    const {nome,preco,descricaon,idOng} = req.body
+    const {nome,preco,descricaon,cnpj} = req.body
+
+
+    const file = req.file
 
     const createRifa = await prisma.rifa.create({
       data : {
         nome : nome,
         preco : preco,
         descricao : descricaon,
-        idOng : idOng
+        idOng : cnpj,
+        imgRifa : file.path
       }
     })
 

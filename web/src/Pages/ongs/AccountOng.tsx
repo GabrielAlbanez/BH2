@@ -47,7 +47,7 @@ export default function AccountOng() {
         <img
           src={require(`../../uploads/${logo}`)}
           alt=""
-          className="  w-[78%] h-[78%]   p-20"
+          className="  w-[58%] h-[68%] rounded-full   p-20"
           width={1000}
           height={1000}
         />

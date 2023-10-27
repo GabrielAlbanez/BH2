@@ -47,6 +47,7 @@ export const authLogin = async (
         email : email
     },
     select : {
+         
          email : true,
          cnpj : true,
          endereco : true,

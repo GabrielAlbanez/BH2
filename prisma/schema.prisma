@@ -55,6 +55,7 @@ model Trabalho {
 
 model Rifa {
   id             Int              @id @default(autoincrement())
+  imgRifa        String?
   nome           String
   preco          Decimal
   descricao      String?
