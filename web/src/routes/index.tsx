@@ -22,6 +22,7 @@ import AccountOng from "../Pages/ongs/AccountOng";
 import RifasOngs from "../Pages/ongs/RifasOngs";
 import AjudantesPage from "../Pages/ongs/AjudantesPage";
 import TrabalhosOngs from "../Pages/ongs/TrabalhosOngs";
+import UniqueRifa from "../components/UniqueRifa";
 
 export default function MinhasRotas() {
   const token2 = localStorage.getItem("token");
@@ -163,6 +164,15 @@ export default function MinhasRotas() {
           element={
             <ProtectedRouOng user={isLogedd}>
               <TrabalhosOngs />
+            </ProtectedRouOng>
+          }
+        />
+
+        <Route
+          path="/UniqueRIfa/:id"
+          element={
+            <ProtectedRouOng user={isLogedd}>
+              <UniqueRifa/>
             </ProtectedRouOng>
           }
         />

@@ -9,6 +9,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../../store/intex";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function CardRifas() {
   type dataOng = {
@@ -17,6 +18,7 @@ export default function CardRifas() {
     preco: number;
     descricao: string;
     NumeroComprado: Array<number>;
+    id : number;
   };
 
   const [dataRifa, setDataRifa] = useState<dataOng[]>([]);
@@ -66,6 +68,7 @@ export default function CardRifas() {
         <>
           <div className="flex gap-16  flex-wrap h-full w-full items-center justify-center ">
             {dataRifa.map((rifa, index) => (
+              <Link to={`/UniqueRIfa/${rifa.id}`}>
               <div key={index}>
                 <Card className="w-80 shadow-xl shadow-purple-500">
                   <CardHeader shadow={false} floated={false} className="h-64">
@@ -93,6 +96,7 @@ export default function CardRifas() {
                   </CardFooter>
                 </Card>
               </div>
+              </Link>
             ))}
           </div>
         </>
