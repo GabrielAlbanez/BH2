@@ -74,3 +74,35 @@ export const validateDataRifa = async (
 };
 
 
+export const validateIdRifa = async(req : Request, res : Response, next : NextFunction)=>{
+
+  const id = req.params.id;
+
+  const idInt = parseInt(id);
+  
+  console.log(idInt);
+  
+  if (isNaN(idInt)) {
+    return res.status(400).json({ error: "O id deve ser um número válido." });
+  }
+  
+  const idsRifasExisting = await prisma.rifa.findMany({
+    where: {
+      id: idInt
+    },
+    select: {
+      id: true
+    }
+  });
+  
+  const ids = idsRifasExisting.map((rifa) => rifa.id);
+  
+  if (ids.includes(idInt)) {
+    next();
+  } else {
+    return res.status(200).json({ error: "Esse id de rifa não existe." });
+  }
+
+}
+
+

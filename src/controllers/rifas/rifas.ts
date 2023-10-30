@@ -99,3 +99,36 @@ export const deleteRifa = async(req : Request, res : Response) => {
   }
 
 }
+
+export const getRifaByid = async(req : Request, res : Response) => {
+
+
+  const id = req.params.id
+
+  const idInt = parseInt(id);
+
+  try {
+
+
+
+    const getRifaByyId = await prisma.rifa.findMany({
+      where : {
+       id : idInt
+      },
+      select : {
+        imgRifa : true,
+        NumeroComprado : true,
+        nome : true,
+        preco : true,
+        descricao : true
+      }
+    })
+
+    res.status(201).json({rifa : getRifaByyId})
+
+    
+  } catch (error) {
+    res.status(404).json({err : `erro ao buscar rifa ${error}`})
+  }
+
+}
