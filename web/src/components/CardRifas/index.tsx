@@ -25,9 +25,8 @@ export default function CardRifas() {
     cnpj: string;
   }>;
 
-
   const [dataRifaEnvio, setDataRifaEnvio] = useState({
-    cnpjOng: localStorage.getItem('cnpjOng'),
+    cnpjOng: localStorage.getItem("cnpjOng"),
   });
 
   const getRifasOng = async () => {
@@ -65,7 +64,7 @@ export default function CardRifas() {
     <>
       {dataRifa.length > 0 ? (
         <>
-          <div className="flex gap-20  flex-wrap h-full w-full items-center justify-center ">
+          <div className="flex gap-16  flex-wrap h-full w-full items-center justify-center ">
             {dataRifa.map((rifa, index) => (
               <div key={index}>
                 <Card className="w-80 shadow-xl shadow-purple-500">

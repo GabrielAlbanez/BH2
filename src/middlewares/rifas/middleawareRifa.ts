@@ -57,13 +57,20 @@ export const validateDataRifa = async (
 
   const nameRifaExisting = await prisma.rifa.findMany({
     where: {
-      nome: nome,
+      idOng: cnpj
     },
+    select: {
+      nome: true
+    }
   });
-
-  if (nameRifaExisting.length > 0) {
-    return res.status(203).json({ error: "essa rifa ja existe" });
+  
+  const namesRifas = nameRifaExisting.map((name) => name.nome);
+  
+  if (namesRifas.includes(nome)) {
+    return res.status(201).json({ error: "Esse  rifa já existe." });
   }
 
-  next();
+  next()
 };
+
+
