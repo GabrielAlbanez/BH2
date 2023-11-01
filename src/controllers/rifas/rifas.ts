@@ -1,3 +1,4 @@
+import { cnpj } from "cpf-cnpj-validator";
 import { db as prisma } from "../../shared/db";
 import { Request, Response } from "express";
 
@@ -129,6 +130,42 @@ export const getRifaByid = async(req : Request, res : Response) => {
     
   } catch (error) {
     res.status(404).json({err : `erro ao buscar rifa ${error}`})
+  }
+
+}
+
+
+export const getByRifasForCnpjOng = async (req: Request, res: Response)=>{
+
+
+  const cnpjOng = req.body.cnpjOng
+
+
+  try {
+
+
+    const rifas = await prisma.ong.findMany({
+      where : {
+        cnpj : cnpjOng
+      },
+      select : {
+        nome : true,
+        Logo : true,
+        trabalhos : true,
+        Voluntarios : true,
+        rifas : true,
+        endereco : true,
+        redesSociais : true,
+        telefone : true
+      }
+    })
+
+    res.status(200).json({dataOng : rifas})
+
+
+    
+  } catch (error) {
+     res.status(404).json({error : `erro ao buscar as rifas ${error.message}`})
   }
 
 }

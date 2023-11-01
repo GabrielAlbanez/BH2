@@ -22,6 +22,9 @@ export default function CardAllOngs() {
 
   const [dataOng, setDataOng] = useState<dataOng[]>([]);
 
+
+
+
   useEffect(() => {
     const url = "http://localhost:8080/allOngs";
     axios.get(url).then((response) => {

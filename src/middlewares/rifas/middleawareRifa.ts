@@ -106,3 +106,35 @@ export const validateIdRifa = async(req : Request, res : Response, next : NextFu
 }
 
 
+export const validateCpnpjOng =  async(req : Request, res : Response, next : NextFunction)=>{
+
+
+  const cnpjOng = req.body.cnpjOng
+
+  console.log(cnpjOng)
+
+  if(!cnpjOng){
+    return res.status(201).json({error : 'cnpj not found'});
+  }
+
+  const serchCnpjOng = await prisma.ong.findMany({
+    where : {
+      cnpj : cnpjOng
+    },
+    select :{
+      cnpj : true
+    }
+  })
+
+  const takeCnpj = serchCnpjOng.map((cnpj)=>cnpj.cnpj)
+
+  if(takeCnpj.includes(cnpjOng)){
+    next()
+  }
+  else {
+    return res.status(200).json({ error: "Esse cnpj não existe." });
+
+  }
+
+
+}

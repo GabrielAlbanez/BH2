@@ -62,6 +62,15 @@ export default function CardRifas() {
 
   console.log(url);
 
+
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  const handleClick = () => {
+    setIsZoomed(true);
+  };
+
+
+
   return (
     <>
       {dataRifa.length > 0 ? (
@@ -69,8 +78,8 @@ export default function CardRifas() {
           <div className="flex gap-16  flex-wrap h-full w-full items-center justify-center ">
             {dataRifa.map((rifa, index) => (
               <Link to={`/UniqueRIfa/${rifa.id}`}>
-              <div key={index}>
-                <Card className="w-80 shadow-xl shadow-purple-500">
+              <div key={index} >
+                <Card className="w-80 shadow-xl shadow-purple-500 ">
                   <CardHeader shadow={false} floated={false} className="h-64">
                     <img
                       src={require(`../../uploadsImgRifas/${url[index]}`)}
