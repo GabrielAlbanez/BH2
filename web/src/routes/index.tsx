@@ -23,6 +23,7 @@ import RifasOngs from "../Pages/ongs/RifasOngs";
 import AjudantesPage from "../Pages/ongs/AjudantesPage";
 import TrabalhosOngs from "../Pages/ongs/TrabalhosOngs";
 import UniqueRifa from "../components/UniqueRifa";
+import Ongs from "../Pages/usuario/Ongs";
 
 export default function MinhasRotas() {
   const token2 = localStorage.getItem("token");
@@ -106,6 +107,15 @@ export default function MinhasRotas() {
             </ProtectedRoute>
           }
         />
+
+           <Route
+          path="/Ong/:cnpj"
+          element={
+            <ProtectedRoute user={isLogedd}>
+              <Ongs />
+            </ProtectedRoute>
+          }
+        />    
         <Route
           path="/Home"
           element={

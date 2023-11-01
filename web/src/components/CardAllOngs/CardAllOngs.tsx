@@ -10,12 +10,14 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 export default function CardAllOngs() {
   type dataOng = {
     Logo: string;
     nome : string;
     telefone : string;
+    cnpj : string;
 
 
   };
@@ -37,12 +39,13 @@ export default function CardAllOngs() {
   console.log(dataOng);
 
   const url = dataOng.map((valor) => valor.Logo.slice(16));
-
+  const cnpjLimpo = dataOng.map((valor) => valor.cnpj.replace(/[^\d]/g, ''))
   console.log(url);
 
   return (
     <div className="flex gap-20  flex-wrap h-full w-full items-center justify-center ">
       {dataOng.map((ong, index) => (
+        <Link to={`/Ong/${cnpjLimpo[index]}`}>
         <div key={index}>
           <Card className="w-80 shadow-xl shadow-purple-500">
             <CardHeader shadow={false} floated={false} className="h-64">
@@ -70,6 +73,7 @@ export default function CardAllOngs() {
             </CardFooter>
           </Card>
         </div>
+        </Link>
       ))}
     </div>
   );
