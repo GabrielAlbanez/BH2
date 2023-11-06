@@ -22,7 +22,15 @@ export default function Ongs() {
     Logo: string;
     trabalhos: [];
     Voluntarios: [];
-    rifas: [];
+    rifas: [
+      {
+        descricao: string;
+        idOng: number;
+        imgRifa: string;
+        nome: string;
+        preco: string;
+      }
+    ];
     endereco: string;
     redesSociais: string;
     telefone: string;
@@ -49,11 +57,17 @@ export default function Ongs() {
 
   console.log(url);
 
+  console.log("rifas", dataOng[0]?.rifas);
+
+  const urlsImgRifas = dataOng[0]?.rifas.map((data) => data.imgRifa.slice(24));
+
+  console.log(urlsImgRifas);
+
   return (
     <div className="w-full h-[91vh] bg">
       {dataOng.length > 0 ? (
         <div className="h-full w-full">
-          <section className="w-full  h-[20%] flex gap-2 items-center justify-center pt-7">
+          <section className="w-full  h-[20%] flex  gap-2 items-center justify-center pt-7">
             <img
               src={require(`../../uploads/${url}`)}
               alt=""
@@ -65,10 +79,31 @@ export default function Ongs() {
             <div className="w-[50%] h-full flex  justify-center border-r-[1px] border-black">
               <h2 className="text-2xl">Informaçoes Ong</h2>
             </div>
-            <div className="w-[50%] h-full flex  justify-center">
-              <h1 className="text-2xl">Rifas</h1>
-              <div>
-              </div>
+            <div className="w-[50%] h-full flex  justify-center gap-10 flex-wrap items-center">
+              {dataOng[0]?.rifas.map((data, index) => (
+                <div className="max-w-sm rounded-xl overflow-hidden shadow-lg w-[60%] h-[50%] p-4   gap-20">
+                  <img
+                    src={require(`../../uploadsImgRifas/${urlsImgRifas[index]}`)}
+                    alt=""
+                    className="w-[30%] h-[40%]   "
+                  />{" "}
+                  <div className="px-6 py-10">
+                    <div className="font-bold text-xl mb-2">
+                      {data.nome}
+                    </div>
+                    <p className="text-gray-700 text-base">
+                      {data.descricao}
+                    </p>
+
+                    <div>
+                      <p>
+                        valor da Rifa:  {data.preco}
+                      </p>
+                    </div>
+                  </div>
+          
+                </div>
+              ))}
             </div>
           </section>
         </div>
