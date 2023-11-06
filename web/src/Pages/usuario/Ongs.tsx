@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { ImSpinner2 } from "react-icons/im";
 import { useParams } from "react-router-dom";
+import { useTema } from "../../common/context/Tema";
 
 export default function Ongs() {
   const { cnpj } = useParams();
@@ -63,8 +64,16 @@ export default function Ongs() {
 
   console.log(urlsImgRifas);
 
+  const { pegarTema } = useTema() as {
+    pegarTema: string;
+  };
+
   return (
-    <div className="w-full h-[91vh] bg">
+    <div
+      className={`  transition-all duration-1000  ${
+        pegarTema === "dark" ? "bg-[#202020] text-white " : "bg-[#CEF3FF]"
+      }  w-full sm:h-[91vh] h-[100%] `}
+    >
       {dataOng.length > 0 ? (
         <div className="h-full w-full">
           <section className="w-full  h-[20%] flex  gap-2 items-center justify-center pt-7">
@@ -75,33 +84,43 @@ export default function Ongs() {
             />
             <p className="text-2xl ">{dataOng[0].nome}</p>
           </section>
-          <section className="w-full flex justify-between pt-16 h-[70%] ">
-            <div className="w-[50%] h-full flex  justify-center border-r-[1px] border-black">
-              <h2 className="text-2xl">Informaçoes Ong</h2>
+          <section className="w-full flex justify-between pt-16 h-[70%] flex-col gap-10 sm:gap-0 sm:flex-row ">
+            <div
+              className={` transition-all duration-1000 w-[100%] sm:w-[50%] h-full flex flex-col  gap-20 sm:gap-32 items-center    sm:border-r-[1px] ${
+                pegarTema === "dark" ? "border-white" : "border-black"
+              }`}
+            >
+              <h2 className="text-3xl">Informaçoes Ong</h2>
+              <div className="w-full h-full flex flex-col gap-10 justify-start items-center  text-md sm:text-xl">
+                <p>Nome: {dataOng[0].nome}</p>
+                <p>Endereço: {dataOng[0].endereco}</p>
+                <p>Redes Socias: {dataOng[0].redesSociais}</p>
+                <p>Telefone: {dataOng[0].telefone}</p>
+              </div>
             </div>
-            <div className="w-[50%] h-full flex  justify-center gap-10 flex-wrap items-center">
+            <h1 className="text-center pt-10 text-2xl visible sm:hidden">
+              Rifas
+            </h1>
+            <div className=" w-full sm:w-[50%] h-full flex  justify-center gap-10 flex-wrap items-center ">
               {dataOng[0]?.rifas.map((data, index) => (
-                <div className="max-w-sm rounded-xl overflow-hidden shadow-lg w-[60%] h-[50%] p-4   gap-20">
-                  <img
-                    src={require(`../../uploadsImgRifas/${urlsImgRifas[index]}`)}
-                    alt=""
-                    className="w-[30%] h-[40%]   "
-                  />{" "}
-                  <div className="px-6 py-10">
-                    <div className="font-bold text-xl mb-2">
-                      {data.nome}
-                    </div>
-                    <p className="text-gray-700 text-base">
+                <div className={`max-w-sm rounded-xl shadow-lg ${pegarTema === 'dark' ? "shadow-fuchsia-500" : ""} w-[60%] h-[50%] p-4 overflow-hidden sm:overflow-visible   gap-20 hover:scale-105 transition-all duration-400 cursor-pointer hover:shadow-fuchsia-500 hover:shadow-2xl`}>
+                  <div className="w-[100%] flex items-center justify-center sm:justify-start sm:items-start">
+                    <img
+                      src={require(`../../uploadsImgRifas/${urlsImgRifas[index]}`)}
+                      alt=""
+                      className=" w-[50%] h-[60%]  sm:w-[30%] sm:h-[40%]   "
+                    />{" "}
+                  </div>
+                  <div className=" px-6 py-3 sm:py-9 text-center sm:text-start  flex  flex-col gap-5 sm:gap-0">
+                    <div className="  font-bold text-xl mb-2">{data.nome}</div>
+                    <p className=" text-base hidden sm:block">
                       {data.descricao}
                     </p>
 
                     <div>
-                      <p>
-                        valor da Rifa:  {data.preco}
-                      </p>
+                      <p>valor da Rifa: {data.preco}</p>
                     </div>
                   </div>
-          
                 </div>
               ))}
             </div>
