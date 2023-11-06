@@ -102,27 +102,41 @@ export default function Ongs() {
               Rifas
             </h1>
             <div className=" w-full sm:w-[50%] h-full flex  justify-center gap-10 flex-wrap items-center ">
-              {dataOng[0]?.rifas.map((data, index) => (
-                <div className={`max-w-sm rounded-xl shadow-lg ${pegarTema === 'dark' ? "shadow-fuchsia-500" : ""} w-[60%] h-[50%] p-4 overflow-hidden sm:overflow-visible   gap-20 hover:scale-105 transition-all duration-400 cursor-pointer hover:shadow-fuchsia-500 hover:shadow-2xl`}>
-                  <div className="w-[100%] flex items-center justify-center sm:justify-start sm:items-start">
-                    <img
-                      src={require(`../../uploadsImgRifas/${urlsImgRifas[index]}`)}
-                      alt=""
-                      className=" w-[50%] h-[60%]  sm:w-[30%] sm:h-[40%]   "
-                    />{" "}
-                  </div>
-                  <div className=" px-6 py-3 sm:py-9 text-center sm:text-start  flex  flex-col gap-5 sm:gap-0">
-                    <div className="  font-bold text-xl mb-2">{data.nome}</div>
-                    <p className=" text-base hidden sm:block">
-                      {data.descricao}
-                    </p>
+              {dataOng[0].rifas.length > 0 ? (
+                <>
+                  {dataOng[0]?.rifas.map((data, index) => (
+                    <div
+                      className={`max-w-sm rounded-xl shadow-lg ${
+                        pegarTema === "dark" ? "shadow-fuchsia-500" : ""
+                      } w-[60%] h-[50%] p-4 overflow-hidden sm:overflow-visible   gap-20 hover:scale-105 transition-all duration-400 cursor-pointer hover:shadow-fuchsia-500 hover:shadow-2xl`}
+                    >
+                      <div className="w-[100%] flex items-center justify-center sm:justify-start sm:items-start">
+                        <img
+                          src={require(`../../uploadsImgRifas/${urlsImgRifas[index]}`)}
+                          alt=""
+                          className=" w-[50%] h-[60%]  sm:w-[30%] sm:h-[40%]   "
+                        />{" "}
+                      </div>
+                      <div className=" px-6 py-3 sm:py-9 text-center sm:text-start  flex  flex-col gap-5 sm:gap-0">
+                        <div className="  font-bold text-xl mb-2">
+                          {data.nome}
+                        </div>
+                        <p className=" text-base hidden sm:block">
+                          {data.descricao}
+                        </p>
 
-                    <div>
-                      <p>valor da Rifa: {data.preco}</p>
+                        <div>
+                          <p>valor da Rifa: {data.preco}</p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              ))}
+                  ))}
+                </>
+              ) : (
+                <>
+                  <h1 className="text-2xl">essa ong nao tem rifas disponiveis ainda</h1>
+                </>
+              )}
             </div>
           </section>
         </div>
