@@ -13,7 +13,7 @@ Rotauser.get('/allUsers/:cpfValidate',userMiddlewares.validTypeUser,ControlerUse
 Rotauser.get('/user/:userCpf',ControlerUsers.getByCpfUser)
 Rotauser.post('/createUser',userMiddlewares.validateDataUser,ControlerUsers.createUser)
 Rotauser.delete('/deleteUser/:cpfValidate',userMiddlewares.validTypeUser,ControlerUsers.deleteUser)
-Rotauser.post('/byRifas',verifyToken,userMiddlewares.validateByRifas,ControlerUsers.byRifas)
+Rotauser.post('/byRifas',userMiddlewares.validateByRifas,ControlerUsers.byRifas)
 Rotauser.post('/Login',authLogin,ControlerUsers.Login)
 Rotauser.get('/verificarToken',verifyToken,(req,res)=>{
     res.status(200).json({message : "Logado"})

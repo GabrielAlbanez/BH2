@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { ImSpinner2 } from "react-icons/im";
 import { useParams } from "react-router-dom";
 import { useTema } from "../../common/context/Tema";
+import toast from "react-hot-toast";
+import { useAppSelector } from "../../store/intex";
 
 export default function Ongs() {
   const { cnpj } = useParams();
@@ -30,6 +32,7 @@ export default function Ongs() {
         imgRifa: string;
         nome: string;
         preco: string;
+        id: number;
       }
     ];
     endereco: string;
@@ -40,6 +43,18 @@ export default function Ongs() {
     cnpjOng: cnpjFormatado,
   });
   const [dataOng, setDataOng] = useState<dataOng[]>([]);
+
+  const { pegarTema } = useTema() as {
+    pegarTema: string;
+  };
+
+  const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
+    cpf: string;
+    email: string;
+    numerosComprados: [];
+    sexo: string;
+    tipo: string;
+  }>;
 
   const getByDataOngsForCnpj = async () => {
     const request = await axios.post(
@@ -64,8 +79,30 @@ export default function Ongs() {
 
   console.log(urlsImgRifas);
 
-  const { pegarTema } = useTema() as {
-    pegarTema: string;
+  const notify = (message: string) => {
+    toast(`${message}`, {
+      icon: `${pegarTema === "dark" ? "✔" : " ✔"}`,
+      style: {
+        borderRadius: "10px",
+        background: `${pegarTema === "dark" ? "#333" : "white"}`,
+        color: `${pegarTema === "dark" ? "white" : "black"}`,
+      },
+    });
+  };
+
+  const SaveNumberRifa = async (idRifa: number) => {
+    console.log("cpf dentro da função ", User[0]?.cpf);
+
+    const req = await axios.post("http://localhost:8080/byRifas", {
+      cpf: User[0]?.cpf,
+      id: idRifa,
+      numero: Math.floor(Math.random() * 131312321),
+
+      
+    });
+
+    notify(req.data.message);
+    console.log("data", req.data);
   };
 
   return (
@@ -110,12 +147,20 @@ export default function Ongs() {
                         pegarTema === "dark" ? "shadow-fuchsia-500" : ""
                       } w-[60%] h-[50%] p-4 overflow-hidden sm:overflow-visible   gap-20 hover:scale-105 transition-all duration-400 cursor-pointer hover:shadow-fuchsia-500 hover:shadow-2xl`}
                     >
-                      <div className="w-[100%] flex items-center justify-center sm:justify-start sm:items-start">
+                      <div className="w-[100%]  flex sm:gap-20 items-center justify-center sm:justify-center sm:items-center">
                         <img
                           src={require(`../../uploadsImgRifas/${urlsImgRifas[index]}`)}
                           alt=""
                           className=" w-[50%] h-[60%]  sm:w-[30%] sm:h-[40%]   "
                         />{" "}
+                        <button
+                          onClick={() => {
+                            SaveNumberRifa(data.id);
+                          }}
+                          className="rounded-full bg-fuchsia-500 px-2 py-3 hover:shadow-2xl hover:shadow-fuchsia-500 hover:scale-110 transition"
+                        >
+                          comprar rifa
+                        </button>
                       </div>
                       <div className=" px-6 py-3 sm:py-9 text-center sm:text-start  flex  flex-col gap-5 sm:gap-0">
                         <div className="  font-bold text-xl mb-2">
@@ -134,7 +179,9 @@ export default function Ongs() {
                 </>
               ) : (
                 <>
-                  <h1 className="text-2xl">essa ong nao tem rifas disponiveis ainda</h1>
+                  <h1 className="text-2xl">
+                    essa ong nao tem rifas disponiveis ainda
+                  </h1>
                 </>
               )}
             </div>

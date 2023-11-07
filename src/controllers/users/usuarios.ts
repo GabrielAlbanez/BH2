@@ -103,12 +103,14 @@ export const byRifas = async(req : Request, res : Response) =>{
       }
     })
 
-    res.status(200).json({sucessful : byNumber})
+ 
+
+    res.status(200).json({sucessful : byNumber , message : 'rifa comprada com sucesso'})
 
 
   }
   catch(error){
-    res.status(404).json({err : `erro ao compra rifa ${error}`})
+    res.status(201).json({message : `erro ao compra rifa ${error}`})
   }
 
 
