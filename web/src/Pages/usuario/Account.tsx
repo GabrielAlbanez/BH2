@@ -37,12 +37,20 @@ export default function Account() {
     notify();
     setTimeout(() => {
       localStorage.setItem("token", "");
-      localStorage.setItem('isLoged','false')
+      localStorage.setItem("isLoged", "false");
       navigator("/");
       window.location.reload();
     }, 1000);
   };
 
+  type dataNuemerosComprados = {
+    id: Number;
+    numero: number;
+    rifaId: Number;
+    usuarioCpf: string;
+  };
+
+ 
   return (
     <div
       className={` w-full h-[91vh] transition-all duration-1000 flex items-center justify-center flex-col gap-10 ${
@@ -50,13 +58,13 @@ export default function Account() {
       }`}
     >
       <div className="text-4xl">Account</div>
-      {logedUser === 'true' ? (
+      {logedUser === "true" ? (
         <>
-          {logedUser === 'true' ? (
+          {logedUser === "true" || User.length > 0 ? (
             <div className="flex flex-col gap-10 items-center justify-center h-[70%] w-[100%] rounded-2xl  text-lg ">
               <p>Cpf : {User[0]?.cpf}</p>
               <p>Email : {User[0]?.email}</p>
-              <p>NumerosComprados : 0 {User[0]?.numerosComprados}</p>
+              
               <p>Sexo : {User[0]?.sexo}</p>
               {User[0]?.tipo === "admin" ? (
                 <>

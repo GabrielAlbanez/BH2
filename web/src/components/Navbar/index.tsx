@@ -113,7 +113,7 @@ export default function Navbar() {
             verifyLogin("Rifas");
           }}
         >
-          Rifas
+          Minhas Rifas
         </li>
         { isLoged === 'true' && typeUser === "admin" ? (
           <Link to={"/Dashboard"}>

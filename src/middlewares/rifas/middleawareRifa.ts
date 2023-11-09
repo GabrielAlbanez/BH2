@@ -105,6 +105,40 @@ export const validateIdRifa = async(req : Request, res : Response, next : NextFu
 
 }
 
+export const validateCpfUser = async(req : Request, res : Response, next : NextFunction)=>{
+
+  const {cpf} = req.body
+
+  console.log(cpf)
+
+   try {
+    if(!cpf){
+      return res.status(201).json({error : 'cpf not found'});
+    }
+  
+    const serchCnpjOng = await prisma.usuario.findMany({
+      where : {
+        cpf : cpf
+      },
+      select :{
+        cpf : true
+      }
+    })
+
+
+
+    const takeCpf = serchCnpjOng.map((cpf)=>cpf.cpf)
+
+    if(takeCpf.includes(cpf)){
+      next()
+    }
+
+    
+   } catch (error) {
+    return res.status(200).json({ error: "Esse cpf não existe." });
+   }
+
+}
 
 export const validateCpnpjOng =  async(req : Request, res : Response, next : NextFunction)=>{
 

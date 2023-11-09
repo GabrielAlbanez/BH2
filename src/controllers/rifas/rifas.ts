@@ -134,6 +134,38 @@ export const getRifaByid = async(req : Request, res : Response) => {
 
 }
 
+export const getByRifasForCpfUser = async (req: Request, res: Response)=>{
+  
+  const {cpf} = req.body
+
+  try {
+
+    const rifasUser = await prisma.usuario.findMany({
+      where : {
+        cpf : cpf
+      },
+      select : {
+        numerosComprados : {
+          where : {
+            usuarioCpf : cpf
+          },
+          select : {
+            numero : true,
+            rifa : true
+          }
+        }
+      }
+    })
+
+    res.status(201).json({message : rifasUser})
+    
+  } catch (error) {
+    res.status(404).json({error : `erro ao buscar as rifas ${error.message}`})
+
+  }
+
+}
+
 
 export const getByRifasForCnpjOng = async (req: Request, res: Response)=>{
 

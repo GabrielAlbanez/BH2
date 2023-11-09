@@ -6,6 +6,7 @@ import upload from "../Config/multerRifa";
 const rifasRoute = Router()
 
 rifasRoute.get('/getAllRifas',ControlerRifas.getAllRifas)
+rifasRoute.post('/getAllRifasByCpfUser',rifasMiddleware.validateCpfUser,ControlerRifas.getByRifasForCpfUser)
 rifasRoute.post('/rifa',rifasMiddleware.validateOngUserAndUserAdmin,ControlerRifas.getByRifasOng)
 rifasRoute.post('/createRifas',upload.single('imgRifa'),rifasMiddleware.validateDataRifa,ControlerRifas.createRifas)
 rifasRoute.delete('/deleteRifas/:NameOrCpf',rifasMiddleware.validateOngUserAndUserAdmin,ControlerRifas.deleteRifa)
