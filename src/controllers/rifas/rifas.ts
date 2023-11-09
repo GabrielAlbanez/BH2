@@ -151,7 +151,22 @@ export const getByRifasForCpfUser = async (req: Request, res: Response)=>{
           },
           select : {
             numero : true,
-            rifa : true
+            rifa : {
+              select : {
+                id : true,
+                imgRifa : true,
+                nome : true,
+                preco : true,
+                descricao : true,
+                ong : {
+                  select : {
+                    nome : true
+                  }
+                }
+              }
+            },
+           
+            
           }
         }
       }

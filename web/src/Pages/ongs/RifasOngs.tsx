@@ -108,9 +108,11 @@ export default function RifasOngs() {
         });
       };
       setTimeout(()=>{
+       
         navigator('/HomeOng')
 
-      },2000)
+      },3000)
+      // window.location.reload()
       notify();
       
       // window.location.reload()

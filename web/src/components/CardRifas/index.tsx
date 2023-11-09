@@ -18,7 +18,7 @@ export default function CardRifas() {
     preco: number;
     descricao: string;
     NumeroComprado: Array<number>;
-    id : number;
+    id: number;
   };
 
   const [dataRifa, setDataRifa] = useState<dataOng[]>([]);
@@ -32,12 +32,6 @@ export default function CardRifas() {
   });
 
   const getRifasOng = async () => {
-    console.log("esse é o cnpj que tem que ser enviado", dataRifaEnvio);
-
-    // setDataRifaEnvio({
-    //   cnpjOng: ong[0]?.cnpj,
-    // });
-
     const request = await axios.post(
       "http://localhost:8080/rifa",
       dataRifaEnvio
@@ -45,73 +39,61 @@ export default function CardRifas() {
 
     const responseData = request.data;
 
-    console.log(responseData);
-
     setDataRifa(responseData.rifas);
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      getRifasOng();
-    }, 1000);
-  }, []);
-
-  console.log("data rifa ", dataRifa);
+    getRifasOng();
+  }, [dataRifa]);
 
   const url = dataRifa.map((valor) => valor.imgRifa.slice(24));
 
-  console.log(url);
 
-
-  const [isZoomed, setIsZoomed] = useState(false);
-
-  const handleClick = () => {
-    setIsZoomed(true);
-  };
-
-
+ 
 
   return (
     <>
-      {dataRifa.length > 0 ? (
+      {dataRifa.length || url.length !== 0 ? (
         <>
-          <div className="flex gap-16  flex-wrap h-full w-full items-center justify-center ">
+          <div className="flex gap-16 flex-wrap h-full w-full items-center justify-center">
             {dataRifa.map((rifa, index) => (
-              <Link to={`/UniqueRIfa/${rifa.id}`}>
-              <div key={index} >
-                <Card className="w-80 shadow-xl shadow-purple-500 ">
-                  <CardHeader shadow={false} floated={false} className="h-64">
-                    <img
-                      src={require(`../../uploadsImgRifas/${url[index]}`)}
-                      alt="card-image"
-                      className="h-full w-full object-cover"
-                    />
-                  </CardHeader>
-                  <CardBody className="text-black  text-xl w-full">
-                    <div className="mb-2 flex items-center justify-center">
-                      <Typography color="blue-gray" className="font-medium">
-                        {rifa.nome}
-                      </Typography>
-                    </div>
-                  </CardBody>
-                  <CardFooter className="pt-0">
-                    <Button
-                      ripple={false}
-                      fullWidth={true}
-                      className="bg-blue-gray-900/10 text-black shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-                    >
-                      Ver mais...
-                    </Button>
-                  </CardFooter>
-                </Card>
-              </div>
+              <Link to={`/UniqueRIfa/${rifa.id}`} key={index}>
+                <div>
+                  <Card className="w-80 shadow-xl shadow-purple-500">
+                    <CardHeader shadow={false} floated={false} className="h-64">
+                      {url &&(
+                        <img
+                          src={require(`../../uploadsImgRifas/${url[index]}`)}
+                          alt="card-image"
+                          className="h-full w-full object-cover"
+                        />
+                      )}
+                    </CardHeader>
+                    <CardBody className="text-black text-xl w-full">
+                      <div className="mb-2 flex items-center justify-center">
+                        <Typography color="blue-gray" className="font-medium">
+                          {rifa.nome}
+                        </Typography>
+                      </div>
+                    </CardBody>
+                    <CardFooter className="pt-0">
+                      <Button
+                        ripple={false}
+                        fullWidth={true}
+                        className="bg-blue-gray-900/10 text-black shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+                      >
+                        Ver mais...
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </div>
               </Link>
             ))}
           </div>
         </>
       ) : (
         <>
-          <h1 className="text-2xl">vc ainda não tem nehuma rifa criada</h1>
+          <h1 className="text-2xl">Você ainda não tem nenhuma rifa criada</h1>
         </>
       )}
     </>
