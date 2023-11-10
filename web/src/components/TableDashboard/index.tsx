@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 type dataProps = {
-  ongs : {
+  ongs? : {
     Voluntarios : []
       cnpj: string;
       nome: string;
@@ -34,55 +34,55 @@ type dataProps = {
    
     }    | undefined,
 
-//   rifas?: [
-//     {
-//       id: number;
-//       imgRifa: string;
-//       nome: string;
-//       preco: string;
-//       descricao: string;
-//       CpfUsuario: string;
-//       idOng: string;
-//       ong: {
-//         cnpj: string;
-//         nome: string;
-//         email: string;
-//         senha: string;
-//         telefone: string;
-//         endereco: string;
-//         redesSociais: string;
-//         aprovado: boolean;
-//         Logo: string;
-//       };
-//       NumeroComprado: {
-//         id: number;
-//         numero: number;
-//         rifaId: number;
-//         usuarioCpf: string;
-//       };
-//     }
-//   ],
-//   usuarios?: [
-//     {
-//       cpf: string;
-//       nome: string;
-//       email: string;
-//       senha: string;
-//       sexo: string;
-//       endereco: string;
-//       tipo: string;
-//       telefone: string;
-//       numerosComprados: {
-//         id: number;
-//         numero: number;
-//         rifaId: number;
-//         usuarioCpf: string;
-//       };
-//     }
-//   ];
+  rifas?: 
+    {
+      id: number;
+      imgRifa: string;
+      nome: string;
+      preco: string;
+      descricao: string;
+      CpfUsuario: string;
+      idOng: string;
+      ong: {
+        cnpj: string;
+        nome: string;
+        email: string;
+        senha: string;
+        telefone: string;
+        endereco: string;
+        redesSociais: string;
+        aprovado: boolean;
+        Logo: string;
+      };
+      NumeroComprado: {
+        id: number;
+        numero: number;
+        rifaId: number;
+        usuarioCpf: string;
+      };
+    } | undefined,
+ 
+  usuarios?: 
+    {
+      cpf: string;
+      nome: string;
+      email: string;
+      senha: string;
+      sexo: string;
+      endereco: string;
+      tipo: string;
+      telefone: string;
+      numerosComprados: {
+        id: number;
+        numero: number;
+        rifaId: number;
+        usuarioCpf: string;
+      };
+    } | undefined,
+  
 };
 
-export default function BasicTable({ ongs }: dataProps) {
+export default function BasicTable({ ongs,rifas,usuarios }: dataProps) {
   console.log(ongs);
 
   return (
@@ -93,8 +93,9 @@ export default function BasicTable({ ongs }: dataProps) {
             <h1>{ongs.nome}</h1>
           </>
         )}
-        {/* {rifas && <></>}
-        {usuarios && <></>} */}
+        {rifas && <><h1>{rifas.nome}</h1></>}
+        
+        {usuarios && <><h1>{usuarios.nome}</h1></>}
       </table>
     </div>
   );
