@@ -12,7 +12,9 @@ export default function UniqueRifa() {
     nome: string;
     preco: number;
     descricao: string;
-    NumeroComprado: Array<number>;
+    NumeroComprado: [{
+      numero :string
+    }];
   };
 
   const [dataRifa, setDataRifa] = useState<dataOng[]>([]);
@@ -31,12 +33,15 @@ export default function UniqueRifa() {
 
   const url = dataRifa.map((valor) => valor.imgRifa.slice(24));
 
-  console.log(url);
+  console.log(dataRifa);
 
 
   const { pegarTema } = useTema() as {
     pegarTema: string;
   };
+
+  const numerosComprados = dataRifa[0]?.NumeroComprado
+  
 
   return (
     <div className={`  transition-all duration-1000  ${
@@ -66,7 +71,9 @@ export default function UniqueRifa() {
                 <h1 className="text-4xl  underline">Numeros Comprados</h1>
               </div>
               <div className="h-[90%] w-full  flex justify-center ">
-                  <h1>1,2,3,4,5,6,7,</h1>
+                <p>{valor.NumeroComprado.map((numero)=>(
+                  <h1>{numero.numero}</h1>
+                ))}</p>
               </div>
             </section>
           </div>

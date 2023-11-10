@@ -12,14 +12,18 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function CardRifas() {
-  type dataOng = {
-    imgRifa: string;
-    nome: string;
-    preco: number;
-    descricao: string;
-    NumeroComprado: Array<number>;
-    id: number;
-  };
+  type dataOng = 
+   
+    {
+      imgRifa: string;
+      nome: string;
+      preco: number;
+      descricao: string;
+      NumeroComprado: Array<number>;
+      id: number;
+    }
+  
+
 
   const [dataRifa, setDataRifa] = useState<dataOng[]>([]);
 
@@ -46,8 +50,12 @@ export default function CardRifas() {
     getRifasOng();
   }, [dataRifa]);
 
-  const url = dataRifa.map((valor) => valor.imgRifa.slice(24));
+  
 
+  console.log('dataRifa',dataRifa)
+
+
+  const url = dataRifa.map((valor) => valor.imgRifa.slice(24));
 
  
 

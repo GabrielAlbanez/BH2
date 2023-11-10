@@ -26,7 +26,6 @@ export const getByRifasOng  = async(req : Request, res : Response)=>{
 
     const cnpjOng = req.body.cnpjOng;
 
-    console.log(cnpjOng)
 
     const AllRifasOng = await prisma.rifa.findMany({
       where : {
