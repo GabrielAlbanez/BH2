@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useAppSelector } from "../../store/intex";
+import { useNavigate } from "react-router-dom";
 
 export default function AllRifas() {
   type dataRifa = {
@@ -52,6 +54,26 @@ export default function AllRifas() {
   }, []);
 
   console.log(dataRifa);
+
+
+  const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
+    cpf: string;
+    email: string;
+    numerosComprados: [];
+    sexo: string;
+    tipo: string;
+  }>;
+
+  const typeUser = User[0]?.tipo;
+
+
+  const navigation = useNavigate()
+
+  useEffect(()=>{
+    if(typeUser !== 'admin'){
+          navigation('/')
+    }
+  },[typeUser])
 
   return (
     <div className="mt-8">

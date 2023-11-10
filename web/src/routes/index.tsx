@@ -40,15 +40,15 @@ export default function MinhasRotas() {
 
   const isLoged = useAppSelector((state) => state.AuthToken.isLoged);
 
-  const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
-    cpf: string;
-    email: string;
-    numerosComprados: [];
-    sexo: string;
-    tipo: string;
-  }>;
+  // const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
+  //   cpf: string;
+  //   email: string;
+  //   numerosComprados: [];
+  //   sexo: string;
+  //   tipo: string;
+  // }>;
 
-  const typeUser = User[0]?.tipo;
+  // const typeUser = User[0]?.tipo;
 
 
 
@@ -87,7 +87,7 @@ export default function MinhasRotas() {
 
     fetchData();
 
-    const interval = setInterval(fetchData, 500000);
+    const interval = setInterval(fetchData, 5000);
 
     return () => {
       clearInterval(interval);
@@ -140,9 +140,9 @@ export default function MinhasRotas() {
             </ProtectedRoute>
           }
         />
-        <Route path="/DashBoarddUsuarios" element={<ProtectedRouteAdm user={typeUser}><AllUsers/></ProtectedRouteAdm>} />
-        <Route path="/DasBoarddOngs" element={<ProtectedRouteAdm user={typeUser}><AllOngs/></ProtectedRouteAdm>} />
-        <Route path="/RifasDashboard" element={<ProtectedRouteAdm user={typeUser}><AllRifas/></ProtectedRouteAdm>} />
+        <Route path="/DashBoarddUsuarios" element={<AllUsers/>} />
+        <Route path="/DasBoarddOngs" element={<AllOngs/>} />
+        <Route path="/RifasDashboard" element={<AllRifas/>} />
         <Route
           path="/Doação"
           element={

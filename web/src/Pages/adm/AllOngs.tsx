@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useAppSelector } from '../../store/intex';
+import { useNavigate } from 'react-router-dom';
 
 export default function AllOngs() {
   type dataOng = {
@@ -50,6 +52,24 @@ export default function AllOngs() {
   ong.nome.toLowerCase().includes(buscarData.toLowerCase())
   );
 
+     const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
+    cpf: string;
+    email: string;
+    numerosComprados: [];
+    sexo: string;
+    tipo: string;
+  }>;
+
+  const typeUser = User[0]?.tipo;
+
+
+  const navigation = useNavigate()
+
+  useEffect(()=>{
+    if(typeUser !== 'admin'){
+          navigation('/')
+    }
+  },[typeUser])
 
 
 

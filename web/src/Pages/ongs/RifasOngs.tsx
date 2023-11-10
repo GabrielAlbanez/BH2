@@ -64,9 +64,9 @@ export default function RifasOngs() {
     formData.append("nome", dataRegisterRifa.nome);
     formData.append("descricaon", dataRegisterRifa.descricaon);
   
-    // Anexar "preco" como um número de ponto flutuante
+
     formData.append("preco", dataRegisterRifa.preco);
-    formData.append("cnpj",ong[0].cnpj)
+    formData.append("cnpj",ong[0]?.cnpj)
   
     if (imgRifa) {
       formData.append("imgRifa", imgRifa);

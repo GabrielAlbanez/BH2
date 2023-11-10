@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../store/intex';
+import { useNavigate } from 'react-router-dom';
 
 export default function AllUsers() {
   type dataUser = {
@@ -48,6 +49,26 @@ export default function AllUsers() {
   const filteredUsers = dataUsers.filter((user) =>
     user.nome.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+
+  const Userr = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
+    cpf: string;
+    email: string;
+    numerosComprados: [];
+    sexo: string;
+    tipo: string;
+  }>;
+
+  const typeUser = Userr[0]?.tipo;
+
+
+  const navigation = useNavigate()
+
+  useEffect(()=>{
+    if(typeUser !== 'admin'){
+          navigation('/')
+    }
+  },[typeUser])
 
   return (
     <div className="mt-8">
