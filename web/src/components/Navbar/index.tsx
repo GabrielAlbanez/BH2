@@ -97,38 +97,49 @@ export default function Navbar() {
           width={40}
           className="cursor-pointer"
         />
-         { isLoged === 'true' && typeUser === "admin" ? (
-          <Link to={"/"}>
+        {isLoged === "true" && typeUser === "admin" ? (
+          <Link to={"/DashBoarddUsuarios"}>
             <li>Usuarios</li>
           </Link>
         ) : (
-         <li>Sobre Nós</li>
+          <li>Sobre Nós</li>
         )}
-     
+
         <li
-          className={`cursor-pointer ${isLoged === 'true' && typeUser === 'admin' ? "hidden" : "visible" }`}
+          className={`cursor-pointer ${
+            isLoged === "true" && typeUser === "admin" ? "hidden" : "visible"
+          }`}
           onClick={() => {
             verifyLogin("Doação");
           }}
         >
           Doação
         </li>
-        { isLoged === 'true' && typeUser === "admin" ? (
-          <Link to={"/"}>
+        {isLoged === "true" && typeUser === "admin" ? (
+          <Link to={"/DasBoarddOngs"}>
             <li>Ongs</li>
           </Link>
         ) : (
           <li>Contato</li>
         )}
+
+        {isLoged === "true" && typeUser === "admin" ? (
+          <Link to={"/RifasDashboard"}>
+            <li>Rifas</li>
+          </Link>
+        ) : (
+          <li>Sobre Nós</li>
+        )}
         <li
-          className={`cursor-pointer ${isLoged === 'true' && typeUser === 'admin' ? "hidden" : "visible" }`}
+          className={`cursor-pointer ${
+            isLoged === "true" && typeUser === "admin" ? "hidden" : "visible"
+          }`}
           onClick={() => {
             verifyLogin("Rifas");
           }}
         >
           Minhas Rifas
         </li>
-    
       </ul>
 
       <ul className="flex gap-7 items-center  w-[40%] overflow-visible sm:w-[80%] md:w-[0%]  md:overflow-hidden ">

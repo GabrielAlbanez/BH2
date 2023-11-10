@@ -26,6 +26,7 @@ import UniqueRifa from "../components/UniqueRifa";
 import Ongs from "../Pages/usuario/Ongs";
 import AllUsers from "../Pages/adm/AllUsers";
 import AllOngs from "../Pages/adm/AllOngs";
+import AllRifas from "../Pages/adm/AllRifas";
 
 export default function MinhasRotas() {
   const token2 = localStorage.getItem("token");
@@ -141,7 +142,7 @@ export default function MinhasRotas() {
         />
         <Route path="/DashBoarddUsuarios" element={<ProtectedRouteAdm user={typeUser}><AllUsers/></ProtectedRouteAdm>} />
         <Route path="/DasBoarddOngs" element={<ProtectedRouteAdm user={typeUser}><AllOngs/></ProtectedRouteAdm>} />
-
+        <Route path="/RifasDashboard" element={<ProtectedRouteAdm user={typeUser}><AllRifas/></ProtectedRouteAdm>} />
         <Route
           path="/Doação"
           element={
