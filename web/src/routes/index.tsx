@@ -24,6 +24,8 @@ import AjudantesPage from "../Pages/ongs/AjudantesPage";
 import TrabalhosOngs from "../Pages/ongs/TrabalhosOngs";
 import UniqueRifa from "../components/UniqueRifa";
 import Ongs from "../Pages/usuario/Ongs";
+import AllUsers from "../Pages/adm/AllUsers";
+import AllOngs from "../Pages/adm/AllOngs";
 
 export default function MinhasRotas() {
   const token2 = localStorage.getItem("token");
@@ -36,6 +38,16 @@ export default function MinhasRotas() {
   };
 
   const isLoged = useAppSelector((state) => state.AuthToken.isLoged);
+
+  const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
+    cpf: string;
+    email: string;
+    numerosComprados: [];
+    sexo: string;
+    tipo: string;
+  }>;
+
+  const typeUser = User[0]?.tipo;
 
 
 
@@ -127,7 +139,8 @@ export default function MinhasRotas() {
             </ProtectedRoute>
           }
         />
-        <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/DashBoarddUsuarios" element={<ProtectedRouteAdm user={typeUser}><AllUsers/></ProtectedRouteAdm>} />
+        <Route path="/DasBoarddOngs" element={<ProtectedRouteAdm user={typeUser}><AllOngs/></ProtectedRouteAdm>} />
 
         <Route
           path="/Doação"
@@ -208,6 +221,14 @@ const ProtectedRoute = ({ user, children }: propsProtectRoute) => {
 
 const ProtectedRouOng = ({ user, children }: propsProtectRoute) => {
   if (user !== "ongLogada") {
+    return <Navigate to={"/"} replace />;
+  }
+  return children;
+};
+
+
+const ProtectedRouteAdm = ({ user, children }: propsProtectRoute) => {
+  if (user !== "admin") {
     return <Navigate to={"/"} replace />;
   }
   return children;

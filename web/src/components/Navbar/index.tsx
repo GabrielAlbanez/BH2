@@ -97,31 +97,38 @@ export default function Navbar() {
           width={40}
           className="cursor-pointer"
         />
-        <li>Sobre Nós</li>
+         { isLoged === 'true' && typeUser === "admin" ? (
+          <Link to={"/"}>
+            <li>Usuarios</li>
+          </Link>
+        ) : (
+         <li>Sobre Nós</li>
+        )}
+     
         <li
-          className="cursor-pointer"
+          className={`cursor-pointer ${isLoged === 'true' && typeUser === 'admin' ? "hidden" : "visible" }`}
           onClick={() => {
             verifyLogin("Doação");
           }}
         >
           Doação
         </li>
-        <li>Contato</li>
+        { isLoged === 'true' && typeUser === "admin" ? (
+          <Link to={"/"}>
+            <li>Ongs</li>
+          </Link>
+        ) : (
+          <li>Contato</li>
+        )}
         <li
-          className="cursor-pointer"
+          className={`cursor-pointer ${isLoged === 'true' && typeUser === 'admin' ? "hidden" : "visible" }`}
           onClick={() => {
             verifyLogin("Rifas");
           }}
         >
           Minhas Rifas
         </li>
-        { isLoged === 'true' && typeUser === "admin" ? (
-          <Link to={"/Dashboard"}>
-            <li>Dashboard</li>
-          </Link>
-        ) : (
-          ""
-        )}
+    
       </ul>
 
       <ul className="flex gap-7 items-center  w-[40%] overflow-visible sm:w-[80%] md:w-[0%]  md:overflow-hidden ">

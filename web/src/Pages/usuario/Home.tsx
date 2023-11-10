@@ -46,7 +46,7 @@ export default function Home() {
 
   useEffect(() => {
     if (typeUser === "admin") {
-      navigator("/Dashboard");
+      navigator("/DashBoarddUsuarios");
     }
 
     console.log(logedUser);
