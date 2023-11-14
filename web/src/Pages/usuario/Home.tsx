@@ -6,6 +6,8 @@ import CardAllOngs from "../../components/CardAllOngs/CardAllOngs";
 import ButtonTradeTheme from "../../components/ButtonTradeTheme";
 import toast from "react-hot-toast";
 import sockett from "../../common/io/io";
+import ModaWinOrLoseRifa from "../../components/Modal/ModaWinOrLoseRifa";
+
 
 
 
@@ -41,10 +43,16 @@ export default function Home() {
   }
 
   const [resultadoSorteio, setResultadoSorteio] = useState<resultadoSorteio[]>([]);
+  const [open,setOpen] = useState<boolean>(false)
+
+ const handleClose = ()=>{
+  setOpen(false)
+ }
 
   const { pegarTema } = useTema() as {
     pegarTema: string;
   };
+
 
 
 
@@ -66,12 +74,12 @@ export default function Home() {
         color: `${pegarTema === "dark" ? "white" : "black"}`,
       },
     });
+
+    
   };
 
   useEffect(() => {
-    if (typeUser === "admin") {
-      navigator("/DashBoarddUsuarios");
-    }
+  
 
     console.log(logedUser);
 
@@ -91,29 +99,46 @@ export default function Home() {
         
       });
 
-    },3000)
+    },2000)
 
   
+    console.log('sorteio',resultadoSorteio)
+
+    
+   
+    if (resultadoSorteio.length > 0 && resultadoSorteio[0]?.dadosGanhador.cpf.length > 0) {
+     if (resultadoSorteio[0]?.dadosGanhador.cpf === cpf) {
+       console.log('Você ganhou');
+      
+     } else {
+       console.log('Você perdeu');
+   
+     }
+     setOpen(true); // Mova esta linha para fora do bloco condicional
+   }
     
 
 
 
 
-  }, [typeUser,logedUser]);
+  }, [resultadoSorteio]);
+
+  useEffect(()=>{
+    if (typeUser === "admin") {
+      navigator("/DashBoarddUsuarios");
+    }
+  },[typeUser])
 
 
- console.log('sorteio',resultadoSorteio)
 
- const cpf = User[0]?.cpf
 
- if(resultadoSorteio.length > 0){
-  if(resultadoSorteio[0]?.dadosGanhador.cpf === cpf){
-    notify('voce ganhou')
-   } else {
-    notify('voce perdeu')
-   }
- }
 
+  const cpf = User[0]?.cpf
+
+
+  const url = resultadoSorteio.map((valor)=>valor.ganhador?.rifa.imgRifa.slice(24))
+
+  console.log(url)
 
 
   return (
@@ -126,6 +151,19 @@ export default function Home() {
         <h1 className="text-4xl ">Ongs</h1>
       </div>
       <div className="w-full h-[100%]">
+            <ModaWinOrLoseRifa open={open} onClose={handleClose}>
+              <div className="text-black w-full h-full flex flex-col gap-3 " key={resultadoSorteio[0]?.dadosGanhador.cpf}>
+                <div className="flex items-center justify-center gap-3">
+                <h1>Rifa:</h1>
+                <h1>{resultadoSorteio[0]?.ganhador?.rifa.nome}</h1>
+                </div>
+                <h1 className="text-center text-3xl">{resultadoSorteio[0]?.dadosGanhador.cpf === cpf ? 'vc ganhou!' : 'voce perdeu'}</h1>
+                {url.length > 0 ?  <img src={require(`../../uploadsImgRifas/${url}`)} alt="" className="w-full h-full rounded-xl" /> : '' }
+                <p>numero da rifa sorteado: {resultadoSorteio[0]?.ganhador?.numero}</p>
+                <p>nome do ganhador: {resultadoSorteio[0]?.dadosGanhador.nome}</p>
+               
+              </div>
+            </ModaWinOrLoseRifa>
              <CardAllOngs/>
       </div>
     </div>

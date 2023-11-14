@@ -1,6 +1,6 @@
 import { db as prisma } from "../../shared/db";
 import { Request, Response } from "express";
-import {configureSocketIO} from "../../SocketIo/socket";
+import {configureSocketIO,connectedUsers} from "../../SocketIo/socket";
 import { ioo } from "../../index";
 
 export const sorteioUsers = async (req: Request, res: Response) => {
@@ -87,6 +87,7 @@ export const sorteioUsers = async (req: Request, res: Response) => {
       },
       dadosGanhador: dataGanhador[0],
     });
+
     
     res.status(200).json({numeroSorteado : ganhador,dataGanhador})
     

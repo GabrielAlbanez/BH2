@@ -71,7 +71,7 @@ export default function MinhasRotas() {
 
         const responseData = await request.json();
 
-        console.log(responseData);
+    
 
         if ("error" in responseData) {
           dispacht(LogUser(false));
@@ -89,7 +89,7 @@ export default function MinhasRotas() {
 
     fetchData();
     
-    const interval = setInterval(fetchData, 500000);
+    const interval = setInterval(fetchData, 5000);
 
     return () => {
       clearInterval(interval);
