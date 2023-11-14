@@ -27,7 +27,6 @@ import Ongs from "../Pages/usuario/Ongs";
 import AllUsers from "../Pages/adm/AllUsers";
 import AllOngs from "../Pages/adm/AllOngs";
 import AllRifas from "../Pages/adm/AllRifas";
-import { io } from "socket.io-client";
 
 export default function MinhasRotas() {
   const token2 = localStorage.getItem("token");

@@ -20,7 +20,27 @@ export default function Home() {
 
   const navigator = useNavigate();
   const typeUser = User[0]?.tipo;
-  const [resultadoSorteio, setResultadoSorteio] = useState(null);
+
+
+  type resultadoSorteio = {
+    dadosGanhador : {
+      nome : string;
+      email : string;
+      cpf : string
+    },
+    ganhador : {
+      numero : number;
+      rifa : {
+        imgRifa : string;
+        idOng : string;
+        nome : string ;
+        preco : string
+      }
+    } | null
+
+  }
+
+  const [resultadoSorteio, setResultadoSorteio] = useState<resultadoSorteio[]>([]);
 
   const { pegarTema } = useTema() as {
     pegarTema: string;
@@ -37,8 +57,8 @@ export default function Home() {
 
 
 
-  const notify = () => {
-    toast('vc precisa estar logado para acessar essa pagina', {
+  const notify = (message : string) => {
+    toast(message, {
       icon: `${pegarTema === "dark" ? "🌑" : " 🌞"}`,
       style: {
         borderRadius: "10px",
@@ -56,18 +76,19 @@ export default function Home() {
     console.log(logedUser);
 
     if(logedUser === 'false' ){
-      notify()
+      notify('vc precisa estar logado para acessar essa pagina')
       navigator('/')
 
     }
      const cpf = User[0]?.cpf
     setTimeout(()=>{
       sockett.emit('authenticate', cpf);
-      sockett.on('sorteioConcluido', (dados) => {
+      sockett.on('sorteioConcluido', (dados : any) => {
         console.log('Recebeu sorteioConcluido:', dados);
   
-        // Faça o que precisar com os dados recebidos do servidor
-        setResultadoSorteio(dados); // Atualiza o estado com os dados do sorteio
+   
+        setResultadoSorteio([dados]);
+        
       });
 
     },3000)
@@ -80,6 +101,18 @@ export default function Home() {
 
   }, [typeUser,logedUser]);
 
+
+ console.log('sorteio',resultadoSorteio)
+
+ const cpf = User[0]?.cpf
+
+ if(resultadoSorteio.length > 0){
+  if(resultadoSorteio[0]?.dadosGanhador.cpf === cpf){
+    notify('voce ganhou')
+   } else {
+    notify('voce perdeu')
+   }
+ }
 
 
 
