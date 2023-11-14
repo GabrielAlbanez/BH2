@@ -5,6 +5,7 @@ import { LogUser, saveDataUser } from "../../store/slices/AuthToken";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import sockett from "../../common/io/io";
 
 export default function Account() {
   const { pegarTema } = useTema() as {
@@ -39,6 +40,7 @@ export default function Account() {
       localStorage.setItem("token", "");
       localStorage.setItem("isLoged", "false");
       navigator("/");
+      sockett.disconnect();
       window.location.reload();
     }, 1000);
   };

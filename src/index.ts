@@ -8,8 +8,12 @@ import voluntarioRouter from "./routes/voluntarios";
 import trabalhosRotas from "./routes/trabalhos";
 import rotaSorteio from "./routes/sorteio";
 import session from "express-session";
-
+import http from 'http';
+import {configureSocketIO} from "./SocketIo/socket";
 const app = express();
+const server = http.createServer(app);
+ export const ioo = configureSocketIO(server);
+
 dotenv.config();
 const porta = process.env.PORT || 5001;
 
@@ -45,6 +49,6 @@ app.get("/", (req: Request, res: Response) => {
 app.use(rotaUser,routeOng,rifasRoute,voluntarioRouter,trabalhosRotas,rotaSorteio)
 
 
-app.listen(porta, () => {
+server.listen(porta, () => {
   console.log(`server rodando na porta ${porta}`);
 });

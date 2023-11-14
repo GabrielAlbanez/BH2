@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../../store/intex";
 import { useNavigate } from "react-router-dom";
 import { useTema } from "../../common/context/Tema";
 import CardAllOngs from "../../components/CardAllOngs/CardAllOngs";
 import ButtonTradeTheme from "../../components/ButtonTradeTheme";
 import toast from "react-hot-toast";
+import sockett from "../../common/io/io";
+
 
 
 export default function Home() {
@@ -18,6 +20,7 @@ export default function Home() {
 
   const navigator = useNavigate();
   const typeUser = User[0]?.tipo;
+  const [resultadoSorteio, setResultadoSorteio] = useState(null);
 
   const { pegarTema } = useTema() as {
     pegarTema: string;
@@ -30,6 +33,7 @@ export default function Home() {
   const logedUserr = useAppSelector((state) => state.AuthToken.isLoged);
 
   console.log(logedUser)
+
 
 
 
@@ -56,10 +60,21 @@ export default function Home() {
       navigator('/')
 
     }
+     const cpf = User[0]?.cpf
+    setTimeout(()=>{
+      sockett.emit('authenticate', cpf);
+      sockett.on('sorteioConcluido', (dados) => {
+        console.log('Recebeu sorteioConcluido:', dados);
+  
+        // Faça o que precisar com os dados recebidos do servidor
+        setResultadoSorteio(dados); // Atualiza o estado com os dados do sorteio
+      });
 
-
+    },3000)
 
   
+    
+
 
 
 

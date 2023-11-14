@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes, Navigate, useLocation, redirect } from "react-router";
 import { BrowserRouter, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
@@ -27,11 +27,13 @@ import Ongs from "../Pages/usuario/Ongs";
 import AllUsers from "../Pages/adm/AllUsers";
 import AllOngs from "../Pages/adm/AllOngs";
 import AllRifas from "../Pages/adm/AllRifas";
+import { io } from "socket.io-client";
 
 export default function MinhasRotas() {
   const token2 = localStorage.getItem("token");
 
   const dispacht = useDispatch();
+
 
   const { pegarTypeUser, setPegarTypeUser } = useTypeUser() as {
     setPegarTypeUser: (value: string) => void;
@@ -79,6 +81,7 @@ export default function MinhasRotas() {
 
           dispacht(saveDataOng([responseData?.data?.dataOng]));
           dispacht(saveDataUser([responseData?.data?.dataUser]));
+
         }
       } catch (error) {
         console.error("Erro na solicitação:", error);
@@ -86,11 +89,13 @@ export default function MinhasRotas() {
     };
 
     fetchData();
-
-    const interval = setInterval(fetchData, 5000);
+    
+    const interval = setInterval(fetchData, 500000);
 
     return () => {
       clearInterval(interval);
+     // Desconectar o socket ao desmontar o componente, se necessário
+
     };
   }, []);
 

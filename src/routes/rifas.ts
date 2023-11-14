@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Response, Router } from "express";
 import { rifasMiddleware } from "../middlewares/rifas/index";
 import { ControlerRifas } from "../controllers/rifas/index";
 import upload from "../Config/multerRifa";
@@ -12,5 +12,6 @@ rifasRoute.post('/createRifas',upload.single('imgRifa'),rifasMiddleware.validate
 rifasRoute.delete('/deleteRifas/:NameOrCpf',rifasMiddleware.validateOngUserAndUserAdmin,ControlerRifas.deleteRifa)
 rifasRoute.get('/getByidRifa/:id',rifasMiddleware.validateIdRifa,ControlerRifas.getRifaByid)
 rifasRoute.post('/getByRifaForCnpjOng',rifasMiddleware.validateCpnpjOng,ControlerRifas.getByRifasForCnpjOng)
+
 
 export default rifasRoute

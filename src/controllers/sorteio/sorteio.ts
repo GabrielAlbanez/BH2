@@ -1,5 +1,7 @@
 import { db as prisma } from "../../shared/db";
 import { Request, Response } from "express";
+import {configureSocketIO} from "../../SocketIo/socket";
+import { ioo } from "../../index";
 
 export const sorteioUsers = async (req: Request, res: Response) => {
   try {
@@ -69,18 +71,28 @@ export const sorteioUsers = async (req: Request, res: Response) => {
         nome : true,
         email : true,
         sexo : true,
-        endereco : true
+        endereco : true,
+        cpf : true
       
       }
     })
 
     console.log(ganhador)
+
+    const sockeServer = ioo; 
+    ioo.emit('sorteioConcluido', {
+      ganhador: {
+        numero: ganhador[0]?.numero,
+        rifa: ganhador[0]?.rifa,
+      },
+      dadosGanhador: dataGanhador[0],
+    });
     
     res.status(200).json({numeroSorteado : ganhador,dataGanhador})
     
 
 
   } catch (error) {
-    res.status(404).json({ message: `erro ao fazer sorteio ${error}` });
+    res.status(201).json({ message: `erro ao fazer sorteio ${error}` });
   }
 };
