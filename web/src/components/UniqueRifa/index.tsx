@@ -62,17 +62,19 @@ export default function UniqueRifa() {
                   />
                 </div>
               </section>
-              <section className="flex flex-col items-center justify-center mt-6 lg:mt-0">
-                <div className="text-center">
+              <section className="flex flex-col items-center justify-center mt-6 md:gap-10 lg:mt-0 ">
+                <div className="text-center ">
                    {valor.sorteado === true ? (<h1 className="text-4xl font-semibold underline mb-4">Números Sorteado</h1>) : (<h1 className="text-4xl font-semibold underline mb-4">Números Comprados</h1>)}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {numerosComprados.map((numero, index) => (
                       <div key={index} className={`${numero.numero == valor.numeroSorteado.replace(/\./g, "") ? "bg-green-500" : "bg-gray-400"} p-4 rounded-md text-center mb-4 md:mb-0 px-2`}>
                         <p className={`text-2xl  `}>{numero.numero}</p>
                       </div>
                     ))}
                   </div>
+                 
                 </div>
+                {valor.sorteado == true && (<><h1 className="text-2xl">cpf do ganhador: {valor.ganhador}</h1></>)}
               </section>
             </div>
           </div>

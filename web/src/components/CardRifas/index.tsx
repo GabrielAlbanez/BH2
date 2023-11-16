@@ -12,8 +12,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function CardRifas() {
-  type dataOng = 
-   
+  type dataOng =
+
     {
       imgRifa: string;
       nome: string;
@@ -21,9 +21,9 @@ export default function CardRifas() {
       descricao: string;
       NumeroComprado: Array<number>;
       id: number;
-      sorteado : boolean
+      sorteado: boolean
     }
-  
+
 
 
   const [dataRifa, setDataRifa] = useState<dataOng[]>([]);
@@ -51,14 +51,21 @@ export default function CardRifas() {
     getRifasOng();
   }, [dataRifa]);
 
-  
 
-  console.log('dataRifa',dataRifa)
+
+  console.log('dataRifa', dataRifa)
 
 
   const url = dataRifa.map((valor) => valor.imgRifa.slice(24));
 
- 
+
+  const sortRifa = async (id: number) => {
+    axios.post('http://localhost:8080/Drawlots', {
+      idRifa : id
+    })
+  }
+
+
 
   return (
     <>
@@ -66,11 +73,12 @@ export default function CardRifas() {
         <>
           <div className={`flex gap-16 flex-wrap h-full w-full items-center justify-center `}>
             {dataRifa.map((rifa, index) => (
-              <Link to={`/UniqueRIfa/${rifa.id}`} key={index}>
-                <div className={`${rifa.sorteado === true ? 'opacity-60' : 'opacity-100'}`}>
-                  <Card className="w-80 shadow-xl shadow-purple-500">
+
+              <div className={`${rifa.sorteado === true ? 'opacity-60' : 'opacity-100'}`}>
+                <Card className="w-80 shadow-xl shadow-purple-500">
+                  <Link to={`/UniqueRIfa/${rifa.id}`} key={index}>
                     <CardHeader shadow={false} floated={false} className="h-64">
-                      {url &&(
+                      {url && (
                         <img
                           src={require(`../../uploadsImgRifas/${url[index]}`)}
                           alt="card-image"
@@ -78,26 +86,25 @@ export default function CardRifas() {
                         />
                       )}
                     </CardHeader>
-                    <CardBody className="text-black text-xl w-full">
-                      <div className="mb-2 flex items-center justify-center">
-                        <Typography color="blue-gray" className="font-medium">
-                          {rifa.nome}
-                        </Typography>
-                      </div>
-                    </CardBody>
-                    <CardFooter className="pt-0">
-                      {rifa.sorteado === true && (<h1 className="text-black text-center">essa rifa ja foi sorteada</h1>)}
-                      <Button
-                        ripple={false}
-                        fullWidth={true}
-                        className="bg-blue-gray-900/10 text-black shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-                      >
-                        Ver mais...
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                </div>
-              </Link>
+                  </Link>
+                  <CardBody className="text-black text-xl w-full">
+                    <div className="mb-2 flex items-center justify-center">
+                      <Typography color="blue-gray" className="font-medium">
+                        {rifa.nome}
+                      </Typography>
+                    </div>
+                  </CardBody>
+                  <CardFooter className="pt-0">
+                    {rifa.sorteado === true && (<h1 className="text-black text-center">essa rifa ja foi sorteada</h1>)}
+                    {rifa.sorteado === false && (
+                      <div className="w-full flex justify-center items-center">
+                        <button onClick={() => { sortRifa(rifa.id) }} className="text-white hover:shadow-2xl bg-black rounded-2xl px-3 py-3  hover:shadow-fuchsia-500 hover:scale-110 transition-all duration-1000 ">sortear rifa
+                        </button>
+                      </div>)}
+                  </CardFooter>
+                </Card>
+              </div>
+
             ))}
           </div>
         </>
