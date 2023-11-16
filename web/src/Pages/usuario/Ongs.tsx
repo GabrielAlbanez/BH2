@@ -164,15 +164,15 @@ export default function Ongs() {
                     >
                       {data.sorteado === true ? (<div className="flex flex-col justify-center items-center h-full w-full">
                       
-                        <div className="w-[100%]  flex sm:gap-20 items-center justify-center sm:justify-center sm:items-center">
+                        <div className="w-[100%]  flex  items-center justify-center sm:justify-center sm:items-center">
                         <img
                           src={require(`../../uploadsImgRifas/${urlsImgRifas[index]}`)}
                           alt=""
-                          className=" w-[50%] h-[60%]  sm:w-[80%] sm:h-[90%] rounded-2xl   "
+                          className=" w-[50%] h-[60%]  sm:w-[60%] sm:h-[70%] rounded-2xl   "
                         />{" "}
                        
                       </div>
-                      <div className=" px-6 py-3 sm:py-9 text-center sm:text-start  flex justify-center items-center  flex-col gap-5 sm:gap-0">
+                      <div className=" px-6   text-center sm:text-start  flex justify-center items-center  flex-col gap-5 sm:gap-0">
                         <h1>Essa rifa ja foi sorteada</h1>
                       </div>
                       

@@ -117,6 +117,7 @@ export default function Rifas() {
 
                   </>) : (<>
                     <div className="max-w-sm rounded overflow-hidden shadow-xl mx-auto shadow-fuchsia-500 hover:shadow-2xl hover:scale-110 transition-all hover:shadow-fuchsia-500">
+                      {valor.rifa.sorteado === true && valor.rifa.ganhador !== User[0]?.cpf ? (<h1>vc perdeu</h1>) : (<></>)}
                     <img
                       src={require(`../../uploadsImgRifas/${valor.rifa.imgRifa.slice(24)}`)}
                       alt=""
