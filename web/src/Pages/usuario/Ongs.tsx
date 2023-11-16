@@ -33,6 +33,7 @@ export default function Ongs() {
         nome: string;
         preco: string;
         id: number;
+        sorteado : boolean;
       }
     ];
     endereco: string;
@@ -105,6 +106,15 @@ export default function Ongs() {
     console.log("data", req.data);
   };
 
+
+  const verySortRifa = (sorteado : boolean)=>{
+      if(sorteado === true){
+        notify('essa rifa ja foi sorteada')
+      } else {
+        notify('essa rifa ainda n foi sorteada')
+      }
+  }
+
   return (
     <div
       className={`  transition-all duration-1000  ${
@@ -142,12 +152,32 @@ export default function Ongs() {
               {dataOng[0].rifas.length > 0 ? (
                 <>
                   {dataOng[0]?.rifas.map((data, index) => (
+                    
                     <div
-                      className={`max-w-sm rounded-xl shadow-lg ${
+                      onMouseEnter={()=>{verySortRifa(data.sorteado)}}
+                      className={`max-w-sm rounded-xl shadow-lg   ${
                         pegarTema === "dark" ? "shadow-fuchsia-500" : ""
-                      } w-[60%] h-[50%] p-4 overflow-hidden sm:overflow-visible   gap-20 hover:scale-105 transition-all duration-400 cursor-pointer hover:shadow-fuchsia-500 hover:shadow-2xl`}
+                        
+                      } w-[60%] h-[50%] p-4 overflow-hidden sm:overflow-visible   gap-20 hover:scale-105 transition-all duration-400 cursor-pointer hover:shadow-fuchsia-500 hover:shadow-2xl
+                      ${data.sorteado === true ? ' opacity-50 hover:opacity-100' : 'opacity-100'}
+                      `}
                     >
-                      <div className="w-[100%]  flex sm:gap-20 items-center justify-center sm:justify-center sm:items-center">
+                      {data.sorteado === true ? (<div className="flex flex-col justify-center items-center h-full w-full">
+                      
+                        <div className="w-[100%]  flex sm:gap-20 items-center justify-center sm:justify-center sm:items-center">
+                        <img
+                          src={require(`../../uploadsImgRifas/${urlsImgRifas[index]}`)}
+                          alt=""
+                          className=" w-[50%] h-[60%]  sm:w-[80%] sm:h-[90%] rounded-2xl   "
+                        />{" "}
+                       
+                      </div>
+                      <div className=" px-6 py-3 sm:py-9 text-center sm:text-start  flex justify-center items-center  flex-col gap-5 sm:gap-0">
+                        <h1>Essa rifa ja foi sorteada</h1>
+                      </div>
+                      
+                      </div>) : (<>
+                        <div className="w-[100%]  flex sm:gap-20 items-center justify-center sm:justify-center sm:items-center">
                         <img
                           src={require(`../../uploadsImgRifas/${urlsImgRifas[index]}`)}
                           alt=""
@@ -173,7 +203,9 @@ export default function Ongs() {
                         <div>
                           <p>valor da Rifa: {data.preco}</p>
                         </div>
-                      </div>
+                      </div></>)}
+
+                 
                     </div>
                   ))}
                 </>

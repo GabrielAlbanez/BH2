@@ -24,18 +24,18 @@ model Usuario {
 }
 
 model Ong {
-  cnpj  String @id
-  nome  String
-  email String @unique
-  senha String
-  telefone    String
-  endereco    String?
+  cnpj         String        @id
+  nome         String
+  email        String        @unique
+  senha        String
+  telefone     String
+  endereco     String?
   redesSociais String?
-  aprovado    Boolean?  @default(false)
-  Logo        String? 
-  rifas       Rifa[]
-  Voluntarios Voluntarios[]
-  trabalhos   Trabalho[]
+  aprovado     Boolean?      @default(false)
+  Logo         String?
+  rifas        Rifa[]
+  Voluntarios  Voluntarios[]
+  trabalhos    Trabalho[]
 }
 
 model Voluntarios {
@@ -64,6 +64,7 @@ model Rifa {
   usuario        Usuario?         @relation(fields: [CpfUsuario], references: [cpf], onDelete: Cascade)
   ong            Ong?             @relation(fields: [idOng], references: [cnpj], onDelete: Cascade)
   NumeroComprado NumeroComprado[]
+  sorteado       Boolean?          @default(false)
 }
 
 model NumeroComprado {

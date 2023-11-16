@@ -33,7 +33,6 @@ export default function MinhasRotas() {
 
   const dispacht = useDispatch();
 
-
   const { pegarTypeUser, setPegarTypeUser } = useTypeUser() as {
     setPegarTypeUser: (value: string) => void;
     pegarTypeUser: string;
@@ -50,9 +49,6 @@ export default function MinhasRotas() {
   // }>;
 
   // const typeUser = User[0]?.tipo;
-
-
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,8 +67,6 @@ export default function MinhasRotas() {
 
         const responseData = await request.json();
 
-    
-
         if ("error" in responseData) {
           dispacht(LogUser(false));
         } else {
@@ -80,7 +74,6 @@ export default function MinhasRotas() {
 
           dispacht(saveDataOng([responseData?.data?.dataOng]));
           dispacht(saveDataUser([responseData?.data?.dataUser]));
-
         }
       } catch (error) {
         console.error("Erro na solicitação:", error);
@@ -88,13 +81,12 @@ export default function MinhasRotas() {
     };
 
     fetchData();
-    
+
     const interval = setInterval(fetchData, 5000);
 
     return () => {
       clearInterval(interval);
-     // Desconectar o socket ao desmontar o componente, se necessário
-
+      // Desconectar o socket ao desmontar o componente, se necessário
     };
   }, []);
 
@@ -128,14 +120,14 @@ export default function MinhasRotas() {
           }
         />
 
-           <Route
+        <Route
           path="/Ong/:cnpj"
           element={
             <ProtectedRoute user={isLogedd}>
               <Ongs />
             </ProtectedRoute>
           }
-        />    
+        />
         <Route
           path="/Home"
           element={
@@ -144,9 +136,9 @@ export default function MinhasRotas() {
             </ProtectedRoute>
           }
         />
-        <Route path="/DashBoarddUsuarios" element={<AllUsers/>} />
-        <Route path="/DasBoarddOngs" element={<AllOngs/>} />
-        <Route path="/RifasDashboard" element={<AllRifas/>} />
+        <Route path="/DashBoarddUsuarios" element={<AllUsers />} />
+        <Route path="/DasBoarddOngs" element={<AllOngs />} />
+        <Route path="/RifasDashboard" element={<AllRifas />} />
         <Route
           path="/Doação"
           element={
@@ -203,7 +195,7 @@ export default function MinhasRotas() {
           path="/UniqueRIfa/:id"
           element={
             <ProtectedRouOng user={isLogedd}>
-              <UniqueRifa/>
+              <UniqueRifa />
             </ProtectedRouOng>
           }
         />
@@ -218,7 +210,7 @@ interface propsProtectRoute {
 }
 
 const ProtectedRoute = ({ user, children }: propsProtectRoute) => {
-  if (user === "false" || user === 'ongLogada') {
+  if (user === "false" || user === "ongLogada") {
     return <Navigate to={"/"} replace />;
   }
   return children;
@@ -230,7 +222,6 @@ const ProtectedRouOng = ({ user, children }: propsProtectRoute) => {
   }
   return children;
 };
-
 
 const ProtectedRouteAdm = ({ user, children }: propsProtectRoute) => {
   if (user !== "admin") {

@@ -7,6 +7,15 @@ export const sorteioUsers = async (req: Request, res: Response) => {
   try {
     const idRifa = req.body.idRifa;
 
+    await prisma.rifa.update({
+      where : {
+        id : idRifa
+      },
+      data : {
+        sorteado : true
+      }
+    })
+
     const numberRifas = await prisma.rifa.findMany({
       where: {
         id: idRifa,
