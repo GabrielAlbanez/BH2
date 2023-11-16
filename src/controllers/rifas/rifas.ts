@@ -157,6 +157,8 @@ export const getByRifasForCpfUser = async (req: Request, res: Response)=>{
                 nome : true,
                 preco : true,
                 descricao : true,
+                ganhador : true,
+                sorteado : true,
                 ong : {
                   select : {
                     nome : true

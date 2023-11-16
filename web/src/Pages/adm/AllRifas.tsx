@@ -12,6 +12,8 @@ export default function AllRifas() {
     descricao: string;
     CpfUsuario: string;
     idOng: string;
+    sorteado : boolean;
+    ganhador : string;
     ong: {
       cnpj: string;
       nome: string;
@@ -116,6 +118,8 @@ export default function AllRifas() {
             <th className="py-2 px-4 border-b">ID da Ong</th>
             <th className="py-2 px-4 border-b">Numeros Comprados</th>
             <th className="py-2 px-4 border-b">Cpf User</th>
+            <th className="py-2 px-4 border-b">Sorteado</th>
+            <th className="py-2 px-4 border-b">cpf do ganhador</th>
           </tr>
         </thead>
         <tbody>
@@ -156,6 +160,8 @@ export default function AllRifas() {
                   <></>
                 )}
               </td>
+              <td>{rifa.sorteado.toString()}</td>
+              <td>{rifa.ganhador}</td>
             </tr>
           ))}
         </tbody>

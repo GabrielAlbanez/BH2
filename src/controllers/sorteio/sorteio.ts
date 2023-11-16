@@ -51,7 +51,7 @@ export const sorteioUsers = async (req: Request, res: Response) => {
         }
     })
     
-    
+
  
 
     // const infAll = nameRifas.map((valor)=>valor.NumeroComprado)
@@ -88,6 +88,16 @@ export const sorteioUsers = async (req: Request, res: Response) => {
     })
 
     console.log(ganhador)
+
+
+    await prisma.rifa.update({
+      where : {
+        id : idRifa
+      },
+      data : {
+        ganhador : objetoSorteado.usuarioCpf
+      }
+    })
 
     const sockeServer = ioo; 
     ioo.emit('sorteioConcluido', {
