@@ -118,8 +118,8 @@ export default function Ongs() {
   return (
     <div
       className={`  transition-all duration-1000  ${
-        pegarTema === "dark" ? "bg-[#202020] text-white " : "bg-[#CEF3FF]"
-      }  w-full sm:h-[91vh] h-[100%] `}
+        pegarTema === "dark" ? "bg-black text-white " : "bg-[#CEF3FF]"
+      }  w-full sm:h-[100%] h-[100%] `}
     >
       {dataOng.length > 0 ? (
         <div className="h-full w-full">
@@ -133,9 +133,7 @@ export default function Ongs() {
           </section>
           <section className="w-full flex justify-between pt-16 h-[70%] flex-col gap-10 sm:gap-0 sm:flex-row ">
             <div
-              className={` transition-all duration-1000 w-[100%] sm:w-[50%] h-full flex flex-col  gap-20 sm:gap-32 items-center    sm:border-r-[1px] ${
-                pegarTema === "dark" ? "border-white" : "border-black"
-              }`}
+              className={` transition-all duration-1000 w-[100%] sm:w-[50%] h-full flex flex-col  gap-20 sm:gap-32 items-center    `}
             >
               <h2 className="text-3xl">Informaçoes Ong</h2>
               <div className="w-full h-full flex flex-col gap-10 justify-start items-center  text-md sm:text-xl">
@@ -148,7 +146,7 @@ export default function Ongs() {
             <h1 className="text-center pt-10 text-2xl visible sm:hidden">
               Rifas
             </h1>
-            <div className=" w-full sm:w-[50%] h-full flex  justify-center gap-10 flex-wrap items-center ">
+            <div className=" w-full sm:w-[50%] h-full flex  justify-center gap-16 flex-wrap items-center ">
               {dataOng[0].rifas.length > 0 ? (
                 <>
                   {dataOng[0]?.rifas.map((data, index) => (
@@ -168,11 +166,11 @@ export default function Ongs() {
                         <img
                           src={require(`../../uploadsImgRifas/${urlsImgRifas[index]}`)}
                           alt=""
-                          className=" w-[50%] h-[60%]  sm:w-[60%] sm:h-[70%] rounded-2xl   "
+                          className=" w-[50%] h-[60%]  sm:w-[50%] sm:h-[60%] rounded-2xl   "
                         />{" "}
                        
                       </div>
-                      <div className=" px-6   text-center sm:text-start  flex justify-center items-center  flex-col gap-5 sm:gap-0">
+                      <div className=" px-6 py-2   text-center sm:text-start  flex justify-center items-center  flex-col gap-5 sm:gap-0">
                         <h1>Essa rifa ja foi sorteada</h1>
                       </div>
                       

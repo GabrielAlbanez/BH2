@@ -56,7 +56,7 @@ export default function Account() {
   return (
     <div
       className={` w-full h-[91vh] transition-all duration-1000 flex items-center justify-center flex-col gap-10 ${
-        pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
+        pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF]"
       }`}
     >
       <div className="text-4xl">Account</div>

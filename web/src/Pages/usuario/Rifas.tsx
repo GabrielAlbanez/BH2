@@ -83,11 +83,13 @@ export default function Rifas() {
 
 
   return (
-    <>
-      <h1 className="text-3xl text-center">Minhas rifas</h1>
+    <div className={`transition-all duration-1000  ${
+      pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF]"
+    }`}>
+      <h1 className="text-3xl text-center pt-10" >Minhas rifas</h1>
 
       {dataNumerosComprados && dataNumerosComprados[0]?.numerosComprados.length > 0 ? (
-        <div className="h-[91vh] w-full flex gap-5 flex-wrap items-center justify-center">
+        <div className="h-[100%] sm:h-[91vh] w-full flex gap-5 flex-wrap items-center justify-center">
           {dataNumerosComprados.map((numero, outerIndex) => (
             <React.Fragment key={outerIndex}>
               {numero.numerosComprados.map((valor, innerIndex) => (
@@ -145,6 +147,6 @@ export default function Rifas() {
           <h1>Você ainda não comprou nenhuma rifa</h1>
         </div>
       )}
-    </>
+    </div>
   );
 }

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../../store/intex";
 import { useNavigate } from "react-router-dom";
+import { useTema } from "../../common/context/Tema";
 
 export default function AllRifas() {
   type dataRifa = {
@@ -74,8 +75,16 @@ export default function AllRifas() {
     }
   }, [typeUser]);
 
+
+
+  const { pegarTema } = useTema() as {
+    pegarTema: string;
+  };
+
   return (
-    <div className="mt-8 mx-4">
+    <div className={`pt-8 p-4 h-full w-full sm:h-full transition-all duration-1000  ${
+      pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF]"
+    }`}>
       <h2 className="text-3xl font-bold mb-4">Rifas List</h2>
       <div className="mb-4 flex items-center">
         <label htmlFor="search" className="mr-2">
@@ -87,7 +96,7 @@ export default function AllRifas() {
             id="search"
             onChange={handleSearch}
             value={buscarData}
-            className="p-2 border border-gray-300 pr-8 rounded"
+            className={`p-2 border  pr-8 rounded ${pegarTema === 'dark' ? "text-black" : "text-white"}`}
             placeholder="Buscar Rifas"
           />
           <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -109,7 +118,9 @@ export default function AllRifas() {
         </div>
       </div>
       <table className="min-w-full border border-gray-300">
-        <thead className="bg-gray-200">
+        <thead className={` transition-all duration-1000  ${
+        pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
+      }`}>
           <tr>
             <th className="py-2 px-4 border-b">ID</th>
             <th className="py-2 px-4 border-b">Nome</th>

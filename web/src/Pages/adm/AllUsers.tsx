@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../../store/intex";
 import { useNavigate } from "react-router-dom";
 import sockett from "../../common/io/io";
+import { useTema } from "../../common/context/Tema";
 
 export default function AllUsers() {
   type dataUser = {
@@ -81,9 +82,16 @@ export default function AllUsers() {
 
   // const valores = Object.values()
 
+
+  const { pegarTema } = useTema() as {
+    pegarTema: string;
+  };
+
   return (
-    <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-4">Lista de Usuarios</h2>
+    <div className={` h-full w-full sm:h-[90vh]  transition-all duration-1000  ${
+      pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF]"
+    }`}>
+      <h2 className="text-2xl font-bold mb-4 pt-10">Lista de Usuarios</h2>
       <h1>
         Usuários logados nesse momento: {Object.keys(userConecteds).length}
       </h1>
@@ -97,13 +105,17 @@ export default function AllUsers() {
           id="search"
           onChange={handleSearch}
           value={searchTerm}
-          className="p-2 border border-gray-300"
+          className={`p-2 ${pegarTema === 'dark' ? 'text-black' : 'text-white'}`}
         />
 
       </div>
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-300">
-          <thead className="bg-gray-200">
+        <table className={`min-w-full  border-gray-300 transition-all duration-1000  ${
+        pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
+      }`}>
+          <thead className={` ${
+        pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
+      }`}>
             <tr>
               <th className="py-2 px-4 border-b">CPF</th>
               <th className="py-2 px-4 border-b">Nome</th>

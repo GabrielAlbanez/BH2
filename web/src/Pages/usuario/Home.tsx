@@ -143,12 +143,12 @@ export default function Home() {
 
   return (
     <div
-      className={` w-full h-[100%] sm:h-[91vh] transition-all duration-1000 flex items-center justify-center flex-col gap-12 py-5 sm:py-0 ${
-        pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
+      className={` w-full h-[100%] sm:h-[91vh] transition-all duration-1000 flex items-center justify-center flex-col gap-5 py-5 sm:py-0 ${
+        pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF]"
       }`}
     >
       <div>
-        <h1 className="text-4xl ">Ongs</h1>
+        <h1 className="text-4xl pt-10">Ongs</h1>
       </div>
       <div className="w-full h-[100%]">
             <ModaWinOrLoseRifa open={open} onClose={handleClose}>
