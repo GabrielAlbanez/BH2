@@ -14,7 +14,7 @@ const ModaWinOrLoseRifa: React.FC<PropsModal> = ({ open, onClose, children }) =>
   return (
     <div
       onClick={onClose}
-      className={`fixed inset-0 flex justify-center items-center transition-colors ${
+      className={`fixed inset-0 flex justify-center items-center transition-colors z-50 ${
         open ? "visible bg-black/20 " : "invisible "
       }`}
     >

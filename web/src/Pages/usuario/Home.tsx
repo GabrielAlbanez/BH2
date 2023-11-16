@@ -158,7 +158,7 @@ export default function Home() {
                 <h1>{resultadoSorteio[0]?.ganhador?.rifa.nome}</h1>
                 </div>
                 <h1 className="text-center text-3xl">{resultadoSorteio[0]?.dadosGanhador.cpf === cpf ? 'vc ganhou!' : 'voce perdeu'}</h1>
-                {url.length > 0 ?  <img src={require(`../../uploadsImgRifas/${url}`)} alt="" className="w-full h-full rounded-xl" /> : '' }
+                {url.length > 0 ?  <img src={require(`../../uploadsImgRifas/${url}`)} alt="" className="w-full h-full rounded-xl " /> : '' }
                 <p>numero da rifa sorteado: {resultadoSorteio[0]?.ganhador?.numero}</p>
                 <p>nome do ganhador: {resultadoSorteio[0]?.dadosGanhador.nome}</p>
                
