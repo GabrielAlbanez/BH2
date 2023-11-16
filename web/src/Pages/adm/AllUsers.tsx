@@ -88,59 +88,49 @@ export default function AllUsers() {
   };
 
   return (
-    <div className={` h-full w-full sm:h-[90vh]  transition-all duration-1000  ${
-      pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF]"
-    }`}>
-      <h2 className="text-2xl font-bold mb-4 pt-10">Lista de Usuarios</h2>
-      <h1>
-        Usuários logados nesse momento: {Object.keys(userConecteds).length}
-      </h1>
-
-      <div className="mb-4">
-        <label htmlFor="search" className="mr-2">
-          Busca:
-        </label>
-        <input
-          type="text"
-          id="search"
-          onChange={handleSearch}
-          value={searchTerm}
-          className={`p-2 ${pegarTema === 'dark' ? 'text-black' : 'text-white'}`}
-        />
-
-      </div>
-      <div className="overflow-x-auto">
-        <table className={`min-w-full  border-gray-300 transition-all duration-1000  ${
-        pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
-      }`}>
-          <thead className={` ${
-        pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
-      }`}>
-            <tr>
-              <th className="py-2 px-4 border-b">CPF</th>
-              <th className="py-2 px-4 border-b">Nome</th>
-              <th className="py-2 px-4 border-b">Email</th>
-              <th className="py-2 px-4 border-b">Sexo</th>
-              <th className="py-2 px-4 border-b">Endereço</th>
-              <th className="py-2 px-4 border-b">Tipo</th>
-              <th className="py-2 px-4 border-b">Telefone</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredUsers.map((user : any) => (
-              <tr key={user.cpf} className="border-b text-center">
-                <td className="py-2 px-4">{user.cpf}</td>
-                <td className="py-2 px-4">{user.nome}</td>
-                <td className="py-2 px-4">{user.email}</td>
-                <td className="py-2 px-4">{user.sexo}</td>
-                <td className="py-2 px-4">{user.endereco}</td>
-                <td className="py-2 px-4">{user.tipo}</td>
-                <td className="py-2 px-4">{user.telefone}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <div className={`h-full w-full sm:h-[90vh] transition-all duration-1000 p-4 rounded-lg ${pegarTema === "dark" ? "bg-black text-white" : "bg-blue-200"}`}>
+    <h2 className="text-3xl font-bold mb-4 pt-10">Lista de Usuários</h2>
+    <h1 className="text-lg mb-2">Usuários logados nesse momento: {Object.keys(userConecteds).length}</h1>
+  
+    <div className="mb-4">
+      <label htmlFor="search" className="mr-2">Busca:</label>
+      <input
+        type="text"
+        id="search"
+        onChange={handleSearch}
+        value={searchTerm}
+        className={`p-2 rounded ${pegarTema === 'dark' ? 'text-black' : 'text-white'} bg-gray-100`}
+      />
     </div>
+  
+    <div className="overflow-x-auto">
+      <table className={`min-w-full border-gray-300 transition-all duration-1000 rounded-lg ${pegarTema === "dark" ? "bg-gray-800 text-white" : "bg-blue-100"}`}>
+        <thead className="bg-gray-200">
+          <tr>
+            <th className="py-2 px-4 border-b">CPF</th>
+            <th className="py-2 px-4 border-b">Nome</th>
+            <th className="py-2 px-4 border-b">Email</th>
+            <th className="py-2 px-4 border-b">Sexo</th>
+            <th className="py-2 px-4 border-b">Endereço</th>
+            <th className="py-2 px-4 border-b">Tipo</th>
+            <th className="py-2 px-4 border-b">Telefone</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredUsers.map((user: any) => (
+            <tr key={user.cpf} className="border-b text-center">
+              <td className="py-2 px-4">{user.cpf}</td>
+              <td className="py-2 px-4">{user.nome}</td>
+              <td className="py-2 px-4">{user.email}</td>
+              <td className="py-2 px-4">{user.sexo}</td>
+              <td className="py-2 px-4">{user.endereco}</td>
+              <td className="py-2 px-4">{user.tipo}</td>
+              <td className="py-2 px-4">{user.telefone}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
   );
 }

@@ -21,6 +21,7 @@ export default function CardRifas() {
       descricao: string;
       NumeroComprado: Array<number>;
       id: number;
+      sorteado : boolean
     }
   
 
@@ -63,10 +64,10 @@ export default function CardRifas() {
     <>
       {dataRifa.length || url.length !== 0 ? (
         <>
-          <div className="flex gap-16 flex-wrap h-full w-full items-center justify-center">
+          <div className={`flex gap-16 flex-wrap h-full w-full items-center justify-center `}>
             {dataRifa.map((rifa, index) => (
               <Link to={`/UniqueRIfa/${rifa.id}`} key={index}>
-                <div>
+                <div className={`${rifa.sorteado === true ? 'opacity-60' : 'opacity-100'}`}>
                   <Card className="w-80 shadow-xl shadow-purple-500">
                     <CardHeader shadow={false} floated={false} className="h-64">
                       {url &&(
@@ -85,6 +86,7 @@ export default function CardRifas() {
                       </div>
                     </CardBody>
                     <CardFooter className="pt-0">
+                      {rifa.sorteado === true && (<h1 className="text-black text-center">essa rifa ja foi sorteada</h1>)}
                       <Button
                         ripple={false}
                         fullWidth={true}

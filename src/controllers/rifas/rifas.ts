@@ -37,7 +37,8 @@ export const getByRifasOng  = async(req : Request, res : Response)=>{
           descricao : true,
           preco : true,
           idOng : true,
-          id : true
+          id : true,
+          sorteado : true
           
 
       }

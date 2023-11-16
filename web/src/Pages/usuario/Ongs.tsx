@@ -116,7 +116,7 @@ export default function Ongs() {
   }
 
   return (
-    <div className={`bg-${pegarTema === "dark" ? "black" : "#CEF3FF"} min-h-screen text-${pegarTema === "dark" ? "white" : "black"}`}>
+    <div className={`bg-${pegarTema === "dark" ? "black" : "[#CEF3FF]"} min-h-screen text-${pegarTema === "dark" ? "white" : "black"}`}>
       {dataOng.length > 0 ? (
         <div className="container mx-auto p-4">
           <section className="flex flex-col items-center justify-center pt-7">
@@ -150,7 +150,7 @@ export default function Ongs() {
             </div>
             <div className=" pt-12 md:pt-0 md:w-1/2">
               <h1 className="text-xl md:text-2xl font-bold mb-4  md:text-center text-center">
-                Rifas Disponíveis
+                Rifas
               </h1>
               <div className="flex flex-wrap gap-4 justify-center">
                 {dataOng[0]?.rifas.map((data, index) => (

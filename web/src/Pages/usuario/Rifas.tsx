@@ -97,15 +97,14 @@ export default function Rifas() {
                 <div key={innerIndex} onMouseEnter={()=>{verySortRifa(valor.rifa.sorteado)}} className={`m-4 w-[300px] cursor-pointer  `}>
                   {valor.rifa.ganhador === User[0]?.cpf ? (<>
                     
-                    <div className={`max-w-sm rounded overflow-hidden shadow-xl mx-auto shadow-yellow-400 hover:shadow-2xl hover:scale-110 transition-all hover:shadow-yellow-600 opacity-100`}>
-                    <h1 className="text-2xl text-center">vc ganhou essa rifa</h1>
+                    <div className={`max-w-sm rounded-2xl overflow-hidden shadow-xl mx-auto bg-white text-black  hover:scale-110 transition-all opacity-100`}>
                     <img
                       src={require(`../../uploadsImgRifas/${valor.rifa.imgRifa.slice(24)}`)}
                       alt=""
                       className="w-full h-48 object-cover"
                     />
                       
-                    <div className="px-6 py-4">
+                    <div className="px-6 py-4 w-full flex justify-center items-center">
                       {/* <h1 className="font-bold text-xl mb-2">Número: {valor.numero}</h1> */}
                       <QRCode  value={JSON.stringify({
                         "nome " : valor.rifa.nome,
@@ -115,17 +114,18 @@ export default function Rifas() {
                         
                       })} />
                     </div>
+                    <h1 className="text-md text-center">vc ganhou essa rifa</h1>
+
                   </div>
 
                   </>) : (<>
-                    <div className={`max-w-sm rounded overflow-hidden shadow-xl mx-auto shadow-fuchsia-500 hover:shadow-2xl hover:scale-110 transition-all hover:shadow-fuchsia-500 ${valor.rifa.sorteado === true && valor.rifa.ganhador !== User[0]?.cpf ? 'opacity-60' : 'opacity-100'} `}>
-                      {valor.rifa.sorteado === true && valor.rifa.ganhador !== User[0]?.cpf ? (<h1>vc perdeu</h1>) : (<></>)}
+                    <div className={`max-w-sm rounded-2xl overflow-hidden shadow-xl mx-auto  hover:scale-110 transition-all bg-white text-black ${valor.rifa.sorteado === true && valor.rifa.ganhador !== User[0]?.cpf ? 'opacity-60' : 'opacity-100'} `}>
                     <img
                       src={require(`../../uploadsImgRifas/${valor.rifa.imgRifa.slice(24)}`)}
                       alt=""
                       className="w-full h-48 object-cover"
                     />
-                    <div className="px-6 py-4">
+                    <div className="px-6 py-4 flex items-center justify-center">
                       {/* <h1 className="font-bold text-xl mb-2">Número: {valor.numero}</h1> */}
                       <QRCode  value={JSON.stringify({
                         "nome " : valor.rifa.nome,
@@ -134,7 +134,10 @@ export default function Rifas() {
                         "ong" : valor.rifa.ong.nome
                         
                       })} />
+
                     </div>
+                    {valor.rifa.sorteado === true && valor.rifa.ganhador !== User[0]?.cpf ? (<h1 className="text-center">vc perdeu</h1>) : (<></>)}
+
                   </div></>)}
            
                 </div>
