@@ -34,7 +34,6 @@ export default function AllRifas() {
   };
 
   const [dataRifa, setDataRifa] = useState<dataRifa[]>([]);
-
   const [buscarData, setBuscarData] = useState("");
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +54,6 @@ export default function AllRifas() {
 
   console.log(dataRifa);
 
-
   const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
     cpf: string;
     email: string;
@@ -66,29 +64,47 @@ export default function AllRifas() {
 
   const typeUser = User[0]?.tipo;
 
+  const navigation = useNavigate();
 
-  const navigation = useNavigate()
-
-  useEffect(()=>{
-    if(typeUser !== 'admin'){
-          navigation('/')
+  useEffect(() => {
+    if (typeUser !== "admin") {
+      navigation("/");
     }
-  },[typeUser])
+  }, [typeUser]);
 
   return (
-    <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-4">Rifas List</h2>
-      <div className="mb-4">
+    <div className="mt-8 mx-4">
+      <h2 className="text-3xl font-bold mb-4">Rifas List</h2>
+      <div className="mb-4 flex items-center">
         <label htmlFor="search" className="mr-2">
           Busca:
         </label>
-        <input
-          type="text"
-          id="search"
-          onChange={handleSearch}
-          value={buscarData}
-          className="p-2 border border-gray-300"
-        />
+        <div className="relative">
+          <input
+            type="text"
+            id="search"
+            onChange={handleSearch}
+            value={buscarData}
+            className="p-2 border border-gray-300 pr-8 rounded"
+            placeholder="Buscar Rifas"
+          />
+          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+            <svg
+              className="w-5 h-5 text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 21l-5-5m-1.485-8A9.503 9.503 0 0112 2a9.5 9.5 0 010 19 9.5 9.5 0 010-19 9.5 9.5 0 019.5 9.5c0 2.215-.76 4.26-2.022 5.862"
+              ></path>
+            </svg>
+          </div>
+        </div>
       </div>
       <table className="min-w-full border border-gray-300">
         <thead className="bg-gray-200">
@@ -111,19 +127,34 @@ export default function AllRifas() {
               <td className="py-2 px-4">{rifa.descricao}</td>
               <td className="py-2 px-4">{rifa.idOng}</td>
               <td className="py-2 px-4 ">
-                {dataRifa[0]?.NumeroComprado.map((numero) => (
-                  <div className="">
-                    <p>{numero.numero}</p>
-                  </div>
-                ))}
+                {dataRifa.length > 0 ? (
+                  <>
+                    {dataRifa.map((valor) =>
+                      valor.NumeroComprado.map((numero) => (
+                        <div key={numero.id} className="">
+                          <p>{numero.numero}</p>
+                        </div>
+                      ))
+                    )}
+                  </>
+                ) : (
+                  <></>
+                )}
               </td>
-
               <td className="py-2 px-4 ">
-                {dataRifa[0]?.NumeroComprado.map((numero) => (
-                  <div className="">
-                    <p>{numero.usuarioCpf}</p>
-                  </div>
-                ))}
+                {dataRifa.length > 0 ? (
+                  <>
+                    {dataRifa.map((valor) =>
+                      valor.NumeroComprado.map((numero) => (
+                        <div key={numero.id} className="">
+                          <p>{numero.usuarioCpf}</p>
+                        </div>
+                      ))
+                    )}
+                  </>
+                ) : (
+                  <></>
+                )}
               </td>
             </tr>
           ))}
