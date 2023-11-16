@@ -50,7 +50,8 @@ export const sorteioUsers = async (req: Request, res: Response) => {
             NumeroComprado : true
         }
     })
-
+    
+    
  
 
     // const infAll = nameRifas.map((valor)=>valor.NumeroComprado)

@@ -65,6 +65,7 @@ model Rifa {
   ong            Ong?             @relation(fields: [idOng], references: [cnpj], onDelete: Cascade)
   NumeroComprado NumeroComprado[]
   sorteado       Boolean?          @default(false)
+  ganhador       String?
 }
 
 model NumeroComprado {
