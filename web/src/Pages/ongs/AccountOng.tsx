@@ -1,5 +1,4 @@
 import React from "react";
-import AvatarImgOng from "../../components/AvatarImgOng";
 import { useAppSelector } from "../../store/intex";
 import { useTema } from "../../common/context/Tema";
 import { useNavigate } from "react-router-dom";
@@ -37,30 +36,53 @@ export default function AccountOng() {
   };
 
   const logo = localStorage.getItem("logoOng");
+
+  const Ong = useAppSelector((state) => state.AuthToken.dataOng) as Array<{
+    cnpj: string;
+    email: string;
+    endereco: string;
+    nome: string;
+    telefone: string;
+    redesSociais: string;
+  }>;
+
   return (
-    <div
-      className={`transition-all duration-1000  ${
-        pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
-      } 
-    flex  items-center mx-auto justify-evenly h-full w-full `}
-    >
-      <div className="w-full h-[91vh] flex items-center justify-center  ">
-        <img
-          src={require(`../../uploads/${logo}`)}
-          alt=""
-          className="  w-[58%] h-[68%] rounded-full   p-20"
-          width={1000}
-          height={1000}
-        />
-      </div>
-      <div className="w-[80%]  flex flex-col justify-between  items-center h-[91vh] py-20">
-        <h1>Data ong</h1>
+    <div className={`bg-${pegarTema === "dark" ? "black" : "[#CEF3FF]"} transition-all duration-1000 min-h-screen flex items-center justify-center`}>
+      <div className={`${pegarTema === 'dark' ? "shadow-2xl shadow-fuchsia-500 text-white border-black " : "  shadow-2xl shadow-fuchsia-500 text-black"} border-2 rounded-xl  p-8 max-w-4xl w-full`}>
+        <div className="flex flex-col items-center mb-8">
+          <img src={require(`../../uploads/${logo}`)} alt="" className="w-40 h-40 md:w-52 md:h-52 rounded-full border-4 object-cover border-gray-300 p-3 mb-4" />
+          <h1 className="text-3xl font-semibold ">{Ong[0]?.nome}</h1>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-12 text-center ">
+          <div>
+            <p className="text-lg font-semibold">CNPJ:</p>
+            <p className="text-base">{Ong[0]?.cnpj}</p>
+          </div>
+          <div>
+            <p className="text-lg font-semibold">E-mail:</p>
+            <p className="text-base">{Ong[0]?.email}</p>
+          </div>
+          <div>
+            <p className="text-lg font-semibold">Endereço:</p>
+            <p className="text-base">{Ong[0]?.endereco}</p>
+          </div>
+          <div>
+            <p className="text-lg font-semibold">Redes Sociais:</p>
+            <p className="text-base">{Ong[0]?.redesSociais}</p>
+          </div>
+          <div>
+            <p className="text-lg font-semibold">Telefone:</p>
+            <p className="text-base">{Ong[0]?.telefone}</p>
+          </div>
+        </div>
+        <div className="w-full flex items-center justify-center">
         <button
           onClick={handleLogoutOng}
-          className="px-3 py-3 w-32 border-red-400 border-[1px] rounded-full"
+          className="mt-8 px-6 py-3  bg-red-500 hover:bg-red-600 rounded-full text-white text-lg focus:outline-none focus:ring focus:border-blue-300"
         >
           Logout
         </button>
+        </div>
       </div>
     </div>
   );
