@@ -12,78 +12,70 @@ export default function UniqueRifa() {
     nome: string;
     preco: number;
     descricao: string;
-    NumeroComprado: [{
-      numero :string
-    }];
+    NumeroComprado: [{ numero: string }];
   };
 
   const [dataRifa, setDataRifa] = useState<dataOng[]>([]);
 
   const getaDataRifaById = async () => {
-    axios.get(`http://localhost:8080/getByidRifa/${id}`).then((response) => {
+    try {
+      const response = await axios.get(`http://localhost:8080/getByidRifa/${id}`);
       setDataRifa(response.data.rifa);
-    });
+    } catch (error) {
+      console.error("Erro ao obter rifa por ID:", error);
+    }
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      getaDataRifaById();
-    }, 1000);
-  }, [dataRifa]);
+    getaDataRifaById();
+  }, [id]);
 
   const url = dataRifa.map((valor) => valor.imgRifa.slice(24));
-
-  console.log(dataRifa);
-
 
   const { pegarTema } = useTema() as {
     pegarTema: string;
   };
 
-  const numerosComprados = dataRifa[0]?.NumeroComprado
-  
+  const numerosComprados = dataRifa[0]?.NumeroComprado;
 
   return (
-    <div className={`  transition-all duration-1000  ${
-        pegarTema === "dark" ? "bg-zinc-950 text-white" : "bg-[#CEF3FF]"
-      } `}>
+    <div className={`transition-all duration-1000 ${pegarTema === "dark" ? "bg-zinc-950 text-white" : "bg-[#CEF3FF]"} min-h-screen flex items-center justify-center`}>
       {dataRifa.length > 0 ? (
         dataRifa.map((valor, index) => (
-          <div
-            key={index}
-            className="xl:h-[91vh] w-full flex justify-between items-center px-40 gap-16  "
-          >
-            <section className="h-full flex items-center justify-center flex-col  gap-10">
-              <div className="flex flex-col items-center justify-center gap-5">
-                <h1 className="text-5xl underline">Premio</h1>
-                <h2 className="text-3xl">{valor.nome}</h2>
-              </div>
-              <picture className="w-[100%] h-[70%]">
-                <img
-                  src={require(`../../uploadsImgRifas/${url}`)}
-                  alt=""
-                  className="shadow-fuchsia-500 shadow-2xl w-full h-full object-cover"
-                />
-              </picture>
-            </section>
-            <section className="w-[50%] h-full  flex flex-col justify-center items-center">
-              <div className="h-[20%] flex items-center justify-end">
-                <h1 className="text-4xl  underline">Numeros Comprados</h1>
-              </div>
-              <div className="h-[90%] w-full  flex justify-center ">
-                <p>{valor.NumeroComprado.map((numero)=>(
-                  <h1>{numero.numero}</h1>
-                ))}</p>
-              </div>
-            </section>
+          <div key={index} className="container mx-auto p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 md:gap-28">
+              <section className="flex flex-col items-center justify-center gap-6">
+                <div className="text-center">
+                  <h1 className="text-4xl font-semibold">{valor.nome}</h1>
+                  <p className="text-xl mt-4">{valor.descricao}</p>
+                </div>
+                <div className="w-full h-[30rem] md:mt-6 lg:mt-0">
+                  <img
+                    src={require(`../../uploadsImgRifas/${url}`)}
+                    alt=""
+                    className="w-full h-full object-cover shadow-2xl rounded-lg"
+                  />
+                </div>
+              </section>
+              <section className="flex flex-col items-center justify-center mt-6 lg:mt-0">
+                <div className="text-center">
+                  <h1 className="text-4xl font-semibold underline mb-4">Números Comprados</h1>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {numerosComprados.map((numero, index) => (
+                      <div key={index} className="bg-gray-200 p-4 rounded-md text-center mb-4 md:mb-0 px-2">
+                        <p className="text-2xl">{numero.numero}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            </div>
           </div>
         ))
       ) : (
-        <div className="xl:h-[91vh] w-full flex flex-col items-center justify-center gap-6">
+        <div className="h-full flex flex-col items-center justify-center">
           <h1 className="text-3xl">Carregando Dados</h1>
-
-
-          <div className="animate-spin h-5   flex flex-col justify-center items-center  ">
+          <div className="animate-spin h-5 mt-4">
             <ImSpinner2 />
           </div>
         </div>
