@@ -116,112 +116,83 @@ export default function Ongs() {
   }
 
   return (
-    <div
-      className={`  transition-all duration-1000  ${
-        pegarTema === "dark" ? "bg-black text-white " : "bg-[#CEF3FF]"
-      }  w-full sm:h-[100%] h-[100%] `}
-    >
+    <div className={`bg-${pegarTema === "dark" ? "black" : "#CEF3FF"} min-h-screen text-${pegarTema === "dark" ? "white" : "black"}`}>
       {dataOng.length > 0 ? (
-        <div className="h-full w-full">
-          <section className="w-full  h-[20%] flex  gap-2 items-center justify-center pt-7">
+        <div className="container mx-auto p-4">
+          <section className="flex flex-col items-center justify-center pt-7">
             <img
               src={require(`../../uploads/${url}`)}
               alt=""
-              className="w-20 h-20 rounded-full mr-4"
+              className="w-24 h-24 rounded-full mb-4 shadow-md"
             />
-            <p className="text-2xl ">{dataOng[0].nome}</p>
+            <p className="text-2xl font-bold">{dataOng[0].nome}</p>
           </section>
-          <section className="w-full flex justify-between pt-16 h-[70%] flex-col gap-10 sm:gap-0 sm:flex-row ">
-            <div
-              className={` transition-all duration-1000 w-[100%] sm:w-[50%] h-full flex flex-col  gap-20 sm:gap-32 items-center    `}
-            >
-              <h2 className="text-3xl">Informaçoes Ong</h2>
-              <div className="w-full h-full flex flex-col gap-10 justify-start items-center  text-md sm:text-xl">
-                <p>Nome: {dataOng[0].nome}</p>
-                <p>Endereço: {dataOng[0].endereco}</p>
-                <p>Redes Socias: {dataOng[0].redesSociais}</p>
-                <p>Telefone: {dataOng[0].telefone}</p>
+          <section className="flex flex-col md:flex-row mt-8 gap-4">
+            <div className="md:w-1/2">
+              <h2 className="text-xl md:text-4xl font-bold mb-4 text-center md:text-start">Informações da Ong</h2>
+              <div className="text-sm md:text-md text-center md:text-start flex flex-col gap-5 pt-4">
+                <p className="mb-2">
+                  <span className="font-bold">Nome:</span> {dataOng[0].nome}
+                </p>
+                <p className="mb-2">
+                  <span className="font-bold">Endereço:</span>{" "}
+                  {dataOng[0].endereco}
+                </p>
+                <p className="mb-2">
+                  <span className="font-bold">Redes Sociais:</span>{" "}
+                  {dataOng[0].redesSociais}
+                </p>
+                <p>
+                  <span className="font-bold">Telefone:</span>{" "}
+                  {dataOng[0].telefone}
+                </p>
               </div>
             </div>
-            <h1 className="text-center pt-10 text-2xl visible sm:hidden">
-              Rifas
-            </h1>
-            <div className=" w-full sm:w-[50%] h-full flex  justify-center gap-16 flex-wrap items-center ">
-              {dataOng[0].rifas.length > 0 ? (
-                <>
-                  {dataOng[0]?.rifas.map((data, index) => (
-                    
-                    <div
-                      onMouseEnter={()=>{verySortRifa(data.sorteado)}}
-                      className={`max-w-sm rounded-xl shadow-lg   ${
-                        pegarTema === "dark" ? "shadow-fuchsia-500" : ""
-                        
-                      } w-[60%] h-[50%] p-4 overflow-hidden sm:overflow-visible   gap-20 hover:scale-105 transition-all duration-400 cursor-pointer hover:shadow-fuchsia-500 hover:shadow-2xl
-                      ${data.sorteado === true ? ' opacity-50 hover:opacity-100' : 'opacity-100'}
-                      `}
-                    >
-                      {data.sorteado === true ? (<div className="flex flex-col justify-center items-center h-full w-full">
-                      
-                        <div className="w-[100%]  flex  items-center justify-center sm:justify-center sm:items-center">
-                        <img
-                          src={require(`../../uploadsImgRifas/${urlsImgRifas[index]}`)}
-                          alt=""
-                          className=" w-[50%] h-[60%]  sm:w-[50%] sm:h-[60%] rounded-2xl   "
-                        />{" "}
-                       
-                      </div>
-                      <div className=" px-6 py-2   text-center sm:text-start  flex justify-center items-center  flex-col gap-5 sm:gap-0">
-                        <h1>Essa rifa ja foi sorteada</h1>
-                      </div>
-                      
-                      </div>) : (<>
-                        <div className="w-[100%]  flex sm:gap-20 items-center justify-center sm:justify-center sm:items-center">
-                        <img
-                          src={require(`../../uploadsImgRifas/${urlsImgRifas[index]}`)}
-                          alt=""
-                          className=" w-[50%] h-[60%]  sm:w-[30%] sm:h-[40%]   "
-                        />{" "}
-                        <button
-                          onClick={() => {
-                            SaveNumberRifa(data.id);
-                          }}
-                          className="rounded-full bg-fuchsia-500 px-2 py-3 hover:shadow-2xl hover:shadow-fuchsia-500 hover:scale-110 transition"
-                        >
-                          comprar rifa
-                        </button>
-                      </div>
-                      <div className=" px-6 py-2 text-center sm:text-start  flex  flex-col gap-5 sm:gap-0">
-                        <div className="  font-bold text-xl mb-2">
-                          {data.nome}
-                        </div>
-                        <p className=" text-base hidden sm:block">
-                          {data.descricao}
-                        </p>
-
-                        <div>
-                          <p>valor da Rifa: {data.preco}</p>
-                        </div>
-                      </div></>)}
-
-                 
+            <div className=" pt-12 md:pt-0 md:w-1/2">
+              <h1 className="text-xl md:text-2xl font-bold mb-4  md:text-center text-center">
+                Rifas Disponíveis
+              </h1>
+              <div className="flex flex-wrap gap-4 justify-center">
+                {dataOng[0]?.rifas.map((data, index) => (
+                  <div
+                    key={index}
+                    onMouseEnter={() => {
+                      verySortRifa(data.sorteado);
+                    }}
+                    className={`max-w-sm rounded-lg overflow-hidden w-full md:w-[48%] p-4 transition-all duration-300 cursor-pointer hover:shadow-md ${
+                      data.sorteado ? "opacity-50" : "opacity-100"
+                    }`}
+                  >
+                    <img
+                      src={require(`../../uploadsImgRifas/${urlsImgRifas[index]}`)}
+                      alt=""
+                      className="w-full h-32 object-cover mb-4 rounded-md"
+                    />
+                    <div className="text-sm md:text-md">
+                      <p className="font-bold mb-2">{data.nome}</p>
+                      <p>{data.descricao}</p>
+                      <p className="font-bold mt-2">Valor da Rifa: {data.preco}</p>
                     </div>
-                  ))}
-                </>
-              ) : (
-                <>
-                  <h1 className="text-2xl">
-                    essa ong nao tem rifas disponiveis ainda
-                  </h1>
-                </>
-              )}
+                    {!data.sorteado && (
+                      <button
+                        onClick={() => {
+                          SaveNumberRifa(data.id);
+                        }}
+                        className="block w-full bg-fuchsia-500 text-white rounded-md py-2 mt-4 hover:bg-fuchsia-600 transition duration-300"
+                      >
+                        Comprar Rifa
+                      </button>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
         </div>
       ) : (
-        <div className="xl:h-[91vh] w-full flex flex-col items-center justify-center gap-6">
+        <div className="h-full flex flex-col items-center justify-center">
           <h1 className="text-3xl">Carregando Dados</h1>
-
-          <div className="animate-spin h-5   flex flex-col justify-center items-center  ">
+          <div className="animate-spin h-5 mt-4">
             <ImSpinner2 />
           </div>
         </div>
