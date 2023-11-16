@@ -121,7 +121,10 @@ export const getRifaByid = async(req : Request, res : Response) => {
         NumeroComprado : true,
         nome : true,
         preco : true,
-        descricao : true
+        descricao : true,
+        sorteado : true,
+        numeroSorteado : true,
+        ganhador : true
       }
     })
 

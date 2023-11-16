@@ -13,6 +13,9 @@ export default function UniqueRifa() {
     preco: number;
     descricao: string;
     NumeroComprado: [{ numero: string }];
+    sorteado : boolean;
+    ganhador : string;
+    numeroSorteado : string
   };
 
   const [dataRifa, setDataRifa] = useState<dataOng[]>([]);
@@ -28,7 +31,7 @@ export default function UniqueRifa() {
 
   useEffect(() => {
     getaDataRifaById();
-  }, [id]);
+  }, [id,dataRifa]);
 
   const url = dataRifa.map((valor) => valor.imgRifa.slice(24));
 
@@ -37,6 +40,8 @@ export default function UniqueRifa() {
   };
 
   const numerosComprados = dataRifa[0]?.NumeroComprado;
+
+
 
   return (
     <div className={`transition-all duration-1000 ${pegarTema === "dark" ? "bg-zinc-950 text-white" : "bg-[#CEF3FF]"} min-h-screen flex items-center justify-center`}>
@@ -59,11 +64,11 @@ export default function UniqueRifa() {
               </section>
               <section className="flex flex-col items-center justify-center mt-6 lg:mt-0">
                 <div className="text-center">
-                  <h1 className="text-4xl font-semibold underline mb-4">Números Comprados</h1>
+                   {valor.sorteado === true ? (<h1 className="text-4xl font-semibold underline mb-4">Números Sorteado</h1>) : (<h1 className="text-4xl font-semibold underline mb-4">Números Comprados</h1>)}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {numerosComprados.map((numero, index) => (
-                      <div key={index} className="bg-gray-200 p-4 rounded-md text-center mb-4 md:mb-0 px-2">
-                        <p className="text-2xl">{numero.numero}</p>
+                      <div key={index} className={`${numero.numero == valor.numeroSorteado.replace(/\./g, "") ? "bg-green-500" : "bg-gray-400"} p-4 rounded-md text-center mb-4 md:mb-0 px-2`}>
+                        <p className={`text-2xl  `}>{numero.numero}</p>
                       </div>
                     ))}
                   </div>

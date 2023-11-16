@@ -95,7 +95,8 @@ export const sorteioUsers = async (req: Request, res: Response) => {
         id : idRifa
       },
       data : {
-        ganhador : objetoSorteado.usuarioCpf
+        ganhador : objetoSorteado.usuarioCpf,
+        numeroSorteado : ganhador[0]?.numero.toLocaleString()
       }
     })
 
