@@ -190,7 +190,7 @@ export default function Ongs() {
                           comprar rifa
                         </button>
                       </div>
-                      <div className=" px-6 py-3 sm:py-9 text-center sm:text-start  flex  flex-col gap-5 sm:gap-0">
+                      <div className=" px-6 py-2 text-center sm:text-start  flex  flex-col gap-5 sm:gap-0">
                         <div className="  font-bold text-xl mb-2">
                           {data.nome}
                         </div>

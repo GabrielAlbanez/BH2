@@ -94,10 +94,10 @@ export default function Rifas() {
             <React.Fragment key={outerIndex}>
               {numero.numerosComprados.map((valor, innerIndex) => (
                 
-                <div key={innerIndex} onMouseEnter={()=>{verySortRifa(valor.rifa.sorteado)}} className={`m-4 w-[300px] cursor-pointer  ${valor.rifa.sorteado === true ? 'opacity-50 hover:opacity-100' : 'opacity-100'}`}>
+                <div key={innerIndex} onMouseEnter={()=>{verySortRifa(valor.rifa.sorteado)}} className={`m-4 w-[300px] cursor-pointer  `}>
                   {valor.rifa.ganhador === User[0]?.cpf ? (<>
                     
-                    <div className="max-w-sm rounded overflow-hidden shadow-xl mx-auto shadow-yellow-400 hover:shadow-2xl hover:scale-110 transition-all hover:shadow-yellow-600">
+                    <div className={`max-w-sm rounded overflow-hidden shadow-xl mx-auto shadow-yellow-400 hover:shadow-2xl hover:scale-110 transition-all hover:shadow-yellow-600 opacity-100`}>
                     <h1 className="text-2xl text-center">vc ganhou essa rifa</h1>
                     <img
                       src={require(`../../uploadsImgRifas/${valor.rifa.imgRifa.slice(24)}`)}
@@ -118,7 +118,7 @@ export default function Rifas() {
                   </div>
 
                   </>) : (<>
-                    <div className="max-w-sm rounded overflow-hidden shadow-xl mx-auto shadow-fuchsia-500 hover:shadow-2xl hover:scale-110 transition-all hover:shadow-fuchsia-500">
+                    <div className={`max-w-sm rounded overflow-hidden shadow-xl mx-auto shadow-fuchsia-500 hover:shadow-2xl hover:scale-110 transition-all hover:shadow-fuchsia-500 ${valor.rifa.sorteado === true && valor.rifa.ganhador !== User[0]?.cpf ? 'opacity-60' : 'opacity-100'} `}>
                       {valor.rifa.sorteado === true && valor.rifa.ganhador !== User[0]?.cpf ? (<h1>vc perdeu</h1>) : (<></>)}
                     <img
                       src={require(`../../uploadsImgRifas/${valor.rifa.imgRifa.slice(24)}`)}
