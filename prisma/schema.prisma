@@ -66,6 +66,7 @@ model Rifa {
   NumeroComprado NumeroComprado[]
   sorteado       Boolean?          @default(false)
   ganhador       String?
+  numeroSorteado  String?         @default("null")
 }
 
 model NumeroComprado {
