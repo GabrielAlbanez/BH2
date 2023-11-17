@@ -99,13 +99,13 @@ export default function AllUsers() {
         id="search"
         onChange={handleSearch}
         value={searchTerm}
-        className={`p-2 rounded ${pegarTema === 'dark' ? 'text-black' : 'text-white'} bg-gray-100`}
+        className={`p-2 rounded ${pegarTema === 'dark' ? 'text-black' : 'text-black'} bg-gray-100`}
       />
     </div>
   
     <div className="overflow-x-auto">
       <table className={`min-w-full border-gray-300 transition-all duration-1000 rounded-lg ${pegarTema === "dark" ? "bg-gray-800 text-white" : "bg-blue-100"}`}>
-        <thead className="bg-gray-200">
+        <thead className="">
           <tr>
             <th className="py-2 px-4 border-b">CPF</th>
             <th className="py-2 px-4 border-b">Nome</th>

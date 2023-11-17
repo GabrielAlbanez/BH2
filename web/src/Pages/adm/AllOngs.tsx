@@ -72,8 +72,8 @@ export default function AllOngs() {
   };
 
   return (
-    <div className={`pt-8 p-4 h-full w-full sm:h-[90vh] transition-all duration-1000  ${
-      pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF]"
+    <div className={`pt-8 p-4 h-full w-full sm:h-[90vh] rounded-lg transition-all duration-1000  ${
+      pegarTema === "dark" ? "bg-black text-white" : "bg-blue-200"
     }`}>
       <h2 className="text-3xl font-bold mb-4">Dashboard de ONGs</h2>
       <div className="mb-4 flex items-center">
@@ -83,7 +83,7 @@ export default function AllOngs() {
             id="search"
             onChange={handleSearch}
             value={buscarData}
-            className={`p-2 border  pr-8 rounded ${pegarTema === 'dark' ? "text-black" : "text-white"}`}
+            className={`p-2 rounded ${pegarTema === 'dark' ? 'text-black' : 'text-black'} bg-gray-100`}
             placeholder="Buscar ONGs"
           />
           <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -105,10 +105,8 @@ export default function AllOngs() {
         </div>
       </div>
       <div className="overflow-x-auto pt-10">
-        <table className={`min-w-full transition-all duration-1000  ${
-        pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
-      }`}>
-          <thead className={` transition-all duration-1000  ${
+      <table className={`min-w-full border-gray-300 transition-all duration-1000 rounded-lg ${pegarTema === "dark" ? "bg-gray-800 text-white" : "bg-blue-100"}`}>
+        <thead className={` transition-all duration-1000  ${
         pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
       }`}>
             <tr>
