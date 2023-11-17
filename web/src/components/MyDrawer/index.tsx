@@ -111,7 +111,7 @@ export default function MyDrawer({
           <ListItemButton>
             <ListItemAvatar>
               <Avatar
-                onClick={() => navigator("/")}
+                onClick={() => navigator(`${isLoged ? '/Home' : '/'}`)}
                 alt="Travis Howard"
                 src={Logo}
                 sx={{ width: 30, height: 30 }}

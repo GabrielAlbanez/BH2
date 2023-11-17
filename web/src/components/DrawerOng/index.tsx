@@ -98,7 +98,7 @@ export default function DrawerOng({
           <ListItemButton>
             <ListItemAvatar>
               <Avatar
-                onClick={() => navigator("/")}
+                onClick={() => navigator("/HomeOng")}
                 alt="Travis Howard"
                 src={Logo}
                 sx={{ width: 30, height: 30 }}

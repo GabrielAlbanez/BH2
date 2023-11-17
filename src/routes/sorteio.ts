@@ -5,7 +5,7 @@ import { middlewareSorteio } from "../middlewares/sorteio/index";
 const rotaSorteio = Router()
 
 
-rotaSorteio.post('/Drawlots',controllerSorteio.sorteioUsers)
+rotaSorteio.post('/Drawlots',middlewareSorteio.validateNumbersforDraw,controllerSorteio.sorteioUsers)
 
 
 

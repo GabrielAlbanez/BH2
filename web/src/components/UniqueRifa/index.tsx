@@ -13,16 +13,18 @@ export default function UniqueRifa() {
     preco: number;
     descricao: string;
     NumeroComprado: [{ numero: string }];
-    sorteado : boolean;
-    ganhador : string;
-    numeroSorteado : string
+    sorteado: boolean;
+    ganhador: string;
+    numeroSorteado: string;
   };
 
   const [dataRifa, setDataRifa] = useState<dataOng[]>([]);
 
   const getaDataRifaById = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/getByidRifa/${id}`);
+      const response = await axios.get(
+        `http://localhost:8080/getByidRifa/${id}`
+      );
       setDataRifa(response.data.rifa);
     } catch (error) {
       console.error("Erro ao obter rifa por ID:", error);
@@ -31,7 +33,7 @@ export default function UniqueRifa() {
 
   useEffect(() => {
     getaDataRifaById();
-  }, [id,dataRifa]);
+  }, [id, dataRifa]);
 
   const url = dataRifa.map((valor) => valor.imgRifa.slice(24));
 
@@ -41,10 +43,12 @@ export default function UniqueRifa() {
 
   const numerosComprados = dataRifa[0]?.NumeroComprado;
 
-
-
   return (
-    <div className={`transition-all duration-1000 ${pegarTema === "dark" ? "bg-zinc-950 text-white" : "bg-[#CEF3FF]"} min-h-screen flex items-center justify-center`}>
+    <div
+      className={`transition-all duration-1000 ${
+        pegarTema === "dark" ? "bg-zinc-950 text-white" : "bg-[#CEF3FF]"
+      } min-h-screen flex items-center justify-center`}
+    >
       {dataRifa.length > 0 ? (
         dataRifa.map((valor, index) => (
           <div key={index} className="container mx-auto p-4">
@@ -64,17 +68,44 @@ export default function UniqueRifa() {
               </section>
               <section className="flex flex-col items-center justify-center mt-6 md:gap-10 lg:mt-0 ">
                 <div className="text-center ">
-                   {valor.sorteado === true ? (<h1 className="text-4xl font-semibold underline mb-4">Números Sorteado</h1>) : (<h1 className="text-4xl font-semibold underline mb-4">Números Comprados</h1>)}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {numerosComprados.map((numero, index) => (
-                      <div key={index} className={`${numero.numero == valor.numeroSorteado.replace(/\./g, "") ? "bg-green-500" : "bg-gray-400"} p-4 rounded-md text-center mb-4 md:mb-0 px-2`}>
-                        <p className={`text-2xl  `}>{numero.numero}</p>
-                      </div>
-                    ))}
+                  {valor.sorteado === true ? (
+                    <h1 className="text-4xl font-semibold underline mb-4">
+                      Números Sorteado
+                    </h1>
+                  ) : (
+                    <h1 className="text-4xl font-semibold underline mb-4">
+                      Números Comprados
+                    </h1>
+                  )}
+                  <div className={`grid grid-cols-1 md:grid-cols-${numerosComprados.length > 0 ? '2' : '1'} gap-4`}>
+                    {numerosComprados.length > 0 ? (
+                      <>
+                        {numerosComprados.map((numero, index) => (
+                          <div
+                            key={index}
+                            className={`${
+                              numero.numero ==
+                              valor.numeroSorteado.replace(/\./g, "")
+                                ? "bg-green-500"
+                                : "bg-gray-400"
+                            } p-4 rounded-md text-center mb-4 md:mb-0 px-2`}
+                          >
+                            <p className={`text-2xl  `}>{numero.numero}</p>
+                          </div>
+                        ))}
+                      </>
+                    ) : (
+                      <div className="p-4 rounded-md text-center mb-4 md:mb-0 px-2"><h1 className="text-center w-full">ainda não tem numeros comprados dessa rifa</h1></div>
+                    )}
                   </div>
-                 
                 </div>
-                {valor.sorteado == true && (<><h1 className="text-2xl">cpf do ganhador: {valor.ganhador}</h1></>)}
+                {valor.sorteado == true && (
+                  <>
+                    <h1 className="text-2xl">
+                      cpf do ganhador: {valor.ganhador}
+                    </h1>
+                  </>
+                )}
               </section>
             </div>
           </div>

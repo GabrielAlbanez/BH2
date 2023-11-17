@@ -90,6 +90,11 @@ export default function MinhasRotas() {
     };
   }, []);
 
+
+
+
+
+
   const isLogedd = localStorage.getItem("isLoged");
 
   return (
@@ -210,14 +215,58 @@ interface propsProtectRoute {
 }
 
 const ProtectedRoute = ({ user, children }: propsProtectRoute) => {
+
+  const { pegarTema } = useTema() as {
+    pegarTema: string;
+  };
+  const notify = (message: string): void => {
+
+
+
+    toast(`${message}`, {
+      icon: `${pegarTema === "dark" ? "❌" : " ❌"}`,
+      style: {
+        borderRadius: "10px",
+        background: `${pegarTema === "dark" ? "#333" : "white"}`,
+        color: `${pegarTema === "dark" ? "white" : "black"}`,
+      },
+    });
+  };
+
   if (user === "false" || user === "ongLogada") {
+
+    notify('vc precisa estar logado para acessar essa rota')
+    
     return <Navigate to={"/"} replace />;
   }
   return children;
 };
 
 const ProtectedRouOng = ({ user, children }: propsProtectRoute) => {
+
+
+  const { pegarTema } = useTema() as {
+    pegarTema: string;
+  };
+  const notify = (message: string): void => {
+
+
+
+    toast(`${message}`, {
+      icon: `${pegarTema === "dark" ? "❌" : " ❌"}`,
+      style: {
+        borderRadius: "10px",
+        background: `${pegarTema === "dark" ? "#333" : "white"}`,
+        color: `${pegarTema === "dark" ? "white" : "black"}`,
+      },
+    });
+  };
+
   if (user !== "ongLogada") {
+
+
+    notify('vc precisa estar logado para acessar essa rota')
+
     return <Navigate to={"/"} replace />;
   }
   return children;

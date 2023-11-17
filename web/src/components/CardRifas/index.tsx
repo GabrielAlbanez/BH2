@@ -10,6 +10,8 @@ import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../../store/intex";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useTema } from "../../common/context/Tema";
 
 export default function CardRifas() {
   type dataOng =
@@ -58,11 +60,33 @@ export default function CardRifas() {
 
   const url = dataRifa.map((valor) => valor.imgRifa.slice(24));
 
+  const { pegarTema } = useTema() as {
+    pegarTema: string;
+  };
+
+  const notify = (message: string): void => {
+    toast(`${message}`, {
+      icon: `${pegarTema === "dark" ? "❌" : "❌"}`,
+      style: {
+        borderRadius: "10px",
+        background: `${pegarTema === "dark" ? "#333" : "white"}`,
+        color: `${pegarTema === "dark" ? "white" : "black"}`,
+      },
+    });
+  };
+
 
   const sortRifa = async (id: number) => {
-    axios.post('http://localhost:8080/Drawlots', {
+   const request = await axios.post('http://localhost:8080/Drawlots', {
       idRifa : id
     })
+
+   
+    const response = await request.data
+
+    if('error' in response){
+      notify(`opss.. ${response.error}`)
+    }
   }
 
 

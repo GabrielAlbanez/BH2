@@ -89,7 +89,7 @@ export default function Rifas() {
       <h1 className="text-3xl text-center pt-10" >Minhas rifas</h1>
 
       {dataNumerosComprados && dataNumerosComprados[0]?.numerosComprados.length > 0 ? (
-        <div className="h-[100%] sm:h-[91vh] w-full flex gap-5 flex-wrap items-center justify-center">
+        <div className="h-[100vh] sm:h-[91vh] w-full flex gap-5 flex-wrap items-center justify-center">
           {dataNumerosComprados.map((numero, outerIndex) => (
             <React.Fragment key={outerIndex}>
               {numero.numerosComprados.map((valor, innerIndex) => (
