@@ -1,15 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import logo from "../../uploads/1697800913136-921937213.jpg";
-
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Button,
-} from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 
 export default function CardAllOngs() {
@@ -30,53 +20,36 @@ export default function CardAllOngs() {
     });
   }, []);
 
-  console.log(dataOng);
-
   const url = dataOng.map((valor) => valor.Logo.slice(16));
   const cnpjLimpo = dataOng.map((valor) => valor.cnpj.replace(/[^\d]/g, ''));
-  console.log(url);
 
   return (
-    <>
-      {dataOng.length > 0 ? (<div className="flex gap-20  flex-wrap h-full w-full items-center justify-center ">
-        {dataOng.map((ong, index) => (
+    <div className="flex flex-wrap justify-center">
+      {dataOng.length > 0 ? (
+        dataOng.map((ong, index) => (
           <Link to={`/Ong/${cnpjLimpo[index]}`} key={index}>
-            <div>
-              <Card className="w-80 shadow-xl shadow-purple-500">
-                <CardHeader shadow={false} floated={false} className="h-64">
-                  <img
-                    src={require(`../../uploads/${url[index]}`)}
-                    alt="card-image"
-                    className="h-full w-full object-cover custom-card-image"
-                  />
-                </CardHeader>
-                <CardBody className="text-black  text-xl w-full">
-                  <div className="mb-2 flex items-center justify-center">
-                    <Typography color="blue-gray" className="font-medium">
-                      {ong.nome}
-                    </Typography>
-                  </div>
-                </CardBody>
-                <CardFooter className="pt-0">
-                  <Button
-                    ripple={false}
-                    fullWidth={true}
-                    className="bg-blue-gray-900/10 text-black shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-                  >
-                    Ver mais...
-                  </Button>
-                </CardFooter>
-              </Card>
+            <div className="max-w-md mx-4 my-8 bg-white rounded-2xl overflow-hidden shadow-lg transition duration-500 transform hover:scale-105">
+              <img
+                className="w-full h-52 object-cover transform transition-transform duration-1000 hover:scale-110"
+                src={require(`../../uploads/${url[index]}`)}
+                alt="ong-logo"
+              />
+              <div className="px-6 py-4 flex flex-col gap-2">
+                <div className=" text-2xl mb-2 text-gray-700">{ong.nome}</div>
+                <p className="text-gray-700 text-base">{ong.telefone}</p>
+              </div>
+              <div className="px-6 pt-4 pb-2">
+              </div>
             </div>
           </Link>
-        ))}
-      </div>) : (
-      
-      <div className="flex w-full h-full items-center justify-center">
-   
-          <h1 className="text-3xl">ainda não a nehuma  ong logado no sistema...</h1>
-
-      </div>)}
-    </>
+        ))
+      ) : (
+        <div className="flex w-full h-full items-center justify-center">
+          <h1 className="text-3xl text-center">
+            Ainda não há nenhuma ONG logada no sistema...
+          </h1>
+        </div>
+      )}
+    </div>
   );
 }

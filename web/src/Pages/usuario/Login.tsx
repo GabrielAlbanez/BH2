@@ -151,7 +151,7 @@ export default function Login() {
         <>
           <form
             onSubmit={handleSubmitOng}
-            className={`transition-all duration-1000  w-full h-[91vh]  sm:h-[91vh] lg:h-[100%] xl:h-[91vh] 2xl:h-[91vh]  flex flex-col items-center justify-center gap-16  sm:gap-9 2xl:gap-16
+            className={`transition-all duration-1000  w-full h-[91vh]  sm:h-[91vh] lg:h-[100vh] xl:h-[91vh] 2xl:h-[91vh]  flex flex-col items-center justify-center gap-16  sm:gap-9 2xl:gap-16
             ${
               pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
             } 
