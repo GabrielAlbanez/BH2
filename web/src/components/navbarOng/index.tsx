@@ -44,45 +44,31 @@ export default function NavbarOng() {
     });
   };
 
-  // const verifyLogin = (namePagina: string) => {
-  //   isLoged === "false"
-  //     ? notify("voce precisa estar logado para acessar essa pagina")
-  //     : navigator(`/${namePagina}`);
-  // };
-
   const local = useLocation();
 
-  const pageHome = local.pathname == "/" ? true : false;
+  const pageHome = local.pathname === "/" ? true : false;
 
   console.log(pageHome);
 
   return (
-    <header
-      className={`   transition-all duration-1000  ${
-        pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
-      } w-[100%] h-[9vh]  flex items-center justify-between px-3 sm:px-8 xl:px-1 2xl:px-0 `}
-    >
+    <header className={`transition-all duration-1000 ${pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"} w-[100%] h-[9vh] flex items-center justify-between px-3 sm:px-8 xl:px-1 2xl:px-0`}>
       <ul className="flex md:text-lg lg:text-xl 2xl:text-xl gap-7 items-center overflow-hidden w-[0%] sm:w-[0%] md:w-[100%] md:overflow-visible">
         <img
-          onClick={() =>
-            navigator(`${isLoged === "ongLogada" ? "/HomeOng" : "/"}`)
-          }
+          onClick={() => navigator(`${isLoged === "ongLogada" ? "/HomeOng" : "/"}`)}
           src={Logo}
           alt=""
           height={40}
           width={40}
           className="cursor-pointer"
         />
-        <Link to={'/RfiasOng'}>
-        <li>Rifas</li>
+        <Link to='/RfiasOng'>
+          <li>Rifas</li>
         </Link>
-
         <li>Ajudantes</li>
-
         <li>Trabalhadores</li>
       </ul>
 
-      <ul className="flex gap-7 items-center  w-[40%] overflow-visible sm:w-[80%] md:w-[0%]  md:overflow-hidden ">
+      <ul className="flex gap-7 items-center w-[40%] sm:w-[80%] md:w-[0%] md:overflow-hidden ">
         <DrawerOng
           inten1={<TbPigMoney size={25} />}
           textoI1={"Rifas"}
@@ -93,16 +79,12 @@ export default function NavbarOng() {
           coteudo={<RxHamburgerMenu size={30} />}
         />
       </ul>
-      <div
-        className={`flex h-[60%] gap-5 sm:gap-12  justify-end items-center  sm:items-center  w-[60%] xl:w-[23%] 2xl:w-[31%] xl:h-[100%]  2xl:px-4  sm:w-[28%]  transition-all duration-1000 ${
-          pegarTema === "dark" ? "bg-[#202020]" : "bg-[#CEF3FF] "
-        }`}
-      >
-        <div className="flex items-center  gap-4">
-          <Link to={"/AccountOng"}>
+      <div className={`flex h-[40%] gap-5 sm:gap-12 justify-end items-center sm:items-center w-[60%] xl:w-[23%] 2xl:w-[31%] xl:h-[100%]  2xl:px-4 sm:w-[28%] transition-all duration-1000 ${pegarTema === "dark" ? "bg-[#202020]" : "bg-[#CEF3FF] "}`}>
+        <div className="flex items-center gap-4">
+          <Link to="/AccountOng">
             <AvatarImgOng altura={22} largura={22} />
           </Link>
-          {pageHome ? "" : <ButtonTradeTheme />}
+          {!pageHome && <ButtonTradeTheme />}
         </div>
       </div>
     </header>

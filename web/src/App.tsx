@@ -7,7 +7,7 @@ import { store } from "./store/intex";
 
 function App() {
   return (
-    <div className="App w-full h-full">
+    <div className="App h-full w-full">
       <ReduxProvider store={store}>
         <MinhasRotas />
       </ReduxProvider>

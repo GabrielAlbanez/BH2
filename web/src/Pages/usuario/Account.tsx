@@ -18,6 +18,7 @@ export default function Account() {
     numerosComprados: [];
     sexo: string;
     tipo: string;
+    nome : string;
   }>;
   const logedUser = useAppSelector((state) => state.AuthToken.isLoged);
 
@@ -64,6 +65,7 @@ export default function Account() {
         <>
           {logedUser === "true" || User.length > 0 ? (
             <div className="flex flex-col gap-10 items-center justify-center h-[70%] w-[100%] rounded-2xl  text-lg ">
+              <p>nome: {User[0]?.nome}</p>
               <p>Cpf : {User[0]?.cpf}</p>
               <p>Email : {User[0]?.email}</p>
               

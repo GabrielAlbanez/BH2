@@ -83,13 +83,13 @@ export default function Rifas() {
 
 
   return (
-    <div className={`transition-all duration-1000  ${
+    <div className={`transition-all py-10 duration-1000 w-full h-full lg:h-screen lg:overflow-hidden  ${
       pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF]"
     }`}>
-      <h1 className="text-3xl text-center pt-10" >Minhas rifas</h1>
+      <h1 className="text-3xl text-center " >Minhas rifas</h1>
 
       {dataNumerosComprados && dataNumerosComprados[0]?.numerosComprados.length > 0 ? (
-        <div className="h-[100vh] sm:h-[91vh] w-full flex gap-5 flex-wrap items-center justify-center">
+        <div className=" pt-10 h-full  w-full flex gap-5 flex-wrap items-center justify-center">
           {dataNumerosComprados.map((numero, outerIndex) => (
             <React.Fragment key={outerIndex}>
               {numero.numerosComprados.map((valor, innerIndex) => (

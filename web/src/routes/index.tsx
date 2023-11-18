@@ -14,7 +14,7 @@ import { LogUser, saveDataOng, saveDataUser } from "../store/slices/AuthToken";
 import { useAppSelector } from "../store/intex";
 import Home from "../Pages/usuario/Home";
 import Dashboard from "../Pages/usuario/Dashboard";
-import Doação from "../Pages/usuario/Doação";
+import SobreNos from "../Pages/usuario/SobreNos";
 import HomeOng from "../Pages/ongs/HomeOng";
 import { useTypeUser } from "../common/context/typeUserCadastro";
 import NavbarOng from "../components/navbarOng";
@@ -27,6 +27,7 @@ import Ongs from "../Pages/usuario/Ongs";
 import AllUsers from "../Pages/adm/AllUsers";
 import AllOngs from "../Pages/adm/AllOngs";
 import AllRifas from "../Pages/adm/AllRifas";
+import ListOngs from "../Pages/usuario/ListOngs";
 
 export default function MinhasRotas() {
   const token2 = localStorage.getItem("token");
@@ -145,10 +146,20 @@ export default function MinhasRotas() {
         <Route path="/DasBoarddOngs" element={<AllOngs />} />
         <Route path="/RifasDashboard" element={<AllRifas />} />
         <Route
-          path="/Doação"
+          path="/SobreNos"
           element={
             <ProtectedRoute user={isLogedd}>
-              <Doação />
+              <SobreNos />
+            </ProtectedRoute>
+          }
+        />
+
+
+        <Route
+          path="/ongs"
+          element={
+            <ProtectedRoute user={isLogedd}>
+              <ListOngs />
             </ProtectedRoute>
           }
         />
@@ -236,7 +247,7 @@ const ProtectedRoute = ({ user, children }: propsProtectRoute) => {
   if (user === "false" || user === "ongLogada") {
 
     notify('vc precisa estar logado para acessar essa rota')
-    
+
     return <Navigate to={"/"} replace />;
   }
   return children;

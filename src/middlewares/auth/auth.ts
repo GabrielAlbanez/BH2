@@ -42,24 +42,26 @@ export const authLogin = async (
   }
 
   const dataUser = await prisma.usuario.findMany({
-    where : {
-        email : email
+    where: {
+      email: email
     },
-    select : {
-        cpf : true,
-        email : true,
-        numerosComprados :true,
-        sexo  : true,
-        tipo : true
+    select: {
+      nome: true,
+      cpf: true,
+      email: true,
+      numerosComprados: true,
+      sexo: true,
+      tipo: true,
+
     }
   })
 
-  const timeExpiressToken =  24 * 60 * 60; //24 hours
-  const generateToken = jwt.sign({dataUser},"8080",{
-    expiresIn : timeExpiressToken
+  const timeExpiressToken = 24 * 60 * 60; //24 hours
+  const generateToken = jwt.sign({ dataUser }, "8080", {
+    expiresIn: timeExpiressToken
   })
-   
-  if(generateToken){
+
+  if (generateToken) {
     req.session['token'] = generateToken
     next()
   }

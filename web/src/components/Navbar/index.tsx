@@ -84,83 +84,56 @@ export default function Navbar() {
 
   return (
     <header
-      className={`  transition-all duration-1000  ${
-        pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
-      } w-[100%] h-[9vh]  flex items-center justify-between px-3 sm:px-8 xl:px-1 2xl:px-0 `}
+      className={`  transition-all duration-1000  ${pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
+        } w-[100%] h-[9vh]  flex items-center justify-between px-3 sm:px-8 xl:px-1 2xl:px-0 `}
     >
-      <ul className="flex md:text-lg lg:text-xl 2xl:text-xl gap-7 items-center overflow-hidden w-[0%] sm:w-[0%] md:w-[100%] md:overflow-visible">
-        <img
-          onClick={() => navigator(`${isLoged === "true" ? "/Home" : "/"}`)}
-          src={Logo}
-          alt=""
-          height={40}
-          width={40}
-          className="cursor-pointer"
-        />
-        {isLoged === "true" && typeUser === "admin" ? (
-          <Link to={"/DashBoarddUsuarios"}>
-            <li>Usuarios</li>
-          </Link>
-        ) : (
-          <li>Sobre Nós</li>
-        )}
 
-        <li
-          className={`cursor-pointer ${
-            isLoged === "true" && typeUser === "admin" ? "hidden" : "visible"
-          }`}
-          onClick={() => {
-            verifyLogin("Doação");
-          }}
-        >
-          Doação
-        </li>
-        {isLoged === "true" && typeUser === "admin" ? (
-          <Link to={"/DasBoarddOngs"}>
-            <li>Ongs</li>
-          </Link>
-        ) : (
-          <li>Contato</li>
-        )}
 
-        {isLoged === "true" && typeUser === "admin" ? (
-          <Link to={"/RifasDashboard"}>
-            <li>Rifas</li>
-          </Link>
-        ) : (
-          <li>Sobre Nós</li>
-        )}
-        <li
-          className={`cursor-pointer ${
-            isLoged === "true" && typeUser === "admin" ? "hidden" : "visible"
-          }`}
-          onClick={() => {
-            verifyLogin("Rifas");
-          }}
-        >
-          Minhas Rifas
-        </li>
-      </ul>
+      {typeUser !== 'admin' ? (<>
 
-      <ul className="flex gap-7 items-center  w-[40%] overflow-visible sm:w-[80%] md:w-[0%]  md:overflow-hidden ">
-        <MyDrawer
-          inten1={<BsPerson size={25} />}
-          textoI1={"Sobre Nós"}
-          inten2={<LiaDonateSolid size={25} />}
-          textoI2={"doações"}
-          inten3={<BsTelephone size={22} />}
-          textoI3={"contato"}
-          inten4={<TbPigMoney size={25} />}
-          textoI4={"Rifas"}
-          inten6={<MdOutlineAdminPanelSettings size={24} />}
-          textoI6={"Dashboard"}
-          coteudo={<RxHamburgerMenu size={30} />}
-        />
-      </ul>
+
+
+        <ul className="flex md:text-lg lg:text-xl 2xl:text-xl gap-7 items-center overflow-hidden w-[0%] sm:w-[0%] md:w-[100%] md:overflow-visible">
+          <img
+            onClick={() => navigator(`${isLoged === "true" ? "/Home" : "/"}`)}
+            src={Logo}
+            alt=""
+            height={40}
+            width={40}
+            className="cursor-pointer"
+          />
+
+          <li className="cursor-pointer" onClick={()=>{verifyLogin('ongs')}}>Ongs</li>
+
+         
+
+          <li  className="cursor-pointer" onClick={()=>{verifyLogin('Rifas')}}>Minhas Rifas</li>
+
+
+
+
+        </ul>
+
+        <ul className="flex gap-7 items-center  w-[40%] overflow-visible sm:w-[80%] md:w-[0%]  md:overflow-hidden ">
+          <MyDrawer
+            inten1={<BsPerson size={25} />}
+            textoI1={"Sobre Nós"}
+            inten2={<LiaDonateSolid size={25} />}
+            textoI2={"ongs"}
+            inten4={<TbPigMoney size={25} />}
+            textoI4={"Rifas"}
+            coteudo={<RxHamburgerMenu size={30} />}
+          />
+        </ul>
+
+
+
+      </>) : (<></>)}
+
+
       <div
-        className={`flex h-[60%] gap-5 sm:gap-12  justify-end items-center  sm:items-center  w-[60%] xl:w-[23%] 2xl:w-[31%] xl:h-[100%]  2xl:px-4  sm:w-[28%]  transition-all duration-1000 ${
-          pegarTema === "dark" ? "bg-[#202020]" : "bg-[#CEF3FF] "
-        }`}
+        className={`flex h-[60%] gap-5 sm:gap-12  justify-end items-center  sm:items-center  w-[60%] xl:w-[23%] 2xl:w-[31%] xl:h-[100%]  2xl:px-4  sm:w-[28%]  transition-all duration-1000 ${pegarTema === "dark" ? "bg-[#202020]" : "bg-[#CEF3FF] "
+          }`}
       >
         {isLoged === "true" ? (
           <div className="flex items-center  gap-4">
