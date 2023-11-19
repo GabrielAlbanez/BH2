@@ -88,7 +88,7 @@ export default function AllUsers() {
   };
 
   return (
-    <div className={`h-full w-full sm:h-[90vh] transition-all duration-1000 p-4 rounded-lg ${pegarTema === "dark" ? "bg-black text-white" : "bg-blue-200"}`}>
+    <div className={`h-screen w-full sm:h-[100vh] transition-all duration-1000 p-4 rounded-lg ${pegarTema === "dark" ? "bg-black text-white" : "bg-blue-200"}`}>
     <h2 className="text-3xl font-bold mb-4 pt-10">Lista de Usuários</h2>
     <h1 className="text-lg mb-2">Usuários logados nesse momento: {Object.keys(userConecteds).length}</h1>
   

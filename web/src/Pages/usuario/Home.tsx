@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTema } from "../../common/context/Tema";
 import toast from "react-hot-toast";
 import { useAppSelector } from "../../store/intex";
 import Logo from "../../assets/imgs/Logo.png";
 import { FaInstagram } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs"
+import sockett from "../../common/io/io";
 export default function Home() {
   const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
     cpf: string;
@@ -30,6 +31,14 @@ export default function Home() {
     });
   };
 
+  const cpf = User[0]?.cpf
+
+  useEffect(()=>{
+
+    sockett.emit('authenticate', cpf);
+
+  },[])
+
   return (
     <div
       className={`w-full h-[100vh] backdrop-blur-2xl sm:h-[91vh] transition-all duration-1000 flex flex-col items-center justify-between gap-5  ${pegarTema === "dark" ? "bg-black   text-white" : "bg-[#CEF3FF]"} relative`}
@@ -37,6 +46,11 @@ export default function Home() {
     >
       <div className="flex  flex-col gap-5 items-center h-[100%] w-full justify-center">
 
+       {User[0]?.tipo === 'admin' ? (<>
+        
+          <h1 className="text-4xl">Bem vindo Administrador!</h1>
+
+       </>) : (<>
         <h1 className="text-4xl font-bold mb-4">Bem-vindo, {User[0]?.nome}!</h1>
         <p className="text-lg">
           A BH Human é um software desenvolvido para facilitar o trabalho das ONGs.
@@ -44,7 +58,7 @@ export default function Home() {
         <p className="text-lg">
           O principal metodo de ajuda, é atraves das Rifas
         </p>
-
+</>)}
         
       </div>
 

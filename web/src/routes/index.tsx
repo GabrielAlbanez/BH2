@@ -244,7 +244,7 @@ const ProtectedRoute = ({ user, children }: propsProtectRoute) => {
     });
   };
 
-  if (user === "false" || user === "ongLogada") {
+  if (user === "false" || user === "ongLogada" || user === null) {
 
     notify('vc precisa estar logado para acessar essa rota')
 

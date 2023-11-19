@@ -125,7 +125,7 @@ export default function MyDrawer({
 
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={()=>{navigator('/DashBoarddUsuarios')}}>
             <ListItemIcon>{inten1}</ListItemIcon>
             <ListItemText primary={textoI1} />
           </ListItemButton>
@@ -133,24 +133,19 @@ export default function MyDrawer({
 
         <ListItem disablePadding>
           <ListItemButton onClick={() => {
-            verifyLogin("Doação");
+            verifyLogin(typeUser === 'admin' ? 'DasBoarddOngs' : 'ongs');
           }}>
             <ListItemIcon>{inten2}</ListItemIcon>
             <ListItemText primary={textoI2} />
           </ListItemButton>
         </ListItem>
 
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon>{inten3}</ListItemIcon>
-            <ListItemText primary={textoI3} />
-          </ListItemButton>
-        </ListItem>
+
 
         <ListItem disablePadding>
           <ListItemButton
             onClick={() => {
-              verifyLogin("Rifas");
+              verifyLogin(typeUser === 'admin' ? 'RifasDashboard' : 'Rifas');
             }}
           >
             <ListItemIcon>{inten4}</ListItemIcon>

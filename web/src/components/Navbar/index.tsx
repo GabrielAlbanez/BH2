@@ -103,11 +103,11 @@ export default function Navbar() {
             className="cursor-pointer"
           />
 
-          <li className="cursor-pointer" onClick={()=>{verifyLogin('ongs')}}>Ongs</li>
+          <li className="cursor-pointer" onClick={() => { verifyLogin('ongs') }}>Ongs</li>
 
-         
 
-          <li  className="cursor-pointer" onClick={()=>{verifyLogin('Rifas')}}>Minhas Rifas</li>
+
+          <li className="cursor-pointer" onClick={() => { verifyLogin('Rifas') }}>Minhas Rifas</li>
 
 
 
@@ -128,7 +128,46 @@ export default function Navbar() {
 
 
 
-      </>) : (<></>)}
+      </>) : (<>
+
+        <ul className="flex md:text-lg lg:text-xl 2xl:text-xl gap-7 items-center overflow-hidden w-[0%] sm:w-[0%] md:w-[100%] md:overflow-visible">
+          <img
+            onClick={() => navigator(`${isLoged === "true" ? "/Home" : "/"}`)}
+            src={Logo}
+            alt=""
+            height={40}
+            width={40}
+            className="cursor-pointer"
+          />
+
+          <li className="cursor-pointer" onClick={() => {navigator('/DashBoarddUsuarios')}}>Usuarios</li>
+
+          <li className="cursor-pointer" onClick={() => {navigator('/DasBoarddOngs')}}>Ongs</li>
+
+
+
+          <li className="cursor-pointer" onClick={() => {navigator('/RifasDashboard')}}>Rifas</li>
+
+
+
+
+        </ul>
+
+
+        <ul className="flex gap-7 items-center  w-[40%] overflow-visible sm:w-[80%] md:w-[0%]  md:overflow-hidden ">
+          <MyDrawer
+            inten1={<BsPerson size={25} />}
+            textoI1={"Usuarios"}
+            inten2={<LiaDonateSolid size={25} />}
+            textoI2={"ongs"}
+            inten4={<TbPigMoney size={25} />}
+            textoI4={"Rifas"}
+            coteudo={<RxHamburgerMenu size={30} />}
+          />
+        </ul>
+
+
+      </>)}
 
 
       <div

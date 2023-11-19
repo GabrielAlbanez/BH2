@@ -72,7 +72,7 @@ export default function AllOngs() {
   };
 
   return (
-    <div className={`pt-8 p-4 h-full w-full sm:h-[90vh] rounded-lg transition-all duration-1000  ${
+    <div className={`pt-8 p-4 h-screen w-full sm:h-[100vh] rounded-lg transition-all duration-1000  ${
       pegarTema === "dark" ? "bg-black text-white" : "bg-blue-200"
     }`}>
       <h2 className="text-3xl font-bold mb-4">Dashboard de ONGs</h2>
