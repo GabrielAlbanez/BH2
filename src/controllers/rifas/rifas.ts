@@ -208,7 +208,8 @@ export const getByRifasForCnpjOng = async (req: Request, res: Response)=>{
         rifas : true,
         endereco : true,
         redesSociais : true,
-        telefone : true
+        telefone : true,
+        
       }
     })
 
@@ -221,3 +222,5 @@ export const getByRifasForCnpjOng = async (req: Request, res: Response)=>{
   }
 
 }
+
+

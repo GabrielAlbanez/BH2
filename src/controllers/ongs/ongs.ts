@@ -152,3 +152,56 @@ export const LoginOng = (req : Request, res : Response) =>{
   res.status(200).json({message : "Ong Logada", token : token})
 
 } 
+
+
+
+export const getBySaldoForCnpjOng = async (req: Request, res: Response)=>{
+
+  const cnpj = req.body.cnpj;
+
+  try {
+    const NumerosCompradosForong = await prisma.ong.findMany({
+      where: {
+        cnpj: cnpj,
+      },
+      select: {
+        rifas: {
+          where: {
+            idOng: cnpj,
+          },
+          select: {
+            NumeroComprado: {
+              select: {
+                rifa: {
+                  select: {
+                    nome: true,
+                    preco: true,
+                  },
+                },
+                numero: true,
+              },
+            },
+          },
+        },
+      },
+    });
+  
+    const Rifas = NumerosCompradosForong[0].rifas;
+  
+    let total = 0;
+  
+    Rifas.forEach((numeroComprado : any) => {
+      const quantidade = numeroComprado.NumeroComprado.length;
+      const precoRifa = parseFloat(numeroComprado.NumeroComprado[0].rifa.preco);
+      total += quantidade * precoRifa;
+    });
+  
+    res.status(201).json({ total: total });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao calcular o total." });
+  }
+
+
+  
+}

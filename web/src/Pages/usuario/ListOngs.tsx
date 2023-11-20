@@ -102,7 +102,7 @@ export default function ListOngs() {
   console.log(url);
 
   return (
-    <div className={`w-full min-h-[100vh] sm:min-h-[91vh] transition-all duration-1000 flex flex-col items-center gap-5 py-5 ${pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF]"}`}>
+    <div className={`w-full min-h-[100vh] sm:min-h-[91vh] transition-all duration-1000 flex flex-col items-center  gap-5 py-5 ${pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF]"}`}>
       <div>
         <h1 className="text-4xl pt-10">Ongs</h1>
       </div>

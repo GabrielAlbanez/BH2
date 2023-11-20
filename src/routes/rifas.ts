@@ -14,4 +14,5 @@ rifasRoute.get('/getByidRifa/:id',rifasMiddleware.validateIdRifa,ControlerRifas.
 rifasRoute.post('/getByRifaForCnpjOng',rifasMiddleware.validateCpnpjOng,ControlerRifas.getByRifasForCnpjOng)
 
 
+
 export default rifasRoute

@@ -24,7 +24,7 @@ export default function CardAllOngs() {
   const cnpjLimpo = dataOng.map((valor) => valor.cnpj.replace(/[^\d]/g, ''));
 
   return (
-    <div className="flex flex-wrap justify-center">
+    <div className="flex flex-wrap justify-center items-center h-full">
       {dataOng.length > 0 ? (
         dataOng.map((ong, index) => (
           <Link to={`/Ong/${cnpjLimpo[index]}`} key={index}>

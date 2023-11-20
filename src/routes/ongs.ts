@@ -34,4 +34,6 @@ routeOng.get('/verificarTokenOng',verifyToken,(req,res)=>{
   res.status(200).json({message : "Logado"})
 })
 
+routeOng.post('/getSaldoFornCnpjOng',ControlerOngs.getBySaldoForCnpjOng)
+
 export default routeOng;
