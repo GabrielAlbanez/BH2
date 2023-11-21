@@ -187,7 +187,7 @@ export default function Register() {
         <>
           <form
             onSubmit={handleSubmitOng}
-            className={`transition-all duration-1000  w-full h-[100vh]  sm:h-[91vh] lg:h-[100%] xl:h-[100%] 2xl:h-[100%]  flex flex-col items-center justify-center gap-3  sm:gap-9 
+            className={`transition-all duration-1000  w-full h-[100%]  sm:h-[91vh] lg:h-[100%] xl:h-[100%] 2xl:h-[100%]  flex flex-col items-center justify-center gap-3  sm:gap-9 
         ${pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"} 
         `}
           >

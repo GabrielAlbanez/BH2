@@ -68,7 +68,7 @@ export default function AccountOng() {
 
   useEffect(() => {
     getSaldoOng()
-  }, [Ong[0]?.cnpj])
+  }, [Ong[0]?.cnpj,saldoOng])
 
   console.log(saldoOng)
 
