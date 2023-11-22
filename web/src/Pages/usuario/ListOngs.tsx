@@ -114,7 +114,8 @@ export default function ListOngs() {
     valor.ganhador?.rifa.imgRifa.slice(24)
   );
 
-  console.log(url);
+
+  console.log('ganhador',resultadoSorteio)
 
   console.log("time state", time);
 

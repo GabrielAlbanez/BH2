@@ -327,7 +327,7 @@ export default function Register() {
                     onChange={hanleInputChange}
                     name="cpf"
                     type="text"
-                    placeholder="name@example.com.."
+                    placeholder="insira um cpf valido..."
                     className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3"
                   />
                 </div>
@@ -355,7 +355,7 @@ export default function Register() {
                     onChange={hanleInputChange}
                     name="endereco"
                     type="text"
-                    placeholder="name@example.com.."
+                    placeholder="insira seu endereço..."
                     className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3"
                   />
                 </div>
@@ -369,7 +369,7 @@ export default function Register() {
                     onChange={hanleInputChange}
                     name="nome"
                     type="text"
-                    placeholder="name@example.com.."
+                    placeholder="insira seu nome..."
                     className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3"
                   />
                 </div>
@@ -383,7 +383,7 @@ export default function Register() {
                     onChange={hanleInputChange}
                     name="senha"
                     type="text"
-                    placeholder="name@example.com.."
+                    placeholder="insira sua senha..."
                     className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3"
                   />
                 </div>
@@ -411,7 +411,7 @@ export default function Register() {
                     onChange={hanleInputChange}
                     name="telefone"
                     type="text"
-                    placeholder="name@example.com.."
+                    placeholder="insira seu telephoene..."
                     className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3"
                   />
                 </div>

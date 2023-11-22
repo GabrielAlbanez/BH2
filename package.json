@@ -26,7 +26,8 @@
   },
   "scripts": {
     "dev": "nodemon src/index.ts",
-    "migrate": "prisma migrate dev"
+    "migrate": "prisma migrate dev",
+    "studio" : "prisma studio"
   },
   "devDependencies": {
     "@types/cors": "^2.8.14",

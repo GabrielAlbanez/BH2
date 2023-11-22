@@ -123,7 +123,7 @@ export default function Ongs() {
             <img
               src={require(`../../uploads/${url}`)}
               alt=""
-              className="w-24 h-24 rounded-full mb-4 shadow-md"
+              className="w-24 h-24 rounded-full mb-4 shadow-md "
             />
             <p className="text-2xl font-bold">{dataOng[0].nome}</p>
           </section>
@@ -166,7 +166,7 @@ export default function Ongs() {
                     <img
                       src={require(`../../uploadsImgRifas/${urlsImgRifas[index]}`)}
                       alt=""
-                      className="w-full h-32 object-cover mb-4 rounded-md"
+                      className="w-full h-32 object-cover mb-4 rounded-md transform transition-transform duration-[1500ms] hover:scale-110"
                     />
                     <div className="text-sm md:text-md">
                       <p className="font-bold mb-2">{data.nome}</p>

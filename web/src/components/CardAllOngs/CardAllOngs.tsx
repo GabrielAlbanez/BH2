@@ -28,15 +28,15 @@ export default function CardAllOngs() {
       {dataOng.length > 0 ? (
         dataOng.map((ong, index) => (
           <Link to={`/Ong/${cnpjLimpo[index]}`} key={index}>
-            <div className="max-w-xl mx-4 my-8 bg-white rounded-2xl overflow-hidden shadow-lg transition duration-500 transform hover:scale-105">
+            <div className="max-w-xl mx-4 my-8 bg-white rounded-2xl overflow-hidden shadow-lg transform transition-transform duration-[1500ms] hover:scale-125">
               <img
-                className="w-full h-52 object-cover transform transition-transform duration-1000 hover:scale-110"
+                className="w-full h-52 object-cover transform transition-transform duration-[1500ms] hover:scale-110"
                 src={require(`../../uploads/${url[index]}`)}
                 alt="ong-logo"
               />
               <div className="px-12 py-5 flex flex-col gap-2">
                 <div className=" text-2xl mb-2 text-gray-700 text-center">{ong.nome}</div>
-                <p className="text-gray-700 text-base">{ong.telefone}</p>
+                <p className="text-gray-700 text-base text-center">{ong.telefone}</p>
               </div>
               <div className="px-6 pt-4 pb-2">
               </div>

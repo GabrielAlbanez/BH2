@@ -101,7 +101,7 @@ export default function Rifas() {
                     <img
                       src={require(`../../uploadsImgRifas/${valor.rifa.imgRifa.slice(24)}`)}
                       alt=""
-                      className="w-full h-48 object-cover"
+                      className="w-full h-48 object-cover transform transition-transform duration-[1500ms] hover:scale-125"
                     />
                       
                     <div className="px-6 py-4 w-full flex justify-center items-center">
@@ -123,7 +123,7 @@ export default function Rifas() {
                     <img
                       src={require(`../../uploadsImgRifas/${valor.rifa.imgRifa.slice(24)}`)}
                       alt=""
-                      className="w-full h-48 object-cover"
+                      className="w-full h-48 object-cover transform transition-transform duration-[1500ms] hover:scale-110"
                     />
                     <div className="px-6 py-4 flex items-center justify-center">
                       {/* <h1 className="font-bold text-xl mb-2">Número: {valor.numero}</h1> */}
