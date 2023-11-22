@@ -94,7 +94,7 @@ export default function Rifas() {
             <React.Fragment key={outerIndex}>
               {numero.numerosComprados.map((valor, innerIndex) => (
                 
-                <div key={innerIndex} onMouseEnter={()=>{verySortRifa(valor.rifa.sorteado)}} className={`m-4 w-[300px] cursor-pointer  `}>
+                <div key={innerIndex} onClick={()=>{verySortRifa(valor.rifa.sorteado)}} className={`m-4 w-[300px] cursor-pointer  `}>
                   {valor.rifa.ganhador === User[0]?.cpf ? (<>
                     
                     <div className={`max-w-sm rounded-2xl overflow-hidden shadow-xl mx-auto bg-white text-black  hover:scale-110 transition-all opacity-100`}>

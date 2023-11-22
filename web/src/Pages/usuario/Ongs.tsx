@@ -156,7 +156,7 @@ export default function Ongs() {
                 {dataOng[0]?.rifas.map((data, index) => (
                   <div
                     key={index}
-                    onMouseEnter={() => {
+                    onClick={() => {
                       verySortRifa(data.sorteado);
                     }}
                     className={`max-w-sm rounded-lg overflow-hidden w-full md:w-[48%] p-4 transition-all duration-300 cursor-pointer hover:shadow-md ${
