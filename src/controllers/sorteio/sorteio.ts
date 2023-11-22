@@ -7,9 +7,7 @@ export const sorteioUsers = async (req: Request, res: Response) => {
   try {
     const idRifa = req.body.idRifa;
 
-    const time : number = req.body.time;
 
-    console.log('tempo',time)
 
     await prisma.rifa.update({
       where: {
@@ -99,14 +97,9 @@ export const sorteioUsers = async (req: Request, res: Response) => {
 
     const sockeServer = ioo;
 
-    ioo.emit("avisotTimeSorteio", {
-      tempo : {
-        timer : time
-      }
-    });
+ 
 
    
-    setTimeout(() => {
       ioo.emit("sorteioConcluido", {
         ganhador: {
           numero: ganhador[0]?.numero,
@@ -114,7 +107,6 @@ export const sorteioUsers = async (req: Request, res: Response) => {
         },
         dadosGanhador: dataGanhador[0],
       });
-    }, time * 1000);
   
 
     res.status(200).json({ numeroSorteado: ganhador, dataGanhador });

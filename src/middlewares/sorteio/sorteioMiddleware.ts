@@ -24,31 +24,25 @@ export const validateIdRifa = async(req : Request, res : Response, next : NextFu
 
 }
 
-export const validateNumbersforDraw = async(req : Request, res : Response, next : NextFunction)=>{
-
-    const idRifa = req.body.idRifa
-
-    console.log(idRifa)
-
-
+export const validateNumbersforDraw = async (req: Request, res: Response, next: NextFunction) => {
+    const idRifa = req.body.idRifa;
+  
+    console.log('id rifa',idRifa);
+  
     const numbersCompradosRifas = await prisma.numeroComprado.findMany({
-        where : {
-            rifaId : idRifa
-        },
-        select : {
-            numero : true
-        }
-    })
-
-    console.log(numbersCompradosRifas)
-
-
-    if(numbersCompradosRifas.length > 0){
-        next()
+      where: {
+        rifaId: idRifa,
+      },
+      select: {
+        numero: true,
+      },
+    });
+  
+    console.log('numeros comprados', numbersCompradosRifas);
+  
+    if (numbersCompradosRifas != null && numbersCompradosRifas.length > 0) {
+      next();
     } else {
-        res.status(201).json({error : 'não a numeros a serem sorteados'})
+      res.status(201).json({ error: 'Não há números a serem sorteados' });
     }
-
-
-
-}
+  };

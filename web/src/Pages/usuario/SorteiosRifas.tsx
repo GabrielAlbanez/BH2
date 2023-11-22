@@ -65,12 +65,13 @@ export default function SorteiosRifas() {
       <h1 className="text-4xl font-bold mb-12">Sorteios</h1>
       {dataRifaSorteada.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {dataRifaSorteada.map((rifa) => (
+          {dataRifaSorteada.map((rifa,index) => (
             <div
               key={rifa.ganhador}
               className="max-w-sm  overflow-hidden shadow-lg bg-white hover:shadow-xl transition-all duration-[1700ms] ease-in-out transform hover:-translate-y-10 rounded-2xl"
             >
-              <img className="w-full h-60 object-cover transform transition-transform duration-[1700ms] hover:scale-110" src={require(`../../uploadsImgRifas/${url}`)} alt={rifa.nome} />
+                {url.length > 0 && ( <img className="w-full h-60 object-cover transform transition-transform duration-[1700ms] hover:scale-110" src={require(`../../uploadsImgRifas/${url[index]}`)} alt={rifa.nome} />)}
+             
               <div className="p-4">
                 <h2 className="font-bold text-2xl text-gray-600  mb-2">{rifa.nome}</h2>
                 <p className="text-gray-600 text-sm">{rifa.descricao}</p>
