@@ -155,9 +155,10 @@ export const LoginOng = (req : Request, res : Response) =>{
 
 
 
-export const getBySaldoForCnpjOng = async (req: Request, res: Response)=>{
-
+export const getBySaldoForCnpjOng = async (req: Request, res: Response) => {
   const cnpj = req.body.cnpj;
+
+  console.log(cnpj);
 
   try {
     const NumerosCompradosForong = await prisma.ong.findMany({
@@ -185,23 +186,34 @@ export const getBySaldoForCnpjOng = async (req: Request, res: Response)=>{
         },
       },
     });
-  
+
+    if (!NumerosCompradosForong || NumerosCompradosForong.length === 0 || !NumerosCompradosForong[0]?.rifas) {
+      return res.status(404).json({ error: "Nenhuma correspondência encontrada para o CNPJ fornecido." });
+    }
+
     const Rifas = NumerosCompradosForong[0].rifas;
-  
+
+    if (!Rifas || Rifas.length === 0) {
+      return res.status(404).json({ error: "Nenhuma rifa encontrada para o CNPJ fornecido." });
+    }
+
     let total = 0;
-  
-    Rifas.forEach((numeroComprado : any) => {
+
+    Rifas.forEach((numeroComprado: any) => {
       const quantidade = numeroComprado.NumeroComprado.length;
-      const precoRifa = parseFloat(numeroComprado.NumeroComprado[0].rifa.preco);
-      total += quantidade * precoRifa;
+      const precoRifa = parseFloat(numeroComprado.NumeroComprado[0]?.rifa.preco);
+
+      if (!isNaN(precoRifa)) {
+        total += quantidade * precoRifa;
+        console.log('total', total);
+      } else {
+        console.log('precoRifa não é um número válido:', numeroComprado.NumeroComprado[0]?.rifa.preco);
+      }
     });
-  
+
     res.status(201).json({ total: total });
   } catch (error) {
-    console.error(error);
+    console.log(error.message);
     res.status(500).json({ error: "Erro ao calcular o total." });
   }
-
-
-  
-}
+};

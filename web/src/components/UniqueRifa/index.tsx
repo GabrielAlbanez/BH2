@@ -7,7 +7,7 @@ import { useTema } from "../../common/context/Tema";
 export default function UniqueRifa() {
   const { id } = useParams();
 
-  type dataOng = {
+  type dataRifa = {
     imgRifa: string;
     nome: string;
     preco: number;
@@ -18,7 +18,7 @@ export default function UniqueRifa() {
     numeroSorteado: string;
   };
 
-  const [dataRifa, setDataRifa] = useState<dataOng[]>([]);
+  const [dataRifa, setDataRifa] = useState<dataRifa[]>([]);
 
   const getaDataRifaById = async () => {
     try {

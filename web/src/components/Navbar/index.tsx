@@ -109,6 +109,8 @@ export default function Navbar() {
 
           <li className="cursor-pointer" onClick={() => { verifyLogin('Rifas') }}>Minhas Rifas</li>
 
+          <li className="cursor-pointer" onClick={() => { verifyLogin('Sorteio') }}>Sorteios das Rifas</li>
+
 
 
 

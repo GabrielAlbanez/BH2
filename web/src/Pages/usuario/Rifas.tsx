@@ -101,7 +101,7 @@ export default function Rifas() {
                     <img
                       src={require(`../../uploadsImgRifas/${valor.rifa.imgRifa.slice(24)}`)}
                       alt=""
-                      className="w-full h-48 object-cover transform transition-transform duration-[1500ms] hover:scale-125"
+                      className="w-full h-48 object-cover transform transition-transform duration-[1500ms] hover:scale-110"
                     />
                       
                     <div className="px-6 py-4 w-full flex justify-center items-center">

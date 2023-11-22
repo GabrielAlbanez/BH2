@@ -12,6 +12,7 @@ rifasRoute.post('/createRifas',upload.single('imgRifa'),rifasMiddleware.validate
 rifasRoute.delete('/deleteRifas/:NameOrCpf',rifasMiddleware.validateOngUserAndUserAdmin,ControlerRifas.deleteRifa)
 rifasRoute.get('/getByidRifa/:id',rifasMiddleware.validateIdRifa,ControlerRifas.getRifaByid)
 rifasRoute.post('/getByRifaForCnpjOng',rifasMiddleware.validateCpnpjOng,ControlerRifas.getByRifasForCnpjOng)
+rifasRoute.get('/getAllRifasSorteadas',ControlerRifas.getAllRifasSorteadas)
 
 
 

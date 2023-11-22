@@ -137,6 +137,38 @@ export const getRifaByid = async(req : Request, res : Response) => {
 
 }
 
+export const getAllRifasSorteadas = async(req : Request, res : Response) => {
+
+  try {
+
+
+
+    const getRifaByyId = await prisma.rifa.findMany({
+      where : {
+         sorteado : true
+      },
+      select : {
+        imgRifa : true,
+        nome : true,
+        preco : true,
+        descricao : true,
+        sorteado : true,
+        numeroSorteado : true,
+        ganhador : true
+      }
+    })
+
+    res.status(201).json({rifa : getRifaByyId})
+
+    
+  } catch (error) {
+    res.status(404).json({err : `erro ao buscar rifas ${error}`})
+  }
+
+}
+
+
+
 export const getByRifasForCpfUser = async (req: Request, res: Response)=>{
   
   const {cpf} = req.body
