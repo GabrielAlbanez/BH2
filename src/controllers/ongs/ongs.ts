@@ -245,3 +245,37 @@ export const createLogoDoaçãoImgs = async(req : Request, res : Response)=>{
   }
 
 }
+
+
+export const getAllImgsDoacaoForCnpjOng = async (req : Request, res : Response)=>{
+
+  const cnpj = req.body.cnpj
+
+
+  try {
+
+    const allLogosForCnpjOng = await prisma.ong.findMany({
+      where : {
+        cnpj : cnpj
+      },
+      select : {
+        imagensDoacao : {
+          select : {
+            id : true,
+            img : true,
+            preco : true
+          }
+        }
+      }
+    })
+
+    res.status(201).json({message : allLogosForCnpjOng})
+    
+  } catch (error) {
+    res.status(401).json({errorr : `erro ao listar logos: ${error.message}`})
+  }
+
+
+  
+
+}

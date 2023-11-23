@@ -113,7 +113,7 @@ export default function CreateLogos() {
           });
         };
         setTimeout(() => {
-          navigator("/HomeOng");
+          navigator("/ListLogos");
         }, 3000);
 
         notify();

@@ -66,6 +66,8 @@ export default function NavbarOng() {
         </Link>
         <Link to='/createLogo'> <li>criar Logos </li></Link>
 
+        <Link to='/ListLogos'><li>Logos</li></Link>
+
       </ul>
 
       <ul className="flex gap-7 items-center w-[40%] sm:w-[80%] md:w-[0%] md:overflow-hidden ">
