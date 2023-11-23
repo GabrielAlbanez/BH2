@@ -83,7 +83,7 @@ export default function Rifas() {
 
 
   return (
-    <div className={`transition-all py-10 duration-1000 w-full h-full lg:h-screen lg:overflow-hidden  ${
+    <div className={`transition-all py-10 duration-1000 w-full h-full lg:h-full  ${
       pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF]"
     }`}>
       <h1 className="text-3xl text-center " >Minhas rifas</h1>
@@ -97,7 +97,7 @@ export default function Rifas() {
                 <div key={innerIndex} onClick={()=>{verySortRifa(valor.rifa.sorteado)}} className={`m-4 w-[300px] cursor-pointer  `}>
                   {valor.rifa.ganhador === User[0]?.cpf ? (<>
                     
-                    <div className={`max-w-sm rounded-2xl overflow-hidden shadow-xl mx-auto bg-white text-black  hover:scale-110 transition-all opacity-100`}>
+                    <div className={`max-w-sm rounded-2xl overflow-hidden shadow-xl mx-auto bg-white text-black  hover:scale-110 opacity-60 transition-all hover:opacity-100`}>
                     <img
                       src={require(`../../uploadsImgRifas/${valor.rifa.imgRifa.slice(24)}`)}
                       alt=""
@@ -114,7 +114,7 @@ export default function Rifas() {
                         
                       })} />
                     </div>
-                    <h1 className="text-md text-center">vc ganhou essa rifa</h1>
+                    <h1 className="text-md text-center">Essa Rifa ja foi Sorteada</h1>
 
                   </div>
 
@@ -136,7 +136,7 @@ export default function Rifas() {
                       })} />
 
                     </div>
-                    {valor.rifa.sorteado === true && valor.rifa.ganhador !== User[0]?.cpf ? (<h1 className="text-center">vc perdeu</h1>) : (<></>)}
+                    {valor.rifa.sorteado === true && valor.rifa.ganhador !== User[0]?.cpf ? (<h1 className="text-center">Essa Rifa ja foi Sorteada</h1>) : (<></>)}
 
                   </div></>)}
            

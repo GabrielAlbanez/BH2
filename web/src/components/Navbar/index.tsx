@@ -52,7 +52,7 @@ export default function Navbar() {
 
   const notify = (message: string): void => {
     toast(`${message}`, {
-      icon: `${pegarTema === "dark" ? "🌑" : " 🌞"}`,
+      icon: `${pegarTema === "dark" ? "✔" : "✔"}`,
       style: {
         borderRadius: "10px",
         background: `${pegarTema === "dark" ? "#333" : "white"}`,
@@ -84,120 +84,149 @@ export default function Navbar() {
   console.log(pageHome);
 
   type resultadoSorteio = {
-    sorteio : {
-      sorteioRealizado : boolean
-    }
-  }
+    sorteio: {
+      sorteioRealizado: boolean;
+    };
+  };
 
+  const [resultadoSorteio, setResultadoSorteio] = useState<boolean>();
 
-  const [resultadoSorteio,setResultadoSorteio] = useState<boolean>()
+  const cpf = User[0]?.cpf;
 
-  const cpf = User[0]?.cpf
-
-  useEffect(()=>{
+  useEffect(() => {
     sockett.emit("authenticate", cpf);
     sockett.on("sorteioConcluido", (dados: resultadoSorteio) => {
       console.log("Recebeu sorteioConcluido:", dados);
       setResultadoSorteio(dados.sorteio.sorteioRealizado);
     });
-  },[])
+  }, []);
 
-  console.log('resultado sorteio',resultadoSorteio)
+  console.log("resultado sorteio", resultadoSorteio);
 
+  const Local = useLocation();
+
+  if (resultadoSorteio) {
+    notify("uma nova rifa foi sorteada");
+   }
 
   return (
     <header
-      className={`  transition-all duration-1000  ${pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
-        } w-[100%] h-[9vh]  flex items-center justify-between px-3 sm:px-8 xl:px-1 2xl:px-0 `}
+      className={`  transition-all duration-1000  ${
+        pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
+      } w-[100%] h-[9vh]  flex items-center justify-between px-3 sm:px-8 xl:px-1 2xl:px-0 `}
     >
+      {typeUser !== "admin" ? (
+        <>
+          <ul className="flex md:text-lg lg:text-xl 2xl:text-xl gap-7 items-center overflow-hidden w-[0%] sm:w-[0%] md:w-[100%] md:overflow-visible">
+            <img
+              onClick={() => navigator(`${isLoged === "true" ? "/Home" : "/"}`)}
+              src={Logo}
+              alt=""
+              height={40}
+              width={40}
+              className="cursor-pointer"
+            />
 
+            <li
+              className="cursor-pointer"
+              onClick={() => {
+                verifyLogin("ongs");
+              }}
+            >
+              Ongs
+            </li>
 
-      {typeUser !== 'admin' ? (<>
+            <li
+              className="cursor-pointer"
+              onClick={() => {
+                verifyLogin("Rifas");
+              }}
+            >
+              Minhas Rifas
+            </li>
 
+            <li
+              className={`cursor-pointer ${
+                resultadoSorteio ? "animate-pulse" : ""
+              }`}
+              onClick={() => {
+                verifyLogin("Sorteio");
+              }}
+            >
+              Sorteios das Rifas
+            </li>
+          </ul>
 
+          <ul className="flex gap-7 items-center  w-[40%] overflow-visible sm:w-[80%] md:w-[0%]  md:overflow-hidden ">
+            <MyDrawer
+              inten1={<BsPerson size={25} />}
+              textoI1={"Sobre Nós"}
+              inten2={<LiaDonateSolid size={25} />}
+              textoI2={"ongs"}
+              inten4={<TbPigMoney size={25} />}
+              textoI4={"Rifas"}
+              coteudo={<RxHamburgerMenu size={30} />}
+            />
+          </ul>
+        </>
+      ) : (
+        <>
+          <ul className="flex md:text-lg lg:text-xl 2xl:text-xl gap-7 items-center overflow-hidden w-[0%] sm:w-[0%] md:w-[100%] md:overflow-visible">
+            <img
+              onClick={() => navigator(`${isLoged === "true" ? "/Home" : "/"}`)}
+              src={Logo}
+              alt=""
+              height={40}
+              width={40}
+              className="cursor-pointer"
+            />
 
-        <ul className="flex md:text-lg lg:text-xl 2xl:text-xl gap-7 items-center overflow-hidden w-[0%] sm:w-[0%] md:w-[100%] md:overflow-visible">
-          <img
-            onClick={() => navigator(`${isLoged === "true" ? "/Home" : "/"}`)}
-            src={Logo}
-            alt=""
-            height={40}
-            width={40}
-            className="cursor-pointer"
-          />
+            <li
+              className="cursor-pointer"
+              onClick={() => {
+                navigator("/DashBoarddUsuarios");
+              }}
+            >
+              Usuarios
+            </li>
 
-          <li className="cursor-pointer" onClick={() => { verifyLogin('ongs') }}>Ongs</li>
+            <li
+              className="cursor-pointer"
+              onClick={() => {
+                navigator("/DasBoarddOngs");
+              }}
+            >
+              Ongs
+            </li>
 
+            <li
+              className="cursor-pointer"
+              onClick={() => {
+                navigator("/RifasDashboard");
+              }}
+            >
+              Rifas
+            </li>
+          </ul>
 
-
-          <li className="cursor-pointer" onClick={() => { verifyLogin('Rifas') }}>Minhas Rifas</li>
-
-          <li className={`cursor-pointer ${resultadoSorteio ? 'animate-pulse' : ''}`} onClick={() => { verifyLogin('Sorteio') }}>Sorteios das Rifas</li>
-
-
-
-
-        </ul>
-
-        <ul className="flex gap-7 items-center  w-[40%] overflow-visible sm:w-[80%] md:w-[0%]  md:overflow-hidden ">
-          <MyDrawer
-            inten1={<BsPerson size={25} />}
-            textoI1={"Sobre Nós"}
-            inten2={<LiaDonateSolid size={25} />}
-            textoI2={"ongs"}
-            inten4={<TbPigMoney size={25} />}
-            textoI4={"Rifas"}
-            coteudo={<RxHamburgerMenu size={30} />}
-          />
-        </ul>
-
-
-
-      </>) : (<>
-
-        <ul className="flex md:text-lg lg:text-xl 2xl:text-xl gap-7 items-center overflow-hidden w-[0%] sm:w-[0%] md:w-[100%] md:overflow-visible">
-          <img
-            onClick={() => navigator(`${isLoged === "true" ? "/Home" : "/"}`)}
-            src={Logo}
-            alt=""
-            height={40}
-            width={40}
-            className="cursor-pointer"
-          />
-
-          <li className="cursor-pointer" onClick={() => {navigator('/DashBoarddUsuarios')}}>Usuarios</li>
-
-          <li className="cursor-pointer" onClick={() => {navigator('/DasBoarddOngs')}}>Ongs</li>
-
-
-
-          <li className="cursor-pointer" onClick={() => {navigator('/RifasDashboard')}}>Rifas</li>
-
-
-
-
-        </ul>
-
-
-        <ul className="flex gap-7 items-center  w-[40%] overflow-visible sm:w-[80%] md:w-[0%]  md:overflow-hidden ">
-          <MyDrawer
-            inten1={<BsPerson size={25} />}
-            textoI1={"Usuarios"}
-            inten2={<LiaDonateSolid size={25} />}
-            textoI2={"ongs"}
-            inten4={<TbPigMoney size={25} />}
-            textoI4={"Rifas"}
-            coteudo={<RxHamburgerMenu size={30} />}
-          />
-        </ul>
-
-
-      </>)}
-
+          <ul className="flex gap-7 items-center  w-[40%] overflow-visible sm:w-[80%] md:w-[0%]  md:overflow-hidden ">
+            <MyDrawer
+              inten1={<BsPerson size={25} />}
+              textoI1={"Usuarios"}
+              inten2={<LiaDonateSolid size={25} />}
+              textoI2={"ongs"}
+              inten4={<TbPigMoney size={25} />}
+              textoI4={"Rifas"}
+              coteudo={<RxHamburgerMenu size={30} />}
+            />
+          </ul>
+        </>
+      )}
 
       <div
-        className={`flex h-[60%] gap-5 sm:gap-12  justify-end items-center  sm:items-center  w-[60%] xl:w-[23%] 2xl:w-[31%] xl:h-[100%]  2xl:px-4  sm:w-[28%]  transition-all duration-1000 ${pegarTema === "dark" ? "bg-[#202020]" : "bg-[#CEF3FF] "
-          }`}
+        className={`flex h-[60%] gap-5 sm:gap-12  justify-end items-center  sm:items-center  w-[60%] xl:w-[23%] 2xl:w-[31%] xl:h-[100%]  2xl:px-4  sm:w-[28%]  transition-all duration-1000 ${
+          pegarTema === "dark" ? "bg-[#202020]" : "bg-[#CEF3FF] "
+        }`}
       >
         {isLoged === "true" ? (
           <div className="flex items-center  gap-4">
