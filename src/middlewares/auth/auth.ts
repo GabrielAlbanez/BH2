@@ -56,7 +56,11 @@ export const authLogin = async (
         select : {
           galeryImagesLogoUser : {
             where : {
-            
+              emaillUser : email
+            },
+            select : {
+              LogoDoacaoId : true
+              
             }
           }
         }

@@ -149,3 +149,30 @@ export const byLogoDoacao = async (req: Request, res: Response) => {
   }
 
 }
+
+export const getAllLogosByUser = async(req : Request, res : Response)=>{
+
+  const {email} = req.body
+
+  try {
+
+
+    const allLogosBy = await prisma.galeryImagesLogoUser.findMany({
+      where : {
+        emaillUser : email
+      },
+      select : {
+        LogoDoacao : true
+      }
+    })
+
+    res.status(201).json({message : allLogosBy})
+  
+    
+  } catch (error) {
+     res.status(201).json({err : "erro ao pegar logos compradas",error})
+  }
+
+
+
+}

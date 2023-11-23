@@ -60,9 +60,8 @@ export default function Account() {
 
   return (
     <div
-      className={` w-full h-[91vh] transition-all duration-1000 flex items-center justify-center flex-col gap-10 ${
-        pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF] text-black"
-      }`}
+      className={` w-full h-[91vh] transition-all duration-1000 flex items-center justify-center flex-col gap-10 ${pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF] text-black"
+        }`}
     >
       <div className="text-4xl pt-10">Account</div>
       {logedUser === "true" ? (
@@ -80,14 +79,12 @@ export default function Account() {
               </div>
 
               <form
-                className={`w-full h-full  text-white flex justify-center gap-10 items-center flex-col ${
-                  pegarTema === "dark" ? "text-white" : "text-black"
-                }`}
+                className={`w-full h-full  text-white flex justify-center gap-10 items-center flex-col ${pegarTema === "dark" ? "text-white" : "text-black"
+                  }`}
               >
                 <div
-                  className={`flex gap-2 flex-col  ${
-                    pegarTema === "dark" ? "text-white" : "text-black"
-                  }`}
+                  className={`flex gap-2 flex-col  ${pegarTema === "dark" ? "text-white" : "text-black"
+                    }`}
                 >
                   <label htmlFor="">nome</label>
                   <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh]  2xl:h-[6vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
@@ -99,8 +96,7 @@ export default function Account() {
                     />
                   </div>
                 </div>
-                <div   className={`flex gap-2 flex-col  ${
-                    pegarTema === "dark" ? "text-white" : "text-black"
+                <div className={`flex gap-2 flex-col  ${pegarTema === "dark" ? "text-white" : "text-black"
                   }`}
                 >
                   <label htmlFor="">cpf</label>
@@ -113,8 +109,7 @@ export default function Account() {
                     />
                   </div>
                 </div>
-                <div   className={`flex gap-2 flex-col  ${
-                    pegarTema === "dark" ? "text-white" : "text-black"
+                <div className={`flex gap-2 flex-col  ${pegarTema === "dark" ? "text-white" : "text-black"
                   }`}
                 >
                   <label htmlFor="">email</label>
@@ -129,8 +124,7 @@ export default function Account() {
                   </div>
                 </div>
 
-                <div   className={`flex gap-2 flex-col  ${
-                    pegarTema === "dark" ? "text-white" : "text-black"
+                <div className={`flex gap-2 flex-col  ${pegarTema === "dark" ? "text-white" : "text-black"
                   }`}
                 >
                   <label htmlFor="">sexo</label>
@@ -148,7 +142,9 @@ export default function Account() {
                 <button className={`p-6 border-[2px] border-fuchsia-500 rounded-full px-5 py-2 ${pegarTema === 'dark' ? "text-white" : "text-black"}`}>
                   update profile
                 </button>
+
               </form>
+              <button onClick={logOut}>Logout</button>
             </div>
           ) : (
             <h1>Carregando dados do usuário...</h1>

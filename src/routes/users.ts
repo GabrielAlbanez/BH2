@@ -19,6 +19,7 @@ Rotauser.get('/verificarToken',verifyToken,(req,res)=>{
     res.status(200).json({message : "Logado"})
 })
 Rotauser.post('/byLogoDoacao',userMiddlewares.validateDataCompraLogo,ControlerUsers.byLogoDoacao)
+Rotauser.post('/getAlLogosByEmailUser',ControlerUsers.getAllLogosByUser)
 
 
 

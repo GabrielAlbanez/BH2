@@ -20,6 +20,7 @@ model Usuario {
   rifas                Rifa[]
   tipo                 String?                @default("default")
   telefone             String
+  imgPerfilAbsolute    String?
   numerosComprados     NumeroComprado[]
   imgProfile           imagensDoacao[]
   galeryImagesLogoUser galeryImagesLogoUser[]
@@ -95,7 +96,7 @@ model imagensDoacao {
 model galeryImagesLogoUser {
   id           Int            @id @default(autoincrement())
   LogoDoacaoId Int?
-  emaillUser      String?
+  emaillUser   String?
   User         Usuario?       @relation(fields: [emaillUser], references: [email], onDelete: Cascade)
   LogoDoacao   imagensDoacao? @relation(fields: [LogoDoacaoId], references: [id], onDelete: Cascade)
 }
