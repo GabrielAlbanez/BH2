@@ -1,5 +1,5 @@
 import { db as prisma } from "../../shared/db";
-import { Request, Response } from "express";
+import { Errback, Request, Response } from "express";
 import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
 
@@ -7,9 +7,10 @@ export const getAllUsers = async (req: Request, res: Response) => {
   try {
     const allUsers = await prisma.usuario.findMany({
       include: {
-    
-        numerosComprados : true,
-   
+
+        numerosComprados: true,
+        galeryImagesLogoUser : true
+
       },
     });
     res.status(200).json({ users: allUsers });
@@ -27,8 +28,8 @@ export const getByCpfUser = async (req: Request, res: Response) => {
         cpf: userCpf,
       },
       include: {
-        numerosComprados : true,
-   
+        numerosComprados: true,
+
       },
     });
     res.status(200).json({ user: userFltrado });
@@ -39,8 +40,8 @@ export const getByCpfUser = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { cpf, nome, email, senha, sexo, endereco,type,telefone } = req.body;
-    const hashedPassword = await bcrypt.hash(senha,5)
+    const { cpf, nome, email, senha, sexo, endereco, type, telefone } = req.body;
+    const hashedPassword = await bcrypt.hash(senha, 5)
 
     const userCreate = await prisma.usuario.create({
       data: {
@@ -50,79 +51,101 @@ export const createUser = async (req: Request, res: Response) => {
         nome: nome,
         senha: hashedPassword,
         sexo: sexo,
-        tipo : type,
-        telefone : telefone
+        tipo: type,
+        telefone: telefone
 
       },
     });
 
     console.log(userCreate)
-    res.status(201).json({ user: `usuario criado`});
+    res.status(201).json({ user: `usuario criado` });
   } catch (error) {
     res.status(403).json({ err: `erro ao criar usuario${error}` });
   }
 };
 
 
-export const deleteUser =  async (req: Request, res: Response) => {
-    try{
-     const cpf = req.body.cpf
+export const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const cpf = req.body.cpf
 
-     const userDeletado = await prisma.usuario.delete({
-        where : {
-            cpf : cpf
-        }
-     })
-      res.status(200).json({userDeleted : userDeletado})
-    }
-    catch(error){
-        res.status(403).json({ err: `erro ao deletar usuario${error}` });
-    }
+    const userDeletado = await prisma.usuario.delete({
+      where: {
+        cpf: cpf
+      }
+    })
+    res.status(200).json({ userDeleted: userDeletado })
+  }
+  catch (error) {
+    res.status(403).json({ err: `erro ao deletar usuario${error}` });
+  }
 }
 
-export const byRifas = async(req : Request, res : Response) =>{
-
-
- 
+export const byRifas = async (req: Request, res: Response) => {
 
 
 
-  try{
 
-    const {cpf, id, numero} = req.body
+
+
+  try {
+
+    const { cpf, id, numero } = req.body
 
 
 
 
 
     const byNumber = await prisma.numeroComprado.create({
-      data : {
-        numero : numero,
-        rifaId : id,
-        usuarioCpf : cpf
+      data: {
+        numero: numero,
+        rifaId: id,
+        usuarioCpf: cpf
       }
     })
 
- 
 
-    res.status(200).json({sucessful : byNumber , message : 'rifa comprada com sucesso'})
+
+    res.status(200).json({ sucessful: byNumber, message: 'rifa comprada com sucesso' })
 
 
   }
-  catch(error){
-    res.status(201).json({message : `erro ao compra rifa ${error}`})
+  catch (error) {
+    res.status(201).json({ message: `erro ao compra rifa ${error}` })
   }
 
 
 }
 
 
-export const Login = (req : Request, res : Response) =>{
-  
+export const Login = (req: Request, res: Response) => {
+
   const token = req.session['token']
 
 
 
-  res.status(200).json({message : "Usuario Logado", token : token})
+  res.status(200).json({ message: "Usuario Logado", token: token })
 
-} 
+}
+
+
+export const byLogoDoacao = async (req: Request, res: Response) => {
+
+  const { idLogo, cpfUser } = req.body
+
+  try {
+
+    const byLogo = await prisma.galeryImagesLogoUser.create({
+      data: {
+        LogoDoacaoId: idLogo,
+        CpfUser: cpfUser
+      }
+    })
+
+    res.status(201).json({logoComprada : byLogo})
+
+  } catch (errorr) {
+    res.status(201).json({ error: `erro ao comprar logo ${errorr.message}` })
+  }
+
+}

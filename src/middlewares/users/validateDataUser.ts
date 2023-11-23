@@ -51,7 +51,7 @@ export const validateDataUser = async (
   const phoneNumberObject = parsePhoneNumberFromString(telefone);
 
 
-  if (!nome || !email || !cpf || !senha || !sexo || !endereco  || !telefone) {
+  if (!nome || !email || !cpf || !senha || !sexo || !endereco || !telefone) {
     return res.status(203).json({ error: "favor pre-encher todos os dados" });
   }
 
@@ -88,20 +88,20 @@ export const validateDataUser = async (
   }
 
 
-  
- 
-if (!phoneNumberObject || !phoneNumberObject.isValid()) {
-  return res.status(203).json({error : "telefone invalido"})
-} 
+
+
+  if (!phoneNumberObject || !phoneNumberObject.isValid()) {
+    return res.status(203).json({ error: "telefone invalido" })
+  }
 
   const telefoneExisting = await prisma.usuario.findMany({
-    where : {
-      telefone : telefone
+    where: {
+      telefone: telefone
     }
   })
 
-  if(telefoneExisting.length > 0){
-    return res.status(203).json({error : "telefone ja cadastrado"})
+  if (telefoneExisting.length > 0) {
+    return res.status(203).json({ error: "telefone ja cadastrado" })
   }
 
   next();
@@ -169,3 +169,18 @@ export const validateByRifas = async (
 
   next();
 };
+
+
+export const validateDataCompraLogo = async (req: Request,
+  res: Response,
+  next: NextFunction) => {
+
+    const { idLogo, cpfUser } = req.body
+
+    if(!idLogo || !cpfUser){
+      return res.status(201).json({error : "falta dados"})
+    }
+
+    next()
+
+}

@@ -11,17 +11,18 @@ datasource db {
 }
 
 model Usuario {
-  cpf              String           @id
-  nome             String
-  email            String           @unique
-  senha            String
-  sexo             String
-  endereco         String
-  rifas            Rifa[]
-  tipo             String?          @default("default")
-  telefone         String
-  numerosComprados NumeroComprado[]
-  imgProfile       imagensDoacao[]
+  cpf                  String                 @id
+  nome                 String
+  email                String                 @unique
+  senha                String
+  sexo                 String
+  endereco             String
+  rifas                Rifa[]
+  tipo                 String?                @default("default")
+  telefone             String
+  numerosComprados     NumeroComprado[]
+  imgProfile           imagensDoacao[]
+  galeryImagesLogoUser galeryImagesLogoUser[]
 }
 
 model Ong {
@@ -81,11 +82,20 @@ model NumeroComprado {
 }
 
 model imagensDoacao {
-  id    Int     @id @default(autoincrement())
-  img   String?
-  ongId String?
-  preco Float?
-  Cpfusuario String?
-  ong   Ong? @relation(fields: [ongId], references: [cnpj], onDelete: Cascade)
-  usuario  Usuario? @relation(fields: [Cpfusuario], references: [cpf], onDelete: Cascade)
+  id                   Int                    @id @default(autoincrement())
+  img                  String?
+  ongId                String?
+  preco                Float?
+  Cpfusuario           String?
+  ong                  Ong?                   @relation(fields: [ongId], references: [cnpj], onDelete: Cascade)
+  usuario              Usuario?               @relation(fields: [Cpfusuario], references: [cpf], onDelete: Cascade)
+  galeryImagesLogoUser galeryImagesLogoUser[]
+}
+
+model galeryImagesLogoUser {
+  id           Int            @id @default(autoincrement())
+  LogoDoacaoId Int?
+  CpfUser      String?
+  User         Usuario?       @relation(fields: [CpfUser], references: [cpf], onDelete: Cascade)
+  LogoDoacao   imagensDoacao? @relation(fields: [LogoDoacaoId], references: [id], onDelete: Cascade)
 }
