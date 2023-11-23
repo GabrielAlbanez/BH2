@@ -275,7 +275,30 @@ export const getAllImgsDoacaoForCnpjOng = async (req : Request, res : Response)=
     res.status(401).json({errorr : `erro ao listar logos: ${error.message}`})
   }
 
+}
 
-  
+export const getAllLogosDoacao = async (req : Request, res : Response)=>{
+
+  const cnpj = req.body.cnpj
+
+
+  try {
+
+   const allLogos = await prisma.imagensDoacao.findMany({
+     select : {
+      id : true,
+      img : true,
+      ongId : true,
+      preco : true,
+      ong :  true
+     }
+   })
+
+    res.status(201).json({message : allLogos})
+    
+  } catch (error) {
+    res.status(401).json({errorr : `erro ao listar logos: ${error.message}`})
+  }
+
 
 }

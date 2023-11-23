@@ -52,19 +52,7 @@ export const authLogin = async (
       numerosComprados: true,
       sexo: true,
       tipo: true,
-      imgProfile : {
-        select : {
-          galeryImagesLogoUser : {
-            where : {
-              emaillUser : email
-            },
-            select : {
-              LogoDoacaoId : true
-              
-            }
-          }
-        }
-      }
+      imgPerfilAbsolute : true
 
 
     }

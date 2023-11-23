@@ -176,3 +176,23 @@ export const getAllLogosByUser = async(req : Request, res : Response)=>{
 
 
 }
+
+export const updateImgUser = async(req : Request, res : Response)=>{
+  const {img,cpf} = req.body
+
+  try {
+
+    const updateImg  = await prisma.usuario.update({
+        where : {
+          cpf : cpf
+        },
+        data : {
+          imgPerfilAbsolute : img
+        }
+    })
+    
+  } catch (error) {
+    res.status(201).json({err : `erro ao fazer update da img de perfil usuario`,error})
+  }
+
+}

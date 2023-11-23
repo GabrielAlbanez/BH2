@@ -20,6 +20,7 @@ Rotauser.get('/verificarToken',verifyToken,(req,res)=>{
 })
 Rotauser.post('/byLogoDoacao',userMiddlewares.validateDataCompraLogo,ControlerUsers.byLogoDoacao)
 Rotauser.post('/getAlLogosByEmailUser',ControlerUsers.getAllLogosByUser)
+Rotauser.post('/updateImgUser',ControlerUsers.updateImgUser)
 
 
 

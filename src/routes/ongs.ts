@@ -40,6 +40,6 @@ routeOng.post('/getSaldoFornCnpjOng',ControlerOngs.getBySaldoForCnpjOng)
 routeOng.post('/createImgDoacoes',uploadDoacao.single('imgRifa'),ongsMiddleware.validateDataCreateLogoDoaçãoImgs,ControlerOngs.createLogoDoaçãoImgs)
 
 routeOng.post('/getAllLogosDoacoes',ControlerOngs.getAllImgsDoacaoForCnpjOng)
-
+routeOng.get('/getAllLogos',ControlerOngs.getAllLogosDoacao)
 
 export default routeOng;

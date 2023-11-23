@@ -8,11 +8,21 @@ import { useNavigate } from "react-router-dom";
 import sockett from "../../common/io/io";
 import defaulImg from "../../assets/imgs/img avatar.png";
 import Button from "../../components/Button";
+import ModalShowLogos from "../../components/Modal/ModalShowLogos";
+import axios from "axios";
+import { log } from "console";
+import ModalConfirByLogo from "../../components/Modal/ModalConfirByLogo";
 
 export default function Account() {
   const { pegarTema } = useTema() as {
     pegarTema: string;
   };
+
+  const [open, setOpen] = useState<boolean>(false)
+
+  const [openModalByLogo, setOpenModalByLogo] = useState<boolean>(false)
+
+  const [selectedLogo, setSelectedLogo] = useState<dataLogos | null>(null);
 
   const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
     cpf: string;
@@ -51,12 +61,42 @@ export default function Account() {
     }, 1000);
   };
 
-  type dataNuemerosComprados = {
-    id: Number;
-    numero: number;
-    rifaId: Number;
-    usuarioCpf: string;
-  };
+  type dataLogos = {
+    id: number;
+    img: string;
+    ongId: string;
+    preco: number;
+    ong: {
+      cnpj: string;
+      nome: string;
+      email: string;
+      senha: string;
+      telefone: string;
+      endereco: string;
+      redesSociais: string;
+      aprovado: boolean,
+      Logo: string;
+    }
+  }
+
+
+  const [dataLogos, setDataLogos] = useState<dataLogos[]>([])
+
+  const getLogos = () => {
+    const req = axios.get('http://localhost:8080/getAllLogos').then(res => {
+      setDataLogos(res.data.message)
+    })
+  }
+
+  useEffect(() => {
+    getLogos()
+  }, [])
+
+  console.log(dataLogos)
+
+
+  const ulrImgLogos = dataLogos.map((logo) => logo.img.slice(26))
+
 
   return (
     <div
@@ -69,11 +109,11 @@ export default function Account() {
           {logedUser === "true" || User.length > 0 ? (
             <div className="flex   items-center justify-center gap-32 h-[100%] w-[100%] rounded-2xl  text-lg ">
               <div className="w-full h-full   text-white flex items-center justify-center">
-                <figure className="border-[3px] border-black rounded-full bg-white px-5 py-5">
+                <figure onClick={() => { setOpen(true) }} className="border-[3px] border-black rounded-full bg-white px-5 py-5">
                   <img
                     src={defaulImg}
                     alt=""
-                    className="rounded-full w-80 h-80 object-cover transition-all duration-1000 hover:scale-150  hover:overflow-hidden"
+                    className="cursor-pointer rounded-full w-80 h-80 object-cover transition-all duration-1000 hover:scale-150  hover:overflow-hidden"
                   />
                 </figure>
               </div>
@@ -145,6 +185,57 @@ export default function Account() {
 
               </form>
               <button onClick={logOut}>Logout</button>
+              <ModalShowLogos open={open} onClose={() => { setOpen(false) }}>
+
+                <div className="w-full h-full text-black flex flex-col gap-40 px-10 py-10">
+                  <div>
+                    <h1>Logos que você pode comprar</h1>
+                    {dataLogos.length > 0 && (
+                      <div className="flex flex-wrap gap-4 pt-10">
+                        {dataLogos.map((logo, index) => (
+                          <div key={logo.id} className="w-24 h-24 relative rounded-full overflow-hidden">
+                            {ulrImgLogos.length > 0 && (
+                              <img src={require(`../../uploadsDoacaoImgs/${ulrImgLogos[index]}`)} alt="" className="object-cover w-full h-full" />
+                            )}
+                            <button
+                              onClick={() => {
+                                setSelectedLogo(logo);
+                                setOpenModalByLogo(true);
+                              }}
+                              className="absolute inset-0 bg-black opacity-0 hover:opacity-80 transition duration-300 text-white"
+                            >
+                              Comprar
+                            </button>
+
+
+
+                          </div>
+
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <div>
+                    <h1>Logos compradas</h1>
+                    <h2>*Após ter comprado uma logo, você pode usá-la como imagem de perfil</h2>
+                    {/* Adicione aqui a exibição das logos compradas */}
+                  </div>
+                </div>
+
+              </ModalShowLogos>
+
+              {selectedLogo && (
+                <ModalConfirByLogo
+                  open={openModalByLogo}
+                  onClose={() => {
+                    setOpenModalByLogo(false);
+                  }}
+                  data={selectedLogo.img}
+                  preco={selectedLogo.preco}
+                  ong={selectedLogo.ong}
+                />
+              )}
+
             </div>
           ) : (
             <h1>Carregando dados do usuário...</h1>
