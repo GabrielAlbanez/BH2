@@ -10,7 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Usuario {
   cpf              String           @id
   nome             String
@@ -22,21 +21,23 @@ model Usuario {
   tipo             String?          @default("default")
   telefone         String
   numerosComprados NumeroComprado[]
+  imgProfile       imagensDoacao[]
 }
 
 model Ong {
-  cnpj         String        @id
-  nome         String
-  email        String        @unique
-  senha        String
-  telefone     String
-  endereco     String?
-  redesSociais String?
-  aprovado     Boolean?      @default(false)
-  Logo         String?
-  rifas        Rifa[]
-  Voluntarios  Voluntarios[]
-  trabalhos    Trabalho[]
+  cnpj          String          @id
+  nome          String
+  email         String          @unique
+  senha         String
+  telefone      String
+  endereco      String?
+  redesSociais  String?
+  aprovado      Boolean?        @default(false)
+  Logo          String?
+  rifas         Rifa[]
+  Voluntarios   Voluntarios[]
+  trabalhos     Trabalho[]
+  imagensDoacao imagensDoacao[]
 }
 
 model Voluntarios {
@@ -65,9 +66,9 @@ model Rifa {
   usuario        Usuario?         @relation(fields: [CpfUsuario], references: [cpf], onDelete: Cascade)
   ong            Ong?             @relation(fields: [idOng], references: [cnpj], onDelete: Cascade)
   NumeroComprado NumeroComprado[]
-  sorteado       Boolean?          @default(false)
+  sorteado       Boolean?         @default(false)
   ganhador       String?
-  numeroSorteado  String?           @default("null")
+  numeroSorteado String?          @default("null")
 }
 
 model NumeroComprado {
@@ -77,4 +78,14 @@ model NumeroComprado {
   usuarioCpf String
   rifa       Rifa    @relation(fields: [rifaId], references: [id], onDelete: Cascade)
   usuario    Usuario @relation(fields: [usuarioCpf], references: [cpf], onDelete: Cascade)
+}
+
+model imagensDoacao {
+  id    Int     @id @default(autoincrement())
+  img   String?
+  ongId String?
+  preco Float?
+  Cpfusuario String?
+  ong   Ong? @relation(fields: [ongId], references: [cnpj], onDelete: Cascade)
+  usuario  Usuario? @relation(fields: [Cpfusuario], references: [cpf], onDelete: Cascade)
 }

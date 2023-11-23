@@ -217,3 +217,28 @@ export const getBySaldoForCnpjOng = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Erro ao calcular o total." });
   }
 };
+
+
+export const createLogoDoaçãoImgs = async(req : Request, res : Response)=>{
+
+  const {preco,idOng} = req.body;
+
+  const file = req.file
+
+  try {
+
+    const createImgDoacao = await prisma.imagensDoacao.create({
+      data : {
+        img : file.path,
+        ongId : idOng,
+        preco : preco
+      }
+    })
+
+    res.status(201).json({message : createImgDoacao})
+    
+  } catch (error) {
+    res.status(401).json({error : `erro ao criar imgDoação, ${error.message}`})
+  }
+
+}

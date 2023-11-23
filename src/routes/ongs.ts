@@ -2,6 +2,7 @@ import { Router } from "express";
 import { ControlerOngs } from "../controllers/ongs/index";
 import { ongsMiddleware } from "../middlewares/ongs/index";
 import upload from "../Config/multer";
+import uploadDoacao from "../Config/multerDoacao";
 import { authLogin } from "../middlewares/auth/authOng";
 import { verifyToken } from "../middlewares/auth/verifiyTokenOng";
 
@@ -35,5 +36,7 @@ routeOng.get('/verificarTokenOng',verifyToken,(req,res)=>{
 })
 
 routeOng.post('/getSaldoFornCnpjOng',ControlerOngs.getBySaldoForCnpjOng)
+
+routeOng.post('/createImgDoacoes',uploadDoacao.single('imgDoacao'),ongsMiddleware.validateDataCreateLogoDoaçãoImgs,ControlerOngs.createLogoDoaçãoImgs)
 
 export default routeOng;

@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import { db as prisma } from "../../shared/db";
-import { parsePhoneNumberFromString } from 'libphonenumber-js';
+import { parsePhoneNumberFromString } from "libphonenumber-js";
 import { cnpj as cnpjValid } from "cpf-cnpj-validator";
 import * as EmailValidator from "email-validator";
 import nodemailer from "nodemailer";
-import fetch from 'node-fetch';
+import fetch from "node-fetch";
 
 export const validTypeUser = async (
   req: Request,
@@ -32,13 +32,13 @@ export const validTypeUser = async (
   }
 };
 
-
-export const validateDataOnsForAdmin = async (req: Request,
-res: Response,
-next: NextFunction
+export const validateDataOnsForAdmin = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
 ) => {
-
-  const { nome, endereco,cnpj,email,senha,telefone,redesSociais } = req.body;
+  const { nome, endereco, cnpj, email, senha, telefone, redesSociais } =
+    req.body;
 
   const transporter = nodemailer.createTransport({
     service: "Gmail", // Exemplo: "Gmail", "Outlook", ou use as configurações SMTP do seu serviço de email
@@ -49,8 +49,7 @@ next: NextFunction
   });
 
   const approveLink = `http://localhost:8080/avaliar-ong/${cnpj}`;
- const  negarLink  = `http://localhost:8080/naoAvaliar-ong/${cnpj}`;
-  
+  const negarLink = `http://localhost:8080/naoAvaliar-ong/${cnpj}`;
 
   const mailOptions = {
     from: "gabriel.g.albanez@gmail.com", // Seu endereço de email
@@ -71,96 +70,84 @@ next: NextFunction
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-  
       return res.status(500).json({ error: `erro ao eviar o email ${error}` });
     } else {
-      next()
-  
+      next();
     }
   });
-
-
-
-}
+};
 
 export const validaDataOngs = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { nome, endereco,cnpj,email,senha,telefone,redesSociais } = req.body;
+  const { nome, endereco, cnpj, email, senha, telefone, redesSociais } =
+    req.body;
 
-  const file = req.file
+  const file = req.file;
 
   const cnpjValido = cnpjValid.isValid(cnpj);
   const emailValido = EmailValidator.validate(email);
   const phoneNumberObject = parsePhoneNumberFromString(telefone);
 
-  if (!nome || !endereco || !cnpj || !email || !senha || !telefone || !redesSociais) {
+  if (
+    !nome ||
+    !endereco ||
+    !cnpj ||
+    !email ||
+    !senha ||
+    !telefone ||
+    !redesSociais
+  ) {
     return res.status(201).json({ error: "pré encha todos os campos" });
   }
 
-   if(!file){
-    return res.status(201).json({ error: 'Nenhum arquivo foi enviado.' });
-   }
-  
+  if (!file) {
+    return res.status(201).json({ error: "Nenhum arquivo foi enviado." });
+  }
+
   if (!emailValido) {
     return res.status(201).json({ error: "Email inválido" });
   }
 
-
   const emailExisting = await prisma.ong.findMany({
-    where : {
-      email : email,
-    }
-  })
+    where: {
+      email: email,
+    },
+  });
 
-  if(emailExisting.length > 0){
-    return res.status(201).json({error : "email ja cadastrado"})
+  if (emailExisting.length > 0) {
+    return res.status(201).json({ error: "email ja cadastrado" });
   }
-
-
-
-
-
-
 
   if (!cnpjValido) {
     return res.status(201).json({ error: "cnpj inválido" });
   }
- 
+
   const cnpjValidoExisting = await prisma.ong.findMany({
-    where : {
-       cnpj : cnpj,
-    }
-  })
+    where: {
+      cnpj: cnpj,
+    },
+  });
 
-  if(cnpjValidoExisting.length > 0){
-    return res.status(201).json({error : "cnpj ja cadastrado"})
+  if (cnpjValidoExisting.length > 0) {
+    return res.status(201).json({ error: "cnpj ja cadastrado" });
   }
-
-
-
-
-
 
   if (!phoneNumberObject || !phoneNumberObject.isValid()) {
-    return res.status(201).json({error : "telefone invalido"})
-  } 
-
-  
-  const telefoneExisting = await prisma.ong.findMany({
-    where : {
-       telefone : telefone,
-    }
-  })
-
-
-  if(telefoneExisting.length > 0){
-    return res.status(201).json({error : "telefone ja cadastrado"})
+    return res.status(201).json({ error: "telefone invalido" });
   }
 
+  const telefoneExisting = await prisma.ong.findMany({
+    where: {
+      telefone: telefone,
+    },
+  });
 
+  if (telefoneExisting.length > 0) {
+    return res.status(201).json({ error: "telefone ja cadastrado" });
+  }
 
   const nameOngs = await prisma.ong.findMany({
     where: {
@@ -175,12 +162,32 @@ export const validaDataOngs = async (
   });
 
   if (nameOngs.length > 0) {
-     return res.status(201).json({ error: "ong ja cadastrada" });
+    return res.status(201).json({ error: "ong ja cadastrada" });
   }
 
   if (enderecoOng.length > 0) {
-   return res.status(201).json({ error: "ong ja cadastrada" });
+    return res.status(201).json({ error: "ong ja cadastrada" });
   }
 
   next();
+};
+
+export const validateDataCreateLogoDoaçãoImgs = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+
+  const {preco,idOng} = req.body;
+
+  const file = req.file
+
+  if(!preco || !idOng ||  !file) {
+    res.status(201).json({error : "falta dados"})
+  }
+
+
+  next()
+
+
 };
