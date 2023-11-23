@@ -29,6 +29,7 @@ import AllOngs from "../Pages/adm/AllOngs";
 import AllRifas from "../Pages/adm/AllRifas";
 import ListOngs from "../Pages/usuario/ListOngs";
 import SorteiosRifas from "../Pages/usuario/SorteiosRifas";
+import CreateLogos from "../Pages/ongs/CreateLogos";
 
 export default function MinhasRotas() {
   const token2 = localStorage.getItem("token");
@@ -121,7 +122,7 @@ export default function MinhasRotas() {
             <SorteiosRifas />
           </ProtectedRoute>
         }
-        /> 
+        />
         <Route path="/Register" element={<Register />} />
         <Route path="/Login" element={<Login />} />
         <Route
@@ -181,6 +182,17 @@ export default function MinhasRotas() {
             </ProtectedRouOng>
           }
         />
+
+        <Route
+          path="/createLogo"
+          element={
+            <ProtectedRouOng user={isLogedd}>
+              < CreateLogos />
+            </ProtectedRouOng>
+          }
+        />
+
+
         <Route
           path="/AccountOng"
           element={

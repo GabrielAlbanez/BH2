@@ -13,6 +13,6 @@ const storageRifas = multer.diskStorage({
 });
 
 
-const uploadDoacao = multer({ storage: storageRifas });
+const upload = multer({ storage: storageRifas });
 
-export default uploadDoacao;
+export default upload;

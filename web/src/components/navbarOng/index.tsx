@@ -64,8 +64,8 @@ export default function NavbarOng() {
         <Link to='/RfiasOng'>
           <li>Rifas</li>
         </Link>
-        <li>Ajudantes</li>
-        <li>Trabalhadores</li>
+        <Link to='/createLogo'> <li>criar Logos </li></Link>
+
       </ul>
 
       <ul className="flex gap-7 items-center w-[40%] sm:w-[80%] md:w-[0%] md:overflow-hidden ">

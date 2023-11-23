@@ -182,8 +182,11 @@ export const validateDataCreateLogoDoaçãoImgs = async (
 
   const file = req.file
 
+  console.log(file)
+
   if(!preco || !idOng ||  !file) {
-    res.status(201).json({error : "falta dados"})
+
+   return res.status(201).json({error : "falta dados"})
   }
 
 

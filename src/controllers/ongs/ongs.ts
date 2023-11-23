@@ -223,7 +223,10 @@ export const createLogoDoaçãoImgs = async(req : Request, res : Response)=>{
 
   const {preco,idOng} = req.body;
 
+  const precoFloat = parseFloat(preco)
+
   const file = req.file
+
 
   try {
 
@@ -231,14 +234,14 @@ export const createLogoDoaçãoImgs = async(req : Request, res : Response)=>{
       data : {
         img : file.path,
         ongId : idOng,
-        preco : preco
+        preco : precoFloat
       }
     })
 
     res.status(201).json({message : createImgDoacao})
     
   } catch (error) {
-    res.status(401).json({error : `erro ao criar imgDoação, ${error.message}`})
+    res.status(201).json({error : `erro ao criar imgDoação, ${error.message}`})
   }
 
 }

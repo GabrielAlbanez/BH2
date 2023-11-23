@@ -37,6 +37,6 @@ routeOng.get('/verificarTokenOng',verifyToken,(req,res)=>{
 
 routeOng.post('/getSaldoFornCnpjOng',ControlerOngs.getBySaldoForCnpjOng)
 
-routeOng.post('/createImgDoacoes',uploadDoacao.single('imgDoacao'),ongsMiddleware.validateDataCreateLogoDoaçãoImgs,ControlerOngs.createLogoDoaçãoImgs)
+routeOng.post('/createImgDoacoes',uploadDoacao.single('imgRifa'),ongsMiddleware.validateDataCreateLogoDoaçãoImgs,ControlerOngs.createLogoDoaçãoImgs)
 
 export default routeOng;
