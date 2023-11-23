@@ -131,14 +131,14 @@ export const Login = (req: Request, res: Response) => {
 
 export const byLogoDoacao = async (req: Request, res: Response) => {
 
-  const { idLogo, cpfUser } = req.body
+  const { idLogo, emailUser } = req.body
 
   try {
 
     const byLogo = await prisma.galeryImagesLogoUser.create({
       data: {
         LogoDoacaoId: idLogo,
-        CpfUser: cpfUser
+         emaillUser : emailUser
       }
     })
 

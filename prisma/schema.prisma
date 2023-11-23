@@ -95,7 +95,7 @@ model imagensDoacao {
 model galeryImagesLogoUser {
   id           Int            @id @default(autoincrement())
   LogoDoacaoId Int?
-  CpfUser      String?
-  User         Usuario?       @relation(fields: [CpfUser], references: [cpf], onDelete: Cascade)
+  emaillUser      String?
+  User         Usuario?       @relation(fields: [emaillUser], references: [email], onDelete: Cascade)
   LogoDoacao   imagensDoacao? @relation(fields: [LogoDoacaoId], references: [id], onDelete: Cascade)
 }

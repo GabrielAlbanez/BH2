@@ -175,9 +175,9 @@ export const validateDataCompraLogo = async (req: Request,
   res: Response,
   next: NextFunction) => {
 
-    const { idLogo, cpfUser } = req.body
+    const { idLogo, emailUser } = req.body
 
-    if(!idLogo || !cpfUser){
+    if(!idLogo || !emailUser){
       return res.status(201).json({error : "falta dados"})
     }
 

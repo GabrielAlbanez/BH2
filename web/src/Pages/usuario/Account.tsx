@@ -22,6 +22,9 @@ export default function Account() {
     tipo: string;
     nome: string;
   }>;
+
+  console.log(User)
+
   const logedUser = useAppSelector((state) => state.AuthToken.isLoged);
 
   const notify = () => {
