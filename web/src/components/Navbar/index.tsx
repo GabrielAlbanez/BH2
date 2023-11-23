@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../Button";
 import Logo from "../../assets/imgs/Logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -15,6 +15,7 @@ import { useTypeUser } from "../../common/context/typeUserCadastro";
 import { useAppSelector } from "../../store/intex";
 import AvatarImg from "../AvatarImg/AvatarImg";
 import toast from "react-hot-toast";
+import sockett from "../../common/io/io";
 
 export default function Navbar() {
   const { pegarTema } = useTema() as {
@@ -82,6 +83,28 @@ export default function Navbar() {
 
   console.log(pageHome);
 
+  type resultadoSorteio = {
+    sorteio : {
+      sorteioRealizado : boolean
+    }
+  }
+
+
+  const [resultadoSorteio,setResultadoSorteio] = useState<boolean>()
+
+  const cpf = User[0]?.cpf
+
+  useEffect(()=>{
+    sockett.emit("authenticate", cpf);
+    sockett.on("sorteioConcluido", (dados: resultadoSorteio) => {
+      console.log("Recebeu sorteioConcluido:", dados);
+      setResultadoSorteio(dados.sorteio.sorteioRealizado);
+    });
+  },[])
+
+  console.log('resultado sorteio',resultadoSorteio)
+
+
   return (
     <header
       className={`  transition-all duration-1000  ${pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
@@ -109,7 +132,7 @@ export default function Navbar() {
 
           <li className="cursor-pointer" onClick={() => { verifyLogin('Rifas') }}>Minhas Rifas</li>
 
-          <li className="cursor-pointer" onClick={() => { verifyLogin('Sorteio') }}>Sorteios das Rifas</li>
+          <li className={`cursor-pointer ${resultadoSorteio ? 'animate-pulse' : ''}`} onClick={() => { verifyLogin('Sorteio') }}>Sorteios das Rifas</li>
 
 
 

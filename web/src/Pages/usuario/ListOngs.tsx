@@ -74,33 +74,12 @@ export default function ListOngs() {
       navigator("/");
     }
 
-    const cpf = User[0]?.cpf;
 
-    sockett.emit("authenticate", cpf);
-    sockett.on("avisotTimeSorteio", (dados: any) => {
-      console.log(dados.tempo.timer);
-      let timePego = dados.tempo.timer;
-      setTime(timePego);
-    });
 
-    sockett.on("sorteioConcluido", (dados: any) => {
-      console.log("Recebeu sorteioConcluido:", dados);
-      setResultadoSorteio([dados]);
-    });
 
-    if (
-      resultadoSorteio.length > 0 &&
-      resultadoSorteio[0]?.dadosGanhador.cpf.length > 0
-    ) {
-      if (resultadoSorteio[0]?.dadosGanhador.cpf === cpf) {
-        console.log("Você ganhou");
-      } else {
-        console.log("Você perdeu");
-      }
 
-      setOpen(true);
-    }
-  }, [resultadoSorteio]);
+   
+  }, []);
 
   useEffect(() => {
     if (typeUser === "admin") {
@@ -110,14 +89,10 @@ export default function ListOngs() {
 
   const cpf = User[0]?.cpf;
 
-  const url = resultadoSorteio.map((valor) =>
-    valor.ganhador?.rifa.imgRifa.slice(24)
-  );
 
 
-  console.log('ganhador',resultadoSorteio)
 
-  console.log("time state", time);
+ 
 
   return (
     <>
@@ -127,33 +102,6 @@ export default function ListOngs() {
         }`}
       >
         <div className="w-full min-h-[100%]">
-          <ModaWinOrLoseRifa open={open} onClose={handleClose}>
-            <div
-              className="text-black w-full h-full flex flex-col gap-3"
-              key={resultadoSorteio[0]?.dadosGanhador.cpf}
-            >
-              <div className="flex items-center justify-center gap-3">
-                <h1>Rifa:</h1>
-                <h1>{resultadoSorteio[0]?.ganhador?.rifa.nome}</h1>
-              </div>
-              <h1 className="text-center text-3xl">
-                {resultadoSorteio[0]?.dadosGanhador.cpf === cpf
-                  ? "Você ganhou!"
-                  : "Você perdeu"}
-              </h1>
-              {url.length > 0 && (
-                <img
-                  src={require(`../../uploadsImgRifas/${url}`)}
-                  alt=""
-                  className="w-full h-auto max-h-96 rounded-xl"
-                />
-              )}
-              <p>
-                Número da rifa sorteado: {resultadoSorteio[0]?.ganhador?.numero}
-              </p>
-              <p>Nome do ganhador: {resultadoSorteio[0]?.dadosGanhador.nome}</p>
-            </div>
-          </ModaWinOrLoseRifa>
           <CardAllOngs />
         </div>
       </div>

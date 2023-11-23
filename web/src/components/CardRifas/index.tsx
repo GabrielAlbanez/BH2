@@ -56,7 +56,7 @@ export default function CardRifas() {
 
   useEffect(() => {
     getRifasOng();
-  }, []);
+  }, [dataRifa]);
 
   console.log("dataRifa", dataRifa);
 
@@ -80,7 +80,6 @@ export default function CardRifas() {
   const sortRifa = async (id: number,timer : number) => {
 
   
-    console.log('id timer',id,timer)
     
     const request = await axios.post("http://localhost:8080/Drawlots", {
       idRifa: id,

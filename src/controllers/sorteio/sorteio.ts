@@ -101,11 +101,10 @@ export const sorteioUsers = async (req: Request, res: Response) => {
 
    
       ioo.emit("sorteioConcluido", {
-        ganhador: {
-          numero: ganhador[0]?.numero,
-          rifa: ganhador[0]?.rifa,
+        sorteio: {
+            sorteioRealizado : true
         },
-        dadosGanhador: dataGanhador[0],
+      
       });
   
 
