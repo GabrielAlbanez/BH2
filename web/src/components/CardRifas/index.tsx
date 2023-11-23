@@ -155,32 +155,10 @@ export default function CardRifas() {
                   }}
                 >
                   <div className="flex flex-col gap-4 items-center justify-center">
-                    <h1 className="text-2xl text-black">Timer</h1>
-                    <select
-                      value={selectedTime}
-                      onChange={handleTimeChange}
-                      className="px-4 py-2 border rounded-md bg-black text-white"
-                    >
-                      <option value={30}>5 minutes</option>
-                      <option value={60}>10 minutes</option>
-                      <option value={180}>30 minutes</option>
-                      <option value={360}>1 hour</option>
-                      <option value={720}>2 hours</option>
-                      <option value={1080}>3 hours</option>
-                      <option value={1440}>4 hours</option>
-                      <option value={1800}>5 hours</option>
-                      <option value={2160}>6 hours</option>
-                      <option value={2520}>7 hours</option>
-                      <option value={2880}>8 hours</option>
-                      <option value={3240}>9 hours</option>
-                      <option value={3600}>10 hours</option>
-                    </select>
+                     <h1 className="text-black text-xl flex items-center justify-center px-10">vc tem certeza que deseja fazer o sorteio dessa rifa</h1>
                     <button
                       onClick={() => {
-                        setTimeout(()=>{
                           sortRifa(rifa.id,selectedTime);
-                        },4000)
-                       
                       }}
                       className="text-white hover:shadow-2xl bg-black rounded-2xl px-3 py-3  hover:shadow-fuchsia-500 hover:scale-110 transition-all duration-1000 "
                     >

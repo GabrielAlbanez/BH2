@@ -16,6 +16,7 @@ import { useAppSelector } from "../../store/intex";
 import AvatarImg from "../AvatarImg/AvatarImg";
 import toast from "react-hot-toast";
 import sockett from "../../common/io/io";
+import "./animationNavbar.css"
 
 export default function Navbar() {
   const { pegarTema } = useTema() as {
@@ -105,9 +106,9 @@ export default function Navbar() {
 
   const Local = useLocation();
 
-  if (resultadoSorteio) {
-    notify("uma nova rifa foi sorteada");
-   }
+
+
+
 
   return (
     <header
@@ -147,7 +148,7 @@ export default function Navbar() {
 
             <li
               className={`cursor-pointer ${
-                resultadoSorteio ? "animate-pulse" : ""
+                resultadoSorteio && Local.pathname !== '/Sorteio' ? "animate-pulse-10s" : ""
               }`}
               onClick={() => {
                 verifyLogin("Sorteio");
