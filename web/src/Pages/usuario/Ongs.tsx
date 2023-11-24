@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useTema } from "../../common/context/Tema";
 import toast from "react-hot-toast";
 import { useAppSelector } from "../../store/intex";
+import ModalPyament from "../../components/Modal/ModalPyament";
 
 export default function Ongs() {
   const { cnpj } = useParams();
@@ -33,7 +34,7 @@ export default function Ongs() {
         nome: string;
         preco: string;
         id: number;
-        sorteado : boolean;
+        sorteado: boolean;
       }
     ];
     endereco: string;
@@ -98,25 +99,46 @@ export default function Ongs() {
       cpf: User[0]?.cpf,
       id: idRifa,
       numero: Math.floor(Math.random() * 131312321),
-
-      
     });
 
     notify(req.data.message);
     console.log("data", req.data);
+    setOpen(false)
   };
 
+  const verySortRifa = (sorteado: boolean) => {
+    if (sorteado === true) {
+      notify("essa rifa ja foi sorteada");
+    } else {
+      notify("essa rifa ainda n foi sorteada");
+    }
+  };
 
-  const verySortRifa = (sorteado : boolean)=>{
-      if(sorteado === true){
-        notify('essa rifa ja foi sorteada')
-      } else {
-        notify('essa rifa ainda n foi sorteada')
-      }
-  }
+  const [open, setOpen] = useState<boolean>(false);
+
+  type selecRifa = {
+    id: number;
+    imgRifa: string;
+    nome: string;
+    preco: string;
+    descricao: string;
+  };
+
+  const [rifaSelecionada, setRifaSelecionada] = useState<selecRifa | null>(
+    null
+  );
+
+  const selecRifa = (data: selecRifa) => {
+    setOpen(true);
+    setRifaSelecionada(data);
+  };
 
   return (
-    <div className={`bg-${pegarTema === "dark" ? "black" : "[#CEF3FF]"} min-h-screen text-${pegarTema === "dark" ? "white" : "black"}`}>
+    <div
+      className={`bg-${
+        pegarTema === "dark" ? "black" : "[#CEF3FF]"
+      } min-h-screen text-${pegarTema === "dark" ? "white" : "black"}`}
+    >
       {dataOng.length > 0 ? (
         <div className="container mx-auto p-4">
           <section className="flex flex-col items-center justify-center pt-7">
@@ -129,7 +151,9 @@ export default function Ongs() {
           </section>
           <section className="flex flex-col md:flex-row mt-8 gap-4">
             <div className="md:w-1/2">
-              <h2 className="text-xl md:text-4xl font-bold mb-4 text-center md:text-start">Informações da Ong</h2>
+              <h2 className="text-xl md:text-4xl font-bold mb-4 text-center md:text-start">
+                Informações da Ong
+              </h2>
               <div className="text-sm md:text-md text-center md:text-start flex flex-col gap-5 pt-4">
                 <p className="mb-2">
                   <span className="font-bold">Nome:</span> {dataOng[0].nome}
@@ -156,9 +180,7 @@ export default function Ongs() {
                 {dataOng[0]?.rifas.map((data, index) => (
                   <div
                     key={index}
-                    onClick={() => {
-                      verySortRifa(data.sorteado);
-                    }}
+                
                     className={`max-w-sm rounded-lg overflow-hidden w-full md:w-[48%] p-4 transition-all duration-300 cursor-pointer hover:shadow-md ${
                       data.sorteado ? "opacity-50" : "opacity-100"
                     }`}
@@ -171,17 +193,38 @@ export default function Ongs() {
                     <div className="text-sm md:text-md">
                       <p className="font-bold mb-2">{data.nome}</p>
                       <p>{data.descricao}</p>
-                      <p className="font-bold mt-2">Valor da Rifa: {data.preco}</p>
+                      <p className="font-bold mt-2">
+                        Valor da Rifa: {data.preco}
+                      </p>
                     </div>
                     {!data.sorteado && (
                       <button
                         onClick={() => {
-                          SaveNumberRifa(data.id);
+                          selecRifa(data);
                         }}
                         className="block w-full bg-fuchsia-500 text-white rounded-md py-2 mt-4 hover:bg-fuchsia-600 transition duration-300"
                       >
                         Comprar Rifa
                       </button>
+                    )}
+                    {rifaSelecionada && (
+                      <ModalPyament
+                        open={open}
+                        onClose={() => {
+                          setOpen(false);
+                        }}
+                        data={{
+                          id: rifaSelecionada.id,
+                          img: rifaSelecionada.imgRifa,
+                          nome: rifaSelecionada.nome,
+                          preco: parseFloat(rifaSelecionada.preco),
+                          descrcao: rifaSelecionada.descricao,
+                        }}
+                      >
+                        <button onClick={()=>{SaveNumberRifa(data.id)}} className="border-[1px] border-black rounded-full px-3 py-3">
+                          Comprar Rifa
+                        </button>
+                      </ModalPyament>
                     )}
                   </div>
                 ))}
