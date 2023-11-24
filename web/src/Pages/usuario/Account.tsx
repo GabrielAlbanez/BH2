@@ -116,7 +116,7 @@ export default function Account() {
   useEffect(() => {
     getLogos()
     getLogosComprados()
-  }, [])
+  }, [dataLogosComprados])
 
   console.log('comprados', dataLogosComprados)
 
