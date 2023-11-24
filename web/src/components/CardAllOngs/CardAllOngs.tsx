@@ -28,7 +28,7 @@ export default function CardAllOngs() {
       {dataOng.length > 0 ? (
         dataOng.map((ong, index) => (
           <Link to={`/Ong/${cnpjLimpo[index]}`} key={index}>
-            <div className="max-w-xl mx-4 my-8 bg-white rounded-2xl overflow-hidden shadow-lg transform transition-transform duration-[1500ms] hover:scale-125">
+            <div className="max-w-xl mx-4 my-8 bg-white rounded-2xl overflow-hidden shadow-lg transform transition-transform duration-[1500ms] hover:scale-110">
               <img
                 className="w-full h-52 object-cover transform transition-transform duration-[1500ms] hover:scale-110"
                 src={require(`../../uploads/${url[index]}`)}

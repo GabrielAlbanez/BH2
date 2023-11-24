@@ -236,7 +236,7 @@ export default function Navbar() {
         {isLoged === "true" ? (
           <div className="flex items-center  gap-4">
             <Link to={"/Account"}>
-            {img.length > 0 ? (
+            {img ? (
               <img
               onClick={() => navigator(`${isLoged === "true" ? "/Home" : "/"}`)}
               src={require(`../../uploadsDoacaoImgs/${img}`)}

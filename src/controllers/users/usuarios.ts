@@ -198,3 +198,29 @@ export const updateImgUser = async(req : Request, res : Response)=>{
   }
 
 }
+
+
+export const updateDataUser = async(req : Request, res : Response)=>{
+
+
+  const {nome,cpf,sexo} = req.body
+
+   try {
+
+    const updateData = await prisma.usuario.update({
+      where : {
+        cpf : cpf
+      },
+      data : {
+        nome : nome,
+        sexo : sexo
+      }
+    })
+
+    res.status(201).json({message : "dados atualizado com sucesso, para ver seus dados realizados fazer login"})
+    
+   } catch (error) {
+      res.status(201).json({message : `erro ao fazer troca de dados `})
+   }
+
+}

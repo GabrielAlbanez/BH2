@@ -84,7 +84,7 @@ export default function SorteiosRifas() {
                     {rifa.ganhador === cpf ? (
                       <p className="text-green-500 font-bold mt-2">Parabéns, você ganhou esta rifa!</p>
                     ) : (
-                      <p className="text-red-500 font-bold mt-2">Você perdeu esta rifa.</p>
+                      <p className="text-red-500 font-bold mt-2"></p>
                     )}
                   </>
                 ) : (
