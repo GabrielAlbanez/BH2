@@ -142,7 +142,7 @@ export const byLogoDoacao = async (req: Request, res: Response) => {
       }
     })
 
-    res.status(201).json({logoComprada : byLogo})
+    res.status(201).json({message : 'logo comprada com sucesso'})
 
   } catch (errorr) {
     res.status(201).json({ error: `erro ao comprar logo ${errorr.message}` })

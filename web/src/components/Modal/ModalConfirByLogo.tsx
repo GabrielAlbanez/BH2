@@ -1,11 +1,16 @@
+import axios from "axios";
 import React from "react";
+import toast from "react-hot-toast";
 import { GrFormClose } from "react-icons/gr";
+import { useTema } from "../../common/context/Tema";
 
 interface PropsModal {
   open: boolean;
   onClose: () => void;
   data: string;
   preco: number;
+  id : number;
+  email : string;
   ong: {
     cnpj: string;
     nome: string;
@@ -18,8 +23,32 @@ interface PropsModal {
   };
 }
 
-const ModalConfirByLogo: React.FC<PropsModal> = ({ open, onClose, data, preco, ong }) => {
+const ModalConfirByLogo: React.FC<PropsModal> = ({ open, onClose, data, preco, ong,id,email }) => {
   const url = data.slice(26);
+
+  const { pegarTema } = useTema() as {
+    pegarTema: string;
+  };
+
+  const notify = (message: string): void => {
+    toast(`${message}`, {
+      icon: `${pegarTema === "dark" ? "✔" : "✔"}`,
+      style: {
+        borderRadius: "10px",
+        background: `${pegarTema === "dark" ? "#333" : "white"}`,
+        color: `${pegarTema === "dark" ? "white" : "black"}`,
+      },
+    });
+  };
+
+
+  const byLogo = async()=>{
+    const req =  await axios.post('http://localhost:8080/byLogoDoacao',{
+        idLogo : id,
+        emailUser : email
+    })
+    notify(req.data.message)
+  }
 
   return (
     <div
@@ -69,7 +98,7 @@ const ModalConfirByLogo: React.FC<PropsModal> = ({ open, onClose, data, preco, o
           </div>
           <div className="flex flex-col items-center gap-3">
           <p className="text-gray-500">Preço: R$ {preco}</p>
-          <button className="py-3 px-5 rounded-2xl border-[1px] border-black text-black">Comprar</button>
+          <button onClick={byLogo} className="py-3 px-5 rounded-2xl border-[1px] border-black text-black">Comprar</button>
           </div>
          
         </div>

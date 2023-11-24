@@ -181,6 +181,21 @@ export const validateDataCompraLogo = async (req: Request,
       return res.status(201).json({error : "falta dados"})
     }
 
+    const idssLogos = await prisma.galeryImagesLogoUser.findMany({
+      where : {
+        emaillUser : emailUser
+      },
+      select : {
+        LogoDoacaoId : true
+      }
+    })
+
+    const ids = idssLogos.map((id)=>id.LogoDoacaoId)
+
+    if(ids.includes(idLogo)){
+      return res.status(201).json({message : "vc ja comprou essa logo"})
+    }
+
     next()
 
 }

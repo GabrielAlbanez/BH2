@@ -113,7 +113,7 @@ export default function Account() {
   useEffect(() => {
     getLogos()
     getLogosComprados()
-  }, [])
+  }, [dataLogos,dataLogosComprados])
 
   console.log('comprados',dataLogosComprados)
 
@@ -271,6 +271,8 @@ export default function Account() {
                   data={selectedLogo.img}
                   preco={selectedLogo.preco}
                   ong={selectedLogo.ong}
+                  id ={selectedLogo.id}
+                  email={User[0]?.email}
                 />
               )}
 
