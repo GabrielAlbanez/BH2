@@ -88,11 +88,34 @@ export default function Account() {
     })
   }
 
+  type dataComprados = {
+    LogoDoacao : {
+      id: number;
+      img: string;
+      ongId: string;
+      preco: number;
+      Cpfusuario: null
+    }
+
+  }
+
+
+  const [dataLogosComprados, setDataLogosComprados] = useState<dataComprados[]>([])
+
+  const getLogosComprados = async () => {
+    const req = await axios.post('http://localhost:8080/getAlLogosByEmailUser',{email : User[0]?.email}).then(res => {
+      setDataLogosComprados(res.data.message)
+    })
+  }
+
+
+
   useEffect(() => {
     getLogos()
+    getLogosComprados()
   }, [])
 
-  console.log(dataLogos)
+  console.log('comprados',dataLogosComprados)
 
 
   const ulrImgLogos = dataLogos.map((logo) => logo.img.slice(26))
@@ -215,8 +238,23 @@ export default function Account() {
                       </div>
                     )}
                   </div>
-                  <div>
+                  <div className="flex flex-col gap-10">
                     <h1>Logos compradas</h1>
+                     {dataLogosComprados.length > 0 && (
+                      <div className="flex flex-wrap gap-4 pt-10">
+                        {dataLogosComprados.map((logo,index)=>(
+                          <div key={dataLogosComprados[index].LogoDoacao.id}>
+                            <div className="w-24 h-24 relative rounded-full overflow-hidden">
+                            <img src={require(`../../uploadsDoacaoImgs/${dataLogosComprados[index].LogoDoacao.img.slice(26)}`)}alt=""  className="object-cover w-full h-full"/>
+                            </div>
+                        
+                       
+                          </div>
+                        ))}
+                        
+                        
+                      </div>
+                     )}
                     <h2>*Após ter comprado uma logo, você pode usá-la como imagem de perfil</h2>
                     {/* Adicione aqui a exibição das logos compradas */}
                   </div>

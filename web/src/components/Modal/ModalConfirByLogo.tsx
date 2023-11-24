@@ -23,7 +23,7 @@ const ModalConfirByLogo: React.FC<PropsModal> = ({ open, onClose, data, preco, o
 
   return (
     <div
-      className={`fixed inset-0 flex justify-center items-center transition-colors ${
+      className={`fixed inset-0 flex justify-center items-center transition-all duration-1000 scale-125 ${
         open ? "visible bg-black/20 " : "invisible "
       }`}
     >
@@ -39,7 +39,7 @@ const ModalConfirByLogo: React.FC<PropsModal> = ({ open, onClose, data, preco, o
           <GrFormClose size={32} />
         </button>
 
-        <div className="flex items-center justify-center gap-8 text-black">
+        <div className="flex items-center justify-center gap-8 text-black transition-all duration-1000">
           <div className="flex flex-col items-center">
             <h1 className="text-3xl font-semibold mb-4">ONG</h1>
             <img
@@ -55,9 +55,6 @@ const ModalConfirByLogo: React.FC<PropsModal> = ({ open, onClose, data, preco, o
             <p className="text-gray-500 mb-1">Telefone: {ong.telefone}</p>
             <p className="text-gray-500 mb-1">Endereço: {ong.endereco}</p>
             <p className="text-gray-500 mb-1">Redes Sociais: {ong.redesSociais}</p>
-            <p className="text-gray-500">
-              Aprovado: {ong.aprovado ? "Sim" : "Aguardando aprovação"}
-            </p>
           </div>
         </div>
 
