@@ -43,7 +43,7 @@ const ModalPyament: React.FC<PropsModal> = ({ open, onClose, data, children }) =
             <img
               src={require(`../../uploadsImgRifas/${data.img.slice(24)}`)}
               alt=""
-              className="h-62 w-62 object-cover rounded-xl"
+              className="h-62 w-62 object-cover rounded-xl transition-all duration-1000 hover:scale-110"
             />
           </div>
           <div className="h-full w-[50%] flex flex-col justify-between items-center py-5  ">
