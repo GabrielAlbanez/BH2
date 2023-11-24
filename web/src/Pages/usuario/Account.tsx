@@ -31,14 +31,17 @@ export default function Account() {
     sexo: string;
     tipo: string;
     nome: string;
+    imgPerfilAbsolute: string;
   }>;
 
   console.log(User)
 
   const logedUser = useAppSelector((state) => state.AuthToken.isLoged);
 
-  const notify = () => {
-    toast(`${"usuario Deslogado"}`, {
+
+
+  const notifyy = (message: string) => {
+    toast(`${message}`, {
       icon: `${pegarTema === "dark" ? "🌑" : " 🌞"}`,
       style: {
         borderRadius: "10px",
@@ -51,7 +54,7 @@ export default function Account() {
   const navigator = useNavigate();
 
   const logOut = () => {
-    notify();
+    notifyy('usuario deslogado');
     setTimeout(() => {
       localStorage.setItem("token", "");
       localStorage.setItem("isLoged", "false");
@@ -89,7 +92,7 @@ export default function Account() {
   }
 
   type dataComprados = {
-    LogoDoacao : {
+    LogoDoacao: {
       id: number;
       img: string;
       ongId: string;
@@ -103,7 +106,7 @@ export default function Account() {
   const [dataLogosComprados, setDataLogosComprados] = useState<dataComprados[]>([])
 
   const getLogosComprados = async () => {
-    const req = await axios.post('http://localhost:8080/getAlLogosByEmailUser',{email : User[0]?.email}).then(res => {
+    const req = await axios.post('http://localhost:8080/getAlLogosByEmailUser', { email: User[0]?.email }).then(res => {
       setDataLogosComprados(res.data.message)
     })
   }
@@ -113,13 +116,24 @@ export default function Account() {
   useEffect(() => {
     getLogos()
     getLogosComprados()
-  }, [dataLogos,dataLogosComprados])
+  }, [])
 
-  console.log('comprados',dataLogosComprados)
+  console.log('comprados', dataLogosComprados)
 
 
   const ulrImgLogos = dataLogos.map((logo) => logo.img.slice(26))
 
+  const updateFileImg = async (img: string) => {
+    const req = await axios.post('http://localhost:8080/updateImgUser', {
+      img: img,
+      cpf: User[0]?.cpf
+    })
+
+    notifyy(`${req.data.message}: para ver sua nova foto de perfil faça seu login de novo`)
+
+  }
+
+  const img = User[0]?.imgPerfilAbsolute
 
   return (
     <div
@@ -133,11 +147,15 @@ export default function Account() {
             <div className="flex   items-center justify-center gap-32 h-[100%] w-[100%] rounded-2xl  text-lg ">
               <div className="w-full h-full   text-white flex items-center justify-center">
                 <figure onClick={() => { setOpen(true) }} className="border-[3px] border-black rounded-full bg-white px-5 py-5">
-                  <img
+                  {img.length > 0 ? (<img
+                    src={require(`../../uploadsDoacaoImgs/${img}`)}
+                    alt=""
+                    className="cursor-pointer rounded-full w-80 h-80 object-cover transition-all duration-1000 hover:scale-150  hover:overflow-hidden"
+                  />) : (<img
                     src={defaulImg}
                     alt=""
                     className="cursor-pointer rounded-full w-80 h-80 object-cover transition-all duration-1000 hover:scale-150  hover:overflow-hidden"
-                  />
+                  />)}
                 </figure>
               </div>
 
@@ -240,21 +258,21 @@ export default function Account() {
                   </div>
                   <div className="flex flex-col gap-10">
                     <h1>Logos compradas</h1>
-                     {dataLogosComprados.length > 0 && (
+                    {dataLogosComprados.length > 0 && (
                       <div className="flex flex-wrap gap-4 pt-10">
-                        {dataLogosComprados.map((logo,index)=>(
-                          <div key={dataLogosComprados[index].LogoDoacao.id}>
+                        {dataLogosComprados.map((logo, index) => (
+                          <div className="cursor-pointer" key={dataLogosComprados[index].LogoDoacao.id} onClick={() => { updateFileImg(dataLogosComprados[index].LogoDoacao.img.slice(26)) }}>
                             <div className="w-24 h-24 relative rounded-full overflow-hidden">
-                            <img src={require(`../../uploadsDoacaoImgs/${dataLogosComprados[index].LogoDoacao.img.slice(26)}`)}alt=""  className="object-cover w-full h-full"/>
+                              <img src={require(`../../uploadsDoacaoImgs/${dataLogosComprados[index].LogoDoacao.img.slice(26)}`)} alt="" className="object-cover w-full h-full" />
                             </div>
-                        
-                       
+
+
                           </div>
                         ))}
-                        
-                        
+
+
                       </div>
-                     )}
+                    )}
                     <h2>*Após ter comprado uma logo, você pode usá-la como imagem de perfil</h2>
                     {/* Adicione aqui a exibição das logos compradas */}
                   </div>
@@ -271,7 +289,7 @@ export default function Account() {
                   data={selectedLogo.img}
                   preco={selectedLogo.preco}
                   ong={selectedLogo.ong}
-                  id ={selectedLogo.id}
+                  id={selectedLogo.id}
                   email={User[0]?.email}
                 />
               )}

@@ -191,6 +191,8 @@ export const updateImgUser = async(req : Request, res : Response)=>{
         }
     })
     
+    res.status(201).json({message : "foto de perfil alterada com sucesso"})
+    
   } catch (error) {
     res.status(201).json({err : `erro ao fazer update da img de perfil usuario`,error})
   }

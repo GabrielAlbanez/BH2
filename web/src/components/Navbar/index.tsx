@@ -18,6 +18,7 @@ import toast from "react-hot-toast";
 import sockett from "../../common/io/io";
 import "./animationNavbar.css"
 
+
 export default function Navbar() {
   const { pegarTema } = useTema() as {
     pegarTema: string;
@@ -41,6 +42,7 @@ export default function Navbar() {
     numerosComprados: [];
     sexo: string;
     tipo: string;
+    imgPerfilAbsolute: string;
   }>;
 
   const ong = useAppSelector((state) => state.AuthToken.dataOng) as Array<{
@@ -107,7 +109,7 @@ export default function Navbar() {
   const Local = useLocation();
 
 
-
+ const img = User[0]?.imgPerfilAbsolute
 
 
   return (
@@ -173,7 +175,8 @@ export default function Navbar() {
       ) : (
         <>
           <ul className="flex md:text-lg lg:text-xl 2xl:text-xl gap-7 items-center overflow-hidden w-[0%] sm:w-[0%] md:w-[100%] md:overflow-visible">
-            <img
+      
+              <img
               onClick={() => navigator(`${isLoged === "true" ? "/Home" : "/"}`)}
               src={Logo}
               alt=""
@@ -181,6 +184,7 @@ export default function Navbar() {
               width={40}
               className="cursor-pointer"
             />
+      
 
             <li
               className="cursor-pointer"
@@ -232,7 +236,18 @@ export default function Navbar() {
         {isLoged === "true" ? (
           <div className="flex items-center  gap-4">
             <Link to={"/Account"}>
-              <AvatarImg />
+            {img.length > 0 ? (
+              <img
+              onClick={() => navigator(`${isLoged === "true" ? "/Home" : "/"}`)}
+              src={require(`../../uploadsDoacaoImgs/${img}`)}
+              alt=""
+              height={40}
+              width={40}
+              className="cursor-pointer rounded-full object-cover h-14 w-14"
+            />
+            ) : (
+             <AvatarImg/>
+            )}
             </Link>
             {pageHome ? "" : <ButtonTradeTheme />}
           </div>
