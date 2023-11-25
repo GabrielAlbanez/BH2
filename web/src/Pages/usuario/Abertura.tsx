@@ -22,6 +22,7 @@ export default function Abertura() {
         pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
       }`}
     >
+
       <div className="flex flex-col items-center justify-center w-[100%] h-[90vh]">
   
         <div className="h-[90%] w-full flex flex-col items-center justify-center gap-10 sm:gap-20 2xl:gap-24">

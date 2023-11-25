@@ -31,6 +31,7 @@ import ListOngs from "../Pages/usuario/ListOngs";
 import SorteiosRifas from "../Pages/usuario/SorteiosRifas";
 import CreateLogos from "../Pages/ongs/CreateLogos";
 import ListLogos from "../Pages/ongs/ListLogos";
+import VLibras from '@moreiraste/react-vlibras'
 
 export default function MinhasRotas() {
   const token2 = localStorage.getItem("token");
@@ -104,9 +105,12 @@ export default function MinhasRotas() {
   return (
     <BrowserRouter>
       {isLoged === "ongLogada" ? <NavbarOng /> : <Navbar />}
-
       <Toaster position="bottom-right" reverseOrder={false} />
+      <VLibras  forceOnload={true} />
+
+
       <Routes>
+
         {/* rotas de usuario e adm */}
         <Route path="/" element={<Abertura />} />
 
