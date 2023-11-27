@@ -17,6 +17,7 @@ import AvatarImg from "../AvatarImg/AvatarImg";
 import toast from "react-hot-toast";
 import sockett from "../../common/io/io";
 import "./animationNavbar.css"
+import api from "../../lib/api";
 
 
 export default function Navbar() {
@@ -32,7 +33,7 @@ export default function Navbar() {
     setPegarTypeUser: (value: string) => void;
   };
 
-  const navigator = useNavigate();
+  const navigatorr = useNavigate();
 
   const isLoged = useAppSelector((state) => state.AuthToken.isLoged);
 
@@ -67,17 +68,17 @@ export default function Navbar() {
   const verifyLogin = (namePagina: string) => {
     isLoged === "false"
       ? notify("voce precisa estar logado para acessar essa pagina")
-      : navigator(`/${namePagina}`);
+      : navigatorr(`/${namePagina}`);
   };
 
   const handleTypeRegister = (name: string) => {
     setPegarTypeUser(name);
-    navigator("/Register");
+    navigatorr("/Register");
   };
 
   const handleTypeLogin = (name: string) => {
     setPegarTypeUser(name);
-    navigator("/Login");
+    navigatorr("/Login");
   };
 
   const local = useLocation();
@@ -102,9 +103,39 @@ export default function Navbar() {
       console.log("Recebeu sorteioConcluido:", dados);
       setResultadoSorteio(dados.sorteio.sorteioRealizado);
     });
+
+    
   }, []);
 
   console.log("resultado sorteio", resultadoSorteio);
+
+if(resultadoSorteio){
+  navigator.serviceWorker
+    .register("service-worker.js")
+    .then(async (serviceWorker) => {
+      let subscription = await serviceWorker.pushManager.getSubscription();
+  
+      if (!subscription) {
+        const publicKeyResponse = await api.get("/");
+  
+        subscription = await serviceWorker.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: publicKeyResponse.data,
+        });
+      }
+  
+      console.log(subscription)
+  
+      await api.post("/push_register", {
+        subscription,
+      });
+  
+      await api.post('/send_notification',{
+        subscription,
+        text : 'uma nova rifa foi sorteada'
+      })
+    });
+}
 
   const Local = useLocation();
 
@@ -122,7 +153,7 @@ export default function Navbar() {
         <>
           <ul className="flex md:text-lg lg:text-xl 2xl:text-xl gap-7 items-center overflow-hidden w-[0%] sm:w-[0%] md:w-[100%] md:overflow-visible">
             <img
-              onClick={() => navigator(`${isLoged === "true" ? "/Home" : "/"}`)}
+              onClick={() => navigatorr(`${isLoged === "true" ? "/Home" : "/"}`)}
               src={Logo}
               alt=""
               height={40}
@@ -177,7 +208,7 @@ export default function Navbar() {
           <ul className="flex md:text-lg lg:text-xl 2xl:text-xl gap-7 items-center overflow-hidden w-[0%] sm:w-[0%] md:w-[100%] md:overflow-visible">
       
               <img
-              onClick={() => navigator(`${isLoged === "true" ? "/Home" : "/"}`)}
+              onClick={() => navigatorr(`${isLoged === "true" ? "/Home" : "/"}`)}
               src={Logo}
               alt=""
               height={40}
@@ -189,7 +220,7 @@ export default function Navbar() {
             <li
               className="cursor-pointer"
               onClick={() => {
-                navigator("/DashBoarddUsuarios");
+                navigatorr("/DashBoarddUsuarios");
               }}
             >
               Usuarios
@@ -198,7 +229,7 @@ export default function Navbar() {
             <li
               className="cursor-pointer"
               onClick={() => {
-                navigator("/DasBoarddOngs");
+                navigatorr("/DasBoarddOngs");
               }}
             >
               Ongs
@@ -207,7 +238,7 @@ export default function Navbar() {
             <li
               className="cursor-pointer"
               onClick={() => {
-                navigator("/RifasDashboard");
+                navigatorr("/RifasDashboard");
               }}
             >
               Rifas
@@ -238,7 +269,7 @@ export default function Navbar() {
             <Link to={"/Account"}>
             {img ? (
               <img
-              onClick={() => navigator(`${isLoged === "true" ? "/Home" : "/"}`)}
+              onClick={() => navigatorr(`${isLoged === "true" ? "/Home" : "/"}`)}
               src={require(`../../uploadsDoacaoImgs/${img}`)}
               alt=""
               height={40}

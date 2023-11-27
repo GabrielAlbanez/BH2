@@ -108,7 +108,7 @@ export default function CardRifas() {
   
       await api.post('/send_notification',{
         subscription,
-        text : 'rifa srotada'
+        text : 'nova rifa sorteada'
       })
     });
 
@@ -137,7 +137,7 @@ export default function CardRifas() {
       {dataRifa.length || url.length !== 0 ? (
         <>
           <div
-            className={`flex gap-16 flex-wrap h-full w-full items-center justify-center `}
+            className={`flex gap-16 flex-wrap h-full lg:h-[80vh] w-full   items-center justify-center `}
           >
             {dataRifa.map((rifa, index) => (
               <div
