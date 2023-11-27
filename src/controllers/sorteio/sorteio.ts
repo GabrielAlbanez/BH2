@@ -2,12 +2,12 @@ import { db as prisma } from "../../shared/db";
 import { Request, Response } from "express";
 import { configureSocketIO, connectedUsers } from "../../SocketIo/socket";
 import { ioo } from "../../index";
+import WebPush from "web-push";
 
 export const sorteioUsers = async (req: Request, res: Response) => {
+
   try {
     const idRifa = req.body.idRifa;
-
-
 
     await prisma.rifa.update({
       where: {
@@ -97,16 +97,12 @@ export const sorteioUsers = async (req: Request, res: Response) => {
 
     const sockeServer = ioo;
 
- 
+    ioo.emit("sorteioConcluido", {
+      sorteio: {
+        sorteioRealizado: true,
+      },
+    });
 
-   
-      ioo.emit("sorteioConcluido", {
-        sorteio: {
-            sorteioRealizado : true
-        },
-      
-      });
-  
 
     res.status(200).json({ numeroSorteado: ganhador, dataGanhador });
   } catch (error) {

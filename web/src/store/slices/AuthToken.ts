@@ -7,7 +7,8 @@ const AuthToken = createSlice({
     dataUser: [],
     isLoged: 'false',
     dataOng : [],
-    tokenOng : []
+    tokenOng : [],
+    assinatura : []
   },
 
   reducers: {
@@ -27,9 +28,13 @@ const AuthToken = createSlice({
       state.isLoged = action.payload;
       console.log(action.payload);
     },
+
+    saveAssinatura : (state, action) => {
+      state.assinatura = action.payload;
+    }
   },
 });
 
 export const Token = AuthToken.reducer;
 
-export const { takeToken, LogUser, saveDataUser,saveDataOng } = AuthToken.actions;
+export const { takeToken, LogUser, saveDataUser,saveDataOng,saveAssinatura } = AuthToken.actions;

@@ -10,7 +10,7 @@ import Register from "../Pages/usuario";
 import Login from "../Pages/usuario/Login";
 import Account from "../Pages/usuario/Account";
 import { useDispatch } from "react-redux";
-import { LogUser, saveDataOng, saveDataUser } from "../store/slices/AuthToken";
+import { LogUser, saveAssinatura, saveDataOng, saveDataUser } from "../store/slices/AuthToken";
 import { useAppSelector } from "../store/intex";
 import Home from "../Pages/usuario/Home";
 import Dashboard from "../Pages/usuario/Dashboard";
@@ -32,6 +32,7 @@ import SorteiosRifas from "../Pages/usuario/SorteiosRifas";
 import CreateLogos from "../Pages/ongs/CreateLogos";
 import ListLogos from "../Pages/ongs/ListLogos";
 import VLibras from '@moreiraste/react-vlibras'
+import api from "../lib/api";
 
 export default function MinhasRotas() {
   const token2 = localStorage.getItem("token");
@@ -45,15 +46,8 @@ export default function MinhasRotas() {
 
   const isLoged = useAppSelector((state) => state.AuthToken.isLoged);
 
-  // const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
-  //   cpf: string;
-  //   email: string;
-  //   numerosComprados: [];
-  //   sexo: string;
-  //   tipo: string;
-  // }>;
 
-  // const typeUser = User[0]?.tipo;
+
 
   useEffect(() => {
     const fetchData = async () => {

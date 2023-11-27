@@ -13,6 +13,8 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useTema } from "../../common/context/Tema";
 import ModalTimerRIfa from "../Modal/ModalTimerRIfa";
+import { useDispatch } from "react-redux";
+import api from "../../lib/api";
 
 export default function CardRifas() {
   type dataOng = {
@@ -29,6 +31,11 @@ export default function CardRifas() {
 
   const [open, setOpen] = useState(false);
 
+
+  
+
+
+  
   const ong = useAppSelector((state) => state.AuthToken.dataOng) as Array<{
     cnpj: string;
   }>;
@@ -79,11 +86,40 @@ export default function CardRifas() {
 
   const sortRifa = async (id: number,timer : number) => {
 
+    navigator.serviceWorker
+    .register("service-worker.js")
+    .then(async (serviceWorker) => {
+      let subscription = await serviceWorker.pushManager.getSubscription();
+  
+      if (!subscription) {
+        const publicKeyResponse = await api.get("/");
+  
+        subscription = await serviceWorker.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: publicKeyResponse.data,
+        });
+      }
+  
+      console.log(subscription)
+  
+      await api.post("/push_register", {
+        subscription,
+      });
+  
+      await api.post('/send_notification',{
+        subscription,
+        text : 'rifa srotada'
+      })
+    });
+
+
+    
   
     
     const request = await axios.post("http://localhost:8080/Drawlots", {
       idRifa: id,
-      time : timer
+      time : timer,
+      
     });
 
     const response = await request.data;
