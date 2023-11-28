@@ -126,7 +126,7 @@ const ModalConfirByLogo: React.FC<PropsModal> = ({ open, onClose, data, preco, o
                 />
               </div>
             </div>
-            <div className="bg-blue-50 flex w-full gap-5 pt-4 sm:gap-5 lg:gap-16 px-6  lg:px-20  items-center justify-center">
+            <div className=" flex w-full gap-5 pt-4 sm:gap-5 lg:gap-16 px-6  lg:px-20  items-center justify-center">
               <div className="flex gap-2 flex-col w-full ">
                 <label htmlFor="" className="text-sm">expiry date</label>
                 <div className="w-[40%]  sm:w-[100%]  border-zinc-400 border-[1px] flex items-center justify-center h-[5vh]  2xl:h-[6vh] rounded-2xl transition  shadow-md hover:shadow-lg  ">

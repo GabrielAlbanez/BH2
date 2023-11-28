@@ -145,7 +145,7 @@ export default function Ongs() {
             <img
               src={require(`../../uploads/${url}`)}
               alt=""
-              className="w-24 h-24 rounded-full mb-4 shadow-md "
+              className="w-36 h-36 object-cover rounded-full mb-4 shadow-md "
             />
             <p className="text-2xl font-bold">{dataOng[0].nome}</p>
           </section>
