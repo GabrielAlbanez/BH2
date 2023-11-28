@@ -274,7 +274,7 @@ if(resultadoSorteio){
               alt=""
               height={40}
               width={40}
-              className="cursor-pointer rounded-full object-cover h-14 w-14"
+              className="cursor-pointer rounded-full object-cover h-12 w-12"
             />
             ) : (
              <AvatarImg/>

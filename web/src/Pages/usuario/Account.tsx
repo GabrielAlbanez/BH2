@@ -297,7 +297,7 @@ export default function Account() {
                   setOpen(false);
                 }}
               >
-                <div className=" w-full h-full text-black flex items-center justify-center lg:items-start lg:justify-start xl:justify-between gap-32 flex-col sm:gap-10 sm:px-2 sm:py-2">
+                <div className=" w-full h-full text-black flex items-center justify-center lg:items-start lg:justify-start xl:justify-between gap-32 flex-col sm:gap-10 sm:px-2 sm:py-2 xl:py-10">
                   <div>
                     <h1>Logos que você pode comprar</h1>
                     {dataLogos.length > 0 && (
