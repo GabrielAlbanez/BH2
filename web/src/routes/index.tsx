@@ -81,7 +81,7 @@ export default function MinhasRotas() {
 
     fetchData();
 
-    const interval = setInterval(fetchData, 5000);
+    const interval = setInterval(fetchData, 500000000);
 
     return () => {
       clearInterval(interval);

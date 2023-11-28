@@ -166,7 +166,7 @@ export default function Account() {
 
   return (
     <div
-      className={` w-full h-[91vh] transition-all duration-1000 flex items-center justify-center flex-col gap-10 ${
+      className={` w-full h-full lg:h-[91vh] transition-all duration-1000 flex items-center justify-center flex-col gap-10 ${
         pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF] text-black"
       }`}
     >
@@ -174,19 +174,19 @@ export default function Account() {
       {logedUser === "true" ? (
         <>
           {logedUser === "true" || User.length > 0 ? (
-            <div className="flex   items-center justify-center gap-32 h-[100%] w-[100%] rounded-2xl  text-lg ">
-              <div className="w-full h-full   text-white flex flex-col gap-10 items-center justify-center">
+            <div className="flex   flex-col lg:flex-row items-center justify-center gap-7  lg:gap-32 h-[100%] w-[100%] rounded-2xl  text-lg ">
+              <div className="w-full h-full    text-white flex flex-col gap-10 items-center justify-center">
                 <figure
                   onClick={() => {
                     setOpen(true);
                   }}
-                  className="border-[3px] border-black rounded-full bg-white px-5 py-5"
+                  className="border-[3px] border-black rounded-full bg-white px-2 py-2 lg:px-5 lg:py-5"
                 >
                   {img ? (
                     <img
                       src={require(`../../uploadsDoacaoImgs/${img}`)}
                       alt=""
-                      className="cursor-pointer rounded-full w-80 h-80 object-cover transition-all duration-1000 hover:scale-110  hover:overflow-hidden"
+                      className="cursor-pointer rounded-full w-40 h-40 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover transition-all duration-1000 hover:scale-110  hover:overflow-hidden"
                     />
                   ) : (
                     <img
@@ -208,7 +208,7 @@ export default function Account() {
 
               <form
                 onSubmit={updateDataUser}
-                className={`w-full h-full  text-white flex justify-center gap-10 items-center flex-col ${
+                className={`w-full h-full py-5 sm:py-0 text-white flex justify-center gap-10 items-center flex-col ${
                   pegarTema === "dark" ? "text-white" : "text-black"
                 }`}
               >
@@ -297,15 +297,15 @@ export default function Account() {
                   setOpen(false);
                 }}
               >
-                <div className="w-full h-full text-black flex flex-col gap-40 px-10 py-10">
+                <div className=" w-full h-full text-black flex items-center justify-center lg:items-start lg:justify-start xl:justify-between gap-32 flex-col sm:gap-10 sm:px-2 sm:py-2">
                   <div>
                     <h1>Logos que você pode comprar</h1>
                     {dataLogos.length > 0 && (
-                      <div className="flex flex-wrap gap-4 pt-10">
+                      <div className="flex flex-wrap gap-4 pt-3 sm:pt-10">
                         {dataLogos.map((logo, index) => (
                           <div
                             key={logo.id}
-                            className="w-24 h-24 relative rounded-full overflow-hidden"
+                            className=" w-10 h-10 sm:w-16 sm:h-16 lg:w-20 lg:h-20 relative rounded-full overflow-hidden"
                           >
                             {ulrImgLogos.length > 0 && (
                               <img
@@ -328,10 +328,10 @@ export default function Account() {
                       </div>
                     )}
                   </div>
-                  <div className="flex flex-col gap-10">
+                  <div className="flex flex-col gap-3  pt-5 sm:gap-10">
                     <h1>Logos compradas</h1>
                     {dataLogosComprados.length > 0 && (
-                      <div className="flex flex-wrap gap-4 pt-10">
+                      <div className="flex  flex-wrap gap-4 pt-3 sm:pt-10">
                         {dataLogosComprados.map((logo, index) => (
                           <div
                             className="cursor-pointer"
@@ -344,7 +344,7 @@ export default function Account() {
                               );
                             }}
                           >
-                            <div className="w-24 h-24 relative rounded-full overflow-hidden">
+                            <div className=" w-10 h-10 sm:w-16 sm:h-16 lg:w-20 lg:h-20 relative rounded-full overflow-hidden">
                               <img
                                 src={require(`../../uploadsDoacaoImgs/${dataLogosComprados[
                                   index
@@ -357,7 +357,7 @@ export default function Account() {
                         ))}
                       </div>
                     )}
-                    <h2>
+                    <h2 className="text-xs sm:text-sm" >
                       *Após ter comprado uma logo, você pode usá-la como imagem
                       de perfil
                     </h2>

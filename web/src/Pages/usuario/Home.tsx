@@ -52,10 +52,10 @@ export default function Home() {
 
        </>) : (<>
         <h1 className="text-4xl font-bold mb-4">Bem-vindo, {User[0]?.nome}!</h1>
-        <p className="text-lg">
+        <p className="text-lg text-center">
           A BH Human é um software desenvolvido para facilitar o trabalho das ONGs.
         </p>
-        <p className="text-lg">
+        <p className="text-lg text-center">
           O principal metodo de ajuda, é atraves das Rifas
         </p>
 </>)}
