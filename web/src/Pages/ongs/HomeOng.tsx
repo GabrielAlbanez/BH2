@@ -25,7 +25,7 @@ export default function HomeOng() {
   return (
     <div className={`transition-all duration-1000  ${
       pegarTema === "dark" ? "bg-zinc-950 text-white" : "bg-[#CEF3FF]"
-    } flex w-full  h-full lg:h-full xl:h-full  flex-col items-center justify-center gap-16`}>
+    } flex w-full  min-h-[100vh] sm:min-h-[91vh] flex-col items-center justify-center gap-16`}>
       <h1 className='text-4xl '>Rifas</h1>
       <CardRifas/>
     </div>

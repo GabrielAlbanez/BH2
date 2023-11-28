@@ -83,7 +83,7 @@ export default function Rifas() {
 
 
   return (
-    <div className={`transition-all py-10 duration-1000 w-full h-full lg:h-full  ${
+    <div className={`transition-all py-10 duration-1000 w-full min-h-[100vh] sm:min-h-[91vh]  ${
       pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF]"
     }`}>
       <h1 className="text-3xl text-center " >Minhas rifas</h1>
