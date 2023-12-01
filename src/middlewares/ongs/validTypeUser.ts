@@ -89,7 +89,8 @@ export const validaDataOngs = async (
 
   const cnpjValido = cnpjValid.isValid(cnpj);
   const emailValido = EmailValidator.validate(email);
-  const phoneNumberObject = parsePhoneNumberFromString(telefone);
+  const telefoneMoredd = `+55${telefone}`
+  const phoneNumberObject = parsePhoneNumberFromString(telefoneMoredd);
 
   if (
     !nome ||

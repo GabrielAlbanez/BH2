@@ -193,8 +193,6 @@ if(resultadoSorteio){
 
           <ul className="flex gap-7 items-center  w-[40%] overflow-visible sm:w-[80%] md:w-[0%]  md:overflow-hidden ">
             <MyDrawer
-              inten1={<BsPerson size={25} />}
-              textoI1={"Sobre Nós"}
               inten2={<LiaDonateSolid size={25} />}
               textoI2={"ongs"}
               inten4={<TbPigMoney size={25} />}

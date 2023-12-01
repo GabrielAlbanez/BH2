@@ -48,7 +48,9 @@ export const validateDataUser = async (
   const { cpf, nome, email, senha, sexo, endereco, type, telefone } = req.body;
   const cpfValido = cpfValid.isValid(cpf);
   const emailValido = EmailValidator.validate(email);
-  const phoneNumberObject = parsePhoneNumberFromString(telefone);
+
+  const telefoneMoredd = `+55${telefone}`
+  const phoneNumberObject = parsePhoneNumberFromString(telefoneMoredd);
 
 
   if (!nome || !email || !cpf || !senha || !sexo || !endereco || !telefone) {
@@ -83,7 +85,9 @@ export const validateDataUser = async (
     return res.status(200).json({ error: "cpf ja cadastrado" });
   }
 
-  if (sexo !== "masculino" && sexo !== "feminino") {
+  const sexoLoweCase =  sexo.toLowerCase ()
+
+  if (sexoLoweCase !== "masculino" && sexoLoweCase !== "feminino") {
     return res.status(203).json({ error: "sexo nao existente" });
   }
 
