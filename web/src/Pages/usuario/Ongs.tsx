@@ -221,7 +221,7 @@ export default function Ongs() {
                           descrcao: rifaSelecionada.descricao,
                         }}
                       >
-                        <button onClick={()=>{SaveNumberRifa(data.id)}} className="border-[1px] border-black rounded-full px-3 py-3">
+                        <button onClick={()=>{SaveNumberRifa(data.id)}} className="border-[1px] border-black rounded-full px-1 py-1 xl:px-3 xl:py-3">
                           Comprar Rifa
                         </button>
                       </ModalPyament>
