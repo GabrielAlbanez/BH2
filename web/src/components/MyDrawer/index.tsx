@@ -125,7 +125,7 @@ export default function MyDrawer({
 
       <List>
         <ListItem disablePadding>
-          <ListItemButton onClick={()=>{navigator('/DashBoarddUsuarios')}}>
+          <ListItemButton onClick={()=>{navigator('/Sorteio')}}>
             <ListItemIcon>{inten1}</ListItemIcon>
             <ListItemText primary={textoI1} />
           </ListItemButton>
