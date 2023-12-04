@@ -270,7 +270,7 @@ if(resultadoSorteio){
             {img ? (
               <img
               onClick={() => navigatorr(`${isLoged === "true" ? "/Home" : "/"}`)}
-              src={`https://bh2-upl7.onrender.com/uploadsDoacaoImgs/${img.slice(2)}`}
+              src={`https://bh2-upl7.onrender.com/uploadsDoacaoImgs/${img}`}
               alt=""
               height={40}
               width={40}
