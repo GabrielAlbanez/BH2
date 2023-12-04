@@ -24,7 +24,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: '*',
+    origin: "https://be-human-five.vercel.app",
     methods: "GET,POST",
     credentials: true,
     optionsSuccessStatus: 204,
