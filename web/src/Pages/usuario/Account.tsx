@@ -184,7 +184,7 @@ export default function Account() {
                 >
                   {img ? (
                     <img
-                      src={require(`../../uploadsDoacaoImgs/${img}`)}
+                    src={require(`../../uploadsDoacaoImgs/${img}`)}
                       alt=""
                       className="cursor-pointer rounded-full w-40 h-40 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover transition-all duration-1000 hover:scale-110  hover:overflow-hidden"
                     />

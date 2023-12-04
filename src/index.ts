@@ -16,6 +16,7 @@ const server = http.createServer(app);
 export const ioo = configureSocketIO(server);
 import WebPush from "web-push";
 import z from "zod";
+import * as path from "path";
 
 dotenv.config();
 const porta = process.env.PORT || 5001;
@@ -39,6 +40,11 @@ app.use(
     //tem que ativar isso com true no front end para enviar os cokies http
   })
 );
+
+const uploadsDir = path.join(__dirname, "web/src/uploadsDoacaoImgs");
+app.use("/uploadsDoacaoImgs", express.static(uploadsDir));
+
+
 
 const publicKey =
   "BKY88UrwhZfDTXrIil-RX34ZRIV8no9_W_t5C10PVW8KZkESkHU5tMWckWCfQhB6J7gtDpYMvTc9vBu6nMW771I";
@@ -64,6 +70,9 @@ app.post("/send_notification", async (req: Request, res: Response) => {
   WebPush.sendNotification( subscription, text)
 
 });
+
+
+
 
 app.use(
   rotaUser,
