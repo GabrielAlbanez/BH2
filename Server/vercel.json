@@ -20,10 +20,5 @@
       "DATABASE_URL": "file:dev.db",
       "PORT" : 8080
    
-    },
-    "functions": {
-      "api/**/*.ts": {
-        "runtime": "@vercel/node"
-      }
     }
   }
