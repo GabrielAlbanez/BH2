@@ -13,7 +13,7 @@ export default function CardAllOngs() {
   const [dataOng, setDataOng] = useState<dataOng[]>([]);
 
   useEffect(() => {
-    const url = "http://localhost:8080/allOngs";
+    const url = "https://bh2-upl7.onrender.com/allOngs";
     axios.get(url).then((response) => {
       const data = response.data;
       setDataOng(data.ongs);
@@ -33,7 +33,7 @@ export default function CardAllOngs() {
             <div className="max-w-xl mx-4 my-8 bg-white rounded-2xl overflow-hidden shadow-lg transform transition-transform duration-[1500ms] hover:scale-110">
               <img
                 className="w-full h-52 object-cover transform transition-transform duration-[1500ms] hover:scale-110"
-                src={`http://localhost:8080/uploadImgOng/${url[index]}`}
+                src={`https://bh2-upl7.onrender.com/uploadImgOng/${url[index]}`}
                 alt="ong-logo"
               />
               <div className="px-12 py-5 flex flex-col gap-2">

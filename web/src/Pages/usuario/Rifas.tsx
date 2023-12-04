@@ -42,7 +42,7 @@ export default function Rifas() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const req = await axios.post("http://localhost:8080/getAllRifasByCpfUser", {
+        const req = await axios.post("https://bh2-upl7.onrender.com/getAllRifasByCpfUser", {
           cpf: User[0]?.cpf,
         });
         setDataNumerosComprados(req.data.message);
@@ -99,7 +99,7 @@ export default function Rifas() {
                     
                     <div className={`max-w-sm rounded-2xl overflow-hidden shadow-xl mx-auto bg-white text-black  hover:scale-110 opacity-60 transition-all hover:opacity-100`}>
                     <img
-                      src={`http://localhost:8080/uploadsImgRifas/${valor.rifa.imgRifa.slice(16)}`}
+                      src={`https://bh2-upl7.onrender.com/uploadsImgRifas/${valor.rifa.imgRifa.slice(16)}`}
                       alt=""
                       className="w-full h-48 object-cover transform transition-transform duration-[1500ms] hover:scale-110"
                     />
@@ -121,7 +121,7 @@ export default function Rifas() {
                   </>) : (<>
                     <div className={`max-w-sm rounded-2xl overflow-hidden shadow-xl mx-auto  hover:scale-110 transition-all bg-white text-black ${valor.rifa.sorteado === true && valor.rifa.ganhador !== User[0]?.cpf ? 'opacity-60' : 'opacity-100'} `}>
                     <img
-                      src={`http://localhost:8080/uploadsImgRifas/${valor.rifa.imgRifa.slice(16)}`}
+                      src={`https://bh2-upl7.onrender.com/uploadsImgRifas/${valor.rifa.imgRifa.slice(16)}`}
                       alt=""
                       className="w-full h-48 object-cover transform transition-transform duration-[1500ms] hover:scale-110"
                     />

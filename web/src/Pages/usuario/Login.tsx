@@ -50,7 +50,7 @@ export default function Login() {
     try {
       console.log(dataLogin);
       const request = await axios.post(
-        "http://localhost:8080/Login",
+        "https://bh2-upl7.onrender.com/Login",
         dataLogin
       );
       const responseData = request.data;
@@ -103,7 +103,7 @@ export default function Login() {
 
     try {
       const request = await axios.post(
-        "http://localhost:8080/LoginOng",
+        "https://bh2-upl7.onrender.com/LoginOng",
         dataLogin
       );
       const responseData = request.data;

@@ -72,7 +72,7 @@ export default function RifasOngs() {
 
     try {
       const request = await axios.post(
-        `http://localhost:8080/createRifas`,
+        `https://bh2-upl7.onrender.com/createRifas`,
         formData
       );
 

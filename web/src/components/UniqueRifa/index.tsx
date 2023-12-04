@@ -23,7 +23,7 @@ export default function UniqueRifa() {
   const getaDataRifaById = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/getByidRifa/${id}`
+        `https://bh2-upl7.onrender.com/getByidRifa/${id}`
       );
       setDataRifa(response.data.rifa);
     } catch (error) {
@@ -60,7 +60,7 @@ export default function UniqueRifa() {
                 </div>
                 <div className="w-full h-[30rem] md:mt-6 lg:mt-0">
                   <img
-                    src={`http://localhost:8080/uploadsImgRifas/${url}`}
+                    src={`https://bh2-upl7.onrender.com/uploadsImgRifas/${url}`}
                     alt=""
                     className="w-full h-full object-cover shadow-2xl rounded-lg"
                   />

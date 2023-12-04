@@ -44,7 +44,7 @@ const ModalConfirByLogo: React.FC<PropsModal> = ({ open, onClose, data, preco, o
 
 
   const byLogo = async () => {
-    const req = await axios.post('http://localhost:8080/byLogoDoacao', {
+    const req = await axios.post('https://bh2-upl7.onrender.com/byLogoDoacao', {
       idLogo: id,
       emailUser: email
     })
@@ -73,7 +73,7 @@ const ModalConfirByLogo: React.FC<PropsModal> = ({ open, onClose, data, preco, o
               <div className="flex flex-col  justify-center md:justify-start  w-full items-center ">
                 <h1 className=" text-sm md:text-3xl font-semibold md:mb-4 text-center">ONG</h1>
                 <img
-                  src={`http://localhost:8080/uploadImgOng/${ong.Logo.slice(8)}`}
+                  src={`https://bh2-upl7.onrender.com/uploadImgOng/${ong.Logo.slice(8)}`}
                   alt=""
                   className="w-12 h-12  md:w-24  md:h-24  object-cover rounded-full mb-2"
                 />
@@ -90,7 +90,7 @@ const ModalConfirByLogo: React.FC<PropsModal> = ({ open, onClose, data, preco, o
               <div className="flex flex-col items-center  lg:gap-4  ">
                 <h1 className="text-lg md:text-3xl font-semibold mb-4">Produto</h1>
                 <img
-                  src={`http://localhost:8080/uploadsDoacaoImgs/${url}`}
+                  src={`https://bh2-upl7.onrender.com/uploadsDoacaoImgs/${url}`}
                   alt=""
                   className="w-12 h-12 sm:w-16 sm:h-16   lg:w-24 lg:h-24 object-cover rounded-full mb-2"
                 />

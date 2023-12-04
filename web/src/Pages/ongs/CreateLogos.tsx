@@ -70,7 +70,7 @@ export default function CreateLogos() {
 
     try {
       const request = await axios.post(
-        `http://localhost:8080/createImgDoacoes`,
+        `https://bh2-upl7.onrender.com/createImgDoacoes`,
         formData
       );
 

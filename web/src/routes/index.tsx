@@ -52,7 +52,7 @@ export default function MinhasRotas() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const request = await fetch(`http://localhost:8080/verificarToken`, {
+        const request = await fetch(`https://bh2-upl7.onrender.com/verificarToken`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token2}`,

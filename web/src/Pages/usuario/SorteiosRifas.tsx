@@ -33,7 +33,7 @@ export default function SorteiosRifas() {
   };
 
   const getRifasSorteados = async () => {
-    const req = await axios.get('http://localhost:8080/getAllRifasSorteadas').then((response) => {
+    const req = await axios.get('https://bh2-upl7.onrender.com/getAllRifasSorteadas').then((response) => {
       setDataRifaSorteada(response.data.rifa);
     });
   };
@@ -71,7 +71,7 @@ export default function SorteiosRifas() {
               className="max-w-sm  overflow-hidden shadow-lg bg-white hover:shadow-xl transition-all duration-[1700ms] ease-in-out transform hover:-translate-y-10 rounded-2xl"
             >
                 {url.length > 0 && ( <img className="w-full h-60 object-cover transform transition-transform duration-[1700ms] hover:scale-110" 
-                src={`http://localhost:8080/uploadsImgRifas/${url[index]}`}
+                src={`https://bh2-upl7.onrender.com/uploadsImgRifas/${url[index]}`}
 
                 alt={rifa.nome} />)}
              

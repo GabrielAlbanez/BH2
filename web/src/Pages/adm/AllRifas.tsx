@@ -48,7 +48,7 @@ export default function AllRifas() {
   );
 
   useEffect(() => {
-    const url = "http://localhost:8080/getAllRifas";
+    const url = "https://bh2-upl7.onrender.com/getAllRifas";
     axios.get(url).then((response) => {
       const data = response.data;
       setDataRifa(data.rifas);

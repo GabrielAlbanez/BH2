@@ -52,7 +52,7 @@ export default function CardRifas() {
 
   const getRifasOng = async () => {
     const request = await axios.post(
-      "http://localhost:8080/rifa",
+      "https://bh2-upl7.onrender.com/rifa",
       dataRifaEnvio
     );
 
@@ -116,7 +116,7 @@ export default function CardRifas() {
     
   
     
-    const request = await axios.post("http://localhost:8080/Drawlots", {
+    const request = await axios.post("https://bh2-upl7.onrender.com/Drawlots", {
       idRifa: id,
       time : timer,
       
@@ -150,7 +150,7 @@ export default function CardRifas() {
                     <CardHeader shadow={false} floated={false} className="h-64">
                       {url && (
                         <img
-                          src={`http://localhost:8080/uploadsImgRifas/${url[index]}`}
+                          src={`https://bh2-upl7.onrender.com/uploadsImgRifas/${url[index]}`}
                           alt="card-image"
                           className="h-full w-full object-cover transform transition-transform duration-[1500ms] hover:scale-125"
                         />
@@ -208,7 +208,7 @@ export default function CardRifas() {
         </>
       ) : (
         <>
-          <h1 className="text-2xl">Você ainda não tem nenhuma rifa criada</h1>
+          <h1 className=" text-center text-2xl">Você ainda não tem nenhuma rifa criada</h1>
         </>
       )}
     </>

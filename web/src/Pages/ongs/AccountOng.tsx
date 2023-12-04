@@ -59,7 +59,7 @@ export default function AccountOng() {
 
 
     try {
-      const req = await axios.post('http://localhost:8080/getSaldoFornCnpjOng', {
+      const req = await axios.post('https://bh2-upl7.onrender.com/getSaldoFornCnpjOng', {
         cnpj: Ong[0]?.cnpj
       })
 
@@ -82,7 +82,7 @@ export default function AccountOng() {
       <div className={`${pegarTema === 'dark' ? "shadow-2xl shadow-fuchsia-500 text-white border-black " : "  shadow-2xl shadow-fuchsia-500 text-black"} border-2 rounded-xl  p-8 max-w-4xl w-full`}>
         <div className="flex flex-col items-center mb-8">
           <img
-            src={`http://localhost:8080/uploadImgOng/${logo}`}
+            src={`https://bh2-upl7.onrender.com/uploadImgOng/${logo}`}
 
             alt="" className="w-40 h-40 md:w-52 md:h-52 rounded-full border-4 object-cover border-gray-300 p-3 mb-4" />
           <h1 className="text-3xl font-semibold ">{Ong[0]?.nome}</h1>

@@ -83,7 +83,7 @@ export default function Account() {
   const [dataLogos, setDataLogos] = useState<dataLogos[]>([]);
 
   const getLogos = () => {
-    const req = axios.get("http://localhost:8080/getAllLogos").then((res) => {
+    const req = axios.get("https://bh2-upl7.onrender.com/getAllLogos").then((res) => {
       setDataLogos(res.data.message);
     });
   };
@@ -104,7 +104,7 @@ export default function Account() {
 
   const getLogosComprados = async () => {
     const req = await axios
-      .post("http://localhost:8080/getAlLogosByEmailUser", {
+      .post("https://bh2-upl7.onrender.com/getAlLogosByEmailUser", {
         email: User[0]?.email,
       })
       .then((res) => {
@@ -122,7 +122,7 @@ export default function Account() {
   const ulrImgLogos = dataLogos.map((logo) => logo.img.slice(18));
 
   const updateFileImg = async (img: string) => {
-    const req = await axios.post("http://localhost:8080/updateImgUser", {
+    const req = await axios.post("https://bh2-upl7.onrender.com/updateImgUser", {
       img: img,
       cpf: User[0]?.cpf,
     });
@@ -152,7 +152,7 @@ export default function Account() {
     e.preventDefault()
 
     const req = await axios
-      .post("http://localhost:8080/updateDataUser", {
+      .post("https://bh2-upl7.onrender.com/updateDataUser", {
         nome: dataUpdate.nome,
         cpf: User[0]?.cpf,
         sexo: dataUpdate.sexo,
@@ -185,7 +185,7 @@ export default function Account() {
                 >
                   {img ? (
                     <img
-                      src={`http://localhost:8080/uploadsDoacaoImgs/${img}`}
+                      src={`https://bh2-upl7.onrender.com/uploadsDoacaoImgs/${img}`}
                       alt=""
                       className="cursor-pointer rounded-full w-40 h-40 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover transition-all duration-1000 hover:scale-110  hover:overflow-hidden"
                     />
@@ -303,7 +303,7 @@ export default function Account() {
                           >
                             {ulrImgLogos.length > 0 && (
                               <img
-                                src={`http://localhost:8080/uploadsDoacaoImgs/${ulrImgLogos[index]}`}
+                                src={`https://bh2-upl7.onrender.com/uploadsDoacaoImgs/${ulrImgLogos[index]}`}
                                 alt=""
                                 className="object-cover w-full h-full"
                               />
@@ -341,7 +341,7 @@ export default function Account() {
                             <div className=" w-10 h-10 sm:w-16 sm:h-16 lg:w-20 lg:h-20 relative rounded-full overflow-hidden">
                               <img
 
-                                src={`http://localhost:8080/uploadsDoacaoImgs/${dataLogosComprados[
+                                src={`https://bh2-upl7.onrender.com/uploadsDoacaoImgs/${dataLogosComprados[
                                   index
                                 ].LogoDoacao.img.slice(18)}`}
                                 alt=""

@@ -66,7 +66,7 @@ export default function Register() {
     try {
       console.log(dataUserRegister);
       const request = await axios.post(
-        "http://localhost:8080/createUser",
+        "https://bh2-upl7.onrender.com/createUser",
         dataUserRegister,
         
       );
@@ -138,7 +138,7 @@ export default function Register() {
     }
   
     try {
-      const response = await axios.post("http://localhost:8080/createOngs", formData);
+      const response = await axios.post("https://bh2-upl7.onrender.com/createOngs", formData);
   
       const responseData: ResponseData = response.data;
   

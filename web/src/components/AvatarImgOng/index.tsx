@@ -24,7 +24,7 @@ export default function AvatarImgOng({ largura, altura }: typeProsAvatar) {
   return (
     <div>
       <img
-        src={`http://localhost:8080/uploadImgOng/${logoOng}`}
+        src={`https://bh2-upl7.onrender.com/uploadImgOng/${logoOng}`}
         alt="" className={`w-${largura} h-${altura} w-14  2xl:w-14 h-12 rounded-full object-cover `} />
 
     </div>

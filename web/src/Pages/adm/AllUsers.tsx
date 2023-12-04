@@ -38,7 +38,7 @@ export default function AllUsers() {
   const cpf = User[0]?.cpf;
 
   useEffect(() => {
-    const url = `http://localhost:8080/allUsers/${cpf}`;
+    const url = `https://bh2-upl7.onrender.com/allUsers/${cpf}`;
     axios.get(url).then((response) => {
       const data = response.data;
       setDataUsers(data.users);

@@ -33,7 +33,7 @@ export default function AllOngs() {
   const [buscarData, setBuscarData] = useState('');
 
   useEffect(() => {
-    const url = 'http://localhost:8080/allOngs';
+    const url = 'https://bh2-upl7.onrender.com/allOngs';
     axios.get(url).then((response) => {
       const data = response.data;
       setDataOng(data.ongs);

@@ -60,7 +60,7 @@ export default function Ongs() {
 
   const getByDataOngsForCnpj = async () => {
     const request = await axios.post(
-      "http://localhost:8080/getByRifaForCnpjOng",
+      "https://bh2-upl7.onrender.com/getByRifaForCnpjOng",
       dataReq
     );
     // console.log('dados da req',request.data)
@@ -95,7 +95,7 @@ export default function Ongs() {
   const SaveNumberRifa = async (idRifa: number) => {
     console.log("cpf dentro da função ", User[0]?.cpf);
 
-    const req = await axios.post("http://localhost:8080/byRifas", {
+    const req = await axios.post("https://bh2-upl7.onrender.com/byRifas", {
       cpf: User[0]?.cpf,
       id: idRifa,
       numero: Math.floor(Math.random() * 131312321),
@@ -142,7 +142,7 @@ export default function Ongs() {
         <div className="container mx-auto p-4">
           <section className="flex flex-col items-center justify-center pt-7">
             <img
-              src={`http://localhost:8080/uploadImgOng/${url}`}
+              src={`https://bh2-upl7.onrender.com/uploadImgOng/${url}`}
               alt=""
               className="w-36 h-36 object-cover rounded-full mb-4 shadow-md "
             />
@@ -184,7 +184,7 @@ export default function Ongs() {
                       }`}
                   >
                     <img
-                      src={`http://localhost:8080/uploadsImgRifas/${urlsImgRifas[index]}`}
+                      src={`https://bh2-upl7.onrender.com/uploadsImgRifas/${urlsImgRifas[index]}`}
                       alt=""
                       className="w-full h-32 object-cover mb-4 rounded-md transform transition-transform duration-[1500ms] hover:scale-110"
                     />
