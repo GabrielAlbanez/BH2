@@ -294,7 +294,7 @@ export default function Account() {
                 <div className=" w-full h-full text-black flex items-center justify-center lg:items-start lg:justify-start xl:justify-between gap-32 flex-col sm:gap-10 sm:px-2 sm:py-2 xl:py-10">
                   <div>
                     <h1>Logos que você pode comprar</h1>
-                    {dataLogos.length > 0 && (
+                    {dataLogos.length > 0 ? (
                       <div className="flex flex-wrap gap-4 pt-3 sm:pt-10">
                         {dataLogos.map((logo, index) => (
                           <div
@@ -320,7 +320,7 @@ export default function Account() {
                           </div>
                         ))}
                       </div>
-                    )}
+                    ) : (<div className="pt-5 text-2xl"><h1>Ainda não ha nehuma logo feita por nehuma ong...</h1></div>)}
                   </div>
                   <div className="flex flex-col gap-3  pt-5 sm:gap-10">
                     <h1>Logos compradas</h1>
