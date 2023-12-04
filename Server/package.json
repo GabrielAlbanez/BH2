@@ -27,7 +27,7 @@
     "zod": "^3.22.4"
   },
   "engines": {
-    "node": "18.x"
+    "node": "20.9.0"
   },
   "scripts": {
     "dev": "nodemon src/index.ts",
