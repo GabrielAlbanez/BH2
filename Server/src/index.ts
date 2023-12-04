@@ -24,7 +24,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://be-human-five.vercel.app",
     methods: "GET,POST",
     credentials: true,
     optionsSuccessStatus: 204,
