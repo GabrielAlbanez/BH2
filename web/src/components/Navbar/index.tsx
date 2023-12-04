@@ -140,7 +140,7 @@ if(resultadoSorteio){
   const Local = useLocation();
 
 
- const img = User[0]?.imgPerfilAbsolute.slice(2)
+ const img = User[0]?.imgPerfilAbsolute
 
 
   return (
@@ -270,7 +270,7 @@ if(resultadoSorteio){
             {img ? (
               <img
               onClick={() => navigatorr(`${isLoged === "true" ? "/Home" : "/"}`)}
-              src={`https://bh2-upl7.onrender.com/uploadsDoacaoImgs/${img}`}
+              src={`https://bh2-upl7.onrender.com/uploadsDoacaoImgs/${img.slice(2)}`}
               alt=""
               height={40}
               width={40}
