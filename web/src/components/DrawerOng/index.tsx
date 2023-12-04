@@ -119,14 +119,14 @@ export default function DrawerOng({
         </ListItem>
 
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={() => navigator("/ListLogos")}>
             <ListItemIcon>{inten2}</ListItemIcon>
             <ListItemText primary={textoI2} />
           </ListItemButton>
         </ListItem>
 
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={() => navigator("/createLogo")} >
             <ListItemIcon>{inten3}</ListItemIcon>
             <ListItemText primary={textoI3} />
           </ListItemButton>

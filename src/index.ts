@@ -45,6 +45,15 @@ const uploadsDir = path.join(__dirname, "web/src/uploadsDoacaoImgs");
 app.use("/uploadsDoacaoImgs", express.static(uploadsDir));
 
 
+app.use("/uploadImgOng", express.static("web/src/uploads"));
+
+const uploadsDirrr = path.join(__dirname, "web/src/uploadsImgRifas");
+app.use("/uploadsImgRifas", express.static(uploadsDirrr));
+
+
+
+
+
 
 const publicKey =
   "BKY88UrwhZfDTXrIil-RX34ZRIV8no9_W_t5C10PVW8KZkESkHU5tMWckWCfQhB6J7gtDpYMvTc9vBu6nMW771I";

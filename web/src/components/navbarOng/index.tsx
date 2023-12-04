@@ -75,14 +75,14 @@ export default function NavbarOng() {
           inten1={<TbPigMoney size={25} />}
           textoI1={"Rifas"}
           inten2={<LiaDonateSolid size={25} />}
-          textoI2={"Ajudantes"}
+          textoI2={"Logos"}
           inten3={<BsTelephone size={22} />}
-          textoI3={"Trabalahdores"}
+          textoI3={"Criar Logos"}
           coteudo={<RxHamburgerMenu size={30} />}
         />
       </ul>
       <div className={`flex h-[40%] gap-5 sm:gap-12 justify-end items-center sm:items-center w-[60%] xl:w-[23%] 2xl:w-[31%] xl:h-[100%]  2xl:px-4 sm:w-[28%] transition-all duration-1000 ${pegarTema === "dark" ? "bg-[#202020]" : "bg-[#CEF3FF] "}`}>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 rounded-full">
           <Link to="/AccountOng">
             <AvatarImgOng altura={22} largura={22} />
           </Link>

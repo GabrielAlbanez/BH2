@@ -8,7 +8,7 @@ const ListLogos = () => {
 
     const { pegarTema } = useTema() as {
         pegarTema: string;
-      };
+    };
 
 
     type dataLogos = {
@@ -43,24 +43,27 @@ const ListLogos = () => {
 
     useEffect(() => {
         getDataLogos()
-    }, [dataLogos])
-
-    console.log(dataLogos)
+    }, [])
 
 
+
+
+    const urll = dataLogos.map((logo) => logo.imagensDoacao.map((valor) => valor.img))
+     
     const url = dataLogos.map((logo) => logo.imagensDoacao.map((valor) => valor.img.slice(26)))
 
-    console.log(url)
+    console.log(urll)
 
     return (
-        <div className={`w-full h-[91vh] flex flex-col gap-32 items-center justify-center ${pegarTema === 'dark' ? "bg-black text-white" : "bg-[#CEF3FF] text-black"}`}>
+        <div className={`w-full h-screen flex flex-col gap-32 items-center justify-center ${pegarTema === 'dark' ? "bg-black text-white" : "bg-[#CEF3FF] text-black"}`}>
             <h1 className='text-center text-2xl'>Logos</h1>
 
             {dataLogos.length > 0 ? (<div className='flex '>
 
 
                 {dataLogos.map((logos, index) => (
-                    <div className='flex gap-10 items-center flex-wrap '>
+                    <div className={` h-full
+                     w-full  bg-black flex gap-10 items-center justify-center flex-wrap ${pegarTema === 'dark' ? "bg-black text-white" : "bg-[#CEF3FF] text-black"}`}>
                         {logos.imagensDoacao.map((valor, index) => (
                             <div className=' '>
                                 <div className='w-full h-full ' >
@@ -68,11 +71,12 @@ const ListLogos = () => {
                                         <div className="w-full h-full text-white ">
 
                                             <figure className="border-[3px] border-black rounded-full bg-white px-1 py-1  transition-all duration-1000 hover:scale-110 overflow-hidden">
-                                                <img
+                                              <img
                                                     src={require(`../../uploadsDoacaoImgs/${url[0][index]}`)}
                                                     alt=""
                                                     className="rounded-full w-32 h-32 object-cover transition-all duration-1000 hover:scale-110  "
                                                 />
+
                                             </figure>
                                         </div>
                                     )}

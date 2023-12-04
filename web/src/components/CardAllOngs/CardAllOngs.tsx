@@ -23,6 +23,8 @@ export default function CardAllOngs() {
   const url = dataOng.map((valor) => valor.Logo.slice(16));
   const cnpjLimpo = dataOng.map((valor) => valor.cnpj.replace(/[^\d]/g, ''));
 
+  console.log(url)
+
   return (
     <div className="flex flex-wrap justify-center items-center h-full">
       {dataOng.length > 0 ? (
@@ -31,7 +33,7 @@ export default function CardAllOngs() {
             <div className="max-w-xl mx-4 my-8 bg-white rounded-2xl overflow-hidden shadow-lg transform transition-transform duration-[1500ms] hover:scale-110">
               <img
                 className="w-full h-52 object-cover transform transition-transform duration-[1500ms] hover:scale-110"
-                src={require(`../../uploads/${url[index]}`)}
+                src={`http://localhost:8080/uploadImgOng/${url[index]}`}
                 alt="ong-logo"
               />
               <div className="px-12 py-5 flex flex-col gap-2">
