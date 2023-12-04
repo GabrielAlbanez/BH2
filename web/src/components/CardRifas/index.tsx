@@ -67,7 +67,7 @@ export default function CardRifas() {
 
   console.log("dataRifa", dataRifa);
 
-  const url = dataRifa.map((valor) => valor.imgRifa.slice(24));
+  const url = dataRifa.map((valor) => valor.imgRifa.slice(16));
 
   const { pegarTema } = useTema() as {
     pegarTema: string;
@@ -150,7 +150,7 @@ export default function CardRifas() {
                     <CardHeader shadow={false} floated={false} className="h-64">
                       {url && (
                         <img
-                          src={require(`../../uploadsImgRifas/${url[index]}`)}
+                          src={`http://localhost:8080/uploadsImgRifas/${url[index]}`}
                           alt="card-image"
                           className="h-full w-full object-cover transform transition-transform duration-[1500ms] hover:scale-125"
                         />

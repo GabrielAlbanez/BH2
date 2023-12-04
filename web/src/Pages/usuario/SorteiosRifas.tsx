@@ -53,7 +53,7 @@ export default function SorteiosRifas() {
     });
   };
 
-  const url = dataRifaSorteada.map((rifa) => rifa.imgRifa.slice(24));
+  const url = dataRifaSorteada.map((rifa) => rifa.imgRifa.slice(16));
   const cpf = User[0]?.cpf;
 
   return (
@@ -70,7 +70,10 @@ export default function SorteiosRifas() {
               key={rifa.ganhador}
               className="max-w-sm  overflow-hidden shadow-lg bg-white hover:shadow-xl transition-all duration-[1700ms] ease-in-out transform hover:-translate-y-10 rounded-2xl"
             >
-                {url.length > 0 && ( <img className="w-full h-60 object-cover transform transition-transform duration-[1700ms] hover:scale-110" src={require(`../../uploadsImgRifas/${url[index]}`)} alt={rifa.nome} />)}
+                {url.length > 0 && ( <img className="w-full h-60 object-cover transform transition-transform duration-[1700ms] hover:scale-110" 
+                src={`http://localhost:8080/uploadsImgRifas/${url[index]}`}
+
+                alt={rifa.nome} />)}
              
               <div className="p-4">
                 <h2 className="font-bold text-2xl text-gray-600  mb-2">{rifa.nome}</h2>

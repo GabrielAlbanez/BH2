@@ -140,7 +140,7 @@ if(resultadoSorteio){
   const Local = useLocation();
 
 
- const img = User[0]?.imgPerfilAbsolute
+ const img = User[0]?.imgPerfilAbsolute.slice(2)
 
 
   return (
@@ -270,7 +270,7 @@ if(resultadoSorteio){
             {img ? (
               <img
               onClick={() => navigatorr(`${isLoged === "true" ? "/Home" : "/"}`)}
-              src={require(`../../uploadsDoacaoImgs/${img}`)}
+              src={`http://localhost:8080/uploadsDoacaoImgs/${img}`}
               alt=""
               height={40}
               width={40}

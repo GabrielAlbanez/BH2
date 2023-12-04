@@ -36,7 +36,8 @@ const ModalPyament: React.FC<PropsModal> = ({ open, onClose, data, children }) =
         <div className="h-full w-full  flex  flex-col md:flex-row justify-center gap-3 sm:gap-5  lg:justify-between  items-center text-black">
           <div className="flex flex-col justify-center gap-4 sm:gap-6  md:gap-10 items-center w-full h-full md:w-[50%] md:h-full md:p-10 ">
             <img
-              src={require(`../../uploadsImgRifas/${data.img.slice(24)}`)}
+              src={`http://localhost:8080/uploadsImgRifas/${data.img.slice(16)}`}
+              
               alt=""
               className="w-50 h-50 sm:w-full sm:h-52  md:h-62 md:w-62 2xl:w-full 2xl:h-full object-cover rounded-xl transition-all duration-1000 hover:scale-110"
             />

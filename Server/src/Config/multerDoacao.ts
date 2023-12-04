@@ -1,9 +1,9 @@
 import multer from "multer";
 
 
-const storage = multer.diskStorage({
+const storageRifas = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'web\\src\\uploads'); 
+    cb(null, 'uploadsDoacaoImgs'); 
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
@@ -13,8 +13,6 @@ const storage = multer.diskStorage({
 });
 
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storageRifas });
 
 export default upload;
-
-

@@ -50,9 +50,9 @@ const ListLogos = () => {
 
     const urll = dataLogos.map((logo) => logo.imagensDoacao.map((valor) => valor.img))
      
-    const url = dataLogos.map((logo) => logo.imagensDoacao.map((valor) => valor.img.slice(26)))
+    const url = dataLogos.map((logo) => logo.imagensDoacao.map((valor) => valor.img.slice(18)))
 
-    console.log(urll)
+    console.log(url)
 
     return (
         <div className={`w-full h-screen flex flex-col gap-32 items-center justify-center ${pegarTema === 'dark' ? "bg-black text-white" : "bg-[#CEF3FF] text-black"}`}>
@@ -72,7 +72,7 @@ const ListLogos = () => {
 
                                             <figure className="border-[3px] border-black rounded-full bg-white px-1 py-1  transition-all duration-1000 hover:scale-110 overflow-hidden">
                                               <img
-                                                    src={require(`../../uploadsDoacaoImgs/${url[0][index]}`)}
+                                                    src={`http://localhost:8080/uploadsDoacaoImgs/${url[0][index]}`}
                                                     alt=""
                                                     className="rounded-full w-32 h-32 object-cover transition-all duration-1000 hover:scale-110  "
                                                 />

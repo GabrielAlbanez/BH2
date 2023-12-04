@@ -25,7 +25,7 @@ interface PropsModal {
 }
 
 const ModalConfirByLogo: React.FC<PropsModal> = ({ open, onClose, data, preco, ong, id, email }) => {
-  const url = data.slice(26);
+  const url = data.slice(18);
 
   const { pegarTema } = useTema() as {
     pegarTema: string;
@@ -73,7 +73,7 @@ const ModalConfirByLogo: React.FC<PropsModal> = ({ open, onClose, data, preco, o
               <div className="flex flex-col  justify-center md:justify-start  w-full items-center ">
                 <h1 className=" text-sm md:text-3xl font-semibold md:mb-4 text-center">ONG</h1>
                 <img
-                  src={require(`../../uploads/${ong.Logo.slice(16)}`)}
+                  src={`http://localhost:8080/uploadImgOng/${ong.Logo.slice(8)}`}
                   alt=""
                   className="w-12 h-12  md:w-24  md:h-24  object-cover rounded-full mb-2"
                 />
@@ -90,7 +90,7 @@ const ModalConfirByLogo: React.FC<PropsModal> = ({ open, onClose, data, preco, o
               <div className="flex flex-col items-center  lg:gap-4  ">
                 <h1 className="text-lg md:text-3xl font-semibold mb-4">Produto</h1>
                 <img
-                  src={require(`../../uploadsDoacaoImgs/${url}`)}
+                  src={`http://localhost:8080/uploadsDoacaoImgs/${url}`}
                   alt=""
                   className="w-12 h-12 sm:w-16 sm:h-16   lg:w-24 lg:h-24 object-cover rounded-full mb-2"
                 />

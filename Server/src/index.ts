@@ -41,14 +41,14 @@ app.use(
   })
 );
 
-const uploadsDir = path.join(__dirname, "web/src/uploadsDoacaoImgs");
-app.use("/uploadsDoacaoImgs", express.static(uploadsDir));
 
 
-app.use("/uploadImgOng", express.static("web/src/uploads"));
+app.use("/uploadsDoacaoImgs", express.static("uploadsDoacaoImgs"));
 
-const uploadsDirrr = path.join(__dirname, "web/src/uploadsImgRifas");
-app.use("/uploadsImgRifas", express.static(uploadsDirrr));
+
+app.use("/uploadImgOng", express.static("uploads"));
+
+app.use("/uploadsImgRifas", express.static("uploadsImgRifas"));
 
 
 

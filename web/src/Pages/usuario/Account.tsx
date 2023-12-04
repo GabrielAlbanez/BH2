@@ -119,7 +119,7 @@ export default function Account() {
 
   console.log("comprados", dataLogosComprados);
 
-  const ulrImgLogos = dataLogos.map((logo) => logo.img.slice(26));
+  const ulrImgLogos = dataLogos.map((logo) => logo.img.slice(18));
 
   const updateFileImg = async (img: string) => {
     const req = await axios.post("http://localhost:8080/updateImgUser", {
@@ -150,7 +150,7 @@ export default function Account() {
 
   const updateDataUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    
+
     const req = await axios
       .post("http://localhost:8080/updateDataUser", {
         nome: dataUpdate.nome,
@@ -162,13 +162,14 @@ export default function Account() {
       });
   };
 
-  const img = User[0]?.imgPerfilAbsolute;
+  const img = User[0]?.imgPerfilAbsolute.slice(2);
+
+  console.log(img)
 
   return (
     <div
-      className={` w-full h-full lg:h-[91vh] transition-all duration-1000 flex items-center justify-center flex-col gap-10 ${
-        pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF] text-black"
-      }`}
+      className={` w-full h-full lg:h-[91vh] transition-all duration-1000 flex items-center justify-center flex-col gap-10 ${pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF] text-black"
+        }`}
     >
       <div className="text-4xl pt-10">Account</div>
       {logedUser === "true" ? (
@@ -184,7 +185,7 @@ export default function Account() {
                 >
                   {img ? (
                     <img
-                    src={require(`../../uploadsDoacaoImgs/${img}`)}
+                      src={`http://localhost:8080/uploadsDoacaoImgs/${img}`}
                       alt=""
                       className="cursor-pointer rounded-full w-40 h-40 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover transition-all duration-1000 hover:scale-110  hover:overflow-hidden"
                     />
@@ -197,9 +198,8 @@ export default function Account() {
                   )}
                 </figure>
                 <button
-                  className={`rounded-full border-[1px] border-fuchsia-500 px-3 py-4 ${
-                    pegarTema === "dark" ? "text-white" : "text-black"
-                  }`}
+                  className={`rounded-full border-[1px] border-fuchsia-500 px-3 py-4 ${pegarTema === "dark" ? "text-white" : "text-black"
+                    }`}
                   onClick={logOut}
                 >
                   Logout
@@ -208,14 +208,12 @@ export default function Account() {
 
               <form
                 onSubmit={updateDataUser}
-                className={`w-full h-full py-5 sm:py-0 text-white flex justify-center gap-10 items-center flex-col ${
-                  pegarTema === "dark" ? "text-white" : "text-black"
-                }`}
+                className={`w-full h-full py-5 sm:py-0 text-white flex justify-center gap-10 items-center flex-col ${pegarTema === "dark" ? "text-white" : "text-black"
+                  }`}
               >
                 <div
-                  className={`flex gap-2 flex-col  ${
-                    pegarTema === "dark" ? "text-white" : "text-black"
-                  }`}
+                  className={`flex gap-2 flex-col  ${pegarTema === "dark" ? "text-white" : "text-black"
+                    }`}
                 >
                   <label htmlFor="">nome</label>
                   <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh]  2xl:h-[6vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
@@ -230,9 +228,8 @@ export default function Account() {
                   </div>
                 </div>
                 <div
-                  className={`flex gap-2 flex-col  ${
-                    pegarTema === "dark" ? "text-white" : "text-black"
-                  }`}
+                  className={`flex gap-2 flex-col  ${pegarTema === "dark" ? "text-white" : "text-black"
+                    }`}
                 >
                   <label htmlFor="">cpf</label>
                   <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh]  2xl:h-[6vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
@@ -246,9 +243,8 @@ export default function Account() {
                   </div>
                 </div>
                 <div
-                  className={`flex gap-2 flex-col  ${
-                    pegarTema === "dark" ? "text-white" : "text-black"
-                  }`}
+                  className={`flex gap-2 flex-col  ${pegarTema === "dark" ? "text-white" : "text-black"
+                    }`}
                 >
                   <label htmlFor="">email</label>
                   <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh]  2xl:h-[6vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 opacity-60">
@@ -264,9 +260,8 @@ export default function Account() {
                 </div>
 
                 <div
-                  className={`flex gap-2 flex-col  ${
-                    pegarTema === "dark" ? "text-white" : "text-black"
-                  }`}
+                  className={`flex gap-2 flex-col  ${pegarTema === "dark" ? "text-white" : "text-black"
+                    }`}
                 >
                   <label htmlFor="">sexo</label>
                   <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh]  2xl:h-[6vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
@@ -283,9 +278,8 @@ export default function Account() {
 
                 <button
                   type="submit"
-                  className={`p-6 border-[2px] border-fuchsia-500 rounded-full px-5 py-2 ${
-                    pegarTema === "dark" ? "text-white" : "text-black"
-                  }`}
+                  className={`p-6 border-[2px] border-fuchsia-500 rounded-full px-5 py-2 ${pegarTema === "dark" ? "text-white" : "text-black"
+                    }`}
                 >
                   update profile
                 </button>
@@ -309,7 +303,7 @@ export default function Account() {
                           >
                             {ulrImgLogos.length > 0 && (
                               <img
-                                src={require(`../../uploadsDoacaoImgs/${ulrImgLogos[index]}`)}
+                                src={`http://localhost:8080/uploadsDoacaoImgs/${ulrImgLogos[index]}`}
                                 alt=""
                                 className="object-cover w-full h-full"
                               />
@@ -339,16 +333,17 @@ export default function Account() {
                             onClick={() => {
                               updateFileImg(
                                 dataLogosComprados[index].LogoDoacao.img.slice(
-                                  26
+                                  16
                                 )
                               );
                             }}
                           >
                             <div className=" w-10 h-10 sm:w-16 sm:h-16 lg:w-20 lg:h-20 relative rounded-full overflow-hidden">
                               <img
-                                src={require(`../../uploadsDoacaoImgs/${dataLogosComprados[
+
+                                src={`http://localhost:8080/uploadsDoacaoImgs/${dataLogosComprados[
                                   index
-                                ].LogoDoacao.img.slice(26)}`)}
+                                ].LogoDoacao.img.slice(18)}`}
                                 alt=""
                                 className="object-cover w-full h-full"
                               />

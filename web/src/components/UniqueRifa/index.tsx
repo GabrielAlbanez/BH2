@@ -35,7 +35,7 @@ export default function UniqueRifa() {
     getaDataRifaById();
   }, [id, dataRifa]);
 
-  const url = dataRifa.map((valor) => valor.imgRifa.slice(24));
+  const url = dataRifa.map((valor) => valor.imgRifa.slice(16));
 
   const { pegarTema } = useTema() as {
     pegarTema: string;
@@ -60,7 +60,7 @@ export default function UniqueRifa() {
                 </div>
                 <div className="w-full h-[30rem] md:mt-6 lg:mt-0">
                   <img
-                    src={require(`../../uploadsImgRifas/${url}`)}
+                    src={`http://localhost:8080/uploadsImgRifas/${url}`}
                     alt=""
                     className="w-full h-full object-cover shadow-2xl rounded-lg"
                   />

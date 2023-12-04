@@ -71,13 +71,13 @@ export default function Ongs() {
     getByDataOngsForCnpj();
   }, [cnpj]);
 
-  const url = dataOng[0]?.Logo.slice(16);
+  const url = dataOng[0]?.Logo.slice(8);
 
   console.log(url);
 
   console.log("rifas", dataOng[0]?.rifas);
 
-  const urlsImgRifas = dataOng[0]?.rifas.map((data) => data.imgRifa.slice(24));
+  const urlsImgRifas = dataOng[0]?.rifas.map((data) => data.imgRifa.slice(16));
 
   console.log(urlsImgRifas);
 
@@ -135,15 +135,14 @@ export default function Ongs() {
 
   return (
     <div
-      className={`bg-${
-        pegarTema === "dark" ? "black" : "[#CEF3FF]"
-      } min-h-screen text-${pegarTema === "dark" ? "white" : "black"}`}
+      className={`bg-${pegarTema === "dark" ? "black" : "[#CEF3FF]"
+        } min-h-screen text-${pegarTema === "dark" ? "white" : "black"}`}
     >
       {dataOng.length > 0 ? (
         <div className="container mx-auto p-4">
           <section className="flex flex-col items-center justify-center pt-7">
             <img
-              src={require(`../../uploads/${url}`)}
+              src={`http://localhost:8080/uploadImgOng/${url}`}
               alt=""
               className="w-36 h-36 object-cover rounded-full mb-4 shadow-md "
             />
@@ -180,13 +179,12 @@ export default function Ongs() {
                 {dataOng[0]?.rifas.map((data, index) => (
                   <div
                     key={index}
-                
-                    className={`max-w-sm rounded-lg overflow-hidden w-full md:w-[48%] p-4 transition-all duration-300 cursor-pointer hover:shadow-md ${
-                      data.sorteado ? "opacity-50" : "opacity-100"
-                    }`}
+
+                    className={`max-w-sm rounded-lg overflow-hidden w-full md:w-[48%] p-4 transition-all duration-300 cursor-pointer hover:shadow-md ${data.sorteado ? "opacity-50" : "opacity-100"
+                      }`}
                   >
                     <img
-                      src={require(`../../uploadsImgRifas/${urlsImgRifas[index]}`)}
+                      src={`http://localhost:8080/uploadsImgRifas/${urlsImgRifas[index]}`}
                       alt=""
                       className="w-full h-32 object-cover mb-4 rounded-md transform transition-transform duration-[1500ms] hover:scale-110"
                     />
@@ -221,7 +219,7 @@ export default function Ongs() {
                           descrcao: rifaSelecionada.descricao,
                         }}
                       >
-                        <button onClick={()=>{SaveNumberRifa(data.id)}} className="border-[1px] border-black rounded-full px-1 py-1 xl:px-3 xl:py-3">
+                        <button onClick={() => { SaveNumberRifa(data.id) }} className="border-[1px] border-black rounded-full px-1 py-1 xl:px-3 xl:py-3">
                           Comprar Rifa
                         </button>
                       </ModalPyament>

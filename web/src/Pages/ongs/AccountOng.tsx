@@ -36,7 +36,6 @@ export default function AccountOng() {
     }, 1500);
   };
 
-  const logo = localStorage.getItem("logoOng");
 
   const Ong = useAppSelector((state) => state.AuthToken.dataOng) as Array<{
     cnpj: string;
@@ -45,7 +44,13 @@ export default function AccountOng() {
     nome: string;
     telefone: string;
     redesSociais: string;
+    Logo : string 
   }>;
+
+  const logo = Ong[0]?.Logo.slice(8);
+
+
+
 
 
   const [saldoOng, setSaldoOng] = useState(0)
@@ -57,7 +62,7 @@ export default function AccountOng() {
       const req = await axios.post('http://localhost:8080/getSaldoFornCnpjOng', {
         cnpj: Ong[0]?.cnpj
       })
-      
+
       setSaldoOng(req.data.total)
     } catch (error) {
       console.log(`erro ao pegar saldo ong,${error}`)
@@ -68,7 +73,7 @@ export default function AccountOng() {
 
   useEffect(() => {
     getSaldoOng()
-  }, [Ong[0]?.cnpj,saldoOng])
+  }, [Ong[0]?.cnpj, saldoOng])
 
   console.log(saldoOng)
 
@@ -76,7 +81,10 @@ export default function AccountOng() {
     <div className={`bg-${pegarTema === "dark" ? "black" : "[#CEF3FF]"} transition-all duration-1000 min-h-screen flex items-center justify-center`}>
       <div className={`${pegarTema === 'dark' ? "shadow-2xl shadow-fuchsia-500 text-white border-black " : "  shadow-2xl shadow-fuchsia-500 text-black"} border-2 rounded-xl  p-8 max-w-4xl w-full`}>
         <div className="flex flex-col items-center mb-8">
-          <img src={require(`../../uploads/${logo}`)} alt="" className="w-40 h-40 md:w-52 md:h-52 rounded-full border-4 object-cover border-gray-300 p-3 mb-4" />
+          <img
+            src={`http://localhost:8080/uploadImgOng/${logo}`}
+
+            alt="" className="w-40 h-40 md:w-52 md:h-52 rounded-full border-4 object-cover border-gray-300 p-3 mb-4" />
           <h1 className="text-3xl font-semibold ">{Ong[0]?.nome}</h1>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-12 text-center ">
