@@ -162,7 +162,7 @@ export default function Account() {
       });
   };
 
-  const img = User[0]?.imgPerfilAbsolute.slice(2);
+  const img = User[0]?.imgPerfilAbsolute;
 
   console.log(img)
 
