@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client';
 
-const sockett = io('http://localhost:8080'); // Substitua pela URL do seu servidor Socket.IO
+const sockett = io('https://bh2-upl7.onrender.com'); // Substitua pela URL do seu servidor Socket.IO
 
 export default sockett;
 
