@@ -15,10 +15,5 @@
         "src": "/(.*)",
         "dest": "/src/$1"
       }
-    ],
-    "env": {
-      "DATABASE_URL": "file:dev.db",
-      "PORT" : 8080
-   
-    }
+    ]
   }
