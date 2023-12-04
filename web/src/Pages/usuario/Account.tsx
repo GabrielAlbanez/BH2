@@ -333,7 +333,7 @@ export default function Account() {
                             onClick={() => {
                               updateFileImg(
                                 dataLogosComprados[index].LogoDoacao.img.slice(
-                                  16
+                                  18
                                 )
                               );
                             }}
