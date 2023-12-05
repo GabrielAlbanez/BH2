@@ -16,7 +16,7 @@ const ModalShowLogos: React.FC<PropsModal> = ({ open, onClose, children }) => {
             className={`fixed inset-0 flex justify-center items-center transition-colors ${open ? "visible bg-black/20 " : "invisible "
                 }`}
         >
-            <div className={`bg-white w-[80%] h-[95%] sm:w-[90%] sm:h-[90%] md:w-[90%] md:h-[90%] lg:w-[70%] lg:h-[80%]    rounded-xl shadow p-6 transition-all duration-1000 ${open ? "scale-100 opacity-100 " : "scale-125 opacity-0 "}`}>
+            <div className={`bg-white w-[80%] h-[85%] sm:w-[90%] sm:h-[90%] md:w-[90%] md:h-[90%] lg:w-[70%] lg:h-[80%]    rounded-xl shadow p-6 transition-all duration-1000 ${open ? "scale-100 opacity-100 " : "scale-125 opacity-0 "}`}>
                 <button onClick={onClose} className=" cursor-pointer absolute top-2 right-2 p-1 rounded-lg text-gray-400 bg-white hover:bg-gray-50 hover:text-gray-600 ">
                     <GrFormClose size={30} />
                 </button>
