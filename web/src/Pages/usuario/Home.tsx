@@ -48,7 +48,7 @@ export default function Home() {
 
        {User[0]?.tipo === 'admin' ? (<>
         
-          <h1 className="text-4xl">Bem vindo Administrador!</h1>
+          <h1 className=" text-center text-xl sm:text-2xl md:text-4xl">Bem vindo Administrador!</h1>
 
        </>) : (<>
         <h1 className="text-4xl font-bold mb-4">Bem-vindo, {User[0]?.nome}!</h1>
