@@ -7,7 +7,6 @@ const configureSocketIO = (httpServer) => {
     cors: {
       origin: "https://be-human-five.vercel.app",
       methods: ["GET", "POST"],
-      credentials: true
     }
   });
 
