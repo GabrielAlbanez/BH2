@@ -89,7 +89,7 @@ export const sorteioUsers = async (req: Request, res: Response) => {
       where: {
         id: idRifa,
       },
-      //aaa
+      //aaaaaaa
       data: {
         ganhador: objetoSorteado.usuarioCpf,
         numeroSorteado: ganhador[0]?.numero.toString(),
