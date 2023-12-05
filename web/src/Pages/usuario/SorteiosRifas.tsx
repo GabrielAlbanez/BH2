@@ -84,7 +84,7 @@ export default function SorteiosRifas() {
                     <p className="text-gray-800 font-bold mt-2">Ganhador: {rifa.ganhador}</p>
                     {rifa.numeroSorteado && (
                       <p className="text-gray-800 font-bold mt-2">
-                        Número Sorteado: {rifa.numeroSorteado.replace(/\./g, "")}
+                        Número Sorteado: {rifa.numeroSorteado}
                       </p>
                     )}
                     {rifa.ganhador === cpf ? (
