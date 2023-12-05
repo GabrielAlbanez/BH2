@@ -43,6 +43,9 @@ export default function UniqueRifa() {
 
   const numerosComprados = dataRifa[0]?.NumeroComprado;
 
+  console.log('numeroSorteado',dataRifa[0].numeroSorteado.replace(/\./g, ""))
+  console.log('numeros comrprados',numerosComprados.map((valor)=>valor.numero))
+
   return (
     <div
       className={`transition-all duration-1000 ${pegarTema === "dark" ? "bg-zinc-950 text-white" : "bg-[#CEF3FF]"
@@ -81,6 +84,7 @@ export default function UniqueRifa() {
                       <>
                         {numerosComprados.map((numero, index) => (
                           <div
+                     
                             key={index}
                             className={`${valor.numeroSorteado.replace(/\./g, "") == numero.numero
                                 ? "bg-green-500"
