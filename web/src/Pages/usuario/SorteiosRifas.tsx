@@ -102,7 +102,7 @@ export default function SorteiosRifas() {
         </div>
       ) : (
         <div className="w-full h-full flex items-center justify-center">
-          <h1 className="text-4xl">Ainda não foi realizado nenhum sorteio de nenhuma rifa, aguarde por favor...</h1>
+          <h1 className="  text-center text-lg sm:text-xl  md:text-2xl">Ainda não foi realizado nenhum sorteio de nenhuma rifa, aguarde por favor...</h1>
         </div>
       )}
     </div>
