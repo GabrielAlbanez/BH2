@@ -58,23 +58,22 @@ export default function SorteiosRifas() {
 
   return (
     <div
-      className={`w-full min-h-[100vh] sm:min-h-[91vh] transition-all duration-1000 flex flex-col items-center justify-center gap-5 py-5 ${
-        pegarTema === 'dark' ? 'bg-black text-white' : 'bg-[#CEF3FF]'
-      }`}
+      className={`w-full min-h-[100vh] sm:min-h-[91vh] transition-all duration-1000 flex flex-col items-center justify-center gap-5 py-5 ${pegarTema === 'dark' ? 'bg-black text-white' : 'bg-[#CEF3FF]'
+        }`}
     >
       <h1 className="text-4xl font-bold mb-12">Sorteios</h1>
       {dataRifaSorteada.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-4">
-          {dataRifaSorteada.map((rifa,index) => (
+          {dataRifaSorteada.map((rifa, index) => (
             <div
               key={rifa.ganhador}
               className="max-w-sm  overflow-hidden shadow-lg bg-white hover:shadow-xl transition-all duration-[1700ms] ease-in-out transform hover:-translate-y-10 rounded-2xl"
             >
-                {url.length > 0 && ( <img className="w-full h-60 object-cover transform transition-transform duration-[1700ms] hover:scale-110" 
+              {url.length > 0 && (<img className="w-full h-60 object-cover transform transition-transform duration-[1700ms] hover:scale-110"
                 src={`https://bh2-upl7.onrender.com/uploadsImgRifas/${url[index]}`}
 
                 alt={rifa.nome} />)}
-             
+
               <div className="p-4">
                 <h2 className="font-bold text-2xl text-gray-600  mb-2">{rifa.nome}</h2>
                 <p className="text-gray-600 text-sm">{rifa.descricao}</p>
@@ -83,7 +82,11 @@ export default function SorteiosRifas() {
                   <>
                     <p className="text-green-500 font-bold mt-2">Sorteado</p>
                     <p className="text-gray-800 font-bold mt-2">Ganhador: {rifa.ganhador}</p>
-                    <p className="text-gray-800 font-bold mt-2">Número Sorteado: {rifa.numeroSorteado.replace(/\./g, "")}</p>
+                    {rifa.numeroSorteado && (
+                      <p className="text-gray-800 font-bold mt-2">
+                        Número Sorteado: {rifa.numeroSorteado.replace(/\./g, "")}
+                      </p>
+                    )}
                     {rifa.ganhador === cpf ? (
                       <p className="text-green-500 font-bold mt-2">Parabéns, você ganhou esta rifa!</p>
                     ) : (
