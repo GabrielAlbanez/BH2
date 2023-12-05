@@ -84,7 +84,7 @@ export default function UniqueRifa() {
                           <div
                             key={index}
                             className={`${
-                              numero.numero ==
+                              numero.numero ===
                               valor.numeroSorteado.replace(/\./g, "")
                                 ? "bg-green-500"
                                 : "bg-gray-400"
