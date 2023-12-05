@@ -57,7 +57,7 @@ export default function MinhasRotas() {
           headers: {
             Authorization: `Bearer ${token2}`,
           },
-          credentials: "include",
+          // credentials: "include",
         });
 
         if (!request.ok) {
