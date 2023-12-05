@@ -52,9 +52,7 @@ export default function RifasOngs() {
     const preco = parseFloat(dataRegisterRifa.preco);
 
     if (isNaN(preco)) {
-      console.log(
-        "Preço inválido. Por favor, insira um número válido."
-      );
+   
       return;
     }
 

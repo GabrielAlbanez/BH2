@@ -65,7 +65,6 @@ export default function CardRifas() {
     getRifasOng();
   }, [dataRifa]);
 
-  console.log("dataRifa", dataRifa);
 
   const url = dataRifa.map((valor) => valor.imgRifa.slice(16));
 
@@ -100,7 +99,6 @@ export default function CardRifas() {
         });
       }
   
-      console.log(subscription)
   
       await api.post("/push_register", {
         subscription,

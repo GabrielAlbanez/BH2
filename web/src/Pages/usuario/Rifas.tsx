@@ -54,7 +54,6 @@ export default function Rifas() {
     fetchData();
   }, [User[0]?.cpf,dataNumerosComprados]);
 
-  console.log(dataNumerosComprados)
 
 
   const { pegarTema } = useTema() as {

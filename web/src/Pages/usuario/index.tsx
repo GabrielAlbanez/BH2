@@ -43,7 +43,6 @@ export default function Register() {
     if (e.target.files && e.target.files.length > 0) {
       setImg(e.target.files[0]);
     }
-    console.log(img)
   };
 
   const navigator = useNavigate();
@@ -64,7 +63,6 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      console.log(dataUserRegister);
       const request = await axios.post(
         "https://bh2-upl7.onrender.com/createUser",
         dataUserRegister,
@@ -72,7 +70,6 @@ export default function Register() {
       );
       const responseData = request.data;
 
-      console.log(responseData);
 
       if ("error" in responseData) {
         const notify = () => {
@@ -116,7 +113,6 @@ export default function Register() {
   const handleSubmitOng = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(img)
   
     const formData = new FormData();
   
@@ -142,7 +138,6 @@ export default function Register() {
   
       const responseData: ResponseData = response.data;
   
-      console.log(responseData);
       
   
       if ("error" in responseData) {

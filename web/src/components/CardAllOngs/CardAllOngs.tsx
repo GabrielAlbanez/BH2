@@ -23,7 +23,6 @@ export default function CardAllOngs() {
   const url = dataOng.map((valor) => valor.Logo.slice(8));
   const cnpjLimpo = dataOng.map((valor) => valor.cnpj.replace(/[^\d]/g, ''));
 
-  console.log(url)
 
   return (
     <div className="flex flex-wrap justify-center items-center h-full">

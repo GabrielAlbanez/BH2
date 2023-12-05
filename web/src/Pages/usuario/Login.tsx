@@ -48,13 +48,11 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      console.log(dataLogin);
       const request = await axios.post(
         "https://bh2-upl7.onrender.com/Login",
         dataLogin
       );
       const responseData = request.data;
-      // console.log(responseData);
       localStorage.setItem("token", responseData?.token);
       const token = localStorage.getItem("token");
 

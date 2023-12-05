@@ -31,7 +31,6 @@ export default function NavbarOng() {
     Logo: string;
   }>;
 
-  console.log(isLoged);
 
   const notify = (message: string): void => {
     toast(`${message}`, {
@@ -48,7 +47,6 @@ export default function NavbarOng() {
 
   const pageHome = local.pathname === "/" ? true : false;
 
-  console.log(pageHome);
 
   return (
     <header className={`transition-all duration-1000 ${pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"} w-[100%] h-[9vh] flex items-center justify-between px-3 sm:px-8 xl:px-1 2xl:px-0`}>

@@ -34,7 +34,6 @@ export default function Account() {
     imgPerfilAbsolute: string;
   }>;
 
-  console.log(User);
 
   const logedUser = useAppSelector((state) => state.AuthToken.isLoged);
 
@@ -117,7 +116,6 @@ export default function Account() {
     getLogosComprados();
   }, [dataLogosComprados]);
 
-  console.log("comprados", dataLogosComprados);
 
   const ulrImgLogos = dataLogos.map((logo) => logo.img.slice(18));
 
@@ -146,7 +144,6 @@ export default function Account() {
     }));
   };
 
-  console.log(dataUpdate)
 
   const updateDataUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -164,7 +161,6 @@ export default function Account() {
 
   const img = User[0]?.imgPerfilAbsolute;
 
-  console.log(img)
 
   return (
     <div

@@ -52,7 +52,6 @@ const ListLogos = () => {
      
     const url = dataLogos.map((logo) => logo.imagensDoacao.map((valor) => valor.img.slice(18)))
 
-    console.log('url',url)
 
     return (
         <div className={`w-full h-screen flex flex-col gap-32 items-center justify-center ${pegarTema === 'dark' ? "bg-black text-white" : "bg-[#CEF3FF] text-black"}`}>

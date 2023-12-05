@@ -55,7 +55,6 @@ export default function AllRifas() {
     });
   }, []);
 
-  console.log(dataRifa);
 
   const User = useAppSelector((state) => state.AuthToken.dataUser) as Array<{
     cpf: string;

@@ -67,7 +67,6 @@ export default function ListOngs() {
   };
 
   useEffect(() => {
-    console.log(logedUser);
 
     if (logedUser === "false") {
       notify("Você precisa estar logado para acessar esta página");

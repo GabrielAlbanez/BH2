@@ -13,7 +13,6 @@ export default function AvatarImgOng({ largura, altura }: typeProsAvatar) {
     Logo: string;
   }>;
 
-  console.log(ong)
 
   const logoOng = ong[0]?.Logo.slice(8)
 

@@ -52,7 +52,6 @@ export default function Navbar() {
 
   const typeUser = User[0]?.tipo;
 
-  console.log(isLoged);
 
   const notify = (message: string): void => {
     toast(`${message}`, {
@@ -85,7 +84,6 @@ export default function Navbar() {
 
   const pageHome = local.pathname == "/" ? true : false;
 
-  console.log(pageHome);
 
   type resultadoSorteio = {
     sorteio: {
@@ -100,14 +98,12 @@ export default function Navbar() {
   useEffect(() => {
     sockett.emit("authenticate", cpf);
     sockett.on("sorteioConcluido", (dados: resultadoSorteio) => {
-      console.log("Recebeu sorteioConcluido:", dados);
       setResultadoSorteio(dados.sorteio.sorteioRealizado);
     });
 
     
   }, []);
 
-  console.log("resultado sorteio", resultadoSorteio);
 
 if(resultadoSorteio){
   navigator.serviceWorker
@@ -124,7 +120,6 @@ if(resultadoSorteio){
         });
       }
   
-      console.log(subscription)
   
       await api.post("/push_register", {
         subscription,

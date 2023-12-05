@@ -26,7 +26,6 @@ const AuthToken = createSlice({
 
     LogUser: (state, action) => {
       state.isLoged = action.payload;
-      console.log(action.payload);
     },
 
     saveAssinatura : (state, action) => {

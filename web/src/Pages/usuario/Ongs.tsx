@@ -63,7 +63,6 @@ export default function Ongs() {
       "https://bh2-upl7.onrender.com/getByRifaForCnpjOng",
       dataReq
     );
-    // console.log('dados da req',request.data)
     setDataOng(request.data.dataOng);
   };
 
@@ -73,13 +72,10 @@ export default function Ongs() {
 
   const url = dataOng[0]?.Logo.slice(8);
 
-  console.log(url);
 
-  console.log("rifas", dataOng[0]?.rifas);
 
   const urlsImgRifas = dataOng[0]?.rifas.map((data) => data.imgRifa.slice(16));
 
-  console.log(urlsImgRifas);
 
   const notify = (message: string) => {
     toast(`${message}`, {
@@ -93,7 +89,6 @@ export default function Ongs() {
   };
 
   const SaveNumberRifa = async (idRifa: number) => {
-    console.log("cpf dentro da função ", User[0]?.cpf);
 
     const req = await axios.post("https://bh2-upl7.onrender.com/byRifas", {
       cpf: User[0]?.cpf,
@@ -102,7 +97,6 @@ export default function Ongs() {
     });
 
     notify(req.data.message);
-    console.log("data", req.data);
     setOpen(false)
   };
 
