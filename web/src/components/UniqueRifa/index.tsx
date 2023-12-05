@@ -45,9 +45,8 @@ export default function UniqueRifa() {
 
   return (
     <div
-      className={`transition-all duration-1000 ${
-        pegarTema === "dark" ? "bg-zinc-950 text-white" : "bg-[#CEF3FF]"
-      } min-h-screen flex items-center justify-center`}
+      className={`transition-all duration-1000 ${pegarTema === "dark" ? "bg-zinc-950 text-white" : "bg-[#CEF3FF]"
+        } min-h-screen flex items-center justify-center`}
     >
       {dataRifa.length > 0 ? (
         dataRifa.map((valor, index) => (
@@ -83,12 +82,10 @@ export default function UniqueRifa() {
                         {numerosComprados.map((numero, index) => (
                           <div
                             key={index}
-                            className={`${
-                              numero.numero ===
-                              valor.numeroSorteado.replace(/\./g, "")
+                            className={`${valor.numeroSorteado.replace(/\./g, "") == numero.numero
                                 ? "bg-green-500"
                                 : "bg-gray-400"
-                            } p-4 rounded-md text-center mb-4 md:mb-0 px-2`}
+                              } p-4 rounded-md text-center mb-4 md:mb-0 px-2`}
                           >
                             <p className={`text-2xl  `}>{numero.numero}</p>
                           </div>
