@@ -51,7 +51,7 @@ export default function Home() {
           <h1 className=" text-center text-xl sm:text-2xl md:text-4xl">Bem vindo Administrador!</h1>
 
        </>) : (<>
-        <h1 className="text-4xl font-bold mb-4">Bem-vindo, {User[0]?.nome}!</h1>
+        <h1 className="text-center text-3xl font-bold mb-4">Bem-vindo, {User[0]?.nome}</h1>
         <p className="text-lg text-center">
           A BH Human é um software desenvolvido para facilitar o trabalho das ONGs.
         </p>
