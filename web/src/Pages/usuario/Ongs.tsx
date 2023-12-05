@@ -170,7 +170,9 @@ export default function Ongs() {
                 Rifas
               </h1>
               <div className="flex flex-wrap gap-4 justify-center">
-                {dataOng[0]?.rifas.map((data, index) => (
+               {dataOng[0]?.rifas.length > 0 ? (
+                 <>
+                  {dataOng[0]?.rifas.map((data, index) => (
                   <div
                     key={index}
 
@@ -220,12 +222,14 @@ export default function Ongs() {
                     )}
                   </div>
                 ))}
+                 </>
+               ) : (<div className=""> <h1 className="text-md sm:text-lg md:text-xl text-center ">Não a rifas criada por essa ong..</h1> </div>)}
               </div>
             </div>
           </section>
         </div>
       ) : (
-        <div className="h-full flex flex-col items-center justify-center">
+        <div className="h-[91vh] w-full flex flex-col items-center justify-center">
           <h1 className="text-3xl">Carregando Dados</h1>
           <div className="animate-spin h-5 mt-4">
             <ImSpinner2 />

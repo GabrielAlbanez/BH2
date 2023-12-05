@@ -45,7 +45,7 @@ export default function CardAllOngs() {
           </Link>
         ))
       ) : (
-        <div className="flex w-full h-full items-center justify-center">
+        <div className="flex w-full h-[90vh] items-center justify-center">
           <h1 className="text-3xl text-center">
             Ainda não há nenhuma ONG logada no sistema...
           </h1>
