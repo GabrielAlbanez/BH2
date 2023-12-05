@@ -116,6 +116,7 @@ export default function AllRifas() {
           </div>
         </div>
       </div>
+      <div className="overflow-x-auto pt-10">
       <table className={`min-w-full border-gray-300 transition-all duration-1000 rounded-lg ${pegarTema === "dark" ? "bg-gray-800 text-white" : "bg-blue-100"}`}>
         <thead className={` transition-all duration-1000  ${
         pegarTema === "dark" ? "bg-[#202020] text-white" : "bg-[#CEF3FF]"
@@ -176,6 +177,7 @@ export default function AllRifas() {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }
