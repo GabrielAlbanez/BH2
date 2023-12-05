@@ -91,7 +91,7 @@ export const sorteioUsers = async (req: Request, res: Response) => {
       },
       data: {
         ganhador: objetoSorteado.usuarioCpf,
-        numeroSorteado: ganhador[0]?.numero.toLocaleString(),
+        numeroSorteado: ganhador[0]?.numero.toString(),
       },
     });
 
