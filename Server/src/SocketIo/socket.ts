@@ -5,7 +5,7 @@ const connectedUsers: { [socketId: string]: string } = {}; // Mapeia socketId pa
 const configureSocketIO = (httpServer) => {
   const io = new SocketIOServer(httpServer, {
     cors: {
-      origin: "http://localhost:3000",
+      origin: "https://be-human-five.vercel.app",
       methods: ["GET", "POST"],
       credentials: true
     }
