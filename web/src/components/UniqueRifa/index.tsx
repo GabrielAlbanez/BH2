@@ -85,7 +85,7 @@ export default function UniqueRifa() {
                           <div
                      
                             key={index}
-                            className={`${valor.numeroSorteado === numero.numero
+                            className={`${valor.numeroSorteado == numero.numero
                                 ? "bg-green-500"
                                 : "bg-gray-400"
                               } p-4 rounded-md text-center mb-4 md:mb-0 px-2`}
