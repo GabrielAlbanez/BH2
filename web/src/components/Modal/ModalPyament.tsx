@@ -39,7 +39,7 @@ const ModalPyament: React.FC<PropsModal> = ({ open, onClose, data, children }) =
               src={`https://bh2-upl7.onrender.com/uploadsImgRifas/${data.img.slice(16)}`}
               
               alt=""
-              className="w-50 h-50 sm:w-full sm:h-52  md:h-62 md:w-62 2xl:w-full 2xl:h-full object-cover rounded-xl transition-all duration-1000 hover:scale-110"
+              className="w-36 h-36 sm:w-full sm:h-42  md:h-52 md:w-62 2xl:w-full 2xl:h-full object-cover rounded-xl transition-all duration-1000 hover:scale-110"
             />
             <h1 className="text-black text-md sm:text-lg  md:text-2xl">Nome: {data.nome}</h1>
             <h1 className="text-black text-sm sm:text-lg  md:text-2xl">Preco: R${data.preco}</h1>
