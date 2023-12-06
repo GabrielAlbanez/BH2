@@ -87,7 +87,7 @@ export default function Rifas() {
       }`}>
       <h1 className="text-3xl text-center " >Minhas rifas</h1>
 
-      {dataNumerosComprados.length > 0 ? (<>
+      {dataNumerosComprados && dataNumerosComprados[0]?.numerosComprados.length > 0 ? (<>
         {dataNumerosComprados && dataNumerosComprados[0]?.numerosComprados.length > 0 ? (
           <div className=" pt-10 h-full  w-full flex gap-5 flex-wrap items-center justify-center">
             {dataNumerosComprados.map((numero, outerIndex) => (
@@ -146,11 +146,11 @@ export default function Rifas() {
             ))}
           </div>
         ) : (
-          <div className="flex items-center justify-center h-[91vh] w-full text-3xl">
+          <div className="flex items-center justify-center h-[91vh] w-full text-center text-md sm:text-lg md:text-2xl 2x:text-3xl">
             <h1>Você ainda não comprou nenhuma rifa</h1>
           </div>
         )}
-      </>) : (<div className="w-full h-[91vh] flex flex-col items-center justify-center">
+      </>) : (<div className="w-full h-[91vh] flex flex-col items-center justify-center text-center text-md sm:text-lg md:text-2xl 2x:text-3xl">
       <h1>Você ainda não comprou nenhuma rifa</h1>
       </div>)}
 
