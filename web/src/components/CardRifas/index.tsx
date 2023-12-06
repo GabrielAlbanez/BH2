@@ -211,7 +211,6 @@ export default function CardRifas() {
           </>
         )}
       </>) : (<div className="w-full h-[91vh] flex flex-col items-center justify-center">
-        <h1 className="text-3xl">Carregando Dados</h1>
         <h1 className=" text-center text-2xl">Você ainda não tem nenhuma rifa criada</h1>
       </div>)}
 
