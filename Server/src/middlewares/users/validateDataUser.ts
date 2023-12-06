@@ -87,7 +87,7 @@ export const validateDataUser = async (
 
   const sexoLoweCase =  sexo.toLowerCase ()
 
-  if (sexoLoweCase !== "masculino" && sexoLoweCase !== "feminino") {
+  if (sexoLoweCase !== "masculino" && sexoLoweCase !== "feminino" && sexoLoweCase !== "Outros") {
     return res.status(203).json({ error: "sexo nao existente" });
   }
 

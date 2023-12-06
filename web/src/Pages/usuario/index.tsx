@@ -47,15 +47,15 @@ export default function Register() {
 
   const navigator = useNavigate();
 
-  const hanleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const hanleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     const { name, value } = e.target;
     setDataUserRegister((dados) => ({
       ...dados,
       [name]: value,
     }));
-    setDataOngRegister((dataOng)=>({
+    setDataOngRegister((dataOng) => ({
       ...dataOng,
-      [name]:value
+      [name]: value
     }))
   };
 
@@ -66,7 +66,7 @@ export default function Register() {
       const request = await axios.post(
         "https://bh2-upl7.onrender.com/createUser",
         dataUserRegister,
-        
+
       );
       const responseData = request.data;
 
@@ -113,9 +113,9 @@ export default function Register() {
   const handleSubmitOng = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-  
+
     const formData = new FormData();
-  
+
     // Adicione os campos de dados da ONG ao formData
     formData.append("nome", dataOngRegister.nome);
     formData.append("email", dataOngRegister.email);
@@ -124,22 +124,22 @@ export default function Register() {
     formData.append("endereco", dataOngRegister.endereco);
     formData.append("telefone", dataOngRegister.telefone);
     formData.append("redesSociais", dataOngRegister.redesSociais);
-  
+
     // Verifique se o arquivo (imagem) foi selecionado pelo usuário
-    
+
 
     if (img) {
       // Adicione a imagem ao formData
       formData.append("logo", img);
     }
-  
+
     try {
       const response = await axios.post("https://bh2-upl7.onrender.com/createOngs", formData);
-  
+
       const responseData: ResponseData = response.data;
-  
-      
-  
+
+
+
       if ("error" in responseData) {
         const notify = () => {
           toast(`${responseData.error}`, {
@@ -151,7 +151,7 @@ export default function Register() {
             },
           });
         };
-  
+
         notify();
       } else {
         const notify = () => {
@@ -164,7 +164,7 @@ export default function Register() {
             },
           });
         };
-  
+
         notify();
         navigator("/Login");
       }
@@ -292,7 +292,7 @@ export default function Register() {
             <div className="flex gap-2 flex-col ">
               <label htmlFor="">Insira A logo de sua ong</label>
               <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh] 2xl:h-[6vh]  rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
-              <input type="file" id="logo" accept="image/*" onChange={handleFileChange} />
+                <input type="file" id="logo" accept="image/*" onChange={handleFileChange} />
 
               </div>
             </div>
@@ -387,14 +387,17 @@ export default function Register() {
               <div className="flex gap-2 flex-col ">
                 <label htmlFor="">Sexo</label>
                 <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh] 2xl:h-[6vh]  rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
-                  <input
+                  <select
                     value={dataUserRegister.sexo}
                     onChange={hanleInputChange}
                     name="sexo"
-                    type="text"
-                    placeholder="name@example.com.."
                     className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3"
-                  />
+                  >
+                    <option value="">Selecione o sexo</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                    <option value="Outros">Outros</option>
+                  </select>
                 </div>
               </div>
 
