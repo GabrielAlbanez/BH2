@@ -409,7 +409,7 @@ export default function Register() {
                     </option>
                   </select>
                   {dataUserRegister.sexo && (
-                    <p className="text-white text-center text-lg mt-2">
+                    <p className="text-white text-center text-lg ">
                       Selecionado: {dataUserRegister.sexo}
                     </p>
                   )}
