@@ -390,7 +390,7 @@ export default function Register() {
 
               <div className="flex gap-2 flex-col ">
                 <label htmlFor="">Sexo</label>
-                <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex gap-2 items-center justify-center h-[6vh] 2xl:h-[6vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
+                <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex px-5 items-center justify-center h-[6vh] 2xl:h-[6vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
                 {dataUserRegister.sexo && (
                     <p className="text-white text-center text-lg ">
                       {dataUserRegister.sexo}
