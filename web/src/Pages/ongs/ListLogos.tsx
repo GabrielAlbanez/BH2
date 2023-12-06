@@ -57,7 +57,7 @@ const ListLogos = () => {
         <div className={`w-full h-screen flex flex-col gap-32 items-center justify-center ${pegarTema === 'dark' ? "bg-black text-white" : "bg-[#CEF3FF] text-black"}`}>
             <h1 className='text-center text-3xl pt-3'>Logos</h1>
 
-            {url.length >= 1 ? (<div className='flex '>
+            {url.length > 0 ? (<div className='flex '>
 
 
                 {dataLogos.map((logos, index) => (

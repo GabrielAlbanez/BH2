@@ -150,7 +150,7 @@ export default function Rifas() {
             <h1>Você ainda não comprou nenhuma rifa</h1>
           </div>
         )}
-      </>) : (<div className="w-full h-[91vh] flex flex-col items-center justify-center  text-3xl">
+      </>) : (<div className="w-full h-[91vh] flex flex-col items-center justify-center  text-center text-md  sm:text-xl md:text-3xl 2xl:text-3xl">
       <h1>Você ainda não comprou nenhuma rifa</h1>
       
       </div>)}
