@@ -391,7 +391,7 @@ export default function Register() {
                     value={dataUserRegister.sexo}
                     onChange={hanleInputChange}
                     name="sexo"
-                    className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3"
+                    className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-zinc-800 text-white p-3"
                   >
                     <option value="">Selecione o sexo</option>
                     <option value="Masculino">Masculino</option>
