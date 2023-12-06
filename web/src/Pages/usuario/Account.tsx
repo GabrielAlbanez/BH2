@@ -136,7 +136,7 @@ export default function Account() {
     sexo: User[0]?.sexo,
   });
 
-  const hanleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const hanleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     const { name, value } = e.target;
     setDataUpdate((dados) => ({
       ...dados,
@@ -259,18 +259,36 @@ export default function Account() {
                   className={`flex gap-2 flex-col  ${pegarTema === "dark" ? "text-white" : "text-black"
                     }`}
                 >
-                  <label htmlFor="">sexo</label>
-                  <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh]  2xl:h-[6vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
-                    <input
-                      name="sexo"
-                      defaultValue={User[0]?.sexo}
-                      value={dataUpdate.sexo}
-                      onChange={hanleInputChange}
-                      placeholder="name@example.com.."
-                      className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3"
-                    />
-                  </div>
+              <div className="flex gap-2 flex-col ">
+                <label htmlFor="">Sexo</label>
+                <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex px-5 items-center justify-center h-[6vh] 2xl:h-[6vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
+                {dataUpdate.sexo ? (
+                    <p className="text-white text-center text-lg ">
+                      {dataUpdate.sexo}
+                    </p>
+                  ) : (<><p>{User[0]?.sexo}</p></>)}
+                  <select
+                    value={dataUpdate.sexo}
+                    placeholder="selecione o Sexo"
+                    onChange={hanleInputChange}
+                    name="sexo"
+                    className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3 placeholder:text-white"
+                  >
+                    <option className="text-black" value="Masculino">
+                      Masculino
+                    </option>
+                    <option className="text-black" value="Feminino">
+                      Feminino
+                    </option>
+                    <option className="text-black" value="Outros">
+                      Outros
+                    </option>
+                  </select>
+              
                 </div>
+              </div>
+              </div>
+
 
                 <button
                   type="submit"
