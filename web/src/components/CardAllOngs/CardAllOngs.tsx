@@ -57,9 +57,9 @@ export default function CardAllOngs() {
       
       </>) : (<div className="w-full h-[91vh] flex flex-col items-center justify-center">
         <h1 className="text-3xl">Carregando Dados</h1>
-        <div className="animate-spin h-5 mt-4">
-          <ImSpinner2 />
-        </div>
+        <h1 className="text-3xl text-center">
+            Ainda não há nenhuma ONG logada no sistema...
+          </h1>
       </div>)}
       
     </div>

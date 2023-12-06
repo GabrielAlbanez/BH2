@@ -64,7 +64,7 @@ export default function SorteiosRifas() {
     >
       {dataRifaSorteada.length > 0 ? (<>
         <h1 className="text-4xl font-bold mb-12">Sorteios</h1>
-        {dataRifaSorteada.length > 0  && url.length > 0 ? (
+        {dataRifaSorteada.length > 0 && url.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-4">
             {dataRifaSorteada.map((rifa, index) => (
               <div
@@ -108,10 +108,8 @@ export default function SorteiosRifas() {
           </div>
         )}
       </>) : (<div className="w-full h-[91vh] flex flex-col items-center justify-center">
-        <h1 className="text-3xl">Carregando Dados</h1>
-        <div className="animate-spin h-5 mt-4">
-          <ImSpinner2 />
-        </div>
+        <h1 className="  text-center text-lg sm:text-xl  md:text-2xl">Ainda não foi realizado nenhum sorteio de nenhuma rifa, aguarde por favor...</h1>
+
       </div>)}
 
     </div>

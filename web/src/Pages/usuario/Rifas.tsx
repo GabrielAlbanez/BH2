@@ -151,10 +151,8 @@ export default function Rifas() {
           </div>
         )}
       </>) : (<div className="w-full h-[91vh] flex flex-col items-center justify-center">
-        <h1 className="text-3xl">Carregando Dados</h1>
-        <div className="animate-spin h-5 mt-4">
-          <ImSpinner2 />
-        </div>
+      <h1>Você ainda não comprou nenhuma rifa</h1>
+      
       </div>)}
 
 
