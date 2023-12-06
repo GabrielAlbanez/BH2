@@ -230,8 +230,10 @@ export default function Ongs() {
         </div>
       ) : (
         <div className="h-[91vh] w-full flex flex-col items-center justify-center">
- <h1 className="text-md sm:text-lg md:text-xl text-center ">Não a rifas criada por essa ong..</h1>
-          
+          <h1 className="text-3xl">Carregando Dados</h1>
+          <div className="animate-spin h-5 mt-4">
+            <ImSpinner2 />
+          </div>
         </div>
       )}
     </div>
