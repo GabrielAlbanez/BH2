@@ -389,10 +389,11 @@ export default function Register() {
                 <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh] 2xl:h-[6vh]  rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
                   <select
                     value={dataUserRegister.sexo}
+                    defaultValue={"selecione o Sexo"}
                     placeholder="selecione o Sexo"
                     onChange={hanleInputChange}
                     name="sexo"
-                    className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-zinc-800 text-white p-3"
+                    className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent text-white p-3 placeholder:text-white"
                   >
                     
                     <option value="Masculino">Masculino</option>
