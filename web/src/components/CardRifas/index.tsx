@@ -144,14 +144,14 @@ export default function CardRifas() {
                   className={`${rifa.sorteado === true ? "opacity-60" : "opacity-100"
                     }`}
                 >
-                  <Card className="w-80 shadow-xl shadow-purple-500 transform transition-transform duration-[1500ms] hover:scale-125">
+                  <Card className="w-80 shadow-xl shadow-purple-500 transform transition-transform duration-[1500ms] hover:scale-110">
                     <Link to={`/UniqueRIfa/${rifa.id}`} key={index}>
                       <CardHeader shadow={false} floated={false} className="h-64">
                         {url && (
                           <img
                             src={`https://bh2-upl7.onrender.com/uploadsImgRifas/${url[index]}`}
                             alt="card-image"
-                            className="h-full w-full object-cover transform transition-transform duration-[1500ms] hover:scale-125"
+                            className="h-full w-full object-cover transform transition-transform duration-[1500ms] hover:scale-110"
                           />
                         )}
                       </CardHeader>
