@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { ImSpinner2 } from "react-icons/im";
 
 export default function CardAllOngs() {
   type dataOng = {
@@ -26,7 +27,9 @@ export default function CardAllOngs() {
 
   return (
     <div className="flex flex-wrap justify-center items-center h-full">
-      {dataOng.length > 0 ? (
+      {dataOng.length > 0 ? (<>
+
+        {dataOng.length > 0 ? (
         dataOng.map((ong, index) => (
           <Link to={`/Ong/${cnpjLimpo[index]}`} key={index}>
             <div className="max-w-xl mx-4 my-8 bg-white rounded-2xl overflow-hidden shadow-lg transform transition-transform duration-[1500ms] hover:scale-110">
@@ -51,6 +54,14 @@ export default function CardAllOngs() {
           </h1>
         </div>
       )}
+      
+      </>) : (<div className="w-full h-[91vh] flex flex-col items-center justify-center">
+        <h1 className="text-3xl">Carregando Dados</h1>
+        <div className="animate-spin h-5 mt-4">
+          <ImSpinner2 />
+        </div>
+      </div>)}
+      
     </div>
   );
 }
