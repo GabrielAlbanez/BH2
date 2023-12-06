@@ -432,7 +432,7 @@ export default function Register() {
               </div>
             </div>
 
-            <div className=" bg flex items-center justify-center w-[80%] sm:w-[50%] xl:w-[30%] ">
+            <div className="pt-4 sm:pt-0 bg flex items-center justify-center w-[80%] sm:w-[50%] xl:w-[30%] ">
               <Button type="submit">Enivar</Button>
             </div>
           </form>
