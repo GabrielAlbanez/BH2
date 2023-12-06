@@ -55,16 +55,13 @@ export default function Register() {
         [name]: value,
       }));
     } else {
-      setDataUserRegister((dados) => ({
-        ...dados,
-        [name]: value,
-      }));
       setDataOngRegister((dataOng) => ({
         ...dataOng,
         [name]: value,
       }));
     }
   };
+  
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -396,7 +393,6 @@ export default function Register() {
                 <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex items-center justify-center h-[6vh] 2xl:h-[6vh]  rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
                   <select
                     value={dataUserRegister.sexo}
-                    defaultValue={"selecione o Sexo"}
                     placeholder="selecione o Sexo"
                     onChange={hanleInputChange}
                     name="sexo"
