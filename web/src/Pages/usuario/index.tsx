@@ -49,14 +49,21 @@ export default function Register() {
 
   const hanleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     const { name, value } = e.target;
-    setDataUserRegister((dados) => ({
-      ...dados,
-      [name]: value,
-    }));
-    setDataOngRegister((dataOng) => ({
-      ...dataOng,
-      [name]: value
-    }))
+    if (e.target.tagName === "SELECT") {
+      setDataUserRegister((dados) => ({
+        ...dados,
+        [name]: value,
+      }));
+    } else {
+      setDataUserRegister((dados) => ({
+        ...dados,
+        [name]: value,
+      }));
+      setDataOngRegister((dataOng) => ({
+        ...dataOng,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
