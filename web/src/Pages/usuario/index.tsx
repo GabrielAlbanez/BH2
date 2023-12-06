@@ -49,17 +49,20 @@ export default function Register() {
 
   const hanleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     const { name, value } = e.target;
-    if (e.target.tagName === "SELECT") {
+ 
+    
       setDataUserRegister((dados) => ({
         ...dados,
         [name]: value,
       }));
-    } else {
+   
+      
       setDataOngRegister((dataOng) => ({
         ...dataOng,
         [name]: value,
       }));
-    }
+
+      
   };
 
 
