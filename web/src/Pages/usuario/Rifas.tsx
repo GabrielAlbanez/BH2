@@ -87,7 +87,7 @@ export default function Rifas() {
       }`}>
       <h1 className="text-3xl text-center " >Minhas rifas</h1>
 
-      {dataNumerosComprados && dataNumerosComprados[0]?.numerosComprados.length > 0 ? (<>
+      {dataNumerosComprados.length > 0 ? (<>
         {dataNumerosComprados && dataNumerosComprados[0]?.numerosComprados.length > 0 ? (
           <div className=" pt-10 h-full  w-full flex gap-5 flex-wrap items-center justify-center">
             {dataNumerosComprados.map((numero, outerIndex) => (
