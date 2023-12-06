@@ -400,12 +400,12 @@ export default function Register() {
                     placeholder="selecione o Sexo"
                     onChange={hanleInputChange}
                     name="sexo"
-                    className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent text-black p-3 placeholder:text-white"
+                    className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent text-white p-3 placeholder:text-white"
                   >
                     
-                    <option value="Masculino">Masculino</option>
-                    <option value="Feminino">Feminino</option>
-                    <option value="Outros">Outros</option>
+                    <option  className="text-black" value="Masculino">Masculino</option>
+                    <option  className="text-black" value="Feminino">Feminino</option>
+                    <option  className="text-black" value="Outros">Outros</option>
                   </select>
                 </div>
               </div>
