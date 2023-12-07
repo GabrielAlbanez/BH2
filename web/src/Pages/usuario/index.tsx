@@ -394,17 +394,17 @@ export default function Register() {
               <div className="flex gap-2 flex-col ">
                 <label htmlFor="">Sexo</label>
                 <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex px-5 items-center justify-center h-[6vh] 2xl:h-[6vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
-                {dataUserRegister.sexo && (
+                {/* {dataUserRegister.sexo && (
                     <p className="text-white text-center text-lg ">
                       {dataUserRegister.sexo}
                     </p>
-                  )}
+                  )} */}
                   <select
                     value={dataUserRegister.sexo}
                     placeholder="selecione o Sexo"
                     onChange={hanleInputChange}
                     name="sexo"
-                    className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3 placeholder:text-white"
+                    className="w-[93%] rounded-full h-[100%] border-white outline-0 bg-transparent p-3 placeholder:text-white"
                   >
                     <option className="text-black" value="Masculino">
                       Masculino
