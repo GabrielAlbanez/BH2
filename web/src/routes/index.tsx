@@ -33,6 +33,7 @@ import CreateLogos from "../Pages/ongs/CreateLogos";
 import ListLogos from "../Pages/ongs/ListLogos";
 import VLibras from '@moreiraste/react-vlibras'
 import api from "../lib/api";
+import NotFoundPage from "../Pages/404";
 
 export default function MinhasRotas() {
   const token2 = localStorage.getItem("token");
@@ -100,7 +101,7 @@ export default function MinhasRotas() {
     <BrowserRouter>
       {isLoged === "ongLogada" ? <NavbarOng /> : <Navbar />}
       <Toaster position="bottom-right" reverseOrder={false} />
-      <VLibras  forceOnload={true} />
+      <VLibras forceOnload={true} />
 
 
       <Routes>
@@ -243,6 +244,10 @@ export default function MinhasRotas() {
             </ProtectedRouOng>
           }
         />
+
+
+      <Route path="/*" element={<NotFoundPage/>}/>
+
       </Routes>
     </BrowserRouter>
   );
