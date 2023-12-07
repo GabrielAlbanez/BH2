@@ -401,7 +401,7 @@ export default function Register() {
                   )} */}
                   <select
                     value={dataUserRegister.sexo}
-                    placeholder="selecione o Sexo"
+                    defaultValue={""}
                     onChange={hanleInputChange}
                     name="sexo"
                     className="w-[100%] rounded-full h-[100%] text-lg border-white outline-0 bg-transparent  placeholder:text-white"
