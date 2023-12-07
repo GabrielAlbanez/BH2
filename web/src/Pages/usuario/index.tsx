@@ -48,9 +48,9 @@ export default function Register() {
   const navigator = useNavigate();
 
   const hanleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
-    const { name, value } = e.target;
+    const { name = "masculino", value } = e.target;
  
-    
+ 
       setDataUserRegister((dados) => ({
         ...dados,
         [name]: value,
