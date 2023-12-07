@@ -55,7 +55,7 @@ export default function Navbar() {
 
   const notify = (message: string): void => {
     toast(`${message}`, {
-      icon: `${pegarTema === "dark" ? "✔" : "✔"}`,
+      icon: `${pegarTema === "dark" ? "❌" : "❌"}`,
       style: {
         borderRadius: "10px",
         background: `${pegarTema === "dark" ? "#333" : "white"}`,
