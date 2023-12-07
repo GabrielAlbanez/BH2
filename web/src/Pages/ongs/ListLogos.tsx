@@ -62,7 +62,7 @@ const ListLogos = () => {
 
                 {dataLogos.map((logos, index) => (
                     <div className={` h-full
-                     w-full  bg-black flex gap-10 items-center justify-center flex-wrap ${pegarTema === 'dark' ? "bg-black text-white" : "bg-[#CEF3FF] text-black"}`}>
+                     w-full   flex gap-10 items-center justify-center flex-wrap ${pegarTema === 'dark' ? "bg-black text-white" : "bg-[#CEF3FF] text-black"}`}>
                         {logos.imagensDoacao.map((valor, index) => (
                             <div className=' '>
                                 <div className='w-full h-full ' >
