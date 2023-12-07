@@ -164,7 +164,7 @@ export default function Account() {
 
   return (
     <div
-      className={` w-full h-full lg:h-[91vh] transition-all duration-1000 flex items-center justify-center flex-col gap-10 ${pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF] text-black"
+      className={` w-full h-full lg:h-[100vh] transition-all duration-1000 flex items-center justify-center flex-col gap-10 ${pegarTema === "dark" ? "bg-black text-white" : "bg-[#CEF3FF] text-black"
         }`}
     >
       <div className="text-4xl pt-10">Account</div>
@@ -262,17 +262,13 @@ export default function Account() {
               <div className="flex gap-2 flex-col ">
                 <label htmlFor="">Sexo</label>
                 <div className="w-[100%] sm:w-[70vh] md:w-[60vh] border-purple-500 border-[1px] flex px-5 items-center justify-center h-[6vh] 2xl:h-[6vh] rounded-2xl transition shadow-purple-300 shadow-md hover:shadow-lg hover:shadow-purple-500 ">
-                {dataUpdate.sexo ? (
-                    <p className="text-white text-center text-lg ">
-                      {dataUpdate.sexo}
-                    </p>
-                  ) : (<><p>{User[0]?.sexo}</p></>)}
                   <select
                     value={dataUpdate.sexo}
+                    defaultValue={User[0]?.sexo}
                     placeholder="selecione o Sexo"
                     onChange={hanleInputChange}
                     name="sexo"
-                    className="w-[93%] rounded-full h-[60%] border-white outline-0 bg-transparent p-3 placeholder:text-white"
+                    className="w-[100%] rounded-full h-[100%] border-white outline-0 bg-transparent  placeholder:text-white"
                   >
                     <option className="text-black" value="Masculino">
                       Masculino
